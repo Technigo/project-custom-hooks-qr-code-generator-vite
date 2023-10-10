@@ -2,7 +2,13 @@
 
 ## QR Code Generator Project - React and Custom Hooks
 
-This week, you will dive into a project that involves generating QR codes using React and a custom hook. The QR Code Generator Demo project is a simple yet effective tool that allows users to input a URL, generate a QR code from it, and download the generated code as an image. Your mission is to understand the existing codebase and potentially expand upon it, ensuring that the application is user-friendly and robust.
+This week, you'll explore a project that uses React and a custom hook to create QR codes. The QR Code Generator Demo project lets users type in a URL, turn it into a QR code, and download it as an image. Your task is to understand and possibly expand the existing code to make sure it’s easy to use and works well.
+
+A key part of this project is the qrcode library. This tool helps turn the URLs into QR codes, which are special barcodes that can be scanned to show the URL. The qrcode library is used in two ways in the project:
+
+Directly: Like in the QrExample component, where it turns a URL into a QR code right in the component.
+In a Custom Hook: Used in the main app logic, inside a custom hook named useQRCodeGenerator, making the QR code creation logic easy to use in different parts of the app.
+As you work through the project, think about how the qrcode library is used, how the QR code data is managed, and how the user interface changes based on the data. Dive in, explore, and have fun coding!
 
 ### Context:
 
