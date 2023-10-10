@@ -1,10 +1,10 @@
 <h1 align="center">
   <a href="">
-    <img src="/src/assets/design-handoff.svg" alt="Project Banner Image">
+    <img src="/src/assets/custom-hooks.svg" alt="Project Banner Image">
   </a>
 </h1>
 
-# Design Handoff Project
+# QR Code Generator - Custom Hook Project DEMO
 
 Replace this readme with your own information about your project.
 
