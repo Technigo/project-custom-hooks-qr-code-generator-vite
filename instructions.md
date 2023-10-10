@@ -40,9 +40,9 @@ This project is a fantastic opportunity to explore the capabilities of React and
 
 ### Stretched Requirements
 
-In this project, while the foundational logic and styling are provided, there's ample room for expansion and enhancement, especially in the realms of styling and further utilization of the `qrcode` library.
+In this project, we have the basics in place, but there's plenty of room to make things even better. This is especially true when it comes to making things look nice and using the `qrcode` library.
 
-- Enhanced Styling: While the basic styling provides a clean and user-friendly interface, consider exploring additional styling enhancements. This might include implementing a dark mode, adding animations, or refining the user interface for an even more seamless user experience.
+- Enhanced Styling: While the basic design is clean and easy to use, you can make it even fancier. You might want to try adding a dark mode, some cool animations, or just fine-tune the way it looks to make it even easier to use.
 
 - Expanding `qrcode` Usage: The [`qrcode`](https://www.npmjs.com/package/qrcode) library offers a variety of options for generating QR codes. Explore its documentation and consider implementing additional features, such as adjusting the color, size, or shape of the QR codes, or providing additional user options for customizing the generated QR code.
 
