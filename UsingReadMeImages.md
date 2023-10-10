@@ -30,17 +30,11 @@ The GitHub API does not provide a direct way to store or specify an image for a 
 
 Use the GitHub API to fetch your repositories:
 
-javascriptCopy code
-
 ```js
-fetch("https://api.github.com/users/dzc1/repos")
-  .then((response) => {
-    // Check if the request was successful
-    if (!response.ok) {
-      throw new Error("Network response was not ok" + response.statusText);
-    }
-    return response.json(); // Parse the JSON response
-  })
+fetch("https://api.github.com/users/YourGitHubProfile/repos")
+  .then(
+    (response) => response.json() // Parse the JSON response
+  )
   .then((data) => {
     // Handle repositories data
     handleRepos(data);
@@ -50,6 +44,8 @@ fetch("https://api.github.com/users/dzc1/repos")
     console.error("There has been a problem with your fetch operation:", error);
   });
 ```
+
+Remember to use an ASYNC funct above ;)
 
 #### B. Fetch README.md Content:
 
