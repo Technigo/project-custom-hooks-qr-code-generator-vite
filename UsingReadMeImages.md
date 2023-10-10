@@ -32,22 +32,24 @@ Use the GitHub API to fetch your repositories:
 
 javascriptCopy code
 
-`fetch('https://api.github.com/users/dzc1/repos')
-  .then(response => {
+```js
+fetch("https://api.github.com/users/dzc1/repos")
+  .then((response) => {
     // Check if the request was successful
     if (!response.ok) {
-      throw new Error('Network response was not ok' + response.statusText);
+      throw new Error("Network response was not ok" + response.statusText);
     }
-    return response.json();  // Parse the JSON response
+    return response.json(); // Parse the JSON response
   })
-  .then(data => {
+  .then((data) => {
     // Handle repositories data
     handleRepos(data);
   })
-  .catch(error => {
+  .catch((error) => {
     // Handle errors, like network issues or API rate limiting
-    console.error('There has been a problem with your fetch operation:', error);
-  });`
+    console.error("There has been a problem with your fetch operation:", error);
+  });
+```
 
 #### B. Fetch README.md Content:
 
