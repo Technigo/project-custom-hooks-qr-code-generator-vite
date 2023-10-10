@@ -21,10 +21,8 @@ This project is a fantastic opportunity to explore the capabilities of React and
 
 ### Requirements:
 
-- React: The app should be built with React.
 - Custom Hook: Utilize the `useQRCodeGenerator` custom hook to manage the QR code generation logic.
 - User-Friendly UI: Ensure that the UI is intuitive and user-friendly.
-- Error Handling: Implement robust error handling to manage potential issues during QR code generation.
 - Responsive: Ensure that the app is responsive and provides a solid user experience on various screen sizes.
 
 ### Code Insights:
