@@ -4,10 +4,6 @@
   </a>
 </h1>
 
-### Remove git
-
-rm -rf .git
-
 # Design Handoff Project
 
 Replace this readme with your own information about your project.
