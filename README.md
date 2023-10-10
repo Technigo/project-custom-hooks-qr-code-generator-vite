@@ -4,7 +4,7 @@
   </a>
 </h1>
 
-# QR Code Generator - Custom Hook Project DEMO
+# QR Code Generator - Custom Hook Project
 
 Replace this readme with your own information about your project.
 
