@@ -1,36 +1,36 @@
 # Instructions
 
-## Design Handoff Project - UX Design Collaboration Project
+## QR Code Generator Project - React and Custom Hooks
 
-This week, you will experience a design hand-off from a UX-design student and work on transforming that design into code. It is a landing page for a fitness club [’Gym”, “Yoga Studio”] and you will build it in React. We want you to think about how you want to structure the site and what components to create. Your mission is to follow the designs thoroughly, but keep in mind that the designs are made from students that are, like you, learning a new profession. Interpret the design kindly.
-
-This is a perfect opportunity to explore fun npm packages to create an image carousel or make some fun animations if that’s included in the design.
+This week, you will dive into a project that involves generating QR codes using React and a custom hook. The QR Code Generator Demo project is a simple yet effective tool that allows users to input a URL, generate a QR code from it, and download the generated code as an image. Your mission is to understand the existing codebase and potentially expand upon it, ensuring that the application is user-friendly and robust.
 
 ### Context:
 
-This is a special week for all of us. It’s the first time we get the chance to collaborate with our UX design students 🤩 Everything will not run smoothly, but honestly - it doesn’t in a real work setting either. We will do this together 💪
+This project is a fantastic opportunity to explore the capabilities of React and custom hooks. The existing codebase provides a solid foundation, and your task is to ensure that the application is polished, potentially adding any additional features or improvements that you identify.
 
-- Details do matter. Assume that all design decisions are intentional.
-- Be honest about any constraints. Try to implement the design, but if there's something that you feel you really can't do - speak up.
-- Since you will not be able to actually build the project until you've seen the design, we've put together a list of the elements that the UX designers have gotten in _their_ project brief. If you want to get a head start before the design handoff, you could start by having a look at that and create some components:
-  - A header section with a logotype and navigation
-  - A main hero-section and the rest of the page with all information needed for the user to register and key value preposition
-  - UX copy (no lorem ipsum this time)
-  - A form for user input (to register/sign up for the class)
-  - Form states (active, passive, filled, errors)
-  - A footer with relevant information
-  - Any other information or building blocks you want to add to your landing page
+- Attention to Detail: Ensure that the application is user-friendly and that any additional features are implemented thoughtfully.
+- Be Honest: If there are aspects of the project that you find challenging or are unable to implement, communicate this transparently.
+- Explore: Feel free to explore additional libraries or tools that could enhance the project.
 
-After the design handoff you will hopefully have a good idea on how to move forward with the design. Use your knowledge of React and feel free to use any npm packages that can make life easier for you. Remember to have fun 🥳
+### Core Functionality:
+
+- URL Input: Users should be able to input a URL that will be converted into a QR code.
+- QR Code Generation: Upon input, a QR code should be generated from the URL.
+- Download: Users should have the ability to download the generated QR code as an image file.
+- Repeat: Users should be able to generate a new QR code after one has been created.
 
 ### Requirements:
 
-- The app should be built with React
-- Your app should have reusable components
-- Your app should be responsive
-- Your app should look as close as possible to the given design
-- Your app's content will be fetched globally via `zustand` or React's `useContext`.
-- Your app's content will be translated using `react-i18next` into 2 languages. - English & a language of your team's selection -
+- React: The app should be built with React.
+- Custom Hook: Utilize the `useQRCodeGenerator` custom hook to manage the QR code generation logic.
+- User-Friendly UI: Ensure that the UI is intuitive and user-friendly.
+- Error Handling: Implement robust error handling to manage potential issues during QR code generation.
+- Responsive: Ensure that the app is responsive and provides a solid user experience on various screen sizes.
+
+### Code Insights:
+
+- useQRCodeGenerator Hook: This custom hook manages the logic for generating and downloading QR codes. It manages the state for the input URL, the generated QR code data, and the visibility of the input element. It exposes methods for generating the QR code, downloading it, and resetting the state to generate a new code. Explore the [useQRCodeGenerator.jsx](https://github.com/Technigo/qr-code-generator-demo/blob/main/src/hooks/useQRCodeGenerator.jsx) file for detailed insights.
+- App Component: This component serves as the UI for the application, utilizing the `useQRCodeGenerator` hook to manage the QR code generation process. It conditionally renders UI elements based on the state and provides functionality for inputting URLs, generating QR codes, and downloading them. Dive into the [App.jsx](https://github.com/Technigo/qr-code-generator-demo/blob/main/src/App.jsx) file to understand its structure and functionality.
 
 ### Design Recommendations
 
