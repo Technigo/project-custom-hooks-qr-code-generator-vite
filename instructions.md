@@ -6,8 +6,9 @@ This week, you'll explore a project that uses React and a custom hook to create 
 
 A key part of this project is the qrcode library. This tool helps turn the URLs into QR codes, which are special barcodes that can be scanned to show the URL. The qrcode library is used in two ways in the project:
 
-Directly: Like in the QrExample component, where it turns a URL into a QR code right in the component.
-In a Custom Hook: Used in the main app logic, inside a custom hook named useQRCodeGenerator, making the QR code creation logic easy to use in different parts of the app.
+- Directly: Like in the QrExample component, where it turns a URL into a QR code right in the component.
+- In a Custom Hook: Used in the main app logic, inside a custom hook named useQRCodeGenerator, making the QR code creation logic easy to use in different parts of the app.
+
 As you work through the project, think about how the qrcode library is used, how the QR code data is managed, and how the user interface changes based on the data. Dive in, explore, and have fun coding!
 
 ### Context:
