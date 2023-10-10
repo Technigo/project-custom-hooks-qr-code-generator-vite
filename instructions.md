@@ -15,9 +15,8 @@ As you work through the project, think about how the qrcode library is used, how
 
 This project is a fantastic opportunity to explore the capabilities of React and custom hooks. The existing codebase provides a solid foundation, and your task is to ensure that the application is polished, potentially adding any additional features or improvements that you identify.
 
-- Attention to Detail: Ensure that the application is user-friendly and that any additional features are implemented thoughtfully.
+- Attention to Detail: Ensure that the application is user-friendly and that features are implemented thoughtfully.
 - Be Honest: If there are aspects of the project that you find challenging or are unable to implement, communicate this transparently.
-- Explore: Feel free to explore additional libraries or tools that could enhance the project.
 
 ### Core Functionality:
 
