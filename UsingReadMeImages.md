@@ -4,7 +4,7 @@ The GitHub API does not provide a direct way to store or specify an image for a 
 
 #### 1\. Store Images in Your Repository:
 
-- Create a directory in your repository to store images (e.g., `images/`).
+- Inside your `src` folder you have an asset's folder that you can use to store the `repository image`
 - Add an image that you want to represent each repository and push it to GitHub.
 
 #### 2\. Reference Image in README.md:
@@ -13,9 +13,9 @@ The GitHub API does not provide a direct way to store or specify an image for a 
 
   markdownCopy code
 
-  `![Repository Image](images/your_image.png)`
+  `![Repository Image](src/assets/my-repository-image.svg)`
 
-  Replace `your_image.png` with the actual filename of your image.
+  Replace `my-repository-image.svg` with the actual filename of your image.
 
 #### 3\. Fetch and Display Image in Your Portfolio:
 
@@ -33,9 +33,20 @@ Use the GitHub API to fetch your repositories:
 javascriptCopy code
 
 `fetch('https://api.github.com/users/dzc1/repos')
-  .then(response => response.json())
+  .then(response => {
+    // Check if the request was successful
+    if (!response.ok) {
+      throw new Error('Network response was not ok' + response.statusText);
+    }
+    return response.json();  // Parse the JSON response
+  })
   .then(data => {
     // Handle repositories data
+    handleRepos(data);
+  })
+  .catch(error => {
+    // Handle errors, like network issues or API rate limiting
+    console.error('There has been a problem with your fetch operation:', error);
   });`
 
 #### B. Fetch README.md Content:
