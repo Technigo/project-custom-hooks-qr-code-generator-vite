@@ -1,6 +1,6 @@
 # Instructions
 
-## QR Code Generator Project - React and Custom Hookssss
+## QR Code Generator Project - React and Custom Hooks
 
 This week, you'll explore creating your very first custom hook to create QR codes. The QR Code Generator project lets users type in a URL, turn it into a QR code, and download it as an image. Your task is to understand and possibly expand the existing code to make sure it’s easy to use and works well.
 
