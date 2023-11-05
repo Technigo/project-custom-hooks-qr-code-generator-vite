@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap");
 
 :root {
   margin: 0;
@@ -10,12 +11,11 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.red {
-  background-color: red;
-  min-width: 50px;
-  min-height: 50px;
+@layer components {
+  .button {
+    @apply text-2xl border-stone-100 border px-3 py-1 cursor-pointer rounded transition-all hover:translate-y-1;
+  }
 }
-
 /* .app {
   display: flex;
   flex-direction: column;
