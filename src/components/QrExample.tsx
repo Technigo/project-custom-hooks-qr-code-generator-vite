@@ -39,7 +39,7 @@ export const QrExample = () => {
       <button onClick={GenerateQRCode}>Generate</button>
       <>
         <img src={qr} />
-        <a href={qr} download="qrcode.png">
+        <a href={qr} download="qrcode11.png">
           Download
         </a>
       </>
