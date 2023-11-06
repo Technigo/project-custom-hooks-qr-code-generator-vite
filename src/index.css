@@ -1,10 +1,102 @@
+/*---------- GOOGLE FONTS Josefin Sans - JetBrains Mono----------*/
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Josefin+Sans:wght@300;400;500;600;700&display=swap");
+
 :root {
+  --ff-jetbains-mono: "JetBrains Mono", monospace;
+  --ff-josefin-sans: "Josefin Sans", sans-serif;
+}
+
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  font-family: var(--ff-jetbains-mono);
+}
+
+img,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+body {
+  font-family: var(--ff-josefin-sans);
+  width: 100%;
+}
+
+h1 {
+  margin-bottom: 0.3rem;
+}
+h2 {
+  font-family: var(--ff-jetbains-mono);
+  margin-bottom: 1.5rem;
+}
+
+.wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-family: var(--ff-jetbains-mono);
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  height: 100%;
+  max-width: 800px;
+  width: 100%;
+  margin: 2rem 1rem;
+}
+
+.column {
+  width: 100%;
+}
+
+.generator.column {
+  width: 100%;
+  background-color: #e6ddda;
+  border-radius: 1rem;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.flex.button {
+  background-color: blue;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  width: fit-content;
+  border-radius: 10rem;
+  font-weight: 600;
+}
+
+.github-icon,
+.scan-icon {
+  width: 2rem;
+  height: 2rem;
+}
+
+.download-icon {
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 /* .app {
@@ -54,6 +146,5 @@ img {
 } */
 
 img.logo {
-  border: none;
   max-width: 200px;
 }

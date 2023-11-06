@@ -3,6 +3,8 @@
 // Delete once finished, you will work directly wkithin the app ;)
 import QRCode from "qrcode";
 import { useState } from "react";
+import { AiOutlineCloudDownload } from "react-icons/ai";
+
 export const QrExample = () => {
   const [url, setUrl] = useState("");
   const [qr, setQr] = useState("");
@@ -29,7 +31,9 @@ export const QrExample = () => {
 
   return (
     <div className="app">
-      <h1>QR Generator</h1>
+      <h1>QR Realm of Dreams</h1>
+      <h2>Where Digital Magic Gleams</h2>
+      <p>Create, Customize, and Manage QR Codes with Ease.</p>
       <input
         type="text"
         placeholder="e.g. https://google.com"
@@ -39,8 +43,8 @@ export const QrExample = () => {
       <button onClick={GenerateQRCode}>Generate</button>
       <>
         <img src={qr} />
-        <a href={qr} download="qrcode.png">
-          Download
+        <a href={qr} download="qrcode.png" className="flex button">
+          Download <AiOutlineCloudDownload className="download-icon" />
         </a>
       </>
     </div>
