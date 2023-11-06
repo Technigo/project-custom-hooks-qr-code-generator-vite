@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import { useQRCodeGenerator } from "./hooks/useQRCodeGenerator";
 import { useGifs } from "./hooks/useGifs";
 import { useTypeText } from "./hooks/useTypeText";
+
 export const App = () => {
   const [isStart, setIsStart] = useState<boolean>(true);
   const { data, isLoading, error } = useGifs();
@@ -10,7 +11,20 @@ export const App = () => {
 
   const currentText = useTypeText(textRef.current);
 
-  const { url, setUrl, generateQRCode, qr, downloadQRCode, repeatAction } = useQRCodeGenerator();
+  const {
+    url,
+    setUrl,
+    generateQRCode,
+    qr,
+    color,
+    size,
+    downloadQRCode,
+    repeatAction,
+    setIsVisible,
+    isVisible,
+    setColor,
+    setSize,
+  } = useQRCodeGenerator();
 
   return (
     <>
@@ -64,22 +78,70 @@ export const App = () => {
                   onChange={(e) => setUrl(e.target.value)}
                   className="w-80 px-6 py-2 text-lg focus:outline-sky-500 focus:outline-offset-2 focus:outline-4 text-stone-600 rounded-sm shadow-sm  "
                 />
+                <div className="text-stone-700">
+                  <p>Option</p>
+                  <select
+                    value={color}
+                    onChange={(e) => setColor(e.target.value)}
+                    className="rounded-sm mr-3 cursor-pointer  focus:outline-sky-500 focus:outline-offset-2 focus:outline-4 text-stone-600 "
+                  >
+                    <option disabled={true} value="">
+                      Color
+                    </option>
+                    <option value="#05c46b">Green</option>
+                    <option value="#335383FF">Gray</option>
+                    <option value="#3c40c6">Sky</option>
+                    <option value="#f53b57">Rose</option>
+                    <option value="#ffa801">Orange</option>
+                  </select>
+
+                  <select
+                    value={Number(size)}
+                    onChange={(e) => setSize(Number(e.target.value))}
+                    className="rounded-sm mr-3 cursor-pointer  focus:outline-sky-500 focus:outline-offset-2 focus:outline-4 text-stone-600 "
+                  >
+                    <option disabled={true} value="">
+                      Size
+                    </option>
+                    <option value={600}>Large</option>
+                    <option value={300}>Middle</option>
+                    <option value={100}>Small</option>
+                  </select>
+                </div>
               </div>
 
-              {qr ? (
-                <div className="flex gap-2  flex-col">
-                  <a onClick={downloadQRCode} className="cursor-pointer">
-                    <img src={qr} className="w-full" />
-                  </a>
-                  <button onClick={downloadQRCode} className="button text-sm">
+              {qr && (
+                <>
+                  <div
+                    className={`absolute backdrop-blur-sm transparent h-full  text-sky-300 w-full top-0 bottom-0 left-0 right-0 flex items-center justify-center ${
+                      isVisible ? "hidden" : "block"
+                    }`}
+                    id="code"
+                  ></div>
+                  <div className="flex gap-2  flex-col">
+                    <a onClick={downloadQRCode} className="cursor-pointer">
+                      <img src={qr} className="w-full" />
+                    </a>
+                  </div>
+                  <button
+                    onClick={() => {
+                      setIsVisible(false);
+                      downloadQRCode();
+                    }}
+                    className="button text-sm w-40"
+                  >
                     To Download
                   </button>
-                </div>
-              ) : (
-                <button onClick={generateQRCode} className="button">
+                  <button onClick={repeatAction} className="button text-sm w-40">
+                    Regenerate
+                  </button>
+                </>
+              )}
+              <>
+                <button onClick={generateQRCode} className="button text-sm w-40">
                   Generate QRcode
                 </button>
-              )}
+              </>
             </div>
           )}
         </div>

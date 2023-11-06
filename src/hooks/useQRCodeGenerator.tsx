@@ -7,23 +7,23 @@ export const useQRCodeGenerator = () => {
   const [url, setUrl] = useState<string>("");
   const [qr, setQr] = useState<string>("");
   const [isVisible, setIsVisible] = useState<boolean>(true);
+  const [color, setColor] = useState<string>("");
+  const [size, setSize] = useState<number | null>(null);
 
   const generateQRCode = () => {
     QRCode.toDataURL(
       url,
       {
-        width: 100,
+        width: size || 300,
         margin: 2,
         color: {
-          dark: "#335383FF",
+          dark: color || " #335383FF",
           light: "#EEEEEEFF",
         },
       },
       (err, url) => {
         if (err) return console.error(err);
 
-        console.log(url);
-        setIsVisible(false);
         setQr(url);
       }
     );
@@ -31,8 +31,16 @@ export const useQRCodeGenerator = () => {
 
   const downloadQRCode = () => {
     const getFileName = () => {
-      const userChoiceFileNanme = prompt("Enter a file name, please. ");
-      if (userChoiceFileNanme === "") return;
+      function askName() {
+        return prompt("Enter a file name, please.");
+      }
+      const userChoiceFileNanme = askName();
+
+      if (!userChoiceFileNanme) {
+        getFileName();
+        return;
+      }
+
       return userChoiceFileNanme;
     };
     const userChoiceFileNanme = getFileName();
@@ -40,21 +48,42 @@ export const useQRCodeGenerator = () => {
     const anchor = document.createElement("a");
     anchor.setAttribute("href", qr);
     anchor.setAttribute("download", formedFileName);
-    anchor.classList.add("red");
-    anchor.innerHTML = "get code";
-    document.querySelector("#code")?.insertAdjacentElement("beforebegin", anchor);
+    anchor.classList.add(
+      "button",
+      "bg-sky-500",
+      "py-10",
+      "px-10",
+      "text-2xlg",
+      "font-bold",
+      "text-white",
+      "border-4"
+    );
+    anchor.textContent = "get QRcode";
+    document.querySelector("#code")?.insertAdjacentElement("beforeend", anchor);
     anchor.addEventListener("click", () => {
+      setIsVisible(true);
       anchor.remove();
+      repeatAction();
     });
   };
 
-  // Function to reset the state and allow generating a new QR code
   const repeatAction = () => {
     setUrl("");
     setQr("");
-    setIsVisible(true);
   };
 
-  // Return the state variables and functions to be used in the component
-  return { url, setUrl, generateQRCode, qr, downloadQRCode, repeatAction };
+  return {
+    url,
+    setUrl,
+    generateQRCode,
+    qr,
+    color,
+    size,
+    downloadQRCode,
+    repeatAction,
+    setIsVisible,
+    isVisible,
+    setColor,
+    setSize,
+  };
 };
