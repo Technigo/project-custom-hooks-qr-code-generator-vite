@@ -1,6 +1,52 @@
 import React, { useState } from 'react';
 import { useQRCodeGenerator } from './hooks/useQRCodeGenerator';
 import styled from 'styled-components';
+import Lottie from 'lottie-react';
+import animationData from './assets/QR.json';
+
+const AppContainer = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+height: 100vh; /* 100% of the viewport height */
+text-align: center; /* Ensures that text inside the container is centered */
+`;
+
+
+const TitleContainer = styled.div`
+  position: center; /* Set to relative to act as a reference for the absolute positioned Lottie container */
+  display: inline-block; /* Ensures the container doesn't take full width */
+`;
+
+const StyledH1 = styled.h1`
+  color: #01056F;
+  font-size: 2.5rem;
+  text-align: center;
+  position: relative; /* Needed for z-index stacking context */
+  z-index: 2; /* Ensures the text is above the Lottie animation */
+`;
+
+const StyledH2 = styled.h2`
+  color: #01056F;
+  font-size: 2rem;
+`;
+
+const LottieContainer = styled.div`
+  margin-bottom: -30px; // Or however much space you want between the animation and the title
+  width: 250px;
+  height: 250px;
+  border: outset;
+  border-width:1px;
+ color: #01056F;
+`;
+
+const QRCodeImage = styled.img`
+  display: block;
+  margin: auto; /* This will center the image horizontally */
+  margin: 20px;
+`;
+
 
 const ModalBackdrop = styled.div`
   position: fixed;
@@ -22,6 +68,27 @@ const ModalContent = styled.div`
   text-align: center;
 `;
 
+const ErrorMessage = styled.div`
+  color: red;
+  margin-top: 8px;
+  font-size: 14px;
+`;
+
+const StyledButton = styled.button`
+  background-color: #01056F;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+  font-weight: bold; /* Makes the text bold */
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 30px;
+`;
+
 const App = () => {
   const { url, setUrl, qrCode, showInput, generateQRCode, resetQRCode } = useQRCodeGenerator();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -29,10 +96,19 @@ const App = () => {
 
   const [errorMessage, setErrorMessage] = useState('');
 
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationData,
+    rendererSettings: {
+      preserveAspectRatio: 'xMidYMid slice'
+    }
+  };
 
   const handleGenerate = (e) => {
     e.preventDefault();
-    const validUrlRegex = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/;
+    const validUrlRegex = /^(https?:\/\/)?www\.[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/;
+
   
     if (validUrlRegex.test(url)) {
       generateQRCode(url);
@@ -69,46 +145,57 @@ const App = () => {
   const closeModal = () => setIsModalOpen(false);
 
   return (
-    <div className="App">
-      <h1>QR Code Generator</h1>
-      {showInput && (
-        <form onSubmit={handleGenerate}>
-          <input
-            type="text"
-            value={url}
-            onChange={(e) => setUrl(e.target.value)}
-            placeholder="Enter URL here"
-            required
-          />
-          {errorMessage && <div style={{ color: 'red', marginTop: '8px' }}>{errorMessage}</div>}
-          <button type="submit">Generate QR Code</button>
-        </form>
-      )}
-
-      {qrCode && (
-        <div>
-          <img src={qrCode} alt="Generated QR Code" />
-          <button onClick={handleDownload}>Download QR Code</button>
-          <button onClick={handleReset}>Reset</button>
-        </div>
-      )}
-
-      {isModalOpen && (
-        <ModalBackdrop>
-          <ModalContent>
-            <h2>Enter a file name for your QR Code</h2>
+    <AppContainer>
+          <LottieContainer>
+          <Lottie
+         loop
+        autoplay
+          animationData={animationData}
+       />
+</LottieContainer>
+      <TitleContainer>
+        <StyledH1>QR Code Generator</StyledH1>
+      </TitleContainer>
+        {showInput && (
+          <form onSubmit={handleGenerate}>
             <input
               type="text"
-              value={fileName}
-              onChange={(e) => setFileName(e.target.value)}
-              placeholder="Add a filename here"
+              value={url}
+              onChange={(e) => setUrl(e.target.value)}
+              placeholder="Enter URL here"
+              required
             />
-            <button onClick={handleDownload}>Download</button>
-            <button onClick={closeModal}>Cancel</button>
-          </ModalContent>
-        </ModalBackdrop>
-      )}
+            <StyledButton type="submit">Generate QR Code</StyledButton>
+            {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
+          </form>
+        )}
+
+{qrCode && (
+  <>
+    <QRCodeImage src={qrCode} alt="Generated QR Code" />
+    <div>
+      <StyledButton onClick={handleDownload}>Download QR Code</StyledButton>
+      <StyledButton onClick={handleReset}>Reset</StyledButton>
     </div>
+  </>
+)}
+
+{isModalOpen && (
+  <ModalBackdrop>
+    <ModalContent>
+      <StyledH2>Enter a file name for your QR Code</StyledH2>
+      <input
+        type="text"
+        value={fileName}
+        onChange={(e) => setFileName(e.target.value)}
+        placeholder="Add a filename here"
+      />
+      <StyledButton onClick={handleDownload}>Download</StyledButton>
+      <StyledButton onClick={closeModal}>Cancel</StyledButton>
+    </ModalContent>
+  </ModalBackdrop>
+)}
+    </AppContainer>
   );
 };
 
