@@ -1,30 +1,68 @@
 // App Component Explanation
 // The App component serves as a user interface for generating and downloading QR codes, utilizing the custom hook useQRCodeGenerator which encapsulates the logic for QR code generation and management. When rendered, the component displays a title ("Technigo QR Code Generator") and conditionally renders either an input field and a "Generate" button or a generated QR code image, a "Download" button, and a "Repeat" button, based on the showInput state variable. If showInput is true, users can input a URL and generate a QR code by clicking the "Generate" button. Once generated, the input field and "Generate" button are replaced by the QR code image and additional buttons. The "Download" button triggers a download of the QR code image, and the "Repeat" button resets the UI to allow for generating a new QR code. The url, setUrl, qr, showInput, generateQRCode, downloadQRCode, and repeatAction variables and functions are derived from the useQRCodeGenerator hook, providing the necessary state and actions to manage the QR code generation process.
-import logo from "./assets/technigo-logo.svg";
+import { useState } from "react";
+import { QrCodeIcon } from "@heroicons/react/24/solid";
+import { useQrCodeGenerator } from "./hooks/useQrCodeGenerator";
 
 export const App = () => {
+    const [url, setUrl] = useState("");
+
+    const {
+        qr,
+        error,
+        reset,
+        generateQrCode,
+        downloadQrCode,
+    } = useQrCodeGenerator();
+
+    const resetGenerator = () => {
+        reset();
+        setUrl("");
+    }
+
     return (
-        <div className="bg-slate-700 min-h-full">
-            <div className="max-w-2xl mx-auto py-8 px-8">
-                <img
-                    src={logo}
-                    className="w-24 mb-8"
-                    alt="Technigo's logo"
-                />
-                <label className="block mb-4 text-center text-slate-300" htmlFor="input-url">
-                    Put in your url that you want to convert to a QR-code below:
-                </label>
-                <div className="flex">
-                    <input
-                        id="input-url"
-                        placeholder="https:// ..."
-                        className="border-2 border-e-0 border-slate-600 rounded-tl-xl rounded-bl-xl py-2 px-4 w-full focus:border-slate-500 focus:outline-none bg-slate-800" />
-                    <button
-                        className="text-slate-300 border-2 border-s-0 border-slate-600 rounded-tr-xl rounded-br-xl py-2 px-4 bg-slate-500"
-                    >
-                        Generate
-                    </button>
-                </div>
+        <div className="bg-slate-100 min-h-full">
+            <div className="max-w-xl mx-auto p-8">
+                <header className="mb-8">
+                    <QrCodeIcon
+                        className="text-green-500 h-12"
+                    />
+                </header>
+                <h1 className="text-4xl font-bold text-slate-700 mb-4">The best QR code generator you&apos;ve seen</h1>
+                <p className="text-slate-600 font-semibold mb-8">Input any text that you want below and we will generate a QR code containing the information.</p>
+                {qr === null && (
+                    <>
+                        <label htmlFor="input-url" className="block mb-1 pl-2 text-slate-600 font-medium">
+                            URL / message
+                        </label>
+                        <div className="flex">
+                            <input
+                                id="input-url"
+                                value={url}
+                                disabled={qr !== null}
+                                onChange={(e) => setUrl(e.target.value)}
+                                placeholder="https:// ..."
+                                className="text-slate-700 border-2 border-e-0 border-slate-300 rounded-tl-xl rounded-bl-xl py-2 px-4 w-full focus:border-slate-400 focus:outline-none bg-slate-200 disabled:cursor-not-allowed" />
+                            <button
+                                disabled={url === "" || qr !== null}
+                                onClick={() => generateQrCode(url)}
+                                className="text-green-100 border-2 border-s-0 border-green-500 rounded-tr-xl rounded-br-xl py-2 px-4 bg-green-500 disabled:bg-slate-400 disabled:border-slate-400 disabled:text-slate-100 disabled:cursor-not-allowed"
+                            >
+                                Generate
+                            </button>
+                        </div>
+                    </>
+                )}
+                {qr !== null && (
+                    <>
+                        <img
+                            src={qr}
+                            alt={`Generated QR code for ${url}`}
+                        />
+                        <button onClick={downloadQrCode}>Download</button>
+                        <button onClick={resetGenerator}>Reset</button>
+                    </>
+                )}
             </div>
         </div>
     );
