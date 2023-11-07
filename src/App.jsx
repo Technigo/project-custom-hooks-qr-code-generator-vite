@@ -13,29 +13,9 @@ import { AiOutlineCloudDownload } from "react-icons/ai";
 
 // Define the App component
 export const App = () => {
-  const [url, setUrl] = useState("");
-  const [qr, setQr] = useState("");
   // Destructure variables, properties and methods from the useQRCodeGenerator hook that you imported above here :)
-
-  const GenerateQRCode = () => {
-    QRCode.toDataURL(
-      url,
-      {
-        width: 100,
-        margin: 2,
-        color: {
-          dark: "#335383FF",
-          light: "#EEEEEEFF",
-        },
-      },
-      (err, url) => {
-        if (err) return console.error(err);
-
-        console.log(url);
-        setQr(url);
-      }
-    );
-  };
+  const { qr, url, setUrl, generateQRCode, downloadQRCode, repeatAction } =
+    useQRCodeGenerator();
 
   return (
     <div className="wrapper">
@@ -50,17 +30,21 @@ export const App = () => {
         <div className="generator column">
           <input
             type="text"
-            placeholder="e.g. https://google.com"
+            placeholder="e.g. google.com"
             value={url}
-            onChange={(e) => setUrl(e.target.value)}
+            onChange={(event) => setUrl(event.target.value)}
           />
-          <button onClick={GenerateQRCode}>Generate</button>
-          <a
-            // href={qr} download="qrcode.png"
-            className="flex button"
-          >
-            Download <AiOutlineCloudDownload className="download-icon" />
-          </a>
+          <button className="generate-btn" onClick={generateQRCode}>
+            Generate
+          </button>
+          {qr && (
+            <>
+              <img src={qr} />
+              <a href={qr} download="qrcode.png" className="flex button">
+                Download <AiOutlineCloudDownload className="download-icon" />
+              </a>
+            </>
+          )}
         </div>
       </main>
       {/* Conditionally render based on wether the user is inputting an URL to generate a QR Code or the user wnats to downaload the generated QR Code from the url input */}
