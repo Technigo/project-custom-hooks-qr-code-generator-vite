@@ -1,11 +1,11 @@
 import { useScroll, animated, useSpring } from "@react-spring/web";
-import { useRef, memo } from "react";
+import { useRef } from "react";
 import styles from "./ScrollAnimated.module.scss";
 
 const X_LINES = 50;
 const PAGE_COUNT = 4;
 const INITIAL_WIDTH = 10;
-function ScrollAnimated({ children }: { children: any }) {
+export function ScrollAnimated({ children }: { children: any }) {
   const containerRef = useRef<HTMLDivElement>(null!);
   const barContainerRef = useRef<HTMLDivElement>(null!);
 
@@ -58,7 +58,7 @@ function ScrollAnimated({ children }: { children: any }) {
               style={{
                 width: scrollYProgress.to((scrollP) => {
                   const percentilePosition = 1 - (i + 1) / X_LINES;
-                  //   console.log(percentilePosition);
+
                   return (
                     INITIAL_WIDTH / 4 +
                     100 * Math.cos(((percentilePosition - scrollP) * Math.PI) / 2) ** 32 +
@@ -88,5 +88,3 @@ function ScrollAnimated({ children }: { children: any }) {
     </div>
   );
 }
-
-export default ScrollAnimated;
