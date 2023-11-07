@@ -13,7 +13,7 @@ export const useQRCodeGenerator = () => {
 
   // Reactive State variable to toggle the visibility of the input element - boolean value
   //   const ...
-  const [showQrcode, setShowQrcode] = useState("");
+  const [showInput, setShowInput] = useState(true);
 
   // Function to generate a QR code from the input URL
   const generateQRCode = () => {
@@ -31,9 +31,13 @@ export const useQRCodeGenerator = () => {
         },
       },
       (err, url) => {
-        if (err) return console.error(err);
-        console.log(url);
-        setQrcode(url);
+        if (err) {
+          console.error(err);
+          alert("Error generating the QR code. Please enter an url.");
+        } else {
+          console.log(url);
+          setQrcode(url);
+        }
       }
       // console.log("Delete This Line OR Comment Out")
     );
@@ -43,8 +47,13 @@ export const useQRCodeGenerator = () => {
   const downloadQRCode = () => {
     // HINT 1: Consider encapsulating the filename prompting logic into a separate function.
     const getFileName = () => {
+      let fileName = prompt("Enter a filename for the QR code:");
       // HINT 2: Use a method to prompt the user for input and store the response.
-      // ...
+      while (!fileName) {
+        fileName = prompt(
+          "Filename cannot be empty. Enter a filename for the QR code:"
+        );
+      }
       // HINT 3: Implement a check for an empty filename and utilize recursion to re-prompt the user if necessary.
       // ...
       // HINT 4: Ensure the function returns the obtained filename.
@@ -75,29 +84,22 @@ export const useQRCodeGenerator = () => {
 
   // Function to reset the state and allow generating a new QR code
   const repeatAction = () => {
+    setUrl("");
+    setQrcode("");
+    setShowInput(true);
     // Reset the url state to an empty string
     // Reset the qr state to an empty string
     // Show the input element back to true :)
   };
 
   // Return the state variables and functions to be used in the component
-  return (
-    <div>
-      <input
-        type="text"
-        placeholder="e.g. https://google.com"
-        value={url}
-        onChange={(e) => setUrl(e.target.value)}
-      />
-      <button onClick={generateQRCode}>Generate</button>
-      {qrcode && (
-        <>
-          <img src={qrcode} />
-          <a href={qrcode} download="qrcode.png">
-            Download
-          </a>
-        </>
-      )}
-    </div>
-  );
+  return {
+    url,
+    qrcode,
+    showInput,
+    setUrl,
+    generateQRCode,
+    downloadQRCode,
+    repeatAction,
+  };
 };
