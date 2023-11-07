@@ -7,8 +7,8 @@ export const useQRCodeGenerator = () => {
   const [url, setUrl] = useState<string>("");
   const [qr, setQr] = useState<string>("");
   const [isVisible, setIsVisible] = useState<boolean>(true);
-  const [color, setColor] = useState<string>("");
-  const [size, setSize] = useState<number | null>(null);
+  const [color, setColor] = useState<string>("#335383FF");
+  const [size, setSize] = useState<number | null>(300);
 
   const generateQRCode = () => {
     QRCode.toDataURL(
