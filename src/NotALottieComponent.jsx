@@ -1,7 +1,7 @@
 import Lottie from "lottie-react";
-import qrFall from "../animations/Animation - 1699300585012.json";
+import qrFall from "./animations/Animation - 1699300585012.json";
 
-export const LottieComponent = () => {
+export const NotALottieComponent = () => {
   const style = {
     width: 300,
   };

@@ -44,8 +44,25 @@ h2 {
 }
 
 .wrapper {
-  max-width: 800px;
+  max-width: 1000px;
   margin: 0 auto;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.github-icon,
+.scan-icon {
+  width: 2rem;
+  height: 2rem;
+}
+
+.download-icon {
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 header {
@@ -55,28 +72,33 @@ header {
   font-family: var(--ff-jetbains-mono);
 }
 
-main {
+ main {
   display: flex;
   justify-content: center;
-  gap: 2rem;
+  gap: 4rem;
   height: 100%;
-  max-width: 800px;
   width: 100%;
-  margin: 2rem 1rem;
+  padding: 2rem 1rem;
 }
 
+.generator.column {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+/*
 .column {
   width: 100%;
 }
 
 .generator.column {
   width: 100%;
-  /* background-color: #e6ddda; */
   border-radius: 1rem;
+}
+
+.url-color-container {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  margin-bottom: 2rem;
 }
 
 input {
@@ -87,7 +109,7 @@ input {
   max-width: 200px;
   padding: 0.5rem 1rem;
   border-radius: 0.3rem;
-  margin: 1rem;
+  margin: 0 1rem;
 }
 
 .generate-btn {
@@ -136,6 +158,34 @@ input {
   width: 1.5rem;
   height: 1.5rem;
 }
+
+.url-wrapper,
+.color-picker-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  width: 100%;
+}
+
+.color-picker {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 1rem;
+}
+
+.chrome-picker {
+  position: absolute;
+  margin-top: 1rem;
+}
+
+.color-box {
+  width: 1.5rem;
+  height: 1.5rem;
+  cursor: pointer;
+  border: 1px solid black;
+  border-radius: 0.3rem;
+} */
 
 /* .app {
   display: flex;
