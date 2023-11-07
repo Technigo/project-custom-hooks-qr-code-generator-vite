@@ -11,7 +11,7 @@ export const useQrCodeGenerator = () => {
         QRCode.toDataURL(
             url,
             {
-                width: 100,
+                width: 300,
                 margin: 2,
                 color: {
                     dark: "#000000",

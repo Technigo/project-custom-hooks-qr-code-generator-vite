@@ -1,5 +1,3 @@
-// App Component Explanation
-// The App component serves as a user interface for generating and downloading QR codes, utilizing the custom hook useQRCodeGenerator which encapsulates the logic for QR code generation and management. When rendered, the component displays a title ("Technigo QR Code Generator") and conditionally renders either an input field and a "Generate" button or a generated QR code image, a "Download" button, and a "Repeat" button, based on the showInput state variable. If showInput is true, users can input a URL and generate a QR code by clicking the "Generate" button. Once generated, the input field and "Generate" button are replaced by the QR code image and additional buttons. The "Download" button triggers a download of the QR code image, and the "Repeat" button resets the UI to allow for generating a new QR code. The url, setUrl, qr, showInput, generateQRCode, downloadQRCode, and repeatAction variables and functions are derived from the useQRCodeGenerator hook, providing the necessary state and actions to manage the QR code generation process.
 import { useState } from "react";
 import { QrCodeIcon } from "@heroicons/react/24/solid";
 import { useQrCodeGenerator } from "./hooks/useQrCodeGenerator";
@@ -46,22 +44,30 @@ export const App = () => {
                             <button
                                 disabled={url === "" || qr !== null}
                                 onClick={() => generateQrCode(url)}
-                                className="text-green-100 border-2 border-s-0 border-green-500 rounded-tr-xl rounded-br-xl py-2 px-4 bg-green-500 disabled:bg-slate-400 disabled:border-slate-400 disabled:text-slate-100 disabled:cursor-not-allowed"
+                                className="text-green-100 border-2 border-s-0 border-green-500 rounded-tr-xl rounded-br-xl py-2 px-4 bg-green-500 hover:bg-green-600 hover:border-green-600 disabled:bg-slate-400 disabled:border-slate-400 disabled:text-slate-100 disabled:cursor-not-allowed"
                             >
                                 Generate
                             </button>
                         </div>
+                        {error && (
+                            <p className="text-red-700 pl-2 text-sm mt-1">Could not generate QR code 😔</p>
+                        )}
                     </>
                 )}
                 {qr !== null && (
-                    <>
+                    <div className="flex justify-center flex-col bg-white p-8 rounded-xl">
                         <img
+                            className="mb-4"
                             src={qr}
                             alt={`Generated QR code for ${url}`}
                         />
-                        <button onClick={downloadQrCode}>Download</button>
-                        <button onClick={resetGenerator}>Reset</button>
-                    </>
+                        <button
+                            className="text-green-100 border-2 border-s-0 border-green-500 rounded-xl py-2 px-4 bg-green-500 hover:bg-green-600 hover:border-green-600 mb-4"
+                            onClick={downloadQrCode}>Download</button>
+                        <button
+                            className="text-slate-600 border-2 border-s-0 border-slate-300 rounded-xl py-2 px-4 bg-slate-300 hover:bg-slate-400 hover:border-slate-400 hover:text-slate-100"
+                            onClick={resetGenerator}>Reset</button>
+                    </div>
                 )}
             </div>
         </div>
