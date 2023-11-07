@@ -3,6 +3,8 @@
 import logo from "./assets/technigo-logo.svg";
 // Import the custom hook useQRCodeGenerator
 import { QrExample } from "./components/QrExample";
+import { useQRCodeGenerator } from "./hooks/useQRCodeGenerator"
+
 
 // Define the App component
 export const App = () => {
@@ -16,6 +18,7 @@ export const App = () => {
       <h1>Technigo QR Code Generator</h1>
       <p>Start Here</p>
       <QrExample />
+      <useQRCodeGenerator />
 
       {/* Conditionally render based on wether the user is inputting an URL to generate a QR Code or the user wnats to downaload the generated QR Code from the url input */}
       {/* {yourReactiveVariableThatTogglesTheDownloadQrCcodeOrInputField ? () : ()} */}
