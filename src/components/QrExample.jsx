@@ -3,12 +3,17 @@
 // Delete once finished, you will work directly wkithin the app ;)
 import QRCode from "qrcode";
 import { useState } from "react";
+
 export const QrExample = () => {
   const [url, setUrl] = useState("");
   const [qr, setQr] = useState("");
 
+
+  // function to generate QR code
   const GenerateQRCode = () => {
+    // QRCode.toDataUrl is a function that takes in a URL and styling options and returns a data URL of the generated QR code, which can be used to display the QR code on the screen or download it as a PNG file.
     QRCode.toDataURL(
+      // url is the input URL that will be converted into a QR code
       url,
       {
         width: 100,
@@ -18,10 +23,12 @@ export const QrExample = () => {
           light: "#EEEEEEFF",
         },
       },
+      // 
       (err, url) => {
         if (err) return console.error(err);
 
-        console.log(url);
+        console.log(url); // prints the generated QR code data URL to the console
+        // setQr is a function that updates the qr state with the generated QR code data URL, the QR code data url is saved in the state qr
         setQr(url);
       }
     );
@@ -30,15 +37,20 @@ export const QrExample = () => {
   return (
     <div className="app">
       <h1>QR Generator</h1>
+      {/* input field to input URL */}
       <input
         type="text"
         placeholder="e.g. https://google.com"
-        value={url}
-        onChange={(e) => setUrl(e.target.value)}
+        value={url} // value is the input URL that will be converted into a QR code
+        onChange={(e) => setUrl(e.target.value)} // onChange is a function that updates the url state with the input URL
       />
+      {/* button to generate QR code, click invokes the GenerateQRCode function */}
       <button onClick={GenerateQRCode}>Generate</button>
       <>
+        {/* img tag to display the generated QR code on the screen */}
         <img src={qr} />
+        {/* link to download the generated QR code as a PNG file */}
+        {/* // download attribute is used to specify the name of the file that will be downloaded */}
         <a href={qr} download="qrcode.png">
           Download
         </a>

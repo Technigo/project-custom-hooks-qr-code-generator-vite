@@ -1,24 +1,53 @@
-// App Component Explanation
-// The App component serves as a user interface for generating and downloading QR codes, utilizing the custom hook useQRCodeGenerator which encapsulates the logic for QR code generation and management. When rendered, the component displays a title ("Technigo QR Code Generator") and conditionally renders either an input field and a "Generate" button or a generated QR code image, a "Download" button, and a "Repeat" button, based on the showInput state variable. If showInput is true, users can input a URL and generate a QR code by clicking the "Generate" button. Once generated, the input field and "Generate" button are replaced by the QR code image and additional buttons. The "Download" button triggers a download of the QR code image, and the "Repeat" button resets the UI to allow for generating a new QR code. The url, setUrl, qr, showInput, generateQRCode, downloadQRCode, and repeatAction variables and functions are derived from the useQRCodeGenerator hook, providing the necessary state and actions to manage the QR code generation process.
-import logo from "./assets/technigo-logo.svg";
-// Import the custom hook useQRCodeGenerator
-import { QrExample } from "./components/QrExample";
+// imports the useQRCodeGenerator custom hook
+import { useQRCodeGenerator } from "./hooks/useQRCodeGenerator";
 
-// Define the App component
+// Component that renders the QR code generator UI
 export const App = () => {
-  // Destructure variables, properties and methods from the useQRCodeGenerator hook that you imported above here :)
+  // Desctructures the custom hook to access the state variables and functions needed to generate and download QR codes as well as to repeat the action
+  const {
+    url,
+    setUrl,
+    qr,
+    showInput,
+    generateQRCode,
+    downloadQRCode,
+    repeatAction,
+  } = useQRCodeGenerator();
 
   // Return the JSX to render the component
   return (
-    <div className="">
-      {/* Render the title */}
-      <img className="logo" src={logo} alt="" />
-      <h1>Technigo QR Code Generator</h1>
-      <p>Start Here</p>
-      <QrExample />
+    <section className="h-screen flex justify-center items-center text-center">
+      <div className="flex flex-col gap-4">
+        {/* Render the title */}
+        <h1 className="text-3xl font-bold">QR Code Generator</h1>
 
-      {/* Conditionally render based on wether the user is inputting an URL to generate a QR Code or the user wnats to downaload the generated QR Code from the url input */}
-      {/* {yourReactiveVariableThatTogglesTheDownloadQrCcodeOrInputField ? () : ()} */}
-    </div>
+        {/* Conditionall rendering of elements */}
+        {showInput ? (
+          // Renders the input field and generate button if showInput is true
+          <>
+            <p className="text-base">Please enter a URL below</p>
+            <input
+              className="bg-gray-100 p-2 rounded"
+              type="text"
+              placeholder="e.g. https://google.com"
+              value={url} // value is the input URL that will be converted into a QR code
+              onChange={(e) => setUrl(e.target.value)} // onChange is a function that updates the url state with the input URL
+            />
+            <button className="border-pink-200 border-2 bg-pink-200 hover:bg-pink-400 hover:border-pink-400 hover:text-white rounded-full p-2 text-pink-700" onClick={generateQRCode}>Generate QR</button>
+          </>
+        ) : (
+          // Renders the QR code, download button, and repeat button if showInput is false
+          <>
+            <img src={qr} />
+            <p className="text-lg">Want to go again?</p>
+            <div className="flex gap-2 justify-center items-center"><button className="border-pink-200 border-2 bg-pink-200 hover:bg-pink-400 hover:border-pink-400 hover:text-white rounded-full p-2 text-pink-700" onClick={repeatAction}>Start over</button>
+              <a className="border-pink-200 border-2 hover:underline focus:border-pink-700 rounded-full p-2 text-pink-700" href={qr} onClick={downloadQRCode} download="qrcode.png">
+                Download QR Code 👇
+              </a></div>
+
+          </>
+        )}
+      </div>
+    </section>
   );
 };
