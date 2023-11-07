@@ -3,6 +3,7 @@
 // Delete once finished, you will work directly wkithin the app ;)
 import QRCode from "qrcode";
 import { useState } from "react";
+
 export const QrExample = () => {
   const [url, setUrl] = useState("");
   const [qr, setQr] = useState("");
@@ -40,8 +41,10 @@ export const QrExample = () => {
       <>
         <img src={qr} />
         <a href={qr} download="qrcode.png">
-          Download
+          <button> Download </button>
         </a>
+
+        <button onClick={GenerateQRCode}>Repeat</button>
       </>
     </div>
   );

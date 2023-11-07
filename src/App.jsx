@@ -3,10 +3,33 @@
 import logo from "./assets/technigo-logo.svg";
 // Import the custom hook useQRCodeGenerator
 import { QrExample } from "./components/QrExample";
+import { useQRCodeGenerator } from "./hooks/useQRCodeGenerator";
+import { useState, useEffect } from "react";
+import "./index.css";
 
 // Define the App component
 export const App = () => {
   // Destructure variables, properties and methods from the useQRCodeGenerator hook that you imported above here :)
+
+  const {
+    url,
+    setUrl,
+    generateQRCode,
+    qr,
+    downloadQRCode,
+    repeatAction,
+    setInputToggle,
+    inputToggle,
+  } = useQRCodeGenerator();
+
+  function handleDownloadClick() {
+    setInputToggle(false);
+    downloadQRCode();
+  }
+
+  function handleRepeatClick() {
+    repeatAction();
+  }
 
   // Return the JSX to render the component
   return (
@@ -15,8 +38,25 @@ export const App = () => {
       <img className="logo" src={logo} alt="" />
       <h1>Technigo QR Code Generator</h1>
       <p>Start Here</p>
-      <QrExample />
 
+      <h1>QR Generator</h1>
+      <input
+        type="text"
+        placeholder="e.g. https://google.com"
+        value={url}
+        onChange={(e) => setUrl(e.target.value)}
+      />
+      <button onClick={generateQRCode}>Generate QR Code</button>
+      <>
+        <img src={qr} />
+        <a href={qr} download="qrcode.png">
+          <button onClick={handleDownloadClick}> Download </button>
+        </a>
+
+        <button id="buttonRepeat" onClick={handleRepeatClick}>
+          Repeat
+        </button>
+      </>
       {/* Conditionally render based on wether the user is inputting an URL to generate a QR Code or the user wnats to downaload the generated QR Code from the url input */}
       {/* {yourReactiveVariableThatTogglesTheDownloadQrCcodeOrInputField ? () : ()} */}
     </div>
