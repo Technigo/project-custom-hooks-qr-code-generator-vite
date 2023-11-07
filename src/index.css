@@ -7,32 +7,32 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* .app {
+.app {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background-color: #f8f8f8;
+  background-color: #e7c0e7;
   padding: 20px;
 }
 
 h1 {
-  color: #335383;
+  color: #1b8085;
   margin-bottom: 20px;
 }
 
 input {
   padding: 10px;
   font-size: 16px;
-  border: 1px solid #ccc;
+  border: 1px solid #1b8085;
   border-radius: 4px;
   margin-bottom: 20px;
   width: 300px;
 }
 
 button {
-  background-color: #335383;
+  background-color: #3aa6a9;
   color: #fff;
   padding: 10px 20px;
   border: none;
@@ -43,7 +43,7 @@ button {
 }
 
 button:hover {
-  background-color: #23375d;
+  background-color: #0e5c63;
 }
 
 img {
@@ -51,9 +51,8 @@ img {
   max-width: 300px;
   border: 1px solid #ccc;
   border-radius: 4px;
-} */
-
-img.logo {
+}
+*/ img.logo {
   border: none;
   max-width: 200px;
 }
