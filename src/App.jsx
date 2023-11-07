@@ -32,6 +32,11 @@ export const App = () => {
 
       {/* Conditionally render based on wether the user is inputting an URL to generate a QR Code or the user wnats to downaload the generated QR Code from the url input */}
       {/* {yourReactiveVariableThatTogglesTheDownloadQrCcodeOrInputField ? () : ()} */}
+      <h1 className="text-3xl font-bold underline">
+      Hello world!
+      </h1>
+
     </div>
+    
   );
 };
