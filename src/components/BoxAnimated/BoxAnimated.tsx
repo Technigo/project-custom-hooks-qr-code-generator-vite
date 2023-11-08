@@ -16,7 +16,7 @@ export const BoxAnimated = ({
   }, [windowWidth]);
 
   return (
-    <div className={`flex items-end absolute ${position}`}>
+    <div className={`flex items-end absolute ${position} min-h-[${maxHeight}px] bottom-0`}>
       {Array.from({ length: colNums }, (_, i) => (
         <Bar maxHeight={maxHeight} />
       ))}
