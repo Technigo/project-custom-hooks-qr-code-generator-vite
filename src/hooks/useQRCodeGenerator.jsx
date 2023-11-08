@@ -51,32 +51,61 @@ export const useQRCodeGenerator = () => {
     const getFileName = () => {
       // HINT 2: Use a method to prompt the user for input and store the response.
       // ...
+      let userFileName = prompt("Name the file: ");
       // HINT 3: Implement a check for an empty filename and utilize recursion to re-prompt the user if necessary.
       // ...
       // HINT 4: Ensure the function returns the obtained filename.
       // ...
+
+      if (userFileName.length < 1) {
+        userFileName = getFileName();
+      } else {
+        return userFileName;
+      }
+
+      // HINT 5: Call the above function to retrieve a filename and store it in a variable.
+      // ...
+      let fileName = getFileName();
+
+      // HINT 6: Format the filename to ensure it is filesystem-friendly.
+      // ...
+
+      const formatFileName = (fileName) => {
+        fileName = fileName.replace(/[\\/:"*?<>|]/g, "");
+
+        // Replace spaces with underscores and remove leading/trailing spaces
+        fileName = fileName.replace(/\s+/g, "_").trim();
+
+        // Limit the fileName length
+        if (fileName.length > 30) {
+          fileName = fileName.substring(0, 30);
+        }
+
+        // Normalize the case (e.g., to lowercase)
+        fileName = fileName.toLowerCase();
+
+        return fileName;
+      };
+
+      const formattedFileName = formatFileName(fileName);
+
+      // HINT 7: Create an anchor element to facilitate the download.
+      // ...
+      // HINT 8: Set the necessary attributes on the anchor element to prepare it for download.
+      // ...
+      <a href={qrData} download={`${formattedFileName}QR.png`}>
+        Download image
+      </a>;
+
+      // HINT 9: Append the anchor element to the document to make it interactable.
+      // ...
+
+      // HINT 10: Programmatically trigger a click on the anchor element to initiate the download.
+      // ...
+
+      // HINT 11: Remove the anchor element from the document after the download has been initiated.
+      // ...
     };
-
-    // HINT 5: Call the above function to retrieve a filename and store it in a variable.
-    // ...
-
-    // HINT 6: Format the filename to ensure it is filesystem-friendly.
-    // ...
-
-    // HINT 7: Create an anchor element to facilitate the download.
-    // ...
-
-    // HINT 8: Set the necessary attributes on the anchor element to prepare it for download.
-    // ...
-
-    // HINT 9: Append the anchor element to the document to make it interactable.
-    // ...
-
-    // HINT 10: Programmatically trigger a click on the anchor element to initiate the download.
-    // ...
-
-    // HINT 11: Remove the anchor element from the document after the download has been initiated.
-    // ...
   };
 
   // Function to reset the state and allow generating a new QR code
