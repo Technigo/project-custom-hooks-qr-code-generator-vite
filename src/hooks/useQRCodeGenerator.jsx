@@ -49,38 +49,36 @@ export const useQRCodeGenerator = () => {
       // Ensure the function returns the obtained filename.
       return fileName;
     };
-
     // HINT 5: Call the above function to retrieve a filename and store it in a variable.
     const fileName = getFileName();
-
     // HINT 6: Format the filename to ensure it is filesystem-friendly.
     const formattedFileName = fileName.replace(/[^a-z0-9]/gi, "_") + ".png";
-
     // HINT 7: Create an anchor element to facilitate the download.
     const downloadLink = document.createElement("a");
-
     // HINT 8: Set the necessary attributes on the anchor element to prepare it for download.
     downloadLink.href = qrcode;
     downloadLink.download = formattedFileName;
-
     // HINT 9: Append the anchor element to the document to make it interactable.
     document.body.appendChild(downloadLink);
-
     // HINT 10: Programmatically trigger a click on the anchor element to initiate the download.
     downloadLink.click();
-
     // HINT 11: Remove the anchor element from the document after the download has been initiated.
     document.body.removeChild(downloadLink);
+  };
+
+  // Function to reset the state and allow generating a new QR code
+  const repeatAction = () => {
+    setInputURL("");
+    setQrcode("");
+    setShowQrcode(false);
   };
 
   return {
     inputURL,
     setInputURL,
     qrcode,
-    setQrcode,
-    showQrcode,
-    setShowQrcode,
     generateQRCode,
     downloadQRCode,
+    repeatAction,
   };
 };

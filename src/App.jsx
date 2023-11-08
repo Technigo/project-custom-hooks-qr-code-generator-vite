@@ -10,6 +10,7 @@ import logo from "/studio-qr-code-logo.png";
 // ICONS
 import { AiOutlineCloudDownload, AiFillGithub } from "react-icons/ai";
 import { BsQrCodeScan } from "react-icons/bs";
+import { IoClose } from "react-icons/io5";
 
 // Define the App component
 export const App = () => {
@@ -18,11 +19,9 @@ export const App = () => {
     inputURL,
     setInputURL,
     qrcode,
-    setQrcode,
-    showQrcode,
-    setShowQrcode,
     generateQRCode,
     downloadQRCode,
+    repeatAction,
   } = useQRCodeGenerator();
 
   return (
@@ -41,12 +40,12 @@ export const App = () => {
         </div>
       </header>
       <main>
-        {/* <div className="column">
+        <div className="column">
           <h1>QR Realm of Dreams</h1>
           <h2>Where Digital Magic Gleams</h2>
           <p>Create & Customize QR Codes with Ease.</p>
           <NotALottieComponent />
-        </div> */}
+        </div>
         {qrcode ? (
           // Content to show when qrcode is available.
           <div className="generator column">
@@ -54,16 +53,14 @@ export const App = () => {
             <NotAComponentButton
               className="download-btn"
               textContent="Download"
+              icon={<AiOutlineCloudDownload className="download-icon" />}
               onClick={downloadQRCode}
               ariaLabel="Download the QR Code"
             />
-            {/* <a href={qrcode} download="qrcode.png" className="download-link">
-              Download <AiOutlineCloudDownload className="download-icon" />
-            </a> */}
             <NotAComponentButton
               className="repeat-btn"
               textContent="Make more QR Codes"
-              // onClick={repeatAction}
+              onClick={repeatAction}
               ariaLabel="Reset and make another QR Code"
             />
           </div>
@@ -71,7 +68,7 @@ export const App = () => {
           // Content to show when qrcode is not available.
           <div className="generator column">
             <div className="url-wrapper">
-              <label>URL</label>
+              <label className="visually-hidden">URL</label>
               <input
                 type="text"
                 placeholder="e.g. google.com"
@@ -88,7 +85,8 @@ export const App = () => {
             <NotAComponentButton
               className="reset-btn"
               textContent="Reset"
-              // onClick={repeatAction}
+              icon={<IoClose className="icon" />}
+              onClick={repeatAction}
               aria-label="Reset"
             />
           </div>
@@ -97,3 +95,17 @@ export const App = () => {
     </div>
   );
 };
+
+// <button class="noselect">
+//   <span class="text">Delete</span>
+//   <span class="icon">
+//     <svg
+//       xmlns="http://www.w3.org/2000/svg"
+//       width="24"
+//       height="24"
+//       viewBox="0 0 24 24"
+//     >
+//       <path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"></path>
+//     </svg>
+//   </span>
+// </button>;
