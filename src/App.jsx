@@ -17,6 +17,7 @@ export const App = () => {
     generateQRCode,
     downloadQRCode,
     repeatAction,
+    inputError,
   } = useQRCodeGenerator();
   // Return the JSX to render the component
   return (
@@ -34,6 +35,7 @@ export const App = () => {
             onChange={(e) => setUrl(e.target.value)}
           />
           <button onClick={generateQRCode}>Generate</button>
+          {inputError && <p className="error-message">{inputError}</p>}
         </div>
       ) : (
         <div>

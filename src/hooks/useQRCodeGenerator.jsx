@@ -8,6 +8,9 @@ export const useQRCodeGenerator = () => {
   // Reactive State variable to store the input URL
   const [url, setUrl] = useState('');
 
+   // Reactive State variable to store the input validation error message
+   const [inputError, setInputError] = useState('');
+
   // Reactive State variable to store the generated QR code data URL
   const [qrCodeData, setQRCodeData] = useState('');
 
@@ -17,16 +20,31 @@ export const useQRCodeGenerator = () => {
   // Function to generate a QR code from the input URL
   const generateQRCode = () => {
     if (url) {
-    // HINT 1: Utilize the qrccode library that converts a URL to a QR code data URL.
+      // Check if the input is a valid URL
+      const isValidUrl = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i.test(url);
+  
+      if (isValidUrl) {
+        QRCode.toDataURL(url, { width: 200, margin: 2 })
+          .then((dataUrl) => {
+            setQRCodeData(dataUrl);
+            setShowInput(false);
+            setInputError(''); // Clear any previous error message
+          })
+          .catch((error) => {
+            console.error('QR code generation error', error);
+            setInputError('QR code generation error');
+          });
+      } else {
+        setInputError('Invalid URL');
+      }
+    } else {
+      setInputError('URL is required');
+    }
+  };
+  
+
+         // HINT 1: Utilize the qrccode library that converts a URL to a QR code data URL.
     // Use the Import of the qrcode and chain to the native method toDataUrl() much like the example provided and specify the data within the object that you will be passing such as the {url, {width, margin, color:{dark, light}}} which containes the information to generate the qr-code and url. Lastly, this native method toDataUrl() will contain a callback function  that will update the qr variable and will also update the variable toggling the visibility of the input element.
-    QRCode.toDataURL(url, { width: 200, margin: 2 })
-      .then((dataUrl) => {
-        setQRCodeData(dataUrl);
-        setShowInput(false);
-      })
-      .catch((error) => {
-        console.error('QR code generation error', error);
-      });
       // HINT 2: Ensure to pass the necessary parameters to the QR code generation method, such as the URL to convert and any styling options.
       // ...
       // HINT 3: Handle the callback of the QR code generation method, which provides the generated QR code data URL.
@@ -37,8 +55,7 @@ export const useQRCodeGenerator = () => {
       // ...
       // HINT 6: Consider the user experience and how the UI should change once the QR code has been generated.
       // ...
-  }
-  };
+  
 
   // Function to download the generated QR code as a PNG file
   const downloadQRCode = () => {
@@ -96,6 +113,7 @@ export const useQRCodeGenerator = () => {
     url,
     qrCodeData,
     showInput,
+    inputError,
     setUrl,
     generateQRCode,
     downloadQRCode,
