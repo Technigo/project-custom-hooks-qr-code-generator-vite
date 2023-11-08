@@ -3,9 +3,11 @@
 // Delete once finished, you will work directly wkithin the app ;)
 import QRCode from "qrcode";
 import { useState } from "react";
+
 export const QrExample = () => {
   const [url, setUrl] = useState("");
   const [qr, setQr] = useState("");
+  const [qrGenerated, setQrGenerated] = useState(false);
 
   const GenerateQRCode = () => {
     QRCode.toDataURL(
@@ -23,8 +25,14 @@ export const QrExample = () => {
 
         console.log(url);
         setQr(url);
+        setQrGenerated(true);
       }
     );
+  };
+
+  const resetInputField = () => {
+    setUrl("");
+    setQrGenerated(false);
   };
 
   return (
@@ -37,12 +45,15 @@ export const QrExample = () => {
         onChange={(e) => setUrl(e.target.value)}
       />
       <button onClick={GenerateQRCode}>Generate</button>
-      <>
-        <img src={qr} />
-        <a href={qr} download="qrcode.png">
-          Download
-        </a>
-      </>
+      {qrGenerated && (
+        <>
+          <img src={qr} />
+          <a href={qr} download="qrcode.png">
+            <button>Download</button>
+          </a>
+          <button onClick={resetInputField}>Create new QR code</button>
+        </>
+      )}
     </div>
   );
 };
