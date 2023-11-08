@@ -1,13 +1,12 @@
-// Hook Explanation
-// This React component, specifically a custom hook named useQRCodeGenerator, is designed to facilitate the generation and downloading of QR codes. Initially, it utilizes the useState hook from React to manage three pieces of state: url (to store the input URL that will be converted into a QR code), qr (to store the generated QR code data URL), and showInput (a boolean to toggle the visibility of an input element in the UI). The hook exposes a method generateQRCode which utilizes the QRCode.toDataURL method to convert the provided URL into a QR code, applying specific styling options, and then updates the state with the generated QR code and hides the input. The downloadQRCode method allows users to download the generated QR code as a PNG file, prompting them to provide a filename and handling the download process via creating an anchor element in the DOM. Lastly, the repeatAction method resets the state to allow users to generate a new QR code. The hook returns an object containing the state variables and methods, enabling them to be utilized in the component where the hook is used.
 import QRCode from "qrcode";
 import { useState } from "react";
 
 export const useQrCodeGenerator = () => {
-    const [qr, setQr] = useState(null);
-    const [error, setError] = useState(false);
+    const [qr, setQr] = useState(null); // State to store generated QR code
+    const [error, setError] = useState(false); // State to track if there's an error
 
     const generateQrCode = (url) => {
+        // Function to generate QR code from a URL
         QRCode.toDataURL(
             url,
             {
@@ -21,17 +20,17 @@ export const useQrCodeGenerator = () => {
             (errorInformation, generatedQrCode) => {
                 if (errorInformation) {
                     console.error(errorInformation);
-                    setError(true);
+                    setError(true); // Set error state if there's an error generating QR code
                 } else {
                     setError(false);
-                    setQr(generatedQrCode);
+                    setQr(generatedQrCode); // Set generated QR code to state
                 }
             }
         );
     };
 
-    // Function to download the generated QR code as a PNG file
     const downloadQrCode = () => {
+        // Function to download the generated QR code as a PNG file
         const getFileName = (messageToUser = "Enter a filename for your QR code.") => {
             const fileNameEnteredByUser = prompt(messageToUser);
             if (fileNameEnteredByUser === null) {
@@ -52,8 +51,8 @@ export const useQrCodeGenerator = () => {
 
         const link = document.createElement("a");
 
-        link.href = qr;
-        link.download = `${fileName}.png`;
+        link.href = qr; // Set the URL of the generated QR code
+        link.download = `${fileName}.png`; // Set the filename for the downloaded file
 
         // Append to html link element page
         document.body.appendChild(link);
@@ -65,8 +64,8 @@ export const useQrCodeGenerator = () => {
         link.parentNode.removeChild(link);
     };
 
-    // Function to reset the state and allow generating a new QR code
     const reset = () => {
+        // Function to reset the state and allow generating a new QR code
         setQr(null);
         setError(false);
     };
