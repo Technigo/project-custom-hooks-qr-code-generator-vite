@@ -7,7 +7,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* .app {
+ .app {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -31,7 +31,7 @@ input {
   width: 300px;
 }
 
-button {
+button, a {
   background-color: #335383;
   color: #fff;
   padding: 10px 20px;
@@ -51,7 +51,7 @@ img {
   max-width: 300px;
   border: 1px solid #ccc;
   border-radius: 4px;
-} */
+} 
 
 img.logo {
   border: none;
