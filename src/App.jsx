@@ -16,6 +16,7 @@ export const App = () => {
     generateQRCode,
     qr,
     downloadQRCode,
+    formattedName,
     repeatAction,
     hideButtons,
   } = useQRCodeGenerator();
@@ -45,17 +46,16 @@ export const App = () => {
       <button onClick={generateQRCode}>Generate QR Code</button>
       <>
         <img src={qr} />
-        <a href={qr} download="qrcode.png">
+        <a href={qr} download={formattedName}>
           <button
             href={qr}
-            id="insertHere"
             className={hideButtons ? "buttonHide" : "buttonDisplay"}
             onClick={handleDownloadClick}
           >
             Download
           </button>
         </a>
-
+        <div id="insertHere"></div>
         <button
           className={hideButtons ? "buttonHide" : "buttonDisplay"}
           onClick={handleRepeatClick}

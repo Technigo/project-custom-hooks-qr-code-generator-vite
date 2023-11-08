@@ -10,6 +10,8 @@ export const useQRCodeGenerator = () => {
   // variable to store the generated QR code data URL
   const [qr, setQr] = useState("");
 
+  const [formattedName, setFormattedName] = useState("");
+
   //variable to toggle the visibility of the input element - boolean value
   const [hideButtons, setHideButtons] = useState(true);
 
@@ -62,28 +64,9 @@ export const useQRCodeGenerator = () => {
     const userFileName = getFileName();
 
     // HINT 6: Format the filename to ensure it is filesystem-friendly.
-    const formattedFileName = userFileName + ".png";
-    console.log(`the formatted file name is: `, formattedFileName);
+    setFormattedName(userFileName + ".png");
 
-    // HINT 7: Create an anchor element to facilitate the download.
-    const anchor = document.createElement("a");
-
-    // HINT 8: Set the necessary attributes on the anchor element to prepare it for download.
-    anchor.href = qr;
-    anchor.download = formattedFileName;
-    // HINT 9: Append the anchor element to the document to make it interactable.
-
-    // HINT 10: Programmatically trigger a click on the anchor element to initiate the download.
-
-    anchor.textContent = "get QRcode";
-    document
-      .querySelector("#insertHere")
-      ?.insertAdjacentElement("beforeend", anchor);
-    anchor.addEventListener("click", () => {
-      anchor.remove();
-      repeatAction();
-    });
-    // HINT 11: Remove the anchor element from the document after the download has been initiated.
+    // HINT 7-11: Creating an anchor element - I rememved this as I thought it was more user friendly to get the Download button to prompt the user for a file name and then also save the file. I got it to work by changing the FormattedName into a global useState.
   };
 
   // Function to reset the state and allow generating a new QR code
@@ -106,5 +89,6 @@ export const useQRCodeGenerator = () => {
     repeatAction,
     hideButtons,
     setHideButtons,
+    formattedName,
   };
 };
