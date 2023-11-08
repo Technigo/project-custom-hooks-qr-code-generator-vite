@@ -21,9 +21,7 @@ export const useQRCodeGenerator = () => {
     // Use the Import of the qrcode and chain to the native method toDataUrl() much like the example provided and specify the data within the object that you will be passing such as the {url, {width, margin, color:{dark, light}}} which containes the information to generate the qr-code and url. Lastly, this native method toDataUrl() will contain a callback function  that will update the qr variable and will also update the variable toggling the visibility of the input element.
     QRCode.toDataURL(url, { width: 200, margin: 2 })
       .then((dataUrl) => {
-
         setQRCodeData(dataUrl);
-
         setShowInput(false);
       })
       .catch((error) => {
@@ -46,6 +44,11 @@ export const useQRCodeGenerator = () => {
   const downloadQRCode = () => {
     // HINT 1: Consider encapsulating the filename prompting logic into a separate function.
     const getFileName = () => {
+      let fileName;
+      do {
+        fileName = prompt('Enter a filename for the QR code (without extension):');
+      } while (!fileName);
+        return fileName;
       // HINT 2: Use a method to prompt the user for input and store the response.
       // ...
       // HINT 3: Implement a check for an empty filename and utilize recursion to re-prompt the user if necessary.
@@ -54,35 +57,48 @@ export const useQRCodeGenerator = () => {
       // ...
     };
 
+
     // HINT 5: Call the above function to retrieve a filename and store it in a variable.
-    // ...
+    const fileName = getFileName();
 
     // HINT 6: Format the filename to ensure it is filesystem-friendly.
-    // ...
+   const formattedFileName = fileName.replace(/[^a-z0-9]/gi, '_') + '.png';
 
     // HINT 7: Create an anchor element to facilitate the download.
-    // ...
+   const downloadLink = document.createElement('a');
 
     // HINT 8: Set the necessary attributes on the anchor element to prepare it for download.
-    // ...
+    downloadLink.href = qrCodeData;
+    downloadLink.download = formattedFileName;
 
     // HINT 9: Append the anchor element to the document to make it interactable.
-    // ...
+    document.body.appendChild(downloadLink);
 
     // HINT 10: Programmatically trigger a click on the anchor element to initiate the download.
-    // ...
+    downloadLink.click();
 
     // HINT 11: Remove the anchor element from the document after the download has been initiated.
-    // ...
+    document.body.removeChild(downloadLink);
   };
 
   // Function to reset the state and allow generating a new QR code
   const repeatAction = () => {
     // Reset the url state to an empty string
     // Reset the qr state to an empty string
+    setUrl('');
+    setQRCodeData('');
     // Show the input element back to true :)
+    setShowInput(true);
   };
 
   // Return the state variables and functions to be used in the component
-  return {};
+  return {
+    url,
+    qrCodeData,
+    showInput,
+    setUrl,
+    generateQRCode,
+    downloadQRCode,
+    repeatAction,
+  };
 };

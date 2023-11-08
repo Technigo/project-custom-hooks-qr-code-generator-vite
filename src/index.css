@@ -5,9 +5,10 @@
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+ 
 }
 
-/* .app {
+.app {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,7 +19,7 @@
 }
 
 h1 {
-  color: #335383;
+  color: #606c38;
   margin-bottom: 20px;
 }
 
@@ -32,7 +33,7 @@ input {
 }
 
 button {
-  background-color: #335383;
+  background-color: #283618;
   color: #fff;
   padding: 10px 20px;
   border: none;
@@ -51,9 +52,11 @@ img {
   max-width: 300px;
   border: 1px solid #ccc;
   border-radius: 4px;
-} */
+} 
+
+/*
 
 img.logo {
   border: none;
   max-width: 200px;
-}
+} */

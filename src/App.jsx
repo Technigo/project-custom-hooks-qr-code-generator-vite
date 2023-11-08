@@ -3,25 +3,46 @@
 import logo from "./assets/technigo-logo.svg";
 // Import the custom hook useQRCodeGenerator
 import { QrExample } from "./components/QrExample";
-import { useQRCodeGenerator } from "./hooks/useQRCodeGenerator"
+import { useQRCodeGenerator } from "./hooks/useQRCodeGenerator";
 
 
 // Define the App component
 export const App = () => {
   // Destructure variables, properties and methods from the useQRCodeGenerator hook that you imported above here :)
-
+  const {
+    url,
+    setUrl,
+    qrCodeData,
+    showInput,
+    generateQRCode,
+    downloadQRCode,
+    repeatAction,
+  } = useQRCodeGenerator();
   // Return the JSX to render the component
   return (
-    <div className="">
-      {/* Render the title */}
-      <img className="logo" src={logo} alt="" />
-      <h1>Technigo QR Code Generator</h1>
+    <div className="wrapper">
+      <h1>QR Code Generator</h1>
       <p>Start Here</p>
-      <QrExample />
-      <useQRCodeGenerator />
 
-      {/* Conditionally render based on wether the user is inputting an URL to generate a QR Code or the user wnats to downaload the generated QR Code from the url input */}
-      {/* {yourReactiveVariableThatTogglesTheDownloadQrCcodeOrInputField ? () : ()} */}
+      {/* Conditionally render based on whether the user is inputting a URL to generate a QR Code or wants to download the generated QR Code from the URL input */}
+      {showInput ? (
+        <div>
+          <input
+            type="text"
+            placeholder="Enter URL eg. https://google.com"
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
+          />
+          <button onClick={generateQRCode}>Generate</button>
+        </div>
+      ) : (
+        <div>
+          <img src={qrCodeData} alt="QR Code" />          
+            <button onClick={downloadQRCode}>Download</button>
+          <button onClick={repeatAction}>Repeat</button>
+        </div>
+      )}
     </div>
   );
 };
+
