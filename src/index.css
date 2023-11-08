@@ -5,18 +5,23 @@
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: rgba(0, 0, 255, 0.425);
+  text-align: center;
+  color: white;
+  padding: 2rem 1rem;
 }
 
-/* .app {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  background-color: #f8f8f8;
-  padding: 20px;
+* {
+  margin:0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Helvetica;
 }
 
+.app {
+  padding: 2 rem 1 rem;
+}
+/* 
 h1 {
   color: #335383;
   margin-bottom: 20px;
