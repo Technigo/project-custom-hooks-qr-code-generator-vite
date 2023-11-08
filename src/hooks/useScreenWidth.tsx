@@ -6,8 +6,7 @@ function getWindowWidth() {
     width,
   };
 }
-
-function useScreenSize() {
+const useScreenSize = (): { windowWidth: number } => {
   const [{ width: windowWidth }, setWindowWidth] = useState(getWindowWidth());
 
   useEffect(() => {
@@ -18,6 +17,6 @@ function useScreenSize() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
   return { windowWidth };
-}
+};
 
 export default useScreenSize;
