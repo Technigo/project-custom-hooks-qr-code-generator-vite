@@ -22,7 +22,6 @@ export const useQRCodeGenerator = () => {
         }
 
         // A regular expression that matches a valid URL with or without "https://"
-
         const urlPattern = /^(https?:\/\/[^\s/$.?#].[^\s]*|www\.[^\s/$.?#].[^\s]*)$/i;
 
         if (!urlPattern.test(inputUrl)) {

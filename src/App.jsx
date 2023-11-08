@@ -25,7 +25,7 @@ export const App = () => {
     <div className={`flex justify-center items-center h-screen ${darkMode ? 'bg-gray-900' : 'bg-indigo-200'}`}>
 
 
-      <div className={`mx-3 text-center text-xl p-10 w-96 h-96 mx-auto rounded-3xl border-4 ${darkMode ? 'border-white' : 'border-blue-900'} ${darkMode ? 'text-white' : 'text-blue-900'} transition-all duration-500`}>
+      <div className={`mx-5 lg:mx-2 text-center text-xl p-10 w-96 h-96 mx-auto rounded-3xl border-4 ${darkMode ? 'border-white' : 'border-blue-900'} ${darkMode ? 'text-white' : 'text-blue-900'} transition-all duration-500`}>
 
         <button
           className={`text-xs border-4 border-blue-900 rounded-full pt-6 pb-6 px-1 ${darkMode ? 'bg-black hover:bg-white hover:text-black' : 'bg-indigo-200 hover:bg-blue-900 hover:text-indigo-200'} transition-all duration-500 absolute top-2 right-2`}
