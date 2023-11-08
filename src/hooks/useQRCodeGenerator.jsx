@@ -3,21 +3,25 @@
 
 
 import QRCode from "qrcode";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // Define a custom hook named useQRCodeGenerator
 export const useQRCodeGenerator = () => {
-  const [url, setUrl] = useState("");
-  const [qr, setQr] = useState("");
+
+
 
   // Reactive State variable to store the input URL
-  //   const ...
+  const [url, setUrl] = useState("");
 
   // Reactive State variable to store the generated QR code data URL
-  //   const ...
+  const [qr, setQr] = useState("");
 
   // Reactive State variable to toggle the visibility of the input element - boolean value
-  //   const ...
+  const [hasQrCode, setHasQrCode] = useState(false);
+
+  useEffect(() => {
+
+  }, [])
 
   // Function to generate a QR code from the input URL
   const generateQRCode = () => {
@@ -38,6 +42,7 @@ export const useQRCodeGenerator = () => {
 
         console.log(url);
         setQr(url);
+        setHasQrCode(true)
       }
     
       // HINT 2: Ensure to pass the necessary parameters to the QR code generation method, such as the URL to convert and any styling options.
@@ -55,42 +60,24 @@ export const useQRCodeGenerator = () => {
 
   // Function to download the generated QR code as a PNG file
   const downloadQRCode = () => {
-    {qr && <>
-      <img src={qr} />
-      <a href={qr} download="qrcode.png">
-        Download
-      </a>
-    </>}
     // HINT 1: Consider encapsulating the filename prompting logic into a separate function.
     const getFileName = () => {
-      // HINT 2: Use a method to prompt the user for input and store the response.
-      // ...
-      // HINT 3: Implement a check for an empty filename and utilize recursion to re-prompt the user if necessary.
-      // ...
-      // HINT 4: Ensure the function returns the obtained filename.
-      // ...
+      let fileName = prompt("please give a name to the file:")
+      if(!fileName){
+          alert("the file name is required.")
+          getFileName()
+          return;
+      }
+      return fileName;
     };
 
-    // HINT 5: Call the above function to retrieve a filename and store it in a variable.
-    // ...
-
-    // HINT 6: Format the filename to ensure it is filesystem-friendly.
-    // ...
-
-    // HINT 7: Create an anchor element to facilitate the download.
-    // ...
-
-    // HINT 8: Set the necessary attributes on the anchor element to prepare it for download.
-    // ...
-
-    // HINT 9: Append the anchor element to the document to make it interactable.
-    // ...
-
-    // HINT 10: Programmatically trigger a click on the anchor element to initiate the download.
-    // ...
-
-    // HINT 11: Remove the anchor element from the document after the download has been initiated.
-    // ...
+    const fileName = getFileName().toLowerCase().trim();
+    var download = document.createElement('a')
+    download.download = `${fileName}.png`
+    download.href = qr
+    download.target = '_blank'
+    download.click();
+    download.remove()
   };
 
   // Function to reset the state and allow generating a new QR code
@@ -101,5 +88,5 @@ export const useQRCodeGenerator = () => {
   };
 
   // Return the state variables and functions to be used in the component
-  return {};
+  return {generateQRCode, downloadQRCode, repeatAction, hasQrCode, url, setUrl, qr};
 };
