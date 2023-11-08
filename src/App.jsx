@@ -18,6 +18,7 @@ export const App = () => {
     downloadQRCode,
     repeatAction,
     inputError,
+    setInputError,
   } = useQRCodeGenerator();
   // Return the JSX to render the component
   return (
@@ -25,26 +26,31 @@ export const App = () => {
       <h1>QR Code Generator</h1>
       <p>Start Here</p>
 
-      {/* Conditionally render based on whether the user is inputting a URL to generate a QR Code or wants to download the generated QR Code from the URL input */}
       {showInput ? (
         <div>
           <input
             type="text"
             placeholder="Enter URL eg. https://google.com"
             value={url}
-            onChange={(e) => setUrl(e.target.value)}
+            onChange={(e) => {
+              setUrl(e.target.value);
+              setInputError(''); // Clear the error when the input field changes
+            }}
           />
           <button onClick={generateQRCode}>Generate</button>
-          {inputError && <p className="error-message">{inputError}</p>}
+          {inputError && (
+          <div className="error-container">
+          <p className="error-message">{inputError}</p>
+          </div>
+          )}
         </div>
       ) : (
         <div>
-          <img src={qrCodeData} alt="QR Code" />          
-            <button onClick={downloadQRCode}>Download</button>
+          <img src={qrCodeData} alt="QR Code" />
+          <button onClick={downloadQRCode}>Download</button>
           <button onClick={repeatAction}>Repeat</button>
         </div>
       )}
     </div>
   );
 };
-

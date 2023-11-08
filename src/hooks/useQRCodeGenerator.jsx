@@ -20,6 +20,7 @@ export const useQRCodeGenerator = () => {
   // Function to generate a QR code from the input URL
   const generateQRCode = () => {
     if (url) {
+      setInputError('');
       // Check if the input is a valid URL
       const isValidUrl = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i.test(url);
   
@@ -103,6 +104,7 @@ export const useQRCodeGenerator = () => {
     // Reset the url state to an empty string
     // Reset the qr state to an empty string
     setUrl('');
+    setInputError('');
     setQRCodeData('');
     // Show the input element back to true :)
     setShowInput(true);
@@ -114,6 +116,7 @@ export const useQRCodeGenerator = () => {
     qrCodeData,
     showInput,
     inputError,
+    setInputError,
     setUrl,
     generateQRCode,
     downloadQRCode,

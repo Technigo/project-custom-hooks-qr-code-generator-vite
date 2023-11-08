@@ -54,6 +54,14 @@ img {
   border-radius: 4px;
 } 
 
+.error-container {
+  background-color: #ff0000; /* Red background color */
+  color: #ffffff; /* White text color */
+  display: inline-block; /* Make it inline to adjust its size to content */
+  padding: 4px 8px; /* Add padding for spacing around the text */
+  border-radius: 4px; /* Optionally, round the corners */
+}
+
 /*
 
 img.logo {
