@@ -16,6 +16,7 @@ body {
   min-height: 100vh;
   padding: 3.2rem;
   padding-bottom: 6rem;
+  margin-top: 3rem;
 }
 
 button {
@@ -43,6 +44,14 @@ button:hover {
 }
 
 .buttonDisplay {
+  display: block;
+}
+
+.inputHide {
+  display: none;
+}
+
+.inputDisplay {
   display: block;
 }
 

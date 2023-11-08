@@ -15,9 +15,13 @@ export const useQRCodeGenerator = () => {
   //variable to toggle the visibility of the input element - boolean value
   const [hideButtons, setHideButtons] = useState(true);
 
+  const [hideInput, setHideInput] = useState(false);
+
   // Function to generate a QR code from the input URL
   const generateQRCode = () => {
     setHideButtons(false);
+    setHideInput(true);
+
     // HINT 1: Utilize the qrccode library that converts a URL to a QR code data URL.
     // Use the Import of the qrcode and chain to the native method toDataUrl() much like the example provided and specify the data within the object that you will be passing such as the {url, {width, margin, color:{dark, light}}} which containes the information to generate the qr-code and url. Lastly, this native method toDataUrl() will contain a callback function  that will update the qr variable and will also update the variable toggling the visibility of the input element.
     QRCode.toDataURL(
@@ -77,6 +81,7 @@ export const useQRCodeGenerator = () => {
     setQr("");
     // Show the input element back to true :)
     setHideButtons(true);
+    setHideInput(false);
   };
 
   // Return the state variables and functions to be used in the component
@@ -89,6 +94,7 @@ export const useQRCodeGenerator = () => {
     repeatAction,
     hideButtons,
     setHideButtons,
+    hideInput,
     formattedName,
   };
 };
