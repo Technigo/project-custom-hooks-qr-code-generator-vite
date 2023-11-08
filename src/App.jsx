@@ -3,16 +3,18 @@
 // Import the custom hook useQRCodeGenerator
 import { useQRCodeGenerator } from "./hooks/useQRCodeGenerator";
 import styled from 'styled-components';
+import Lottie from "lottie-react";
+import qranimation from "./assets/qranimation.json"
 
 const AppContainer = styled.section`
-display: flex;
-flex-direction: column;
-justify-content: center;
-font-family: 'Lexend', sans-serif;
-color: #725AC1;
-font-weight: 400;
-margin: 50px 20px;
-gap: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: 'Lexend', sans-serif;
+  color: #725AC1;
+  font-weight: 400;
+  margin: 50px 20px;
+  gap: 30px;
 
 h1 {
   font-size: 36px;
@@ -24,18 +26,22 @@ h1 {
 
 .button-wrapper {
   display: flex;
-flex-direction: column;
-align-items: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+img {
+  border-radius: 10px;
 }
 `;
 
 const Input = styled.input`
-font-family: 'Lexend', sans-serif;
-font-size: 16px;
-border: 1px solid #725AC1;
-border-radius: 5px;
-padding: 5px;
-width: 300px;
+  font-family: 'Lexend', sans-serif;
+  font-size: 16px;
+  border: 1px solid #725AC1;
+  border-radius: 5px;
+  padding: 5px;
+  width: 300px;
 `;
 
 const Button = styled.button`
@@ -78,6 +84,7 @@ export const App = () => {
       {isInputVisible ? (
         //Renders the input field and generate button
         <>
+          <Lottie animationData={qranimation} />
           <Input
             type="text"
             ref={inputRef}
@@ -97,10 +104,6 @@ export const App = () => {
           </div>
         </>
       )}
-
-
-      {/* Conditionally render based on wether the user is inputting an URL to generate a QR Code or the user wnats to downaload the generated QR Code from the url input */}
-      {/* {yourReactiveVariableThatTogglesTheDownloadQrCcodeOrInputField ? () : ()} */}
     </AppContainer>
   );
 };
