@@ -12,7 +12,7 @@ export const useQRCodeGenerator = () => {
   const [qr, setQr] = useState("");
 
   // Reactive State variable to toggle the visibility of the input element - boolean value
-  const [showInput, setShowInput] = useState(false);
+  const [showInput, setShowInput] = useState(true);
 
   // Function to generate a QR code from the input URL
   const generateQRCode = () => {
@@ -30,11 +30,12 @@ export const useQRCodeGenerator = () => {
           light: "#EEEEEEFF",
         },
       },
-      (err, url) => {
-        if (err) return console.error(err);
+      (error, url) => {
+        if (error) return console.error(error);
 
         console.log(url);
         setQr(url);
+        showInput(false);
       }
       // HINT 2: Ensure to pass the necessary parameters to the QR code generation method, such as the URL to convert and any styling options.
       // ...
@@ -55,10 +56,17 @@ export const useQRCodeGenerator = () => {
     const getFileName = () => {
       // HINT 2: Use a method to prompt the user for input and store the response.
       // ...
+      const fileName = prompt('Enter a filename for the QR code:');
       // HINT 3: Implement a check for an empty filename and utilize recursion to re-prompt the user if necessary.
       // ...
+      if (condition) {
+        
+      } else {
+        
+      }
       // HINT 4: Ensure the function returns the obtained filename.
       // ...
+    
     };
 
     // HINT 5: Call the above function to retrieve a filename and store it in a variable.
@@ -85,6 +93,9 @@ export const useQRCodeGenerator = () => {
 
   // Function to reset the state and allow generating a new QR code
   const repeatAction = () => {
+    setUrl("");
+    setQr("");
+    showInput(true);
     // Reset the url state to an empty string
     // Reset the qr state to an empty string
     // Show the input element back to true :)
@@ -92,6 +103,6 @@ export const useQRCodeGenerator = () => {
 
   // Return the state variables and functions to be used in the component
   return {
-    
+
   };
 };
