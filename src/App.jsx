@@ -1,25 +1,89 @@
-// App Component Explanation 
-// The App component serves as a user interface for generating and downloading QR codes, utilizing the custom hook useQRCodeGenerator which encapsulates the logic for QR code generation and management. When rendered, the component displays a title ("Technigo QR Code Generator") and conditionally renders either an input field and a "Generate" button or a generated QR code image, a "Download" button, and a "Repeat" button, based on the showInput state variable. If showInput is true, users can input a URL and generate a QR code by clicking the "Generate" button. Once generated, the input field and "Generate" button are replaced by the QR code image and additional buttons. The "Download" button triggers a download of the QR code image, and the "Repeat" button resets the UI to allow for generating a new QR code. The url, setUrl, qr, showInput, generateQRCode, downloadQRCode, and repeatAction variables and functions are derived from the useQRCodeGenerator hook, providing the necessary state and actions to manage the QR code generation process.
-import logo from "./assets/technigo-logo.svg";
-// Import the custom hook useQRCodeGenerator
-import { QrExample } from "./components/QrExample";
+import React, { useState } from 'react';
+import { useQRCodeGenerator } from "./hooks/useQRCodeGenerator";
 
-// Define the App component
+
 export const App = () => {
-  // Destructure variables, properties and methods from the useQRCodeGenerator hook that you imported above here :)
+  const [darkMode, setDarkMode] = useState(false);
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
 
-  // Return the JSX to render the component
+  const {
+    url,
+    qr,
+    showInput,
+    setUrl,
+    generateQRCode,
+    downloadQRCode,
+    repeatAction,
+    error,
+  } = useQRCodeGenerator();
+
+
   return (
-    <div className="">
-      {/* Render the title */}
-      <img className="logo" src={logo} alt="" />
-      <h1>this is a test</h1>
-      <h1>Technigo QR Code Generator</h1>
-      <p>Start Here</p>
-      <QrExample />
 
-      {/* Conditionally render based on wether the user is inputting an URL to generate a QR Code or the user wnats to downaload the generated QR Code from the url input */}
-      {/* {yourReactiveVariableThatTogglesTheDownloadQrCcodeOrInputField ? () : ()} */}
+    <div className={`flex justify-center items-center h-screen ${darkMode ? 'bg-gray-900' : 'bg-indigo-200'}`}>
+
+
+      <div className={`mx-3 text-center text-xl p-10 w-96 h-96 mx-auto rounded-3xl border-4 ${darkMode ? 'border-white' : 'border-blue-900'} ${darkMode ? 'text-white' : 'text-blue-900'} transition-all duration-500`}>
+
+        <button
+          className={`text-xs border-4 border-blue-900 rounded-full pt-6 pb-6 px-1 ${darkMode ? 'bg-black hover:bg-white hover:text-black' : 'bg-indigo-200 hover:bg-blue-900 hover:text-indigo-200'} transition-all duration-500 absolute top-2 right-2`}
+          onClick={toggleDarkMode}
+        >
+          {darkMode ? 'Light Mode' : 'Dark Mode'}
+        </button>
+
+        <h1 className={`text-3xl ${darkMode ? 'text-white' : 'text-blue-900'}`}>
+          QR Code Generator
+        </h1>
+        <h2 className={`text-2xl mt-5 mb-3 ${darkMode ? 'text-white' : 'text-blue-900'}`}>
+          Enter your URL:
+        </h2>
+
+        {showInput ? (
+          <div>
+            <input
+              className={`border-solid border-2 ${darkMode ? 'border-white text-black' : 'border-black'}`}
+              type="text"
+              placeholder="Enter a URL to generate a QR code"
+              value={url}
+              onChange={(e) => setUrl(e.target.value)}
+            />
+            {error && <p className={`text-red-500 ${darkMode ? 'text-white' : 'text-red-500'}`}>{error}</p>}
+            <button
+              className={`border-4 border-blue-900 rounded-3xl p-2 m-5 ${darkMode ? 'bg-black hover:bg-white hover:text-black' : 'bg-indigo-200 hover:bg-blue-900 hover:text-indigo-200'} transition-all duration-500`}
+              onClick={() => generateQRCode(url, darkMode)}
+            >
+              Generate
+            </button>
+          </div>
+        ) : (
+          <div>
+            <img
+              src={qr}
+              alt="Generated QR Code"
+              style={{
+                display: 'block',
+                margin: '0 auto',
+              }}
+              className={`transition-opacity duration-8000 transition-all duration-500 ${showInput ? 'opacity-0' : 'opacity-100'}`}
+            />
+            <button
+              className={`border-4 border-blue-900 rounded-3xl p-2 m-3 ${darkMode ? 'bg-black hover:bg-white hover:text-black' : 'bg-indigo-200 hover:bg-blue-900 hover:text-indigo-200'} transition-all duration-500`}
+              onClick={downloadQRCode}
+            >
+              Download
+            </button>
+            <button
+              className={`border-4 border-blue-900 rounded-3xl p-2 m-3 ${darkMode ? 'bg-black hover:bg-white hover:text-black' : 'bg-indigo-200 hover:bg-blue-900 hover:text-indigo-200'} transition-all duration-500`}
+              onClick={repeatAction}
+            >
+              Repeat
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
