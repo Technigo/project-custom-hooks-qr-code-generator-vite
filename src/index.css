@@ -6,7 +6,25 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100;400;600;700;900&display=swap');
-  background-color: #F7ECE1;
+
+
+  --gradient-color-3: #020024;
+  /* First color */
+  --gradient-color-2: #760979;
+  /* Second color */
+  --gradient-color-1: #00d4ff;
+  /* Third color */
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: linear-gradient(180deg, var(--gradient-color-1) 0%, var(--gradient-color-2) 50%, var(--gradient-color-3) 100%);
 }
 
 /* .app {
