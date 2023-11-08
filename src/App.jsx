@@ -21,7 +21,8 @@ export const App = () => {
     setQrcode,
     showQrcode,
     setShowQrcode,
-    GenerateQRCode,
+    generateQRCode,
+    downloadQRCode,
   } = useQRCodeGenerator();
 
   return (
@@ -47,21 +48,27 @@ export const App = () => {
           <NotALottieComponent />
         </div> */}
         {qrcode ? (
-          // Content to show when qrcode is available
+          // Content to show when qrcode is available.
           <div className="generator column">
             <img src={qrcode} alt="QR Code" />
-            <a href={qrcode} download="qrcode.png" className="download-link">
+            <NotAComponentButton
+              className="download-btn"
+              textContent="Download"
+              onClick={downloadQRCode}
+              ariaLabel="Download the QR Code"
+            />
+            {/* <a href={qrcode} download="qrcode.png" className="download-link">
               Download <AiOutlineCloudDownload className="download-icon" />
-            </a>
+            </a> */}
             <NotAComponentButton
               className="repeat-btn"
               textContent="Make more QR Codes"
               // onClick={repeatAction}
-              aria-label="Reset and make another QR Code"
+              ariaLabel="Reset and make another QR Code"
             />
           </div>
         ) : (
-          // Content to show when qrcode is not available
+          // Content to show when qrcode is not available.
           <div className="generator column">
             <div className="url-wrapper">
               <label>URL</label>
@@ -75,7 +82,7 @@ export const App = () => {
             <NotAComponentButton
               className="generate-btn"
               textContent="Generate"
-              onClick={GenerateQRCode}
+              onClick={generateQRCode}
               aria-label="Generate QR Code"
             />
             <NotAComponentButton
