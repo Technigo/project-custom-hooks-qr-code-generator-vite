@@ -35,11 +35,11 @@ export const useQRCodeGenerator = () => {
       // HINT 2: Ensure to pass the necessary parameters to the QR code generation method, such as the URL to convert and any styling options.
       url,
       {
-        width: 100,
+        width: 302,
         margin: 2,
         color: {
-          dark: "#335383FF",
-          light: "#EEEEEEFF",
+          dark: "#1F1F1F",
+          light: "#FFFFFF",
         },
       },
       // HINT 3: Handle the callback of the QR code generation method, which provides the generated QR code data URL.
