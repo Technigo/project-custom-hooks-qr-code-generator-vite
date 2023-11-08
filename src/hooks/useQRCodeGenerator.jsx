@@ -12,8 +12,18 @@ export const useQRCodeGenerator = () => {
   // Reactive State variable to toggle the visibility of the input element - boolean value.
   const [showQrcode, setShowQrcode] = useState(true);
 
+  // Create a loading state variable
+  const [showSpinner, setShowSpinner] = useState(false);
+
   // Function to generate a QR code from the input URL.
   const generateQRCode = () => {
+    if (inputURL.trim() === "") {
+      // If the input is empty or contains only whitespace, don't show the spinner.
+      return;
+    }
+
+    setShowSpinner(true); // Display loading spinner.
+
     // Import of the qrcode chained to the native method toDataUrl().
     // Converts a URL to a QR code data URL.
     QRCode.toDataURL(
@@ -25,13 +35,16 @@ export const useQRCodeGenerator = () => {
       },
       // Error handling and callback of the QR code generation method, which provides the generated QR code data URL.
       (err, inputURL) => {
-        if (err) {
-          console.error(err);
-        } else {
-          console.log(inputURL);
-          setQrcode(inputURL);
-          setShowQrcode(true);
-        }
+        setTimeout(() => {
+          setShowSpinner(false); // Hide the spinner.
+          if (err) {
+            console.error(err);
+          } else {
+            console.log(inputURL);
+            setQrcode(inputURL);
+            setShowQrcode(true);
+          }
+        }, 2000);
       }
     );
   };
@@ -66,7 +79,7 @@ export const useQRCodeGenerator = () => {
     document.body.removeChild(downloadLink);
   };
 
-  // Function to reset the state and allow generating a new QR code
+  // Function to reset the state and allow generating a new QR code.
   const repeatAction = () => {
     setInputURL("");
     setQrcode("");
@@ -80,5 +93,6 @@ export const useQRCodeGenerator = () => {
     generateQRCode,
     downloadQRCode,
     repeatAction,
+    showSpinner,
   };
 };
