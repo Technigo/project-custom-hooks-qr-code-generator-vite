@@ -18,21 +18,17 @@ export const useQRCodeGenerator = () => {
   const [inputVisibility, setInputVisibility] = useState(true);
 
   // Function to generate a QR code from the input URL
-  const generateQRCode = () => {
+  const generateQRCode = async () => {
     // HINT 1: Utilize the qrccode library that converts a URL to a QR code data URL.
     // Use the Import of the qrcode and chain to the native method toDataUrl() much like the example provided and specify the data within the object that you will be passing such as the {url, {width, margin, color:{dark, light}}} which containes the information to generate the qr-code and url. Lastly, this native method toDataUrl() will contain a callback function  that will update the qr variable and will also update the variable toggling the visibility of the input element.
     try {
-      QRCode.toDataURL(
-        inputURL,
-        {
-          width: 800,
-          margin: 2,
-        },
-        (outputURL) => {
-          setQRData(outputURL);
-          setInputVisibility(false);
-        }
-      );
+      const qrCreate = await QRCode.toDataURL(inputURL, {
+        width: 800,
+        margin: 2,
+      });
+
+      setQRData(qrCreate);
+      setInputVisibility(false);
     } catch (err) {
       console.log("Error: " + err);
     }
