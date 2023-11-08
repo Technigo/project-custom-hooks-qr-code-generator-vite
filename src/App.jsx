@@ -10,14 +10,14 @@ export const App = () => {
 
   // Return the JSX to render the component
   return (
-    <div className="">
+    <div className="w-screen h-screen max-w-xl flex flex-col gap-1 items-center py-8 px-4 mx-auto text-zinc-300 ">
       {/* Render the title */}
       <img className="logo" src={logo} alt="" />
       <h1>Technigo QR Code Generator</h1>
       <p>Start Here</p>
       <QrExample />
 
-      {/* Conditionally render based on wether the user is inputting an URL to generate a QR Code or the user wnats to downaload the generated QR Code from the url input */}
+      {/* Conditionally render based on whether the user is inputting an URL to generate a QR Code or the user wants to download the generated QR Code from the url input */}
       {/* {yourReactiveVariableThatTogglesTheDownloadQrCcodeOrInputField ? () : ()} */}
     </div>
   );
