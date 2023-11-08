@@ -8,13 +8,14 @@ import { BoxAnimated } from "./components/BoxAnimated";
 import CanvasComp from "./components/Three/CanvasComp";
 import Box from "./components/Three/Box";
 import Circle from "./components/Three/Circle";
+import { Welcome } from "./components/Welcome";
 
 export const App = () => {
   const [isStart, setIsStart] = useState<boolean>(true);
   const { data, isLoading, error } = useGifs();
-  const textRef = useRef("SaQR Code Generator");
+  // const textRef = useRef("SaQR Code Generator");
 
-  const currentText = useTypeText(textRef.current);
+  // const currentText = useTypeText(textRef.current);
 
   const {
     url,
@@ -36,62 +37,7 @@ export const App = () => {
       {!isLoading && !error && (
         <div className="h-screen bg-sky-900 text-stone-100 overflow-hidden bottom-0">
           {isStart ? (
-            <div className=" flex flex-col items-center justify-center gap-2 h-screen overflow-hidden">
-              <span className="absolute top-80  left-40">
-                <CanvasComp>
-                  <Box />
-                </CanvasComp>
-              </span>
-              <span className="absolute top-100  left-80">
-                <CanvasComp>
-                  <Box />
-                </CanvasComp>
-              </span>
-              <span className="absolute top-100  left-20">
-                <CanvasComp>
-                  <Box />
-                </CanvasComp>
-              </span>
-              <span className="absolute top-40  left-20">
-                <CanvasComp>
-                  <Box />
-                </CanvasComp>
-              </span>
-
-              <div className="h-12  min-h-[30px]">
-                <h1 className="font-bold text-5xl mb-9 font-poppins">
-                  {currentText ? currentText : ""}
-                </h1>
-              </div>
-              <div className="h-80 w-80 relative z-0 mx-auto">
-                <iframe
-                  className="w-full h-full border-red-300 top-0 left-0 z-1 absolute"
-                  src={data.data[0].embed_url}
-                  allow="encrypted-media;"
-                ></iframe>
-                <div className="w-full h-full border-none top-0 left-0 z-1 absolute"></div>
-              </div>
-              <button onClick={() => setIsStart(false)} className="button">
-                Start Here
-              </button>
-
-              <span className="absolute top-120  right-40">
-                <CanvasComp>
-                  <Box />
-                </CanvasComp>
-              </span>
-              <span className="absolute top-80  right-60">
-                <CanvasComp>
-                  <Box />
-                </CanvasComp>
-              </span>
-              <span className="absolute top-60  right-20">
-                <CanvasComp>
-                  <Box />
-                </CanvasComp>
-              </span>
-              <BoxAnimated />
-            </div>
+            <Welcome onStart={setIsStart} />
           ) : (
             <>
               <ScrollAnimated>

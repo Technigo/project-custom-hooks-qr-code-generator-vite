@@ -9,7 +9,7 @@ export default function CanvasComp({ children }: any) {
   return (
     <Canvas>
       <ambientLight />
-      <pointLight position={[10, 10, 10]} />
+      <pointLight position={[10, 5, 25]} />
       <spotLight position={[10, 20, 10]} penumbra={1} intensity={3} color="orange" />
       {children}
       {/* <Three position={[-1.2, 0, 0]} /> */}
