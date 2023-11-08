@@ -33,7 +33,7 @@ export const QrExample = () => {
     <div className="app">
       <h1 className="font-bold">QR Generator</h1>
       <input
-        className="w-screen max-w-[300px] rounded-md my-3 mr-3"
+        className="w-screen max-w-[300px] rounded-md my-3 mr-3 text-stone-800 px-2"
         type="text"
         placeholder="e.g. https://google.com"
         value={url}
