@@ -33,13 +33,14 @@ button:hover {
   background-color: #23375d;
 }
 
-.buttonRepeat {
+.buttonHide {
   display: none;
 }
 
-a {
-  text-decoration: none;
+.buttonDisplay {
+  display: block;
 }
+
 input {
   padding: 10px;
   font-size: 16px;
