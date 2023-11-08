@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export const useTypeText = (text: string) => {
+export const useTypeText = (text: string): string => {
   const [currentText, setCurrentText] = useState<string>(" ");
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 

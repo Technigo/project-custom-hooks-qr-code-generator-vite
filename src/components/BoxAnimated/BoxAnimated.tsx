@@ -31,7 +31,7 @@ const Bar = ({ maxHeight = 240 }) => {
     const random = Math.floor(Math.random() * maxHeight) + 1;
     setHight(random);
   }, []);
-  console.log(height);
+
   useEffect(() => {
     changeHeight();
     const interval = setInterval(changeHeight, 2000);
