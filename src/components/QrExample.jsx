@@ -3,6 +3,7 @@
 // Delete once finished, you will work directly wkithin the app ;)
 import QRCode from "qrcode";
 import { useState } from "react";
+
 export const QrExample = () => {
   const [url, setUrl] = useState("");
   const [qr, setQr] = useState("");

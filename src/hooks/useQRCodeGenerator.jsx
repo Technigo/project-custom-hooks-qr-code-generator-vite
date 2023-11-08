@@ -23,7 +23,7 @@ export const useQRCodeGenerator = () => {
       // HINT 2: Ensure to pass the necessary parameters to the QR code generation method, such as the URL to convert and any styling options.
       url,
       {
-        width: 100,
+        width: 300,
         margin: 2,
         color: {
           dark: "#335383FF",
@@ -33,12 +33,16 @@ export const useQRCodeGenerator = () => {
 
       // HINT 3: Handle the callback of the QR code generation method, which provides the generated QR code data URL.
       // HINT 4: Implement error handling to manage any issues that might occur during QR code generation.
-      (err, url) => {
-        if (err) return console.error(err);
-
-        console.log(url);
-        setQr(url);
-        setShowInput(false);
+      (err, generatedQr) => {
+        if (err) {
+          console.error(err);
+          // Handle errors if necessary
+        } else {
+          // Update the QR code state
+          setQr(generatedQr);
+          // Hide the input element (optional)
+          setShowInput(false);
+        }
       }
 
       // HINT 5: Update the relevant state variables with the generated QR code data URL and adjust the UI accordingly.
@@ -58,6 +62,12 @@ export const useQRCodeGenerator = () => {
       // ...
       // HINT 4: Ensure the function returns the obtained filename.
       // ...
+      let fileName = prompt("Choose a name for the image:");
+      if (fileName === null || fileName === "") {
+        getFileName();
+      } else {
+        return fileName;
+      }
     };
 
     // HINT 5: Call the above function to retrieve a filename and store it in a variable.
@@ -84,9 +94,9 @@ export const useQRCodeGenerator = () => {
 
   // Function to reset the state and allow generating a new QR code
   const repeatAction = () => {
-    // Reset the url state to an empty string
-    // Reset the qr state to an empty string
-    // Show the input element back to true :)
+    setUrl(""); // Reset the url state to an empty string
+    setQr(""); // Reset the qr state to an empty string
+    setShowInput(true); // Show the input element back to true :)
   };
 
   // Return the state variables and functions to be used in the component
