@@ -9,7 +9,7 @@ import { useQRCodeGenerator } from "./hooks/useQRCodeGenerator";
 export const App = () => {
 
   // Destructure variables, properties and methods from the useQRCodeGenerator hook that you imported above here :)
-  const {  url, setUrl, qr, generateQRCode, downloadQRCode, repeatAction } = useQRCodeGenerator();
+  const {  url, setUrl, qr, generateQRCode, downloadQRCode, getFileName, repeatAction } = useQRCodeGenerator();
     
 
   // Return the JSX to render the component
@@ -20,8 +20,8 @@ export const App = () => {
         <>
         <img src={qr} alt="Generated QR Code" />
           <a href={qr} download="qrcode.png">
-            Download
           </a>
+          <button onClick={() => downloadQRCode()}>Download</button>
           <button onClick={repeatAction}>Repeat</button>
         </>
       ) : (
