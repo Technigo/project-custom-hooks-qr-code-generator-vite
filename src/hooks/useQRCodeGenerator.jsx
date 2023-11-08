@@ -11,11 +11,11 @@ export const useQRCodeGenerator = () => {
   const [qr, setQr] = useState("");
 
   //variable to toggle the visibility of the input element - boolean value
-  const [hideButtons, setHideButtons] = useState(false);
+  const [hideButtons, setHideButtons] = useState(true);
 
   // Function to generate a QR code from the input URL
   const generateQRCode = () => {
-    setHideButtons(true);
+    setHideButtons(false);
     // HINT 1: Utilize the qrccode library that converts a URL to a QR code data URL.
     // Use the Import of the qrcode and chain to the native method toDataUrl() much like the example provided and specify the data within the object that you will be passing such as the {url, {width, margin, color:{dark, light}}} which containes the information to generate the qr-code and url. Lastly, this native method toDataUrl() will contain a callback function  that will update the qr variable and will also update the variable toggling the visibility of the input element.
     QRCode.toDataURL(
@@ -31,6 +31,7 @@ export const useQRCodeGenerator = () => {
       (err, url) => {
         if (err) return console.error(err);
         setQr(url);
+        console.log(`qr is:`, qr);
       }
     );
   };
@@ -48,6 +49,7 @@ export const useQRCodeGenerator = () => {
       }
       const userFileName = askForFileName();
       // HINT 3: Implement a check for an empty filename and utilize recursion to re-prompt the user if necessary.
+
       if (!userFileName) {
         getFileName();
         return;
@@ -61,20 +63,23 @@ export const useQRCodeGenerator = () => {
 
     // HINT 6: Format the filename to ensure it is filesystem-friendly.
     const formattedFileName = userFileName + ".png";
+    console.log(`the formatted file name is: `, formattedFileName);
 
     // HINT 7: Create an anchor element to facilitate the download.
     const anchor = document.createElement("a");
 
     // HINT 8: Set the necessary attributes on the anchor element to prepare it for download.
-    anchor.setAttribute("href", qr);
-    anchor.setAttribute("download", formattedFileName);
+    anchor.href = qr;
+    anchor.download = formattedFileName;
     // HINT 9: Append the anchor element to the document to make it interactable.
-    anchor.textContent = "get QRcode";
-    document.querySelector("#code")?.insertAdjacentElement("beforeend", anchor);
+
     // HINT 10: Programmatically trigger a click on the anchor element to initiate the download.
-    // ...
+
+    anchor.textContent = "get QRcode";
+    document
+      .querySelector("#insertHere")
+      ?.insertAdjacentElement("beforeend", anchor);
     anchor.addEventListener("click", () => {
-      setHideButtons(false);
       anchor.remove();
       repeatAction();
     });

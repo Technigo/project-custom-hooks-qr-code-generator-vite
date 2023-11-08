@@ -18,30 +18,24 @@ export const App = () => {
     downloadQRCode,
     repeatAction,
     hideButtons,
-    setHideButtons,
   } = useQRCodeGenerator();
 
   function handleDownloadClick() {
     downloadQRCode();
-    setHideButtons(true);
   }
 
   function handleRepeatClick() {
     repeatAction();
-    setHideButtons(true);
   }
 
   // Return the JSX to render the component
   return (
-    <div>
-      {/* Render the title */}
+    <div id="downloadContainer">
       <h1>QR Code Generator</h1>
       <p>
-        Enter your URL and click 'Generate QR Code' to create your own QR Code
-        to download.{" "}
+        Enter your URL and click 'Generate QR Code' to create your own unique QR
+        Code to download as an image to share.
       </p>
-
-      <h1>QR Generator</h1>
       <input
         type="text"
         placeholder="e.g. https://google.com"
@@ -53,7 +47,9 @@ export const App = () => {
         <img src={qr} />
         <a href={qr} download="qrcode.png">
           <button
-            className={hideButtons ? "buttonDisplay" : "buttonHide"}
+            href={qr}
+            id="insertHere"
+            className={hideButtons ? "buttonHide" : "buttonDisplay"}
             onClick={handleDownloadClick}
           >
             Download
@@ -61,7 +57,7 @@ export const App = () => {
         </a>
 
         <button
-          className={hideButtons ? "buttonDisplay" : "buttonHide"}
+          className={hideButtons ? "buttonHide" : "buttonDisplay"}
           onClick={handleRepeatClick}
         >
           Repeat
