@@ -53,35 +53,13 @@ document.body.appendChild(downloadLink);
       document.body.removeChild(downloadLink);
     };
 
-
-   
-
-    
-
-    // HINT 7: Create an anchor element to facilitate the download.
-    // ...
-
-    // HINT 8: Set the necessary attributes on the anchor element to prepare it for download.
-    // ...
-
-    // HINT 9: Append the anchor element to the document to make it interactable.
-    // ...
-
-    // HINT 10: Programmatically trigger a click on the anchor element to initiate the download.
-    // ...
-
-    // HINT 11: Remove the anchor element from the document after the download has been initiated.
-    // ...
-  
-
-  // Function to reset the state and allow generating a new QR code
   const repeatAction = () => {
     setUrl("");
     setQr("");
-    // Show the input element back to true :)
+    
   };
 
-  // Return the state variables and functions to be used in the component
+ 
   return {
    url, 
    setUrl,
