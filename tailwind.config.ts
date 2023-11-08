@@ -3,6 +3,7 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      backgroundColor: { orange: "rgb(255, 166, 0)" },
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
       },

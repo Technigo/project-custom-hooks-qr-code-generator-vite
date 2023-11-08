@@ -1,6 +1,8 @@
 import { useScroll, animated, useSpring } from "@react-spring/web";
 import { useRef } from "react";
 import styles from "./ScrollAnimated.module.scss";
+import CanvasComp from "../Three/CanvasComp";
+import Circle from "../Three/Circle";
 
 const X_LINES = 50;
 const PAGE_COUNT = 4;
@@ -32,6 +34,11 @@ export function ScrollAnimated({ children }: { children: any }) {
       <div className={styles.animated__layers}>
         <animated.div ref={barContainerRef} className={styles.bar__container}>
           <animated.p className={styles.text}>Scroll Me!!</animated.p>
+          <div className="absolute h-[900px] w-[900px] mx-auto translate-x-[-25%] translate-y-[60px]">
+            <CanvasComp>
+              <Circle />
+            </CanvasComp>
+          </div>
           {Array.from({ length: X_LINES }).map((_, i) => (
             <animated.div
               key={i}

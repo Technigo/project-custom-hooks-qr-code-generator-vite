@@ -5,6 +5,9 @@ import { useGifs } from "./hooks/useGifs";
 import { useTypeText } from "./hooks/useTypeText";
 import { ScrollAnimated } from "./components/ScrollAnimated";
 import { BoxAnimated } from "./components/BoxAnimated";
+import CanvasComp from "./components/Three/CanvasComp";
+import Box from "./components/Three/Box";
+import Circle from "./components/Three/Circle";
 
 export const App = () => {
   const [isStart, setIsStart] = useState<boolean>(true);
@@ -33,7 +36,28 @@ export const App = () => {
       {!isLoading && !error && (
         <div className="h-screen bg-sky-900 text-stone-100 overflow-hidden bottom-0">
           {isStart ? (
-            <div className=" flex flex-col items-center justify-center gap-7 h-screen overflow-hidden">
+            <div className=" flex flex-col items-center justify-center gap-2 h-screen overflow-hidden">
+              <span className="absolute top-80  left-40">
+                <CanvasComp>
+                  <Box />
+                </CanvasComp>
+              </span>
+              <span className="absolute top-100  left-80">
+                <CanvasComp>
+                  <Box />
+                </CanvasComp>
+              </span>
+              <span className="absolute top-100  left-20">
+                <CanvasComp>
+                  <Box />
+                </CanvasComp>
+              </span>
+              <span className="absolute top-40  left-20">
+                <CanvasComp>
+                  <Box />
+                </CanvasComp>
+              </span>
+
               <div className="h-12  min-h-[30px]">
                 <h1 className="font-bold text-5xl mb-9 font-poppins">
                   {currentText ? currentText : ""}
@@ -50,12 +74,38 @@ export const App = () => {
               <button onClick={() => setIsStart(false)} className="button">
                 Start Here
               </button>
+
+              <span className="absolute top-120  right-40">
+                <CanvasComp>
+                  <Box />
+                </CanvasComp>
+              </span>
+              <span className="absolute top-80  right-60">
+                <CanvasComp>
+                  <Box />
+                </CanvasComp>
+              </span>
+              <span className="absolute top-60  right-20">
+                <CanvasComp>
+                  <Box />
+                </CanvasComp>
+              </span>
               <BoxAnimated />
             </div>
           ) : (
             <>
               <ScrollAnimated>
-                <div className="flex flex-col items-center gap-7 h-screen pt-32 overflow-hidden">
+                <div className="flex flex-col items-center gap-4 h-screen pt-32 relative overflow-hidden">
+                  <span className="absolute top-80  left-40 w-11">
+                    <CanvasComp>
+                      <Box />
+                    </CanvasComp>
+                  </span>
+                  <span className="absolute top-80  left-20 w-11">
+                    <CanvasComp>
+                      <Circle />
+                    </CanvasComp>
+                  </span>
                   <h1
                     onClick={() => setIsStart(true)}
                     className="font-bold text-3xl mb-4 font-poppins cursor-pointer"
@@ -63,8 +113,8 @@ export const App = () => {
                     SaQR Code Generator
                   </h1>
 
-                  <div className="flex flex-col  bg-sky-300 py-8 px-10 rounded shadow-md">
-                    <p className="text-start m-0 text-stone-600 text-sm font-bold">URL Please</p>
+                  <div className="flex flex-col  bg-orange py-8 px-10 rounded shadow-md">
+                    <p className="text-start m-0 text-stone-900 text-sm font-bold">URL Please</p>
                     <input
                       type="text"
                       placeholder="e.g. https://google.com"
@@ -72,7 +122,7 @@ export const App = () => {
                       onChange={(e) => setUrl(e.target.value)}
                       className="w-80 px-6 py-2 text-lg focus:outline-sky-500 focus:outline-offset-2 focus:outline-4 text-stone-600 rounded-sm shadow-sm  "
                     />
-                    <div className="text-stone-700">
+                    <div className="text-stone-900">
                       <p>Option</p>
                       <select
                         value={color}
@@ -104,7 +154,7 @@ export const App = () => {
                       <>
                         <button
                           onClick={generateQRCode}
-                          className="button text-sm w-40 bg-sky-500 text-white font-bold"
+                          className="button text-sm w-40 bg-orange font-bold"
                         >
                           Generate QRcode
                         </button>
