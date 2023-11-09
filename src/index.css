@@ -18,6 +18,10 @@
   padding: 20px;
 }
 
+body {
+  background-color: #f8f8f8;
+}
+
 h1 {
   color: #606c38;
   margin-bottom: 20px;
@@ -28,7 +32,7 @@ input {
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   width: 300px;
 }
 
@@ -41,6 +45,9 @@ button {
   font-size: 16px;
   cursor: pointer;
   margin: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 button:hover {
@@ -60,5 +67,6 @@ img {
 
 .error-container {
   color: #ff0000; /* Red text color */
+  text-align: center;
 }
 
