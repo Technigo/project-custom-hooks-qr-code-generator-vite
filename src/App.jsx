@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useQRCodeGenerator } from './hooks/useQRCodeGenerator' // Import of the custom hook
 import styled from 'styled-components'
-import QRPlantImage from '/QRplant.jpg' // Import of image used via the styled component
+import QRPlantImage from '/QRplantNoQR.jpg' // Import of image used via the styled component
 
 // *** Styled components *** //
 const AppMain = styled.div`
