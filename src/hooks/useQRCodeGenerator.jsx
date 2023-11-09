@@ -41,8 +41,6 @@ export const useQRCodeGenerator = () => {
         setQrcode(url);
         setInputVisible(false);
       },
-
-      
     );
   };
 
@@ -69,7 +67,7 @@ export const useQRCodeGenerator = () => {
     const anchor = document.createElement("a");
 
     // HINT 8: Set the necessary attributes on the anchor element to prepare it for download.
-    anchor.href = {url};
+    anchor.href = qrcode;
     anchor.download = `${formattedFileName}.png`;
 
     // HINT 9: Append the anchor element to the document to make it interactable.
