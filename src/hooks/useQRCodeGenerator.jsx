@@ -42,9 +42,6 @@ export const useQRCodeGenerator = () => {
     );
   };
 
-  // HINT 6: Consider the user experience and how the UI should change once the QR code has been generated.
-  // ...
-
   // Function to download the generated QR code as a PNG file
   const downloadQRCode = () => {
     // HINT 1: Consider encapsulating the filename prompting logic into a separate function.
@@ -70,7 +67,7 @@ export const useQRCodeGenerator = () => {
     // HINT 6: Format the filename to ensure it is filesystem-friendly.
     setFormattedName(userFileName + ".png");
 
-    // HINT 7-11: Creating an anchor element - I rememved this as I thought it was more user friendly to get the Download button to prompt the user for a file name and then also save the file. I got it to work by changing the FormattedName into a global useState.
+    // HINT 7-11: Creating an anchor element - I removed this as I thought it was more user friendly to get the Download button to prompt the user for a file name and then also save the file. I got it to work by changing the FormattedName into a global useState.
   };
 
   // Function to reset the state and allow generating a new QR code
