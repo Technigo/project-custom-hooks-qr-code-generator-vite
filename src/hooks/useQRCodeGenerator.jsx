@@ -62,10 +62,13 @@ export const useQRCodeGenerator = () => {
       return;
     }
     fileName = fileName.toLowerCase().trim();
-    var download = document.createElement('a')
+    fileName = fileName.split(" ").join("-")
+
+    let download = document.createElement('a')
     download.download = `${fileName}.png`
     download.href = qr
-    download.target = '_blank'
+    download.target = '_blank';
+    document.body.appendChild(download)
     download.click();
     download.remove()
   };
