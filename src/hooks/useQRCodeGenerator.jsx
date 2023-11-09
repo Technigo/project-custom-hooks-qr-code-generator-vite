@@ -11,6 +11,8 @@ export const useQRCodeGenerator = () => {
   // Reactive State variable to store the generated QR code data URL
   const [qr, setQr] = useState("");
 
+  const [errorMessage, setErrorMessage] = useState("");
+
   // Reactive State variable to toggle the visibility of the input element - boolean value
   // const [visibleInputField, setVisibleInputField] = useState("visible");
   // const toggleInputField = () => {
@@ -20,42 +22,47 @@ export const useQRCodeGenerator = () => {
 
   // Function to generate a QR code from the input URL
   const generateQRCode = () => {
-    // HINT 1: Utilize the qrccode library that converts a URL to a QR code data URL.
-    // Use the Import of the qrcode and chain to the native method toDataUrl() much like the example provided and specify the data within the object that you will be passing such as the {url, {width, margin, color:{dark, light}}} which containes the information to generate the qr-code and url. Lastly, this native method toDataUrl() will contain a callback function  that will update the qr variable and will also update the variable toggling the visibility of the input element.
-    QRCode.toDataURL(
-      url,
-      {
-        width: 800,
-        margin: 2,
-        color: {
-          dark: "#335383FF",
-          light: "#EEEEEEFF",
+    if (url.trim() === "") {
+      setErrorMessage("Please enter a valid URL."); // Display an error message if the input is empty or only contains whitespace.
+    } else {
+      setErrorMessage(""); // Clear any previous error messages.
+
+      // HINT 1: Utilize the qrccode library that converts a URL to a QR code data URL.
+      // Use the Import of the qrcode and chain to the native method toDataUrl() much like the example provided and specify the data within the object that you will be passing such as the {url, {width, margin, color:{dark, light}}} which containes the information to generate the qr-code and url. Lastly, this native method toDataUrl() will contain a callback function  that will update the qr variable and will also update the variable toggling the visibility of the input element.
+      QRCode.toDataURL(
+        url,
+        {
+          width: 800,
+          margin: 2,
+          color: {
+            dark: "#335383FF",
+            light: "#EEEEEEFF",
+          },
         },
-      },
-      (err, url) => {
-        if (err) return console.error(err);
+        (err, url) => {
+          if (err) return console.error(err);
 
-        console.log(url);
-        setQr(url);
-        setShowInput(false);
-      }
-      // HINT 2: Ensure to pass the necessary parameters to the QR code generation method, such as the URL to convert and any styling options.
-      // ...
-      // HINT 3: Handle the callback of the QR code generation method, which provides the generated QR code data URL.
-      // ...
-      // HINT 4: Implement error handling to manage any issues that might occur during QR code generation.
-      // ...
-      // HINT 5: Update the relevant state variables with the generated QR code data URL and adjust the UI accordingly.
-      // ...
-      // HINT 6: Consider the user experience and how the UI should change once the QR code has been generated.
-      // ...
-    );
+          console.log(url);
+          setQr(url);
+          setShowInput(false);
+        }
+        // HINT 2: Ensure to pass the necessary parameters to the QR code generation method, such as the URL to convert and any styling options.
+        // ...
+        // HINT 3: Handle the callback of the QR code generation method, which provides the generated QR code data URL.
+        // ...
+        // HINT 4: Implement error handling to manage any issues that might occur during QR code generation.
+        // ...
+        // HINT 5: Update the relevant state variables with the generated QR code data URL and adjust the UI accordingly.
+        // ...
+        // HINT 6: Consider the user experience and how the UI should change once the QR code has been generated.
+        // ...
+      );
 
-    // const toggleShowInput = () => {
-    //   setShowInput((prevShowInput) => !prevShowInput);
-    // };
+      // const toggleShowInput = () => {
+      //   setShowInput((prevShowInput) => !prevShowInput);
+      // };
+    }
   };
-
   // Function to download the generated QR code as a PNG file
   const downloadQRCode = () => {
     // HINT 1: Consider encapsulating the filename prompting logic into a separate function.
@@ -93,8 +100,13 @@ export const useQRCodeGenerator = () => {
   // Function to reset the state and allow generating a new QR code
   const repeatAction = () => {
     // Reset the url state to an empty string
+    setUrl("");
+
     // Reset the qr state to an empty string
+    setQr("");
+
     // Show the input element back to true :)
+    setShowInput(true);
   };
 
   // Return the state variables and functions to be used in the component
@@ -102,6 +114,8 @@ export const useQRCodeGenerator = () => {
     url,
     setUrl,
     qr,
+    errorMessage,
+    setErrorMessage,
     showInput,
     generateQRCode,
     downloadQRCode,

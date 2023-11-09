@@ -11,6 +11,8 @@ export const App = () => {
     url,
     setUrl,
     qr,
+    errorMessage,
+    setErrorMessage,
     showInput,
     generateQRCode,
     downloadQRCode,
@@ -31,18 +33,25 @@ export const App = () => {
         <div>
           <input
             type="text"
+            required
             placeholder="e.g. https://google.com"
             value={url}
-            onChange={(e) => setUrl(e.target.value)}
+            onChange={(e) => {
+              setUrl(e.target.value);
+              setErrorMessage(""); // Clear the error message when the input changes.
+            }}
           />
           <button onClick={generateQRCode}>Generate QR code</button>
+          {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
         </div>
       ) : (
         <div>
           <img src={qr} />
-          <a href={qr} download="qrcode.png">
+          {/* <a href={qr} download="qrcode.png">
             Download
-          </a>
+          </a> */}
+          <button onClick={downloadQRCode}>Download your QR code</button>
+          <button onClick={repeatAction}>Get a new QR code</button>
         </div>
       )}
     </div>
