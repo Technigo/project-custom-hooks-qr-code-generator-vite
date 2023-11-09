@@ -228,9 +228,9 @@ img {
 /*----- Media queries -------*/
 
 @media (min-width: 667px) {
- .app {
+ /* .app {
   flex-direction: row;
- }
+ } */
 
  h1 {
   font-size: 60px;
