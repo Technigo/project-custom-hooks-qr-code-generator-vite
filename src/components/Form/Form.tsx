@@ -1,7 +1,10 @@
 import { useQrCode } from "../../context/QrcodeContext";
-import { useQRCodeGenerator } from "../../hooks/useQRCodeGenerator";
+import { useTheme } from "../../context/ThemeContext";
+
 export const Form = () => {
   const { url, setUrl, generateQRCode, color, size, setColor, setSize } = useQrCode();
+  const { theme } = useTheme();
+
   return (
     <div className="flex flex-col  bg-orange py-8 px-10 rounded shadow-md">
       <p className="text-start m-0 text-stone-900 text-sm font-bold">URL Please</p>

@@ -19,7 +19,11 @@ export type ApiRes<T> = {
   isLoading: boolean;
 };
 
+import { themeData } from "src/statics/theme";
+
+export type ThemeKey = keyof typeof themeData;
+
 export type ThemeContextType = {
-  theme: string;
-  setTheme: (theme: string) => void;
+  theme: ThemeKey;
+  setTheme: (theme: ThemeKey) => void;
 };

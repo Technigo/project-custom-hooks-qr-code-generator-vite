@@ -1,10 +1,10 @@
 import { ReactNode, createContext, useContext, useState } from "react";
-import { ThemeContextType } from "src/types/common";
+import { ThemeContextType, ThemeKey } from "src/types/common";
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 const ThemeProvider = ({ children }: { children: ReactNode }) => {
-  const [theme, setTheme] = useState<string>("sv");
+  const [theme, setTheme] = useState<ThemeKey>("dark");
   return <ThemeContext.Provider value={{ theme, setTheme }}>{children}</ThemeContext.Provider>;
 };
 

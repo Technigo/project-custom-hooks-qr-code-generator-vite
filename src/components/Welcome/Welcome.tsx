@@ -1,15 +1,17 @@
 import { useRef } from "react";
-
-import { useGifs } from "../../hooks/useGifs";
 import { useTypeText } from "../../hooks/useTypeText";
 import { ThreeFrame } from "../ThreeFrame";
 import { BoxAnimated } from "../BoxAnimated";
 import { AudioButton } from "../AudioButton";
 import { ThemeButton } from "../ThemeButton";
+import { useTheme } from "../../context/ThemeContext";
+import { themeData } from "../../statics/theme";
 
 export const Welcome = ({ onStart, gifs }: { onStart: (value: boolean) => void; gifs: string }) => {
   const textRef = useRef("SaQR Code Generator");
   const currentText = useTypeText(textRef.current);
+  const { theme } = useTheme();
+
   return (
     <div className=" flex flex-col items-center justify-center gap-2 h-screen overflow-hidden  z-0">
       {/* <ThreeFrame shape="box" style="top-140  left-40" />
@@ -27,7 +29,7 @@ export const Welcome = ({ onStart, gifs }: { onStart: (value: boolean) => void; 
       </div>
       <div className="h-80 w-80 relative z-0 mx-auto">
         <iframe
-          className="w-full h-full border-red-300 top-0 left-0 z-1 absolute"
+          className="w-full h-full top-0 left-0 z-1 absolute"
           src={gifs}
           allow="encrypted-media;"
         ></iframe>
