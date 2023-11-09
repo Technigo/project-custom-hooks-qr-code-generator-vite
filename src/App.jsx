@@ -115,7 +115,7 @@ const App = () => {
       generateQRCode(url);
       setErrorMessage(''); // Clear any previous error messages
     } else {
-      setErrorMessage("Please enter a valid web address starting with http, https or www.");
+      setErrorMessage("Please enter a valid url starting with http, https or www.");
     }
   };
   
