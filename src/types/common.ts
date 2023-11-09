@@ -18,3 +18,8 @@ export type ApiRes<T> = {
   error: boolean;
   isLoading: boolean;
 };
+
+export type ThemeContextType = {
+  theme: string;
+  setTheme: (theme: string) => void;
+};

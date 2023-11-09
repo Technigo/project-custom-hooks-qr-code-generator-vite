@@ -11,22 +11,20 @@ import Circle from "./components/Three/Circle";
 import { Welcome } from "./components/Welcome";
 import { Form } from "./components/Form";
 import { AudioButton } from "./components/AudioButton";
-import { ThreeFrame } from "./components/ThreeFrame";
 import { QrCode } from "./components/QrCode";
 import { useQrCode } from "./context/QrcodeContext";
 
 export const App = () => {
   const [isStart, setIsStart] = useState<boolean>(true);
   const { data, isLoading, error } = useGifs();
-
   const { qr } = useQrCode();
 
   return (
     <>
       {!isLoading && !error && (
-        <div className="h-screen bg-sky-900 text-stone-100 overflow-hidden bottom-0">
+        <div className="h-screen bg-gradient-to-r  from-sky-900 to-teal-900  text-stone-100 overflow-hidden bottom-0">
           {isStart ? (
-            <Welcome onStart={setIsStart} />
+            <Welcome onStart={setIsStart} gifs={data.data[0].embed_url} />
           ) : (
             <>
               <ScrollAnimated>

@@ -15,4 +15,14 @@
   .button {
     @apply text-2xl border-stone-100 border px-3 py-1 cursor-pointer rounded transition-all hover:translate-y-1;
   }
+
+  .themeButton {
+    @apply text-sm border-white border p-3 w-4 h-4 rounded-full transition-all;
+  }
+}
+
+.animated__layers > * {
+  width: 100%;
+  height: 100%;
+  position: fixed;
 }

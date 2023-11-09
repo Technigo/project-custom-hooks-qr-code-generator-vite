@@ -34,7 +34,7 @@ const Bar = ({ maxHeight = 240 }) => {
 
   useEffect(() => {
     changeHeight();
-    const interval = setInterval(changeHeight, 2000);
+    const interval = setInterval(changeHeight, 480);
     return () => clearInterval(interval);
   }, []);
 
