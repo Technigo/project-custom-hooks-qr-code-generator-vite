@@ -16,7 +16,7 @@ export const useQRCodeGenerator = () => {
 
     QRCode.toDataURL(
       inputURL,
-      { width: 200, margin: 2, color: { dark: "#000000FF", light: "#FFFFFFFF" } },
+      { width: 200, margin: 2, color: { dark: "#218c1a", light: "#FFFFFFFF" } },
       (err, url) => {
         if (err) {
           console.error("Error generating QR code:", err);
