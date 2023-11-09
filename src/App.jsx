@@ -8,35 +8,48 @@ export const App = () => {
     qr,
     generateQRCode,
     setUrl,
+    repeatAction,
   } = useQRCodeGenerator()
 
 
   
   return (
-    <div className="">
-      <h1>QR Generator</h1>
+    <div className="container mx-auto p-4 bg-gray-100 min-h-screen">
+      <h1 className="text-3xl font-bold text-center mb-4 text-blue-800">QR Generator</h1>
+      <div className="flex flex-col items-center">
       <input 
+        className="form-input mt-1 block w-full px-3 py-2 text-center border"
         type="text"
         placeholder="e.g. https://google.com"
         value={url}
         onChange={(e) => setUrl(e.target.value)}
       />
-      <button onClick={generateQRCode}>Generate</button>
+      <button 
+        className="mt-4 px-4 py-2 bg-blue-500 text-white font-bold rounded hover:bg-blue-700"
+        onClick={generateQRCode}
+      >
+        Generate
+      </button>
       {/* if a qr code is generated */}
       {qr && (
-        <>
-          <img src={qr} />
-          <a href={qr} download="qrcode.png">Download</a>
-        </>
+        <div className="flex flex-col items-center mt-4">
+          <img className="max-w-xs border p-2" src={qr} />
+          <a 
+            href={qr} 
+            download="qrcode.png" 
+            className="mt-2 inline-block px-4 py-2 bg-green-500 text-white font-bold rounded hover:bg-green-700"
+          >
+            Download
+          </a>
+          <button 
+            onClick={repeatAction}
+            className="mt-4 px-4 py-2 bg-red-500 text-white font-bold rounded hover:bg-red-700"
+          >
+            Repeat
+          </button>
+        </div>
       )}
-
-      {/* Conditionally render based on wether the user is inputting an URL to generate a QR Code or the user wnats to downaload the generated QR Code from the url input */}
-      {/* {yourReactiveVariableThatTogglesTheDownloadQrCcodeOrInputField ? () : ()} */}
-      <h1 className="text-3xl font-bold underline">
-      Hello world!
-      </h1>
-
-    </div>
-    
+      </div>
+    </div>    
   );
 };

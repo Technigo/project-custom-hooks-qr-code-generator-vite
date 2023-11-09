@@ -63,8 +63,11 @@ export const useQRCodeGenerator = () => {
   // Function to reset the state and allow generating a new QR code
   const repeatAction = () => {
     // Reset the url state to an empty string
+    setUrl('')
     // Reset the qr state to an empty string
+    setQr('')
     // Show the input element back to true :)
+    setShowInput(true)
   };
 
   // Return the state variables and functions to be used in the component
@@ -74,5 +77,6 @@ export const useQRCodeGenerator = () => {
     showInput,
     generateQRCode,
     setUrl,
+    repeatAction,
   };
 };
