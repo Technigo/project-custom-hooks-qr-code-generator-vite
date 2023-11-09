@@ -5,15 +5,19 @@ export const useQRCodeGenerator = () => {
   const [url, setUrl] = useState("")
   const [qr, setQr] = useState("")
   const [showInput, setShowInput] = useState(true)
+  const [qrSize, setQrSize] = useState(100)
+  const [qrColor, setQrColor] = useState("335383FF")
+  const [qrBackgroundColor, setQrBackgroundColor] = useState("#EEEEEEFF")
+
   const generateQRCode = () => {
     QRCode.toDataURL(
       url,
       {
-        width: 100,
+        width: qrSize,
         margin: 2,
         color: {
-          dark: "#335383FF",
-          light: "#EEEEEEFF",
+          dark: qrColor,
+          light: qrBackgroundColor,
         },
       },
       (err, generateQRCode) => {
@@ -68,6 +72,9 @@ export const useQRCodeGenerator = () => {
     setQr('')
     // Show the input element back to true :)
     setShowInput(true)
+    setQrSize(100)
+    setQrColor("#335383FF")
+    setQrBackgroundColor("EEEEEEFF")
   };
 
   // Return the state variables and functions to be used in the component
@@ -75,6 +82,12 @@ export const useQRCodeGenerator = () => {
     url,
     qr,
     showInput,
+    qrSize,
+    setQrSize,
+    qrColor,
+    setQrColor,
+    qrBackgroundColor,
+    setQrBackgroundColor,
     generateQRCode,
     setUrl,
     repeatAction,

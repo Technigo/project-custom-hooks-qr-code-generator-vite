@@ -9,6 +9,12 @@ export const App = () => {
     generateQRCode,
     setUrl,
     repeatAction,
+    qrSize,
+    setQrSize,
+    qrColor,
+    setQrColor,
+    qrBackgroundColor,
+    setQrBackgroundColor,
   } = useQRCodeGenerator()
 
 
@@ -30,6 +36,36 @@ export const App = () => {
       >
         Generate
       </button>
+      <label htmlFor="sizeInput" className="block mt-2 font-bold">
+        QR Code Size:
+      </label>
+      <input 
+        id="sizeInput"
+        type="number"
+        className="form-input mt-1 block w-full px-3 py-2 text-center border"
+        value={qrSize}
+        onChange={(e) => setQrSize(e.target.value)} 
+      />
+      <label htmlFor="colorInput" className="block mt-2 font-bold">
+        QR Code Color:
+      </label>
+      <input 
+        id="colorInput"
+        type="color" 
+        className="form-input mt-1 block w-full px-3 py-2 text-center border"
+        value={qrColor}
+        onChange={(e) => setQrColor(e.target.value)}
+      />
+      <label htmlFor="bgColorInput" className="block mt-2 font-bold">
+        Background Color:
+      </label>
+      <input 
+        id="bgColorInput"
+        type="color"
+        className="form-input mt-1 block w-full px-3 py-2 text-center border"
+        value={qrBackgroundColor}
+        onChange={(e) => setQrBackgroundColor(e.target.value)} 
+      />
       {/* if a qr code is generated */}
       {qr && (
         <div className="flex flex-col items-center mt-4">
