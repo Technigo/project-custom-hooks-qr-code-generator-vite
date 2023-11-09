@@ -25,6 +25,7 @@ export const useQRCodeGenerator = () => {
           console.error(err)
         } else {
           setQr(generateQRCode)
+          setShowInput(false)
         }
       },
     );
