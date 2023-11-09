@@ -50,7 +50,7 @@ h1 {
   border-radius: 10px;
   height: 300px;
   width: 300px;
-  padding-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 @media (max-width: 1279px) and (min-width: 744px) {
@@ -136,7 +136,7 @@ export const App = () => {
     isInputVisible,
     generateQRCode,
     downloadQRCode,
-    repeatAction,
+    repeatAction
   } = useQRCodeGenerator();
 
   //Lottie properties

@@ -23,7 +23,11 @@ npm i && code . && npm run dev
 ### The Problem
 
 #### Code
-I started by implementing the logic behind the application. Assuring that the functionality with adequate error handling was added to the QR genrator function and also the download function. I designed a custom hook for this purpose which is rendered in the App.jsx. To keep the code clean and in one place I decided to use the styled-components library to style the rendered UI. 
+I started by implementing the logic behind the application. Assuring that the functionality with adequate error handling was added to the QR genrator function and also the download function. I designed a custom hook for this purpose which is rendered in the App.jsx. To keep the code clean and in one place I decided to use the styled-components library to style the rendered UI. General styling is kept to the index.css file. 
+
+Besides the basic requirements of te project I used the focus method to make the input field active when the page is rendered. I added a Lottie animation for enhanced UX and the favicon is color theme sensitive, i.e. it changes color depending if the users os settings are ligh or dark. 
+
+If I hade more time I would create the possibility for the user to change the propoerties to customize the QR code file. 
 
 #### Design
 For the designed I prepared some simple wireframes in Fgima to have a design to follow and assure that the design is responsive:

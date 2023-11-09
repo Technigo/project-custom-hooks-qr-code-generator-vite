@@ -18,43 +18,37 @@ export const useQRCodeGenerator = () => {
   const inputRef = useRef(null);
 
 
-// Create two link elements for light and dark scheme icons
-const lightSchemeIcon = document.createElement('link');
-lightSchemeIcon.rel = 'icon';
-lightSchemeIcon.href = '/dark-qr.svg';
-lightSchemeIcon.id = 'light-scheme-icon';
+  // Create two link elements for light and dark scheme icons
+  const lightSchemeIcon = document.createElement('link');
+  lightSchemeIcon.rel = 'icon';
+  lightSchemeIcon.href = '/dark-qr.svg';
+  lightSchemeIcon.id = 'light-scheme-icon';
 
-const darkSchemeIcon = document.createElement('link');
-darkSchemeIcon.rel = 'icon';
-darkSchemeIcon.href = '/light-qr.svg';
-darkSchemeIcon.id = 'dark-scheme-icon';
+  const darkSchemeIcon = document.createElement('link');
+  darkSchemeIcon.rel = 'icon';
+  darkSchemeIcon.href = '/light-qr.svg';
+  darkSchemeIcon.id = 'dark-scheme-icon';
 
-// Append the light scheme icon by default
-document.head.appendChild(lightSchemeIcon);
+  // Append the light scheme icon by default
+  document.head.appendChild(lightSchemeIcon);
 
-// Create a CSS media matcher
-const matcher = window.matchMedia('(prefers-color-scheme: dark)');
-matcher.addListener(onUpdate);
+  // Create a CSS media matcher
+  const matcher = window.matchMedia('(prefers-color-scheme: dark)');
+  matcher.addListener(onUpdate);
 
-// Handle the initial update
-onUpdate();
+  // Handle the initial update
+  onUpdate();
 
-// Function to handle updates based on color scheme changes
-function onUpdate() {
-  if (matcher.matches) {
-    lightSchemeIcon.remove();
-    document.head.appendChild(darkSchemeIcon);
-  } else {
-    darkSchemeIcon.remove();
-    document.head.appendChild(lightSchemeIcon);
+  // Function to handle updates based on color scheme changes
+  function onUpdate() {
+    if (matcher.matches) {
+      lightSchemeIcon.remove();
+      document.head.appendChild(darkSchemeIcon);
+    } else {
+      darkSchemeIcon.remove();
+      document.head.appendChild(lightSchemeIcon);
+    }
   }
-}
-
-
-
-
-
-
 
   // This effect runs once after the component mounts.
   useEffect(() => {
