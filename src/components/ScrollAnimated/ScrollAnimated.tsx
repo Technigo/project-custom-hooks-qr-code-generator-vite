@@ -39,7 +39,7 @@ export function ScrollAnimated({ children }: { children: any }) {
     >
       <div className={styles.animated__layers}>
         <animated.div ref={barContainerRef} className={styles.bar__container}>
-          <animated.p className={styles.text}>Scroll Me!!</animated.p>
+          <animated.p className={`${styles.text}`}>Scroll Me!!</animated.p>
           <div className="absolute mx-auto h-screen w-screen">
             <CanvasComp>
               <Circle />

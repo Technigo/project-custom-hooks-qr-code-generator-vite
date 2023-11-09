@@ -23,7 +23,7 @@ export const App = () => {
         <div
           className={`h-screen bg-gradient-to-r  ${themeData[theme].bg} text-stone-100 overflow-hidden bottom-0`}
         >
-          {isStart ? (
+          {isStart && !isLoading ? (
             <Welcome onStart={setIsStart} gifs={data.data[0].embed_url} />
           ) : (
             <>
