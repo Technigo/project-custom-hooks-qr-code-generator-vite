@@ -8,7 +8,7 @@
  
 }
 
-.app {
+.wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -44,27 +44,21 @@ button {
 }
 
 button:hover {
-  background-color: #23375d;
+  background-color: #606c38;
 }
 
 img {
   margin-top: 20px;
+  margin-bottom: 20px;
   max-width: 300px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 } 
 
 .error-container {
-  background-color: #ff0000; /* Red background color */
-  color: #ffffff; /* White text color */
-  display: inline-block; /* Make it inline to adjust its size to content */
-  padding: 4px 8px; /* Add padding for spacing around the text */
-  border-radius: 4px; /* Optionally, round the corners */
+  color: #ff0000; /* Red text color */
 }
 
-/*
-
-img.logo {
-  border: none;
-  max-width: 200px;
-} */
