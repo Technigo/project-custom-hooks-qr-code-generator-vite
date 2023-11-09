@@ -136,7 +136,7 @@ export const App = () => {
     isInputVisible,
     generateQRCode,
     downloadQRCode,
-    repeatAction
+    repeatAction,
   } = useQRCodeGenerator();
 
   //Lottie properties
@@ -147,7 +147,9 @@ export const App = () => {
     },
     loop: true,
     autoplay: true
-  }
+  };
+
+
 
   // Return the JSX to render the component
   return (

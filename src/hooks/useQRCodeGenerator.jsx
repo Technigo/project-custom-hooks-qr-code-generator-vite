@@ -18,6 +18,44 @@ export const useQRCodeGenerator = () => {
   const inputRef = useRef(null);
 
 
+// Create two link elements for light and dark scheme icons
+const lightSchemeIcon = document.createElement('link');
+lightSchemeIcon.rel = 'icon';
+lightSchemeIcon.href = 'a.png';
+lightSchemeIcon.id = 'light-scheme-icon';
+
+const darkSchemeIcon = document.createElement('link');
+darkSchemeIcon.rel = 'icon';
+darkSchemeIcon.href = 'b.png';
+darkSchemeIcon.id = 'dark-scheme-icon';
+
+// Append the light scheme icon by default
+document.head.appendChild(lightSchemeIcon);
+
+// Create a CSS media matcher
+const matcher = window.matchMedia('(prefers-color-scheme: dark)');
+matcher.addListener(onUpdate);
+
+// Handle the initial update
+onUpdate();
+
+// Function to handle updates based on color scheme changes
+function onUpdate() {
+  if (matcher.matches) {
+    lightSchemeIcon.remove();
+    document.head.appendChild(darkSchemeIcon);
+  } else {
+    darkSchemeIcon.remove();
+    document.head.appendChild(lightSchemeIcon);
+  }
+}
+
+
+
+
+
+
+
   // This effect runs once after the component mounts.
   useEffect(() => {
     // Focus the input field as soon as the component is mounted.
@@ -25,7 +63,6 @@ export const useQRCodeGenerator = () => {
     // Change the value of the input field to "I love Ikea".
     inputRef.current.placeholder = "e.g. https://google.com";
   }, []); // Empty dependency array means this effect will run only once after mount.
-
 
   // Function to generate a QR code from the input URL
   const generateQRCode = () => {
