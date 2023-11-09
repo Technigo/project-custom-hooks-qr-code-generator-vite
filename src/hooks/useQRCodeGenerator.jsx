@@ -20,7 +20,7 @@ export const useQRCodeGenerator = () => {
     if (inputRef.current) {
       inputRef.current.focus();
     }
-  };  
+  };
 
   // Function to generate a QR code from the input URL
   const generateQRCode = () => {
@@ -79,6 +79,8 @@ export const useQRCodeGenerator = () => {
       return;
     }
     const fileFormat = DEFAULT_FILE_FORMAT;
+    // removes a blank space before the name, and makes sure that all spaces between words are replaced by -
+    fileName = fileName.trim().split(" ").join("-");
     let formattedFileName = `${fileName}.${fileFormat}`;
 
     // Check if qr contains a valid data URL
