@@ -1,5 +1,5 @@
 import QRCode from "qrcode";
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 export const useQRCodeGenerator = () => {
   //State variable to store the input URL
@@ -9,8 +9,7 @@ export const useQRCodeGenerator = () => {
   //State variable to toggle the visibility of the input element - boolean value
   const [showInput, setShowInput] = useState(true);
   //Function to generate a QR code from the input URL
-  const generateQRCode = () => {
-    // This is a call to the toDataURL function from the QRCode library, which bases a QR code based on parameters.
+  const generateQRCode = useCallback(() => {
     QRCode.toDataURL(
       url,
       {
@@ -20,20 +19,21 @@ export const useQRCodeGenerator = () => {
           dark: "#2D3D31",
           light: "#EEEEEEFF",
         },
-      }, (err, url) => {
+      },
+      (err, generatedUrl) => {
         console.log("error ", err);
         if (err) {
-          console.error("QR code could not be created, please try again", err)
+          console.error("QR code could not be created, please try again", err);
           alert("QR code could not be created, please try again");
           return;
         } else {
-          console.log("The Qr Code url is:", url);
-          setQrCode(url);
-          setShowInput(false)
+          console.log("The Qr Code url is:", generatedUrl);
+          setQrCode(generatedUrl);
+          setShowInput(false);
         }
       }
     );
-  };
+  }, [url]);
 
   // Function to download the generated QR code as a PNG file
   const downloadQRCode = () => {
@@ -70,6 +70,21 @@ export const useQRCodeGenerator = () => {
     setShowInput(true)
 
   };
+
+  useEffect(() => {
+    const handleKeyPress = (event) => {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        generateQRCode();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyPress);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyPress);
+    };
+  }, [url, generateQRCode]);
   // Return the state variables and functions to be used in the component
   return {
     url,
