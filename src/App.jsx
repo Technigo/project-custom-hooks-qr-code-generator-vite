@@ -18,8 +18,12 @@ export const App = () => {
   // Handle changes to the URL input
   const handleInputChange = (e) => {
     setUrl(e.target.value);
-  };
 
+    // Check if the Enter key was pressed
+    if (e.key === "Enter") {
+      generateQRCode();
+    }
+  };
   return (
     <div className="app-container">
       {/* Conditionally render based on whether the user is inputting a URL to generate a QR code or wants to download the generated QR code from the input */}
@@ -31,6 +35,7 @@ export const App = () => {
             placeholder="e.g. https://github.com/KroLuna"
             value={url}
             onChange={handleInputChange}
+            onKeyDown={handleInputChange}
           />
           <button className="generate-btn" onClick={generateQRCode}>
             Generate
