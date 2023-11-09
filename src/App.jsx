@@ -79,7 +79,7 @@ const FormContainer = styled.form`
 const InputField = styled.input`
   padding: 8px;
   margin-bottom: 5%;
-  border: 1px solid #ccc;
+  border: 1px solid #4B634D;
   font-size: 1rem;
 `
 
@@ -96,6 +96,11 @@ const QRCodeImage = styled.img`
   margin: auto; /* This will center the image horizontally */
   margin-top: 3%;
   margin-bottom: 5%;
+
+  @media (min-width: 1000px) {
+    margin-top: 1%;
+    margin-bottom: 1%;
+  }
 `
 
 // Styling of the dialogbox that opens after QR-code is generated if user wants to download
@@ -174,7 +179,6 @@ const App = () => {
       <Titles>
         <H1>QR Code Generator</H1>
       </Titles>
-      <P>Generate free QR-Codes!</P>
 
       {/* Form for entering URL and generating QR code */}
       {showInput && (
