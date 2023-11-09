@@ -16,11 +16,10 @@ export const App = () => {
   // Return the JSX to render the component
   return (
     <div className="app">
-
       <div className="header">
         <img className="qrcode" src="/qrcode.gif" alt="qr code gif" />  {/* I wanted to use lottie here but could not install it */}
-        <h1>Technigo QR Code Generator</h1>
-        <p>Effortlessly generate and download QR codes for seamless digital sharing with our user-friendly QR Code Generator. Simplify your online interactions with speed and style.</p>
+        <h1>Lisas QR Code Generator</h1>
+        <p>Effortlessly generate and download QR codes for seamless digital sharing with our user-friendly QR Code Generator. Simplify your online interactions with speed and style 🌟</p>
       </div>
 
 
@@ -51,9 +50,8 @@ export const App = () => {
       <div className="footer">
         <img className="logo" src={logo} alt="" />
         <p><a href="http://github.com/lisawh0/" target="_blanc">Github</a>:
-          <a href="https://www.linkedin.com/in/lisa-dahlkar-401183174/">LinkedIn</a></p>
+          <a href="https://www.linkedin.com/in/lisa-dahlkar-401183174/" target="_blanc">LinkedIn</a></p>
       </div>
-
     </div >
   );
 };
