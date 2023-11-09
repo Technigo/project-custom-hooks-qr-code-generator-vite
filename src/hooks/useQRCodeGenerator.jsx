@@ -47,10 +47,10 @@ export const useQRCodeGenerator = () => {
       return;
     }
 
-    // Format the filename to ensure it is filesystem-friendly (optional)
+    // Formats the filename to ensure it is filesystem-friendly
     const formattedFileName = "qrcode.png";
 
-    // Create a Blob from the QR code data URL
+    // a Blob from the QR code data URL,  (Binary Large Object) is a data type that represents raw binary data. It can be used to store and manipulate binary data, such as images, audio, or other file types
     const blob = new Blob([qr], { type: "image/png" });
 
     // Create an object URL from the Blob

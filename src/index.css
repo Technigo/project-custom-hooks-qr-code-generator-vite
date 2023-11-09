@@ -49,6 +49,7 @@ input {
 .qr-buttons {
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
 .buttons {
@@ -57,6 +58,8 @@ input {
 }
 
 button {
+  display: flex;
+  justify-content: center;
   background-color: #34495e;
   color: #fff;
   padding: 10px 20px;
