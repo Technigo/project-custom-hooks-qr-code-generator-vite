@@ -3,7 +3,7 @@ import { useQRCodeGenerator } from './hooks/useQRCodeGenerator' // Import of the
 import styled from 'styled-components'
 import QRPlantImage from '/QRplant.jpg' // Import of image used via the styled component
 
-// Styled components
+// *** Styled components *** //
 const AppMain = styled.div`
 background-color: #FFD2CD;
 display: flex;
@@ -12,11 +12,25 @@ justify-content: center;
 align-items: center;
 height: 100vh;
 text-align: center;
+gap: 2%;
+
+@media (min-width: 800px) {
+  gap: 1%;
+}
+
 `
 
 const QRPlant = styled.img`
-width: 60%;`
+width: 50%;
 
+@media (min-width: 800px) {
+  width: 40%;
+}
+
+@media (min-width: 1000px) {
+  width: 20%;
+}
+`
 
 const Titles = styled.div`
   position: center;
@@ -27,12 +41,19 @@ const H1 = styled.h1`
   color: #4B634D;
   font-size: 2rem;
   text-align: center;
-  margin: 5% 0%;
+  margin: 5% 0% 3% 0%;
 `
 
 const H2 = styled.h2`
   color: #4B634D;
   font-size: 1,5rem;
+`
+const P = styled.p`
+text-align: center;
+width: 60%;
+font-size: 1.2rem;
+margin-bottom: 2%;
+color: #4B634D;
 `
 
 const Button = styled.button`
@@ -59,6 +80,7 @@ const InputField = styled.input`
   padding: 8px;
   margin-bottom: 5%;
   border: 1px solid #ccc;
+  font-size: 1rem;
 `
 
 // Styling of error message if the URL isn't correct
@@ -68,6 +90,7 @@ const ErrorMessage = styled.div`
   font-size: 14px;
 `
 
+// Styling of the generated code
 const QRCodeImage = styled.img`
   display: block;
   margin: auto; /* This will center the image horizontally */
@@ -93,7 +116,6 @@ const DialogContent = styled.div`
   background: white;
   padding: 10%;
 `
-/* Tillbaka */
 
 // App component definition
 const App = () => {
@@ -152,6 +174,7 @@ const App = () => {
       <Titles>
         <H1>QR Code Generator</H1>
       </Titles>
+      <P>Generate free QR-Codes!</P>
 
       {/* Form for entering URL and generating QR code */}
       {showInput && (
