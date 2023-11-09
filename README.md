@@ -1,14 +1,6 @@
-<h1 align="center">
-  <a href="">
-    <img src="/src/assets/custom-hooks.svg" alt="Project Banner Image">
-  </a>
-</h1>
-
 # QR Code Generator - Custom Hook Project
 
-Replace this readme with your own information about your project.
-
-Start by briefly describing the assignment in a sentence or two. Keep it short and to the point.
+The goal of this project was to create a QR-code generator by calling the QRCode-library. A custom hook has been created. In addition, I added animations and changed the theme to light or dark.
 
 ## Getting Started with the Project
 
@@ -24,14 +16,8 @@ npm i && code . && npm run dev
 
 ### The Problem
 
-Describe how you approached to problem, and what tools and techniques you used to solve it. How did you plan? What technologies did you use? If you had more time, what would be next?
+The biggest problem was to manipulate elements in the DOM - I totally forgot , but I google what some video.
 
 ### View it live
 
 https://jocular-choux-fd3d3f.netlify.app/
-
-## Instructions
-
-<a href="instructions.md">
-   See instructions of this project
-  </a>
