@@ -107,14 +107,15 @@ const App = () => {
 
   const handleGenerate = (e) => {
     e.preventDefault();
-    const validUrlRegex = /^(https?:\/\/)?www\.[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/;
+    const validUrlRegex = /^(https?:\/\/(www\.)?|www\.)[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/i;
+
 
   
     if (validUrlRegex.test(url)) {
       generateQRCode(url);
       setErrorMessage(''); // Clear any previous error messages
     } else {
-      setErrorMessage("Please enter a valid web address starting with http or https.");
+      setErrorMessage("Please enter a valid web address starting with http, https or www.");
     }
   };
   
@@ -162,7 +163,7 @@ const App = () => {
               type="text"
               value={url}
               onChange={(e) => setUrl(e.target.value)}
-              placeholder="Enter URL here"
+              placeholder="E.g. www.linkedin.com"
               required
             />
             <StyledButton type="submit">Generate QR Code</StyledButton>
@@ -188,7 +189,7 @@ const App = () => {
         type="text"
         value={fileName}
         onChange={(e) => setFileName(e.target.value)}
-        placeholder="Add a filename here"
+        placeholder="E.g. Linkedin_qrcode"
       />
       <StyledButton onClick={handleDownload}>Download</StyledButton>
       <StyledButton onClick={closeModal}>Cancel</StyledButton>
