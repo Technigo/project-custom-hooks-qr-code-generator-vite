@@ -35,8 +35,8 @@ export const useQRCodeGenerator = () => {
           width: 800,
           margin: 2,
           color: {
-            dark: "#335383FF",
-            light: "#EEEEEEFF",
+            dark: "#7b3848FF",
+            light: "#FFFFFFFF",
           },
         },
         (err, url) => {
@@ -57,23 +57,50 @@ export const useQRCodeGenerator = () => {
         // HINT 6: Consider the user experience and how the UI should change once the QR code has been generated.
         // ...
       );
-
-      // const toggleShowInput = () => {
-      //   setShowInput((prevShowInput) => !prevShowInput);
-      // };
     }
   };
   // Function to download the generated QR code as a PNG file
   const downloadQRCode = () => {
     // HINT 1: Consider encapsulating the filename prompting logic into a separate function.
-    const getFileName = () => {
-      // HINT 2: Use a method to prompt the user for input and store the response.
-      // ...
-      // HINT 3: Implement a check for an empty filename and utilize recursion to re-prompt the user if necessary.
-      // ...
-      // HINT 4: Ensure the function returns the obtained filename.
-      // ...
-    };
+
+    // Prompt the user for a filename
+    const fileName = getFileName();
+
+    if (fileName) {
+      // Create a data URL for the QR code
+      const dataURL = qr;
+
+      // Create an anchor element
+      const downloadLink = document.createElement("a");
+      downloadLink.href = dataURL;
+      downloadLink.download = `${fileName}.png`;
+
+      // Programmatically trigger a click on the anchor element to initiate the download
+      downloadLink.click();
+
+      // Remove the anchor element from the document after the download has been initiated
+      document.body.removeChild(downloadLink);
+    }
+  };
+
+  // Function to prompt the user for a filename
+  const getFileName = () => {
+    // HINT 2: Use a method to prompt the user for input and store the response.
+    let fileName;
+    do {
+      fileName = prompt("Please enter a name for the downloaded file");
+      if (fileName === null) {
+        // User clicked cancel or closed the prompt
+        return null;
+      }
+    } while (fileName.trim() === "");
+
+    return fileName;
+
+    // HINT 3: Implement a check for an empty filename and utilize recursion to re-prompt the user if necessary.
+    // ...
+    // HINT 4: Ensure the function returns the obtained filename.
+    // ...
 
     // HINT 5: Call the above function to retrieve a filename and store it in a variable.
     // ...
