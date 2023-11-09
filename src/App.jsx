@@ -1,6 +1,6 @@
 import { useQRCodeGenerator } from "./hooks/useQRCodeGenerator";
 import { ChromePicker } from "react-color";
-// import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import image2 from "../src/assets/image2.jpg";
 import "animate.css";
 import Lottie from "lottie-react";
@@ -24,6 +24,10 @@ export const App = () => {
     isUrlEmpty,
   } = useQRCodeGenerator();
   // const lottieRef = useRef();
+  const inputRef = useRef(null);
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
   // Check if the selected size is "250" or "350" to show the Lottie animation
   const isLottieVisible = size === "250" || size === "320";
   return (
@@ -48,6 +52,7 @@ export const App = () => {
           className="rounded-[30px] w-full h-[30vh] justify-self-end my-6 lg:w-full md:h-[30vh]"
         />
         <input
+          ref={inputRef}
           type="text"
           placeholder="e.g https://google.com"
           value={url}
