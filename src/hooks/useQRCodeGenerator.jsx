@@ -21,12 +21,12 @@ export const useQRCodeGenerator = () => {
 // Create two link elements for light and dark scheme icons
 const lightSchemeIcon = document.createElement('link');
 lightSchemeIcon.rel = 'icon';
-lightSchemeIcon.href = 'a.png';
+lightSchemeIcon.href = '/dark-qr.svg';
 lightSchemeIcon.id = 'light-scheme-icon';
 
 const darkSchemeIcon = document.createElement('link');
 darkSchemeIcon.rel = 'icon';
-darkSchemeIcon.href = 'b.png';
+darkSchemeIcon.href = '/light-qr.svg';
 darkSchemeIcon.id = 'dark-scheme-icon';
 
 // Append the light scheme icon by default
