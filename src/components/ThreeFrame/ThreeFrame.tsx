@@ -4,8 +4,8 @@ import Circle from "../Three/Circle";
 
 export const ThreeFrame = ({ shape, style }: { shape: string; style: string }) => {
   return (
-    <span className={`absolute ${style}`}>
+    <div className={`absolute ${style} w-fit`}>
       <CanvasComp>{shape === "box" ? <Box /> : <Circle />}</CanvasComp>
-    </span>
+    </div>
   );
 };

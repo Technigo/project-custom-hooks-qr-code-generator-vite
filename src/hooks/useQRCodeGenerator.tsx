@@ -31,17 +31,14 @@ export const useQRCodeGenerator = (): QrContextType => {
   const downloadQRCode = () => {
     const getFileName = () => {
       function askName() {
-        return prompt("Enter a file name, please.");
+        const fileName = prompt("Enter a file name, please.");
+        return fileName === null ? repeatAction() : fileName;
       }
+
       const userChoiceFileNanme = askName();
-
-      if (!userChoiceFileNanme) {
-        getFileName();
-        return;
-      }
-
-      return userChoiceFileNanme;
+      return userChoiceFileNanme === "" ? askName() : userChoiceFileNanme?.replaceAll(" ", "-");
     };
+
     const userChoiceFileNanme = getFileName();
     const formedFileName = userChoiceFileNanme + ".png";
     const anchor = document.createElement("a");
@@ -66,10 +63,11 @@ export const useQRCodeGenerator = (): QrContextType => {
     });
   };
 
-  const repeatAction = () => {
+  function repeatAction() {
     setUrl("");
     setQr("");
-  };
+    setIsVisible(true);
+  }
 
   return {
     url,

@@ -5,6 +5,8 @@ import "tailwindcss/tailwind.css";
 import "./index.css";
 import { QrCodeProvider } from "./context/QrcodeContext.js";
 import { ThemeProvider } from "./context/ThemeContext.js";
+import Circle from "./components/Three/Circle.js";
+import CanvasComp from "./components/Three/CanvasComp.js";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>

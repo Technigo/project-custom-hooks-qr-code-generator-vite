@@ -16,7 +16,7 @@ export const BoxAnimated = ({
   }, [windowWidth]);
 
   return (
-    <div className={`flex items-end absolute ${position} min-h-[${maxHeight}px]`}>
+    <div className={` items-end absolute ${position} min-h-[${maxHeight}px] h-30 hidden sm:flex`}>
       {Array.from({ length: colNums }, (_, i) => (
         <Bar maxHeight={maxHeight} />
       ))}
@@ -39,7 +39,7 @@ const Bar = ({ maxHeight = 240 }) => {
   }, []);
 
   return (
-    <div className="bg-white min-w-[20px]  transition-all" style={{ height: height + "px" }}>
+    <div className="bg-white min-w-[20px] transition-all" style={{ height: height + "px" }}>
       &nbsp;
     </div>
   );
