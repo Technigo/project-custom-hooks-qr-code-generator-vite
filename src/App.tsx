@@ -17,6 +17,7 @@ export const App = () => {
   const { data, isLoading, error } = useGifs();
   const { qr } = useQrCode();
   const { theme } = useTheme();
+  if (data?.data.length === 0) return <p>loading</p>;
   return (
     <>
       {!isLoading && !error && (
