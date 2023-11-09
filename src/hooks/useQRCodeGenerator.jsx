@@ -52,14 +52,15 @@ export const useQRCodeGenerator = () => {
 
     const formattedFileName = fileName.replace(/\s+/g, "_");
 
-    const downloadLink = document.createElement("a");
-    downloadLink.href = qrData;
-    downloadLink.download = `${formattedFileName}.png`;
-    downloadLink.target = "_blank"; // Open in a new tab to trigger the download
+    // Using the downloadRef to store the download link reference
+    downloadRef.current = document.createElement("a");
+    downloadRef.current.href = qrData;
+    downloadRef.current.download = `${formattedFileName}.png`;
+    downloadRef.current.target = "_blank"; // Open in a new tab to trigger the download
 
-    document.body.appendChild(downloadLink);
-    downloadLink.click();
-    document.body.removeChild(downloadLink);
+    document.body.appendChild(downloadRef.current);
+    downloadRef.current.click();
+    document.body.removeChild(downloadRef.current);
   };
 
   const repeatAction = () => {

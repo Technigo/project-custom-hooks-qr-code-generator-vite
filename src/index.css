@@ -11,6 +11,7 @@ html,
 body {
   margin: 0;
   padding: 0;
+  overflow-y: hidden;
 }
 
 .app {
@@ -26,8 +27,20 @@ body {
 .header {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: center;
   width: 50%;
+  margin-bottom: 30px;
+}
+
+.generator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
 }
 
 h1 {
@@ -35,6 +48,7 @@ h1 {
   margin-bottom: 20px;
   font-family: 'Poppins', sans-serif;
   font-weight: 500;
+  text-align: center;
 }
 
 p {
@@ -67,8 +81,8 @@ button:hover {
 }
 
 img {
-  margin-top: 20px;
-  max-width: 300px;
+  margin-top: 0px;
+  max-width: 150px;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
@@ -80,5 +94,34 @@ img.qrcode {
 
 img.logo {
   border: none;
-  max-width: 200px;
+  max-width: 70px;
+  padding: 0px 35px;
+  margin-top: 40px;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+a {
+  font-family: 'Poppins', sans-serif;
+  text-decoration: none;
+  color: black;
+  padding: 5px;
+}
+
+a:hover {
+  text-decoration: none;
+  font-weight: 400;
+}
+
+@media (max-width: 800px) {
+
+  html,
+  body {
+    overflow-y: auto;
+  }
+
 }

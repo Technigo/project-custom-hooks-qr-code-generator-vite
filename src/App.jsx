@@ -23,11 +23,11 @@ export const App = () => {
         <p>Effortlessly generate and download QR codes for seamless digital sharing with our user-friendly QR Code Generator. Simplify your online interactions with speed and style.</p>
       </div>
 
-      {/* <img className="logo" src={logo} alt="" /> */}
+
 
       {inputVisibility ? (
         // Render input field and generate button
-        <div>
+        <div className="generator">
           <input
             placeholder="example: http://google.com/"
             type="text"
@@ -38,12 +38,22 @@ export const App = () => {
         </div>
       ) : (
         // Render generated QR code, download button, and repeat button
-        <div>
+        <div className="generator">
           <img src={qrData} alt="Generated QR Code" />
-          <button onClick={downloadQRCode}>Download</button>
-          <button onClick={repeatAction}>Repeat</button>
+          <div className="buttons">
+            <button onClick={downloadQRCode}>Download</button>
+            <button onClick={repeatAction}>Repeat</button>
+          </div>
         </div>
+
       )}
-    </div>
+
+      <div className="footer">
+        <img className="logo" src={logo} alt="" />
+        <p><a href="http://github.com/lisawh0/" target="_blanc">Github</a>:
+          <a href="https://www.linkedin.com/in/lisa-dahlkar-401183174/">LinkedIn</a></p>
+      </div>
+
+    </div >
   );
 };
