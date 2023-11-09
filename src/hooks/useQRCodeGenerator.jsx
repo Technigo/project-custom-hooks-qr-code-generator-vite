@@ -95,44 +95,33 @@ export const useQRCodeGenerator = () => {
 
     // HINT 1: Consider encapsulating the filename prompting logic into a separate function.
     const getFileName = () => {
-      // HINT 2: Use a method to prompt the user for input and store the response.
-      // Asks the user to provide a filename for the QR code
-      let fileName = prompt("Please enter a filename for your QR code", "qrcode.png");
 
-      // Check if the user clicked "Cancel"
-      if (fileName === null) {
-        // User canceled, no download
-        return "";
-      }
+      // HINT 2: Use a method to prompt the user for input and store the response.
+      const fileName =  prompt(
+        "Please enter a name for the download:", // Asks the user to provide a filename for the QR code
+        "Enter a name for your QR Code"
+      );
+
       // HINT 3: Implement a check for an empty filename and utilize recursion to re-prompt the user if necessary.
-      else if (fileName.trim() === "") {
-        alert('Filename cannot be empty. Please enter a valid filename.');
-        // HINT 4: Ensure the function returns the obtained filename.
-        return getFileName();
-      } else {
-        const correctedFileName = fileName.replace(/[/\\?%*:|"<> ]/g, '-');
-        return correctedFileName;
-      }
+      // HINT 4: Ensure the function returns the obtained filename.
+      return fileName === "" ? getFileName() : fileName;
     };
 
     // HINT 5: Call the above function to retrieve a filename and store it in a variable.
-    const fileName = getFileName();
-
-    if (fileName === "") {
-      return; // Do not proceed with the download if the user canceled or entered an empty filename
-    }
+    let fileName = getFileName();
 
     // HINT 6: Format the filename to ensure it is filesystem-friendly.
+    fileName = fileName.replace(/[/\\?%*:|"<> ]/g, '-');
 
     // HINT 7: Create an anchor element to facilitate the download.
     const downloadLink = document.createElement("a");
-    downloadLink.href = qrCode;
-    downloadLink.download = fileName; // Use the obtained filename here
 
     // HINT 8: Set the necessary attributes on the anchor element to prepare it for download.
-    document.body.appendChild(downloadLink);
+    downloadLink.href = qrCode;
+    downloadLink.download = `${fileName}.png`; // Use the obtained filename here
 
     // HINT 9: Append the anchor element to the document to make it interactable.
+    document.body.appendChild(downloadLink);
 
     // HINT 10: Programmatically trigger a click on the anchor element to initiate the download.
     downloadLink.click();
