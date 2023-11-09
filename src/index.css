@@ -1,25 +1,43 @@
+* {
+  margin: 0; 
+}
 :root {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+  display: flex; 
+  justify-content: center;
+  align-items: center; 
+  margin: 0; 
+  /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: grayscale; */
+  font-family: "Montserrat", sans-serif;
+  min-height: 100vh;
+  
 }
 
-/* .app {
+.app {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
-  background-color: #f8f8f8;
-  padding: 20px;
+  background-color: #F8F0E3; 
+  width: 350px; 
 }
 
 h1 {
+  font-size: 2rem;
   color: #335383;
   margin-bottom: 20px;
+}
+
+.color-picker-wrapper {
+display: flex; 
+flex-direction: column;
+}
+
+.wrapper {
+  display: flex;
 }
 
 input {
@@ -28,7 +46,7 @@ input {
   border: 1px solid #ccc;
   border-radius: 4px;
   margin-bottom: 20px;
-  width: 300px;
+  max-width: 100%;
 }
 
 button {
@@ -40,6 +58,7 @@ button {
   font-size: 16px;
   cursor: pointer;
   margin: 10px;
+  max-width: 100%;
 }
 
 button:hover {
@@ -56,4 +75,12 @@ img {
 img.logo {
   border: none;
   max-width: 200px;
+}
+
+.qr-code {
+  width: 100px; 
+  height: 100px; 
+
+  padding: 2%; 
+  border-radius: 10px;
 }

@@ -1,38 +1,89 @@
-// App Component Explanation
-// The App component serves as a user interface for generating and downloading QR codes, utilizing the custom hook useQRCodeGenerator which encapsulates the logic for QR code generation and management. When rendered, the component displays a title ("Technigo QR Code Generator") and conditionally renders either an input field and a "Generate" button or a generated QR code image, a "Download" button, and a "Repeat" button, based on the showInput state variable. If showInput is true, users can input a URL and generate a QR code by clicking the "Generate" button. Once generated, the input field and "Generate" button are replaced by the QR code image and additional buttons. The "Download" button triggers a download of the QR code image, and the "Repeat" button resets the UI to allow for generating a new QR code. The url, setUrl, qr, showInput, generateQRCode, downloadQRCode, and repeatAction variables and functions are derived from the useQRCodeGenerator hook, providing the necessary state and actions to manage the QR code generation process.
-
-// Import the custom hook useQRCodeGenerator
 import { useQRCodeGenerator } from "./hooks/useQRCodeGenerator";
+import { useState } from "react";
 
-// Define the App component
+import Sketch from "./components/SketchPatternColor";
+import SketchBackgroundColor from "./components/SketchBackgroundColor";
+import SketchPatternColor from "./components/SketchPatternColor";
+ 
+import {BsQrCode} from 'react-icons/bs'
+
+
 export const App = () => {
-  // Destructure variables, properties and methods from the useQRCodeGenerator hook that you imported above here :)
+
+  const [patternColor, setPatternColor] = useState("#064353")
+  const [backgroundColor, setBackgroundColor] = useState("#e3f0fc")
+
+  console.log(patternColor)
+  
+  // Destructuring the variables, properties and methods from the useQRCodeGenerator hook
   const {
     url,
     setUrl,
     qr,
-    generateQRCode
-  } = useQRCodeGenerator();
+    inputVisible,
+    generateQRCode,
+    repeatAction,
+    downloadQRCode,
+    errorMessage
+  } = useQRCodeGenerator(patternColor, setPatternColor, backgroundColor, setBackgroundColor);
 
-  // Return the JSX to render the component
+
+  const handlePatternColorChange = (color) => {
+    // Update patternColor state in the App component
+    setPatternColor(color);
+   
+  };
+
+  const handleBackgroundColorChange = (color) => {
+    // Update backgroundColor state in the App component
+    setBackgroundColor(color);
+  };
+
+  //Function to enable enter key when generating QR code
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      // Prevent the default form submission behavior
+      e.preventDefault();
+      // Call the generateQRCode function
+      generateQRCode();
+    }
+  };
+
+  // Returning the JSX to render the component
   return (
-    <div className="app">
-    <h1>QR Generator</h1>
-    <input
-      type="text"
-      placeholder="e.g. https://google.com"
-      value={url}
-      onChange={(e) => setUrl(e.target.value)}
-    />
-    <button onClick={generateQRCode}>Generate</button>
-    {qr && <>
-      <img src={qr} />
-      {/*A "Download" link that allows users to download the generated QR code as a PNG file. The href attribute of this link is set to the qr data URL, and the download attribute specifies the filename for the downloaded file. */}
-      <a href={qr} download="qrcode.png">
-        Download
-      </a>
-    </>}
-    
-  </div>
+    <section className="app">
+      <h1>QR Generator</h1>
+      
+      {inputVisible ? (
+        <>
+        <div className="wrapper">
+        <div className="color-picker-wrapper">
+        <p>Background colour: </p>
+        <SketchBackgroundColor onColorChange={handleBackgroundColorChange} />
+        <p>Pattern colour: </p>
+        <SketchPatternColor onColorChange={handlePatternColorChange}/>
+        </div>
+        <BsQrCode style={{color: `${patternColor}`, backgroundColor: `${backgroundColor}`}} className="qr-code"/>
+        </div>
+          <input
+            type="text"
+            placeholder="e.g. https://google.com"
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
+            onKeyDown={handleKeyDown}
+          />
+          <button onClick={generateQRCode}>Generate</button>
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
+        </>
+      ) : (
+        qr && (
+          <>
+            <img src={qr} />
+            <button onClick={repeatAction}>Repeat</button>
+            <button onClick={downloadQRCode}>Download</button>
+          </>
+        )
+      )}
+    </section>
   );
 };
