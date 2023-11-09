@@ -7,51 +7,95 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* .app {
+body {
+  background-image: url("/assets/purple-stars.jpg");
   display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.app {
+  display: flex;
+  border: solid purple;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
-  background-color: #f8f8f8;
   padding: 20px;
+  /* background-color: rgba(68, 0, 128, 0.409); */
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.qrCode-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 h1 {
-  color: #335383;
+  color: rgb(49, 7, 121);
   margin-bottom: 20px;
 }
 
 input {
-  padding: 10px;
+  margin: 30px;
+  background: none;
+  border: none;
+  outline: none;
+  max-width: 190px;
+  padding: 10px 20px;
   font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  margin-bottom: 20px;
-  width: 300px;
+  border-radius: 9999px;
+  box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
+  color: #fff;
 }
 
+
+
 button {
-  background-color: #335383;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  font-size: 16px;
+  width: 150px;
+  height: 30px;
   cursor: pointer;
-  margin: 10px;
+  color: #fff;
+  font-size: 17px;
+  border-radius: 1rem;
+  border: none;
+  position: relative;
+  background: #100720;
+  transition: 0.1s;
+}
+
+button::after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(circle farthest-corner at 10% 20%, rgba(255, 94, 247, 1) 17.8%, rgba(2, 245, 255, 1) 100.2%);
+  filter: blur(15px);
+  z-index: -1;
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 
 button:hover {
-  background-color: #23375d;
+  transform: scale(0.9) rotate(3deg);
+  background: radial-gradient(circle farthest-corner at 10% 20%, rgba(255, 94, 247, 1) 17.8%, rgba(2, 245, 255, 1) 100.2%);
+  transition: 0.5s;
 }
+
+
 
 img {
   margin-top: 20px;
   max-width: 300px;
   border: 1px solid #ccc;
   border-radius: 4px;
-} */
+}
 
 img.logo {
   border: none;
