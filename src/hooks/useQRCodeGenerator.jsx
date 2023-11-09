@@ -63,15 +63,15 @@ export const useQRCodeGenerator = () => {
     }
 
     // Ensure the function returns the obtained filename
-    return fileName;
+    return fileName === "" ? getFileName() : fileName;
   };
   // Function to download the generated QR code as a PNG file
   const downloadQRCode = () => {
-    const filename = getFileName();
+    const fileName = getFileName();
     // Create an anchor tag (`a` element) dynamically
     const anchor = document.createElement("a");
     anchor.href = qr; // Set href to the data URL of the QR code
-    anchor.download = filename + ".png"; // Set the default filename for download
+    anchor.download = fileName + ".png"; // Set the default filename for download
     document.body.appendChild(anchor); // Append the anchor to the body
     anchor.click(); // Programmatically trigger the download
     document.body.removeChild(anchor); // Remove the anchor after triggering the download
