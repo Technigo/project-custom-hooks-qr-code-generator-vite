@@ -30,13 +30,14 @@ h1 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 1.5rem;
 }
 
 input {
   max-width: 300px;
   min-width: 260px;
   margin-bottom: 1rem;
-  border: 1px solid #ccc;
+  border: 2px solid #ccc;
   border-radius: 0.25rem;
   padding: 0.5rem;
   font-size: 1.5rem;
@@ -65,4 +66,11 @@ img {
   align-items: center;
   justify-content: center;
   gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .input {
+    max-width: 400px;
+    min-width: 300px;
+  }
 }
