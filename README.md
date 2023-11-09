@@ -6,9 +6,7 @@
 
 # QR Code Generator - Custom Hook Project
 
-Replace this readme with your own information about your project.
-
-Start by briefly describing the assignment in a sentence or two. Keep it short and to the point.
+This project involved creating a custom-made hook and using it to build a QR code generator. This allows you to download the QR code as a PNG file.
 
 ## Getting Started with the Project
 
@@ -24,11 +22,11 @@ npm i && code . && npm run dev
 
 ### The Problem
 
-Describe how you approached to problem, and what tools and techniques you used to solve it. How did you plan? What technologies did you use? If you had more time, what would be next?
+The custom made hook was a bit tricky to understand. ChatGPT and Stack Overflow gave a lot of relevant information that I could apply in my project. We got a lots of hints within the boilerplate that I used in order to make it work and I also tried out other ways around.
 
 ### View it live
 
-Every project should be deployed somewhere. Be sure to include the link to the deployed project so that the viewer can click around and see what it's all about.
+https://qr-generator-amanda.netlify.app/
 
 ## Instructions
 
