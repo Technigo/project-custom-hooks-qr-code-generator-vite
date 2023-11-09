@@ -15,11 +15,12 @@
   min-height: 100vh;
   background-color: #e7c0e7;
   padding: 20px;
+  overflow: hidden;
 }
 
 h1 {
   color: #1b8085;
-  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 input {
@@ -63,7 +64,7 @@ img {
   margin-right: 10px;
   width: 60%;
   height: 60%;
-  margin-top: -300px;
   margin-right: 40%;
   z-index: 1;
+  align-self: flex-start;
 }
