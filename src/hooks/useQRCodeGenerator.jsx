@@ -12,9 +12,9 @@ export const useQRCodeGenerator = () => {
 
   const [formattedName, setFormattedName] = useState("");
 
-  //variable to toggle the visibility of the input element - boolean value
+  //variable to toggle the visibility of the buttons
   const [hideButtons, setHideButtons] = useState(true);
-
+  //variable to toggle the visibility of the input
   const [hideInput, setHideInput] = useState(false);
 
   // Function to generate a QR code from the input URL
@@ -23,8 +23,6 @@ export const useQRCodeGenerator = () => {
     setHideInput(true);
 
     if (url) {
-      console.log(`the url is:`, url);
-
       QRCode.toDataURL(
         url,
         {
@@ -47,8 +45,6 @@ export const useQRCodeGenerator = () => {
       setHideInput(false);
     }
   };
-  // HINT 1: Utilize the qrccode library that converts a URL to a QR code data URL.
-  // Use the Import of the qrcode and chain to the native method toDataUrl() much like the example provided and specify the data within the object that you will be passing such as the {url, {width, margin, color:{dark, light}}} which containes the information to generate the qr-code and url. Lastly, this native method toDataUrl() will contain a callback function  that will update the qr variable and will also update the variable toggling the visibility of the input element.
 
   // Function to download the generated QR code as a PNG file
   const downloadQRCode = () => {
@@ -59,8 +55,8 @@ export const useQRCodeGenerator = () => {
         return prompt("Please enter a file name.");
       }
       const userFileName = askForFileName();
-      // HINT 3: Implement a check for an empty filename and utilize recursion to re-prompt the user if necessary.
 
+      // HINT 3: Implement a check for an empty filename and utilize recursion to re-prompt the user if necessary.
       if (!userFileName) {
         getFileName();
         return;
@@ -70,9 +66,11 @@ export const useQRCodeGenerator = () => {
     };
 
     // HINT 5: Call the above function to retrieve a filename and store it in a variable.
-    const userFileName = getFileName();
+    let userFileName = getFileName();
 
     // HINT 6: Format the filename to ensure it is filesystem-friendly.
+
+    userFileName = userFileName.split(" ").join("-"); //from Thursday's class Q&A
     setFormattedName(userFileName + ".png");
 
     // HINT 7-11: Creating an anchor element - I removed this as I thought it was more user friendly to get the Download button to prompt the user for a file name and then also save the file. I got it to work by changing the FormattedName into a global useState.
