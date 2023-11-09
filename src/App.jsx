@@ -12,7 +12,7 @@ export const App = () => {
   return (
     <div className="app">
       {hasQrCode ? 
-        <div>
+        <div className="app">
             <img src={qr} />
             <button onClick={downloadQRCode}>download</button>
             <button onClick={repeatAction}>Repeat</button>

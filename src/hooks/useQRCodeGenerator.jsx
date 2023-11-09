@@ -30,7 +30,7 @@ export const useQRCodeGenerator = () => {
     QRCode.toDataURL(
       url,
       {
-        width: 100,
+        width: 300,
         margin: 2,
         color: {
           dark: "#335383FF",
@@ -63,7 +63,7 @@ export const useQRCodeGenerator = () => {
     // HINT 1: Consider encapsulating the filename prompting logic into a separate function.
     const getFileName = () => {
       let fileName = prompt("please give a name to the file:")
-      if(!fileName){
+      if(!fileName && fileName != null){
           alert("the file name is required.")
           getFileName()
           return;
@@ -71,7 +71,11 @@ export const useQRCodeGenerator = () => {
       return fileName;
     };
 
-    const fileName = getFileName().toLowerCase().trim();
+    let fileName = getFileName();
+    if(fileName === null){
+      return;
+    }
+    fileName = fileName.toLowerCase().trim();
     var download = document.createElement('a')
     download.download = `${fileName}.png`
     download.href = qr
@@ -82,6 +86,9 @@ export const useQRCodeGenerator = () => {
 
   // Function to reset the state and allow generating a new QR code
   const repeatAction = () => {
+    setUrl("");
+    setQr("")
+    setHasQrCode(false)
     // Reset the url state to an empty string
     // Reset the qr state to an empty string
     // Show the input element back to true :)
