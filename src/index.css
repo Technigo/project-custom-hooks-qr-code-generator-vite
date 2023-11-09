@@ -1,25 +1,33 @@
 :root {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
- .app {
+.app {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background-color: #f8f8f8;
   padding: 20px;
+  margin: auto;
+  max-width: 100%;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  justify-content: center;
+  align-items: center;
 }
 
 h1 {
-  color: #335383;
   margin-bottom: 20px;
+  text-align: center;
 }
 
 input {
@@ -31,8 +39,9 @@ input {
   width: 300px;
 }
 
-button, a {
-  background-color: #335383;
+button,
+a {
+  background-color: #2d3d31;
   color: #fff;
   padding: 10px 20px;
   border: none;
@@ -43,7 +52,7 @@ button, a {
 }
 
 button:hover {
-  background-color: #23375d;
+  background-color: #4c564e;
 }
 
 img {
@@ -51,9 +60,85 @@ img {
   max-width: 300px;
   border: 1px solid #ccc;
   border-radius: 4px;
-} 
+}
 
 img.logo {
   border: none;
   max-width: 200px;
+}
+
+.light {
+  background-color: #e0e9e2;
+  color: #2d3d31;
+}
+.dark {
+  background-color: #2d3d31;
+  color: #e0e9e2;
+}
+
+.light button {
+  background-color: #2d3d31;
+  color: #fff;
+}
+
+.light button:hover {
+  background-color: #4c564e;
+}
+
+.dark button {
+  background-color: #e0e9e2;
+  color: #2d3d31;
+}
+
+.dark button:hover {
+  background-color: #c1d6c8;
+}
+
+.qrWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.buttonWrapperQr {
+  display: flex;
+  flex-direction: column;
+}
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.inputWrapper input {
+  margin-bottom: 0;
+}
+.lottie-animation {
+  width: 300px;
+}
+
+@media (min-width: 750px) {
+  .qrWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  .buttonWrapperQr {
+    display: flex;
+    flex-direction: column;
+    margin-left: 50px;
+  }
+  .inputWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .inputWrapper input {
+    margin-bottom: 0;
+  }
+
+  .buttonWrapperInput {
+    margin-left: 50px;
+  }
 }
