@@ -1,5 +1,6 @@
 import QRCode from "qrcode";
 import { useQRCodeGenerator } from "./hooks/useQRCodeGenerator";
+import { useState, useEffect } from "react";
 
 export const App = () => {
   // Initialize state variables and functions from useQRCodeGenerator
@@ -17,7 +18,11 @@ export const App = () => {
     setQrBackgroundColor,
   } = useQRCodeGenerator()
 
+const [qrImageFadeIn, setQRImageFadeIn] = useState(false)
 
+useEffect(() => {
+  setQRImageFadeIn(true)
+}, [qr])
   
   return (
     <div className="container mx-auto p-4 bg-gray-100 min-h-screen">
@@ -69,7 +74,10 @@ export const App = () => {
       {/* if a qr code is generated */}
       {qr && (
         <div className="flex flex-col items-center mt-4">
-          <img className="max-w-xs border p-2" src={qr} />
+          <img 
+            className={`max-w-xs border p-2 transition-opacity ${qrImageFadeIn ? "opacity-100 duration-500" : "opacity-0"} ease-in-out`}
+            src={qr} 
+          />
           <a 
             href={qr} 
             download="qrcode.png" 
