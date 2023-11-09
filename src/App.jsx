@@ -21,14 +21,14 @@ h1 {
   font-weight: 900;
   text-align: center;
   margin: 0;
-  padding: 0 0 30px 0;
+  padding: 0 0 20px 0;
 }
 
 .input-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 40px;
 }
 
 .button-wrapper {
@@ -50,7 +50,15 @@ h1 {
   border-radius: 10px;
   height: 300px;
   width: 300px;
+  padding-bottom: 10px;
 }
+
+@media (max-width: 1279px) and (min-width: 744px) {
+    h1 {
+      font-size: 48px;
+    }
+
+  }
 
 @media (min-width: 1280px) {
   h1 {
@@ -59,10 +67,6 @@ h1 {
   text-align: center;
   margin: 0;
   padding: 0 0 30px 0;
-}
-
-.input-wrapper {
-  gap: 30px;
 }
 
   .button-wrapper {
@@ -99,7 +103,7 @@ const Input = styled.input`
 
 const Button = styled.button`
   background-color: #5ECBF5;
-    color: #fff;
+  color: #fff;
   font-weight: 600;
   padding: 10px 20px;
   border: none;
