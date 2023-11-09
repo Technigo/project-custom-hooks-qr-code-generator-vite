@@ -17,7 +17,6 @@ gap: 2%;
 @media (min-width: 800px) {
   gap: 1%;
 }
-
 `
 
 const QRPlant = styled.img`
@@ -47,13 +46,6 @@ const H1 = styled.h1`
 const H2 = styled.h2`
   color: #4B634D;
   font-size: 1,5rem;
-`
-const P = styled.p`
-text-align: center;
-width: 60%;
-font-size: 1.2rem;
-margin-bottom: 2%;
-color: #4B634D;
 `
 
 const Button = styled.button`

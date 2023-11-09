@@ -14,7 +14,7 @@ export const useQRCodeGenerator = () => {
       // Generate QR code image data URL
       const qrDataUrl = await QRCode.toDataURL(url, {
         // Width, margin and colors of the generated QR-code
-        width: 200,
+        width: 170,
         margin: 1,
         color: {
           dark: '#4B634D',
