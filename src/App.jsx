@@ -31,7 +31,7 @@ export const App = () => {
 
   // Return the JSX to render the component
   return (
-    <div className={downloadContainer}>
+    <div>
       <h1>QR Code Generator</h1>
       <p>
         Enter your URL and click 'Generate QR Code' to create your own unique QR

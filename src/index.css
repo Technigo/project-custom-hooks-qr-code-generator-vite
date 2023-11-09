@@ -14,7 +14,8 @@ body {
   background-color: #f7f2e9;
   border-bottom: 1.6rem solid #edc84b;
   min-height: 100vh;
-  padding-bottom: 6rem;
+  padding: 3em 2em 6rem 2em;
+
   margin-top: 3rem;
 }
 

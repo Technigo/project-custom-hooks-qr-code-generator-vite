@@ -22,25 +22,33 @@ export const useQRCodeGenerator = () => {
     setHideButtons(false);
     setHideInput(true);
 
-    // HINT 1: Utilize the qrccode library that converts a URL to a QR code data URL.
-    // Use the Import of the qrcode and chain to the native method toDataUrl() much like the example provided and specify the data within the object that you will be passing such as the {url, {width, margin, color:{dark, light}}} which containes the information to generate the qr-code and url. Lastly, this native method toDataUrl() will contain a callback function  that will update the qr variable and will also update the variable toggling the visibility of the input element.
-    QRCode.toDataURL(
-      url,
-      {
-        width: 200,
-        margin: 2,
-        color: {
-          dark: "#335383FF",
-          light: "#EEEEEEFF",
+    if (url) {
+      console.log(`the url is:`, url);
+
+      QRCode.toDataURL(
+        url,
+        {
+          width: 200,
+          margin: 2,
+          color: {
+            dark: "#335383FF",
+            light: "#EEEEEEFF",
+          },
         },
-      },
-      (err, url) => {
-        if (err) return console.error(err);
-        setQr(url);
-        console.log(`qr is:`, qr);
-      }
-    );
+        (err, url) => {
+          if (err) return console.error(err);
+          setQr(url);
+          console.log(`qr is:`, qr);
+        }
+      );
+    } else {
+      alert("Please enter a URL");
+      setHideButtons(true);
+      setHideInput(false);
+    }
   };
+  // HINT 1: Utilize the qrccode library that converts a URL to a QR code data URL.
+  // Use the Import of the qrcode and chain to the native method toDataUrl() much like the example provided and specify the data within the object that you will be passing such as the {url, {width, margin, color:{dark, light}}} which containes the information to generate the qr-code and url. Lastly, this native method toDataUrl() will contain a callback function  that will update the qr variable and will also update the variable toggling the visibility of the input element.
 
   // Function to download the generated QR code as a PNG file
   const downloadQRCode = () => {
