@@ -53,17 +53,17 @@ export const useQRCodeGenerator = () => {
   // HINT 1: Consider encapsulating the filename prompting logic into a separate function.
   const getFileName = () => {
     // Prompt the user for input and store the response
-    const filename = prompt(
+    const fileName = prompt(
       "Please enter a filename for the QR code or cancel to get default name"
     );
 
     // Check for an empty filename or if the user pressed "Cancel"
-    if (!filename) {
+    if (!fileName) {
       return "QRCode";
     }
 
     // Ensure the function returns the obtained filename
-    return filename;
+    return fileName;
   };
   // Function to download the generated QR code as a PNG file
   const downloadQRCode = () => {
