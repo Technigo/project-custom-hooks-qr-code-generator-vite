@@ -54,17 +54,31 @@ export const useQRCodeGenerator = () => {
       // HINT 2: Use a method to prompt the user for input and store the response.
       // ...
       let userFileName = prompt("Name the file: ");
+      if (userFileName !== "" && userFileName !== null) {
+        userFileName = userFileName.replace(/[\\/:"*?<>|]/g, "");
+
+        // Replace spaces with underscores and remove leading/trailing spaces
+        console.log(userFileName);
+        userFileName = userFileName.replace(/\s+/g, "_").trim();
+
+        // Limit the fileName length
+        if (userFileName.length > 30) {
+          userFileName = userFileName.substring(0, 30);
+        }
+      }
       // HINT 3: Implement a check for an empty filename and utilize recursion to re-prompt the user if necessary.
       // ...
       // HINT 4: Ensure the function returns the obtained filename.
       // ...
 
-      if (!userFileName || userFileName.trim() === "") {
-        alert("You need to provide a filename", "qr.png");
-        return getFileName();
-      } else {
-        return userFileName;
-      }
+      // if (userFileName === "") {
+      //   alert("You need to provide a filename", "qr.png");
+      //   return getFileName();
+      // } else {
+      //   return userFileName;
+      // }
+
+      return userFileName === "" ? getFileName() : userFileName;
     };
 
     // HINT 5: Call the above function to retrieve a filename and store it in a variable.
@@ -73,25 +87,27 @@ export const useQRCodeGenerator = () => {
 
     // HINT 6: Format the filename to ensure it is filesystem-friendly.
     // ...
+    console.log(fileName);
+    // const formatFileName = (fileName) => {
+    //   console.log(fileName);
+    //   fileName = fileName.replace(/[\\/:"*?<>|]/g, "");
 
-    const formatFileName = (fileName) => {
-      fileName = fileName.replace(/[\\/:"*?<>|]/g, "");
+    //   // Replace spaces with underscores and remove leading/trailing spaces
+    //   console.log(fileName);
+    //   fileName = fileName.replace(/\s+/g, "_").trim();
 
-      // Replace spaces with underscores and remove leading/trailing spaces
-      fileName = fileName.replace(/\s+/g, "_").trim();
+    //   // Limit the fileName length
+    //   if (fileName.length > 30) {
+    //     fileName = fileName.substring(0, 30);
+    //   }
 
-      // Limit the fileName length
-      if (fileName.length > 30) {
-        fileName = fileName.substring(0, 30);
-      }
+    //   // Normalize the case (e.g., to lowercase)
+    //   fileName = fileName.toLowerCase();
 
-      // Normalize the case (e.g., to lowercase)
-      fileName = fileName.toLowerCase();
+    //   return fileName;
+    // };
 
-      return fileName;
-    };
-
-    const formattedFileName = `${formatFileName(fileName)}QR.png`;
+    const formattedFileName = `${fileName}QR.png`;
     // const formattedFileName = formatFileName(fileName);
 
     // HINT 7: Create an anchor element to facilitate the download.
@@ -99,21 +115,21 @@ export const useQRCodeGenerator = () => {
     // HINT 8: Set the necessary attributes on the anchor element to prepare it for download.
     // ...
 
-    // downloadRef.current.href = qrData;
-    // downloadRef.current.download = formattedFileName;
-    // downloadRef.current.click();
-
-    console.log(qrData);
-    console.log(formattedFileName);
-
-    let downloadLink = document.createElement("a");
+    //Using useRef
+    let downloadLink = downloadRef.current;
     downloadLink.href = qrData;
     downloadLink.download = formattedFileName;
-    document.body.appendChild(downloadLink);
     downloadLink.click();
 
+    //Using vanillaJS
+    // let downloadLink = document.createElement("a");
+    // downloadLink.href = qrData;
+    // downloadLink.download = formattedFileName;
+    // document.body.appendChild(downloadLink);
+    // downloadLink.click();
+
     // Remove the anchor element from the document (optional)
-    document.body.removeChild(downloadLink);
+    // document.body.removeChild(downloadLink);
 
     // <a href={qrData} download={`${formattedFileName}QR.png`}>
     //   Download image
@@ -148,5 +164,6 @@ export const useQRCodeGenerator = () => {
     repeatAction,
     inputVisibility,
     downloadQRCode,
+    downloadRef,
   };
 };
