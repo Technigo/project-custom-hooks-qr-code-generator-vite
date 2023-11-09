@@ -6,13 +6,14 @@ import QRCode from "qrcode";
 export const useQRCodeGenerator = () => {
   // Reactive State variable to store the input URL
   //   const ...
+  const[url, setUrl] = useState('');
 
   // Reactive State variable to store the generated QR code data URL
   //   const ...
-
+  const[generate, setGenerate] = useState('false');
   // Reactive State variable to toggle the visibility of the input element - boolean value
   //   const ...
-
+  const[toggle, setToggle] = useState("false");
   // Function to generate a QR code from the input URL
   const generateQRCode = () => {
     // HINT 1: Utilize the qrccode library that converts a URL to a QR code data URL.
