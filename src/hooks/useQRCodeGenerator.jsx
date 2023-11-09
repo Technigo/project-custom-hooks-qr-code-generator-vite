@@ -74,6 +74,15 @@ export const useQRCodeGenerator = () => {
     setFormattedName(userFileName + ".png");
 
     // HINT 7-11: Creating an anchor element - I removed this as I thought it was more user friendly to get the Download button to prompt the user for a file name and then also save the file. I got it to work by changing the FormattedName into a global useState.
+
+    //from Thursday's class Q&A Code-a-long with Diego but I'll keep it as comments as I already have things working!
+
+    // const link = document.createElement("a");
+    // link.href = qr;
+    // link.download = ${fileName}.png`;
+    // document.body.appendChild(link);
+    // link.click()
+    // document.body.removeChild(link);
   };
 
   // Function to reset the state and allow generating a new QR code
@@ -82,7 +91,7 @@ export const useQRCodeGenerator = () => {
     setUrl("");
     // Reset the qr state to an empty string
     setQr("");
-    // Show the input element back to true :)
+    // Show the input and buttons back to true :)
     setHideButtons(true);
     setHideInput(false);
   };
