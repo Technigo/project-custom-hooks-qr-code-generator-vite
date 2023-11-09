@@ -107,7 +107,7 @@ const App = () => {
   // Function to validate the URL and generate the QR code
   const handleGenerate = (e) => {
     e.preventDefault();
-    const validUrlRegex = /^(https?:\/\/)?www\.[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/
+    const validUrlRegex = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/
 
     if (validUrlRegex.test(url)) {
       generateQRCode(url)
