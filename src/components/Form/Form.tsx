@@ -6,17 +6,19 @@ export const Form = () => {
   const { theme } = useTheme();
 
   return (
-    <div className="flex flex-col  bg-orange py-8 px-10 rounded shadow-md">
-      <p className="text-start m-0 text-stone-900 text-sm font-bold">URL Please</p>
+    <div className="flex flex-col items-center bg-orange py-4 sm:py-8 px-2 sm:px-10 rounded shadow-md">
+      <p className="text-start m-0 text-stone-900 text-sm font-bold sm:w-full sm:ml-6">
+        URL Please
+      </p>
       <input
         type="text"
         placeholder="e.g. https://google.com"
         value={url}
         onChange={(e) => setUrl(e.target.value)}
-        className="w-80 px-6 py-2 text-lg focus:outline-sky-500 focus:outline-offset-2 focus:outline-4 text-stone-600 rounded-sm shadow-sm  "
+        className="w-72 sm:w-80 px-6 py-2 text-lg focus:outline-sky-500 focus:outline-offset-2 focus:outline-4 text-stone-600 rounded-sm shadow-sm  "
       />
-      <div className="text-stone-900">
-        <p>Option</p>
+      <p className="text-stone-900 font-bold text-sm sm:w-full sm:ml-6">Option</p>
+      <div className="text-stone-900 flex flex-wrap gap-3 mt-2 justify-center w-fit">
         <select
           value={color}
           onChange={(e) => setColor(e.target.value)}

@@ -1,5 +1,4 @@
 import { useTheme } from "../../context/ThemeContext";
-import { themeData } from "src/statics/theme";
 import { ThemeKey } from "src/types/common";
 
 export const ThemeButton = () => {
@@ -11,7 +10,7 @@ export const ThemeButton = () => {
     setTheme(newThemeKey);
   }
   return (
-    <div className="flex flex-col gap-2 absolute top-5 left-5">
+    <div className="flex sm:flex-col gap-2 absolute top-5 left-5">
       <button
         data-value="dark"
         onClick={handleClick}

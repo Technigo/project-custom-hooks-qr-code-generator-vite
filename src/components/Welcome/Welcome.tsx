@@ -13,13 +13,12 @@ export const Welcome = ({ onStart, gifs }: { onStart: (value: boolean) => void; 
   const { theme } = useTheme();
 
   return (
-    <div className=" flex flex-col items-center justify-center gap-2 h-screen overflow-hidden  z-0">
-      {/* <ThreeFrame shape="box" style="top-140  left-40" />
-      <ThreeFrame shape="box" style="top-100  left-80" />
-      <ThreeFrame shape="box" style="top-40  left-60" /> */}
-      {/* <ThreeFrame shape="box" style="top-120  right-40" />
-      <ThreeFrame shape="box" style="top-80  right-60" />
-      <ThreeFrame shape="box" style="top-60  right-20" /> */}
+    <div className=" flex flex-col items-center  justify-center sm:gap-2 h-screen  overflow-hidden  z-0">
+      <ThreeFrame shape="box" style="top-[30%]  right-[50%] sm:top-[15%]" />
+      <ThreeFrame shape="box" style="top-[10%]  right-[20%] " />
+      <ThreeFrame shape="box" style="top-[80%]  right-[15%] sm:top-[40%] sm:left-[10%]" />
+      <ThreeFrame shape="box" style="hidden sm:block sm:top-[40%] sm:right-[10%]" />
+
       <AudioButton />
       <ThemeButton />
       <div className="h-12  min-h-[30px]  z-1 relative">

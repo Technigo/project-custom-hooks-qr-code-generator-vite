@@ -6,7 +6,7 @@ export const QrCode = () => {
   return (
     <>
       <div
-        className={`absolute backdrop-blur-sm transparent h-full overflow-hidden text-sky-300 w-full top-0 bottom-0 left-0 right-0 flex items-center justify-center ${
+        className={`absolute backdrop-blur-sm transparent z-[1000] h-full overflow-hidden text-sky-300 w-full top-0 bottom-0 left-0 right-0 flex items-center justify-center ${
           isVisible ? "hidden" : "block"
         }`}
         id="code"
@@ -21,7 +21,7 @@ export const QrCode = () => {
           setIsVisible(false);
           downloadQRCode();
         }}
-        className="button text-sm w-40"
+        className="button text-sm w-40 z-0"
       >
         To Download
       </button>
