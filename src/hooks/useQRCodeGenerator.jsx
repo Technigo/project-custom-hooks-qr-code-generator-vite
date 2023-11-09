@@ -23,31 +23,38 @@ export const useQRCodeGenerator = () => {
       // HINT 2: Ensure to pass the necessary parameters to the QR code generation method, such as the URL to convert and any styling options.
       url,
       {
-        width: 300,
-        margin: 2,
+        width: 300, //Sets the width of the QR code
+        margin: 2, //sets the margin of the QR code
         color: {
-          dark: "#335383FF",
-          light: "#EEEEEEFF",
+          dark: "#335383FF", //Sets the color of the dark squares of the QR code
+          light: "#EEEEEEFF", //Sets the color of the light squares of the QR code
         },
       },
 
       // HINT 3: Handle the callback of the QR code generation method, which provides the generated QR code data URL.
       // HINT 4: Implement error handling to manage any issues that might occur during QR code generation.
-      (err, generatedQr) => {
-        if (err) {
-          console.error(err);
-          // Handle errors if necessary
-        } else {
-          // Update the QR code state
-          setQr(generatedQr);
-          // Hide the input element (optional)
-          setShowInput(false);
-        }
+
+      (err, url) => {
+        if (err) return console.error(err);
+        // HINT 5: Update the relevant state variables with the generated QR code data URL and adjust the UI accordingly.
+
+        setQr(url);
+        // HINT 6: Consider the user experience and how the UI should change once the QR code has been generated.
+
+        setShowInput(false);
       }
 
-      // HINT 5: Update the relevant state variables with the generated QR code data URL and adjust the UI accordingly.
-
-      // HINT 6: Consider the user experience and how the UI should change once the QR code has been generated.
+      // (err, generatedQr) => {
+      //   if (err) {
+      //     console.error(err);
+      //     // Handle errors if necessary
+      //   } else {
+      //     // Update the QR code state
+      //     setQr(generatedQr);
+      //     // Hide the input element (optional)
+      //     setShowInput(false);
+      //   }
+      // }
       // ...
     );
   };
@@ -57,39 +64,43 @@ export const useQRCodeGenerator = () => {
     // HINT 1: Consider encapsulating the filename prompting logic into a separate function.
     const getFileName = () => {
       // HINT 2: Use a method to prompt the user for input and store the response.
-      // ...
+      const fileName = prompt("Choose a name for the QR code:");
+
       // HINT 3: Implement a check for an empty filename and utilize recursion to re-prompt the user if necessary.
-      // ...
       // HINT 4: Ensure the function returns the obtained filename.
-      // ...
-      let fileName = prompt("Choose a name for the image:");
-      if (fileName === null || fileName === "") {
-        getFileName();
-      } else {
-        return fileName;
-      }
+      return fileName === "" ? getFileName() : fileName;
+
+      // let fileName = prompt("Choose a name for the image:");
+      // if (fileName === null || fileName === "") {
+      //   getFileName();
+      // } else {
+      //   return fileName;
+      // }
     };
 
     // HINT 5: Call the above function to retrieve a filename and store it in a variable.
-    // ...
+    const fileName = getFileName();
 
     // HINT 6: Format the filename to ensure it is filesystem-friendly.
-    // ...
+    //fileName = fileName.replace(/\s/g, "-").toLowerCase();
+    fileName = fileName.split(" ").join("-").toLowerCase();
 
     // HINT 7: Create an anchor element to facilitate the download.
-    // ...
+    const link = document.createElement("a");
 
     // HINT 8: Set the necessary attributes on the anchor element to prepare it for download.
-    // ...
+    //link.download = `${fileName}.png`;
+    link.href = qr;
+    link.download = `${fileName}.png`;
 
     // HINT 9: Append the anchor element to the document to make it interactable.
-    // ...
+    document.body.appendChild(link);
 
     // HINT 10: Programmatically trigger a click on the anchor element to initiate the download.
-    // ...
+    link.click();
 
     // HINT 11: Remove the anchor element from the document after the download has been initiated.
-    // ...
+    document.body.removeChild(link);
   };
 
   // Function to reset the state and allow generating a new QR code

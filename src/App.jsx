@@ -10,6 +10,8 @@ import { useQRCodeGenerator } from "./hooks/useQRCodeGenerator";
 export const App = () => {
   // Destructure variables, properties and methods from the useQRCodeGenerator hook that you imported above here :)
 
+  // export const CustomHookComponent = () => {
+
   const {
     url,
     setUrl,
@@ -23,7 +25,7 @@ export const App = () => {
   // Return the JSX to render the component
 
   return (
-    <div className="app">
+    <>
       <h1>Easy QR Code Generator</h1>
 
       {showInput ? (
@@ -39,20 +41,31 @@ export const App = () => {
           <button onClick={generateQRCode}>Generate</button>
         </div>
       ) : (
-        <div className="qr-buttons">
-          {/* Render QR code image, "Download," and "Repeat" buttons when showInput is false */}
-          <img src={qr} alt="QR Code" />
-          <div className="buttons">
-            <button onClick={downloadQRCode}>Download</button>
-            <button onClick={repeatAction}>Repeat</button>
-          </div>
-        </div>
+        <>
+          {qr && (
+            <>
+              {/* Render QR code image, "Download," and "Repeat" buttons when showInput is false */}
+              <img src={qr} alt="QR Code" />
+              <button onClick={downloadQRCode}>Download</button>
+              <button onClick={repeatAction}>Repeat</button>
+            </>
+          )}
+        </>
       )}
-
-      {/* Conditionally render based on wether the user is inputting an URL to generate a QR Code or the user wants to downaload the generated QR Code from the url input */}
-      {/* 
-         
-      {yourReactiveVariableThatTogglesTheDownloadQrCcodeOrInputField ? () : ()} */}
-    </div>
+    </>
   );
 };
+
+/* export const CustonHookComp = () => {
+return {
+  <>
+    <h2>Custom hook in action</h2> 
+    {showInput ? () : ()}
+   <input type="text" placeholder="e.g. https://google.com" 
+   value={url} 
+   onChange={(e) => setUrl(e.target.value)} />
+  </>
+  <button onClick={generateQRCode}>Generate</button>
+
+}
+} */
