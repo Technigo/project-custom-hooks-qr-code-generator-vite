@@ -24,7 +24,7 @@ export const App = () => {
       <h1 className="text-3xl font-bold text-center mb-4 text-blue-800">QR Generator</h1>
       <div className="flex flex-col items-center">
       <input 
-        className="form-input mt-1 block w-full px-3 py-2 text-center border"
+        className="form-input mt-1 w-full px-3 py-2 text-center border"
         type="text"
         placeholder="e.g. https://google.com"
         value={url}
