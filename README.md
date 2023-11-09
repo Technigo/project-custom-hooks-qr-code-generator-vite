@@ -10,11 +10,11 @@ Created a QR Generator where you can create a QR code and download it, created w
 
 ### The Problem
 
-ChatGPT
+I used a lot of ChatGPT to understand what i was doing.
 
 ### View it live
 
-
+https://qr-code-evelyndelcarmen.netlify.app/
 
 ## Instructions
 
