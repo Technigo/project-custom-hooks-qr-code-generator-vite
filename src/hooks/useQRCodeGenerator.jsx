@@ -1,10 +1,12 @@
 // Hook Explanation
 // This React component, specifically a custom hook named useQRCodeGenerator, is designed to facilitate the generation and downloading of QR codes. Initially, it utilizes the useState hook from React to manage three pieces of state: url (to store the input URL that will be converted into a QR code), qr (to store the generated QR code data URL), and showInput (a boolean to toggle the visibility of an input element in the UI). The hook exposes a method generateQRCode which utilizes the QRCode.toDataURL method to convert the provided URL into a QR code, applying specific styling options, and then updates the state with the generated QR code and hides the input. The downloadQRCode method allows users to download the generated QR code as a PNG file, prompting them to provide a filename and handling the download process via creating an anchor element in the DOM. Lastly, the repeatAction method resets the state to allow users to generate a new QR code. The hook returns an object containing the state variables and methods, enabling them to be utilized in the component where the hook is used.
 import QRCode from "qrcode";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 // Define a custom hook named useQRCodeGenerator
 export const useQRCodeGenerator = () => {
+  const downloadRef = useRef(null);
+
   // Reactive State variable to store the input URL
   //   const ...
   const [inputURL, setInputURL] = useState("");
@@ -57,55 +59,74 @@ export const useQRCodeGenerator = () => {
       // HINT 4: Ensure the function returns the obtained filename.
       // ...
 
-      if (userFileName.length < 1) {
-        userFileName = getFileName();
+      if (!userFileName || userFileName.trim() === "") {
+        alert("You need to provide a filename", "qr.png");
+        return getFileName();
       } else {
         return userFileName;
       }
-
-      // HINT 5: Call the above function to retrieve a filename and store it in a variable.
-      // ...
-      let fileName = getFileName();
-
-      // HINT 6: Format the filename to ensure it is filesystem-friendly.
-      // ...
-
-      const formatFileName = (fileName) => {
-        fileName = fileName.replace(/[\\/:"*?<>|]/g, "");
-
-        // Replace spaces with underscores and remove leading/trailing spaces
-        fileName = fileName.replace(/\s+/g, "_").trim();
-
-        // Limit the fileName length
-        if (fileName.length > 30) {
-          fileName = fileName.substring(0, 30);
-        }
-
-        // Normalize the case (e.g., to lowercase)
-        fileName = fileName.toLowerCase();
-
-        return fileName;
-      };
-
-      const formattedFileName = formatFileName(fileName);
-
-      // HINT 7: Create an anchor element to facilitate the download.
-      // ...
-      // HINT 8: Set the necessary attributes on the anchor element to prepare it for download.
-      // ...
-      <a href={qrData} download={`${formattedFileName}QR.png`}>
-        Download image
-      </a>;
-
-      // HINT 9: Append the anchor element to the document to make it interactable.
-      // ...
-
-      // HINT 10: Programmatically trigger a click on the anchor element to initiate the download.
-      // ...
-
-      // HINT 11: Remove the anchor element from the document after the download has been initiated.
-      // ...
     };
+
+    // HINT 5: Call the above function to retrieve a filename and store it in a variable.
+    // ...
+    let fileName = getFileName();
+
+    // HINT 6: Format the filename to ensure it is filesystem-friendly.
+    // ...
+
+    const formatFileName = (fileName) => {
+      fileName = fileName.replace(/[\\/:"*?<>|]/g, "");
+
+      // Replace spaces with underscores and remove leading/trailing spaces
+      fileName = fileName.replace(/\s+/g, "_").trim();
+
+      // Limit the fileName length
+      if (fileName.length > 30) {
+        fileName = fileName.substring(0, 30);
+      }
+
+      // Normalize the case (e.g., to lowercase)
+      fileName = fileName.toLowerCase();
+
+      return fileName;
+    };
+
+    const formattedFileName = `${formatFileName(fileName)}QR.png`;
+    // const formattedFileName = formatFileName(fileName);
+
+    // HINT 7: Create an anchor element to facilitate the download.
+    // ...
+    // HINT 8: Set the necessary attributes on the anchor element to prepare it for download.
+    // ...
+
+    // downloadRef.current.href = qrData;
+    // downloadRef.current.download = formattedFileName;
+    // downloadRef.current.click();
+
+    console.log(qrData);
+    console.log(formattedFileName);
+
+    let downloadLink = document.createElement("a");
+    downloadLink.href = qrData;
+    downloadLink.download = formattedFileName;
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+
+    // Remove the anchor element from the document (optional)
+    document.body.removeChild(downloadLink);
+
+    // <a href={qrData} download={`${formattedFileName}QR.png`}>
+    //   Download image
+    // </a>;
+
+    // HINT 9: Append the anchor element to the document to make it interactable.
+    // ...
+
+    // HINT 10: Programmatically trigger a click on the anchor element to initiate the download.
+    // ...
+
+    // HINT 11: Remove the anchor element from the document after the download has been initiated.
+    // ...
   };
 
   // Function to reset the state and allow generating a new QR code
@@ -126,5 +147,6 @@ export const useQRCodeGenerator = () => {
     setInputURL,
     repeatAction,
     inputVisibility,
+    downloadQRCode,
   };
 };
