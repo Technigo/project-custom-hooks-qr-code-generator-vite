@@ -3,6 +3,8 @@
 import QRCode from "qrcode";
 import { useState } from "react";
 
+
+//useGenerator wrapping all state varialbles and functions 
 export const useQRCodeGenerator = () => {
     // State variable to store the input URL
     const [url, setUrl] = useState("");
@@ -12,9 +14,11 @@ export const useQRCodeGenerator = () => {
 
     // State variable to toggle the visibility of the input element (optional)
     const [showInput, setShowInput] = useState(true);
+    // State variable to store any error messages(if any)
+
     const [error, setError] = useState(null);
 
-    // Function to generate a QR code from the input URL
+    // Function to generate a QR code from the input URL, performs input validation, checking if the input URL is empty or invalid
     const generateQRCode = (inputUrl, darkMode) => {
         if (!inputUrl) {
             setError('Input text is empty. Please provide a valid URL');
@@ -28,11 +32,11 @@ export const useQRCodeGenerator = () => {
             setError('Invalid URL. Please provide a valid URL');
             return;
         }
-        // Use the QRCode library to convert the URL to a QR code data URL
+        // Use the QRCode library to convert the URL to a QR code data URL including dark and light mode
         QRCode.toDataURL(
             url,
             {
-                height: 200,
+                height: 50,
                 margin: 5,
                 color: {
                     dark: darkMode ? "#FFFFFF" : "#1E3A8A",

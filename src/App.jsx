@@ -1,38 +1,48 @@
 import React, { useState } from 'react';
 import { useQRCodeGenerator } from "./hooks/useQRCodeGenerator";
 
+//Reuseble component
+const Button = ({ onClick, text, darkMode, className = '' }) => {
+  return (
+    <button
+      className={`border-4 border-blue-900 rounded-3xl p-2 m-3 ${darkMode ? 'bg-black hover:bg-white hover:text-black' : 'bg-indigo-200 hover:bg-blue-900 hover:text-indigo-200'} transition-all duration-500 ${className}`}
+      onClick={onClick} >{text}</button>
+  );
+};
 
 export const App = () => {
+  // State variable to track whether the application is in dark mode
   const [darkMode, setDarkMode] = useState(false);
+
+  // Function to toggle between dark and light mode
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
   };
 
+  // Destructuring values and functions from a QR code generator hook
   const {
-    url,
-    qr,
-    showInput,
-    setUrl,
-    generateQRCode,
-    downloadQRCode,
-    repeatAction,
-    error,
+    url,              // Holds the current URL
+    qr,               // Represents the generated QR code
+    showInput,        // Controls the visibility of the input field
+    setUrl,           // Function to update the URL
+    generateQRCode,   // Function to generate the QR code
+    downloadQRCode,   // Function to download the QR code
+    repeatAction,     // Function to reset and repeat the action
+    error,            // Holds error messages, if any
   } = useQRCodeGenerator();
 
 
   return (
 
+    //sets background 
     <div className={`flex justify-center items-center h-screen ${darkMode ? 'bg-gray-900' : 'bg-indigo-200'}`}>
 
+      {/*sets box */}
+      <div className={`mx-5 lg:mx-2 text-center text-xl p-10 w-96 h-auto mx-auto rounded-3xl border-4 ${darkMode ? 'border-white' : 'border-blue-900'} ${darkMode ? 'text-white' : 'text-blue-900'} transition-all duration-500`}>
 
-      <div className={`mx-5 lg:mx-2 text-center text-xl p-10 w-96 h-96 mx-auto rounded-3xl border-4 ${darkMode ? 'border-white' : 'border-blue-900'} ${darkMode ? 'text-white' : 'text-blue-900'} transition-all duration-500`}>
+        {/*button to toggle light/dark mode*/}
+        <Button onClick={toggleDarkMode} text={darkMode ? 'Light Mode' : 'Dark Mode'} className="absolute top-2 right-2" />
 
-        <button
-          className={`text-xs border-4 border-blue-900 rounded-full pt-6 pb-6 px-1 ${darkMode ? 'bg-black hover:bg-white hover:text-black' : 'bg-indigo-200 hover:bg-blue-900 hover:text-indigo-200'} transition-all duration-500 absolute top-2 right-2`}
-          onClick={toggleDarkMode}
-        >
-          {darkMode ? 'Light Mode' : 'Dark Mode'}
-        </button>
 
         <h1 className={`text-3xl ${darkMode ? 'text-white' : 'text-blue-900'}`}>
           QR Code Generator
@@ -41,6 +51,7 @@ export const App = () => {
           Enter your URL:
         </h2>
 
+        {/*show input field*/}
         {showInput ? (
           <div>
             <input
@@ -51,15 +62,12 @@ export const App = () => {
               onChange={(e) => setUrl(e.target.value)}
             />
             {error && <p className={`text-red-500 ${darkMode ? 'text-white' : 'text-red-500'}`}>{error}</p>}
-            <button
-              className={`border-4 border-blue-900 rounded-3xl p-2 m-5 ${darkMode ? 'bg-black hover:bg-white hover:text-black' : 'bg-indigo-200 hover:bg-blue-900 hover:text-indigo-200'} transition-all duration-500`}
-              onClick={() => generateQRCode(url, darkMode)}
-            >
-              Generate
-            </button>
+            <Button onClick={() => generateQRCode(url, darkMode)} text="Generate" darkMode={darkMode} className="" />
           </div>
         ) : (
+
           <div>
+            {/*if else show img*/}
             <img
               src={qr}
               alt="Generated QR Code"
@@ -69,18 +77,9 @@ export const App = () => {
               }}
               className={`transition-opacity duration-8000 transition-all duration-500 ${showInput ? 'opacity-0' : 'opacity-100'}`}
             />
-            <button
-              className={`border-4 border-blue-900 rounded-3xl p-2 m-3 ${darkMode ? 'bg-black hover:bg-white hover:text-black' : 'bg-indigo-200 hover:bg-blue-900 hover:text-indigo-200'} transition-all duration-500`}
-              onClick={downloadQRCode}
-            >
-              Download
-            </button>
-            <button
-              className={`border-4 border-blue-900 rounded-3xl p-2 m-3 ${darkMode ? 'bg-black hover:bg-white hover:text-black' : 'bg-indigo-200 hover:bg-blue-900 hover:text-indigo-200'} transition-all duration-500`}
-              onClick={repeatAction}
-            >
-              Repeat
-            </button>
+            {/*download and repeat button*/}
+            <Button onClick={downloadQRCode} text="Download" darkMode={darkMode} className="" />
+            <Button onClick={repeatAction} text="Repeat" darkMode={darkMode} className="" />
           </div>
         )}
       </div>
