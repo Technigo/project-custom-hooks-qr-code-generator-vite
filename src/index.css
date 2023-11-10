@@ -1,4 +1,4 @@
-@import url("https://fonts.google.com/specimen/Poppins");
+@import url("https://fonts.google.com/specimen/Poppins"); /* Font for the whole app, poppins-regular - latin */
 
 :root {
   margin: 0;
@@ -46,7 +46,7 @@ h1 {
 .lottie-animation {
   width: 100px;
   height: 100px;
-  margin-bottom: 1rem;
+  margin: 1rem;
 }
 
 input {
@@ -70,25 +70,18 @@ a {
   background: none;
   cursor: pointer;
   color: #66de93;
-  font-size: 1rem;
+  font-size: 0.8rem;
   line-height: 1.5;
   text-decoration: none;
-}
-
-img {
-  display: block;
-  width: 100%;
-  height: auto;
-  margin: 2rem auto;
 }
 
 button {
   background-color: #335383;
   color: #fff;
-  padding: 10px 20px;
+  padding: 8px 16px;
   border: none;
   border-radius: 10px;
-  font-size: 16px;
+  font-size: 14px;
   cursor: pointer;
   margin: 10px;
 }
@@ -98,15 +91,19 @@ button:hover {
 }
 
 img {
+  display: block;
+  width: 100%;
+  height: auto;
   margin-top: 20px;
-  max-width: 300px;
+  max-width: 200px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  margin: 2rem auto;
 }
 
 img.logo {
   border: none;
-  max-width: 200px;
+  max-width: 150px;
 }
 
 @media screen and (min-width: 744px) {
@@ -115,7 +112,7 @@ img.logo {
   }
 
   img {
-    max-width: 400px;
+    max-width: 300px;
   }
 
   .lottie-animation {
@@ -140,6 +137,6 @@ img.logo {
   }
 
   img {
-    max-width: 500px;
+    max-width: 400px;
   }
 }

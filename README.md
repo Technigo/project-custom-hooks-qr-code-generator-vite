@@ -6,13 +6,15 @@
 
 # QR Code Generator - Custom Hook Project
 
-The essence of this project is to empower users to input a URL, effortlessly convert it into a QR code, and conveniently download it as an image.
+The core purpose of this project is to enable users to seamlessly input a URL, convert it into a QR code with ease, and conveniently download it as an image.
 
 ### The Problem
 
-The code was pretty much already in place so the thing to focus on was trying to make sence of the custom hook. There was a lot of hints this week, and I think that made me a little confused. I noticed that I don't "speak code" well enough to understand all the hints so there were discussions within the team, I googled a bit and used ChatGPT to explain.
+The existing code was mostly set up, so the primary task was understanding the custom hook. This week, there were numerous hints, and I found them a bit overwhelming. I recognized that the confusion stemmed from the way the hints were presented. Being new to coding, I'm not yet comfortable with the terminology, but with the assistance of Google and AI, I managed to comprehend it and start working. Initially, using the custom hook was a bit perplexing, likely because I've become accustomed to thinking in terms of components :D.
 
-This was the fist time I applied an animation from the Lottie library. Fun stuff! The only thing that's missing from that is I can't make the animation go slower. I think it's moving too fast, but I just can't figure out how to do that (without paying).
+My main challenge revolved around recalling how to create and manipulate elements in the DOM. Consequently, I had to refer to documentation from both W3Schools and MDN to refresh and enhance my understanding.
+
+This marked my initial experience incorporating an animation from the Lottie library. It was an enjoyable endeavor! I'm eager to explore and experiment further with this library.
 
 ### View it live
 
@@ -21,5 +23,5 @@ https://easy-qr-code-generator.netlify.app/
 ## Screenshot
 
 <a href="">
-   <img src="src/assets/qr-code.png" alt="Preview of the QR-code generator.">
+   <img src="src/assets/qr-code.png" alt="A preview of the QR-code generator.">
   </a>
