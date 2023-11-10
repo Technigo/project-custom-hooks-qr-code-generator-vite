@@ -9,6 +9,11 @@ a,
 a:visited {
   text-decoration: none;
   color: #f8f8f8;
+  transition: transform 0.3s; /* Adds a transition when hovering */
+}
+
+a:hover {
+  transform: scale(1.2); /* Change the scale to 1,2 when hovering */
 }
 
 li {

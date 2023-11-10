@@ -7,7 +7,7 @@ import { LottieQR } from "./components/LottieQR";
 import styled from "styled-components";
 
 const StyledApp = styled.div`
-  margin: 0 auto 200px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,16 +18,8 @@ const StyledApp = styled.div`
 
   h1 {
     color: #42121d;
-    margin: 40px 0;
-  }
-
-  input {
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin: 40px 10px 10px;
-    max-width: 300px;
+    font-size: 28px;
+    margin: 60px 0;
   }
 
   button {
@@ -38,12 +30,39 @@ const StyledApp = styled.div`
     border-radius: 4px;
     font-size: 16px;
     cursor: pointer;
-    margin: 10px;
+    // margin: 10px;
   }
 
   button:hover {
     background-color: #af7881;
   }
+
+  @media (min-width: 667px) {
+    h1 {
+      font-size: 45px;
+    }
+  }
+`;
+
+const InputContainer = styled.div`
+  /* display: flex;
+  flex-direction: column;
+  align-items: center; */
+
+  input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    //margin: 40px 10px 10px;
+    max-width: 300px;
+  }
+`;
+
+const QRContainer = styled.div`
+  /* display: flex;
+  flex-direction: column;
+  align-items: center; */
 
   img.generated-qr {
     /*display: block;
@@ -57,10 +76,24 @@ const StyledApp = styled.div`
     border-radius: 4px;
   }
 
-  img.logo {
+  /* img.logo {
     border: none;
     max-width: 200px;
     margin: 40px 0;
+  } */
+`;
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-top: 60px;
+
+  @media (min-width: 667px) {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
   }
 `;
 
@@ -89,30 +122,38 @@ export const App = () => {
       {/* Conditionally render based on wether the user is inputting an URL to generate a QR Code or the user wnats to downaload the generated QR Code from the url input */}
       {/* {yourReactiveVariableThatTogglesTheDownloadQrCcodeOrInputField ? () : ()} */}
       {showInput === true ? (
-        <div>
+        <InputContainer>
           <LottieQR />
-          <input
-            type="text"
-            required
-            placeholder="e.g. https://www.technigo.io"
-            value={url}
-            onChange={(e) => {
-              setUrl(e.target.value);
-              setErrorMessage(""); // Clear the error message when the input changes.
-            }}
-          />
-          <button onClick={generateQRCode}>Generate QR code</button>
-          {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
-        </div>
+          <ButtonWrapper>
+            <input
+              type="text"
+              required
+              placeholder="e.g. https://www.technigo.io"
+              value={url}
+              onChange={(e) => {
+                setUrl(e.target.value);
+                setErrorMessage(""); // Clear the error message when the input changes.
+              }}
+            />
+            <button onClick={generateQRCode}>Generate QR code</button>
+            {errorMessage && (
+              <p style={{ color: "#42121d", fontWeight: "600" }}>
+                {errorMessage}
+              </p>
+            )}
+          </ButtonWrapper>
+        </InputContainer>
       ) : (
-        <div>
+        <QRContainer>
           <img className="generated-qr" src={qr} />
           {/* <a href={qr} download="qrcode.png">
             Download
           </a> */}
-          <button onClick={downloadQRCode}>Download your QR code</button>
-          <button onClick={repeatAction}>Get a new QR code</button>
-        </div>
+          <ButtonWrapper>
+            <button onClick={downloadQRCode}>Download your QR code</button>
+            <button onClick={repeatAction}>Get a new QR code</button>
+          </ButtonWrapper>
+        </QRContainer>
       )}
       <Footer />
     </StyledApp>
