@@ -14,35 +14,54 @@ export const useQRCodeGenerator = () => {
   const [showInput, setShowInput] = useState(true);
 
   // Function to generate a QR code from the input URL
-  const generateQRCode = () => {
-    if (url) {
-      QRCode.toDataURL(url, { type: "image/png" }, (err, dataUrl) => {
-        if (err) {
-          console.error("Error generating QR code:", err);
-        } else {
-          setQR(dataUrl);
-          setShowInput(false);
-        }
-      });
-    }
-  };
+// Function to generate a QR code from the input URL with custom styling options
+const generateQRCode = () => {
+  if (url) {
+    const qrOptions = {
+      type: "image/png",
+      color: {
+        dark: "#000",
+        light: "#FFF",
+      },
+      width: 300,
+      margin: 2,
+    };
+
+    QRCode.toDataURL(url, qrOptions, (err, dataUrl) => {
+      if (err) {
+        console.error("Error generating QR code:", err);
+      } else {
+        setQR(dataUrl);
+        setShowInput(false);
+      }
+    });
+  }
+};
+
 
   // Function to download the generated QR code as a PNG file
   const downloadQRCode = () => {
     const getFileName = () => {
-      let fileName = prompt("Enter a filename for the QR code", "qrcode.png");
+      let fileName = prompt("Enter a filename for the QR code", "QR-code.png");
       if (!fileName) {
         fileName = "qrcode.png";
       }
       return fileName;
     };
 
+    // HINT 8
     const fileName = getFileName();
     const a = document.createElement("a");
     a.href = qr;
-    a.download = fileName;
+    a.download = `${fileName}.png`
+
+    //HINT 9
     document.body.appendChild(a);
+
+    // HINT 10
     a.click();
+
+    //HINT 11
     document.body.removeChild(a);
   };
 
@@ -55,6 +74,7 @@ export const useQRCodeGenerator = () => {
 
   return {
     url,
+    setUrl,
     qr,
     showInput,
     generateQRCode,
