@@ -6,6 +6,7 @@ export const App = () => {
     url,
     qrcode,
     showInput,
+    formattedFileName,
     setUrl,
     generateQRCode,
     downloadQRCode,
@@ -16,9 +17,10 @@ export const App = () => {
     <div className="app">
       <img className="logo" src={logo} alt="" />
       <h1>Technigo QR Code Generator</h1>
-      <p>Start Here</p>
+
       {showInput ? (
         <>
+          <p>Start Here</p>
           <input
             type="text"
             placeholder="e.g. https://google.com"
@@ -27,7 +29,7 @@ export const App = () => {
           />
           {/* Call generateQRCode to generate the QR code */}
           <button onClick={generateQRCode} className="btn">
-            Generate
+            Generate ▶️
           </button>
         </>
       ) : (
@@ -35,14 +37,18 @@ export const App = () => {
           {qrcode && (
             <>
               <img src={qrcode} />
-              <a href={qrcode} download="qrcode.png" onClick={downloadQRCode}>
-                Download
+              <a
+                href={qrcode}
+                download={formattedFileName}
+                onClick={downloadQRCode}
+              >
+                <button className="downloadBtn">Download📥</button>
               </a>
             </>
           )}
           {/* Call repeatAction to reset the UI */}
           <button onClick={repeatAction} className="repeatBtn">
-            Repeat
+            Repeat 🔁
           </button>
         </>
       )}
