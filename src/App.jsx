@@ -1,24 +1,66 @@
-// App Component Explanation
-// The App component serves as a user interface for generating and downloading QR codes, utilizing the custom hook useQRCodeGenerator which encapsulates the logic for QR code generation and management. When rendered, the component displays a title ("Technigo QR Code Generator") and conditionally renders either an input field and a "Generate" button or a generated QR code image, a "Download" button, and a "Repeat" button, based on the showInput state variable. If showInput is true, users can input a URL and generate a QR code by clicking the "Generate" button. Once generated, the input field and "Generate" button are replaced by the QR code image and additional buttons. The "Download" button triggers a download of the QR code image, and the "Repeat" button resets the UI to allow for generating a new QR code. The url, setUrl, qr, showInput, generateQRCode, downloadQRCode, and repeatAction variables and functions are derived from the useQRCodeGenerator hook, providing the necessary state and actions to manage the QR code generation process.
-import logo from "./assets/technigo-logo.svg";
-// Import the custom hook useQRCodeGenerator
-import { QrExample } from "./components/QrExample";
+// App.jsx
 
-// Define the App component
+import { useQRCodeGenerator } from "./hooks/useQRCodeGenerator";
+
+// App Component
 export const App = () => {
-  // Destructure variables, properties and methods from the useQRCodeGenerator hook that you imported above here :)
+  // Destructure variables, properties, and methods from the useQRCodeGenerator hook
+  const {
+    url,
+    setUrl,
+    qr,
+    showInput,
+    errorMessage,
+    generateQRCode,
+    downloadQRCode,
+    repeatAction,
+  } = useQRCodeGenerator();
 
-  // Return the JSX to render the component
+  // Return JSX to render the component
   return (
     <div className="">
-      {/* Render the title */}
-      <img className="logo" src={logo} alt="" />
-      <h1>Technigo QR Code Generator</h1>
-      <p>Start Here</p>
-      <QrExample />
+      {/* Render Title */}
+      <h1>Mirelba QR Codes</h1>
+      <p>Get Your Code Here</p>
 
-      {/* Conditionally render based on wether the user is inputting an URL to generate a QR Code or the user wnats to downaload the generated QR Code from the url input */}
-      {/* {yourReactiveVariableThatTogglesTheDownloadQrCcodeOrInputField ? () : ()} */}
+      {/* Conditionally render based on whether the user is inputting a URL to generate a QR Code or wants to download the generated QR Code */}
+      {showInput ? (
+        // Render input field and generate button
+        <>
+          {/* Input field for URL entry */}
+          <input
+            type="text"
+            placeholder="https://"
+            value={url}
+            onChange={(e) => {
+              // Update URL state on input change
+              setUrl(e.target.value);
+              // Clear error message when the user starts typing
+              errorMessage && setErrorMessage('');
+            }}
+          />
+          {/* Display the error message, if any */}
+          {errorMessage && <p style={{ color: 'red', marginTop: '5px' }}>{errorMessage}</p>}
+          {/* Generate button */}
+          <button onClick={generateQRCode} aria-label="Generate QR Code">
+            Generate
+          </button>
+        </>
+      ) : (
+        // Render QR code, download button, and repeat button
+        <>
+          {/* Display generated QR code image */}
+          <img src={qr} alt="QR Code" />
+          {/* Download button for the generated QR code */}
+          <button onClick={downloadQRCode} aria-label="Download QR Code">
+            Download
+          </button>
+          {/* Button to reset and allow generating a new QR code */}
+          <button onClick={repeatAction} aria-label="Repeat Action">
+            Repeat
+          </button>
+        </>
+      )}
     </div>
   );
 };
