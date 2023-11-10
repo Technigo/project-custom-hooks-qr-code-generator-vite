@@ -35,7 +35,7 @@ export const App = () => {
               <img src={qr} />
               <div className="button-container">
                 <button onClick={downloadQRCode}>Download</button>
-                <button onClick={repeatAction}>Repeat</button>
+                <button onClick={repeatAction}>New code</button>
               </div>
             </>
           )}
