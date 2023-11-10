@@ -13,11 +13,11 @@ export const AudioButton = () => {
       <audio />
       <button
         onClick={() => setPlay((prev) => !prev)}
-        className="font-bold absolute top-2 right-2 sm:top-10 sm:right-10 hover:translate-y-1 transition-all rounded-full border border-white p-4 fill-white "
+        className="font-bold absolute top-2 right-2 sm:top-4 sm:right-4 md:top-10 md:right-10 hover:translate-y-1 transition-all rounded-full border border-white p-4 fill-white "
       >
         <svg
           viewBox="0 0 24 24"
-          className="w-5 h-5 sm:w-9 sm:h-9"
+          className="w-5 h-5 sm:w-6 sm:h-6 md:w-9 md:h-9"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
