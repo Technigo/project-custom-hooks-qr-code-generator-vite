@@ -39,7 +39,7 @@ export const useQRCodeGenerator = () => {
           // width: qrCodeWidth,  // Width of the QR code
           margin: 2,   // Margin around the QR code. Increasing this shrinks the QR code and increases the size of the background of the image in order to fit within the width. Keep this small.
           color: {
-            dark: "#335383FF",   // The darker colorr in the QR code image
+            dark: "#0C090D",   // The darker colorr in the QR code image
             light: "#EEEEEEFF",  // Color of the background in the QR code
           },
         },

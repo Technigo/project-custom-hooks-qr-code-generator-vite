@@ -37,58 +37,62 @@ export const App = () => {
 
   return (
 
-    <div className="grid sm:grid-cols-4 md:grid-cols-8 lg:grid-cols-12 gap-5">
-  {isInputVisible ?
-    <img
-      src={QRCodeImg}
-      alt="Artistic QR code in red and black on a white background"
-      className="col-start-5 sm:col-start-2 md:col-start-3 col-span-2"
-      style={{ width: '100%' }}
-    /> :
-    <img src={qr} alt={`QR code for ${url}`} className="col-start-5 sm:col-start-2 md:col-start-3 col-span-2"
-      style={{ width: '100%' }} />
-  }
+    <section>
+      <div className="hero-section">
+        {/* Conditionally render the heading based on screen size */}
+        {window.innerWidth > 767 ? (
+          <div>
+            <StyledHeading>QR</StyledHeading>
+            <StyledHeading>Code</StyledHeading>
+            <StyledHeading>Generator</StyledHeading>
+          </div>
+        ) : (
+          <div className="mobile-h1-wrapper">
+            <StyledHeading>QR Code Generator</StyledHeading>
+          </div>
+        )}
 
-  {/* Conditionally render the heading based on screen size */}
-  {window.innerWidth > 767 ? (
-    <div className="col-start-7 md:col-start-5 col-span-2 flex-col">
-      <StyledHeading>QR</StyledHeading>
-      <StyledHeading>Code</StyledHeading>
-      <StyledHeading>Generator</StyledHeading>
-    </div>
-  ) : (
-    <div className="flex flex-row col-start-1 col-span-4">
-      <StyledHeading>QR Code Generator</StyledHeading>
-    </div>
-  )}
-
-  <div className="sm:col-start-2 sm:col-span-2 md:col-start-3 md:col-span-4">
-    {isInputVisible ? (
-      <div>
-        <p className="sm:col-start-2 sm:col-span-2 md:col-start-3 md:col-span-2">Enter your URL:</p>
-        <input
-          type="text"
-          placeholder="e.g. https://google.com"
-          value={url}
-          onChange={(e) => setUrl(e.target.value)}
-          ref={inputRef}
-          onKeyPress={handleKeyPress} // Handle "Enter" key press
-        />
-
-        <div>
-          <StyledButton onClick={generateQRCode}>Generate</StyledButton>
-          <p>or press 'Enter'</p>
+        <div className="image-wrapper">
+          {isInputVisible ?
+            <img
+              src={QRCodeImg}
+              alt="Artistic QR code in red and black on a white background"
+            /> :
+            <img src={qr} alt={`QR code for ${url}`} />
+          }
         </div>
       </div>
-    ) : (
+
       <div>
-        <div>
-          <StyledButton onClick={downloadQRCode}>Download</StyledButton>
-          <StyledButton onClick={repeatAction}>Repeat</StyledButton>
-        </div>
+        {isInputVisible ? (
+          <div className="qr-content-wrapper">
+            <div className="url-input-wrapper">
+              <label for="url-input">Enter your URL: </label>
+              <input
+                id="url-input"
+                name="url-input"
+                type="text"
+                placeholder="e.g. https://google.com"
+                value={url}
+                onChange={(e) => setUrl(e.target.value)}
+                ref={inputRef}
+                onKeyPress={handleKeyPress} // Handle "Enter" key press
+              />
+            </div>
+            <div className="generate-qr-wrapper">
+              <StyledButton onClick={generateQRCode}>Generate</StyledButton>
+              <p>or press 'Enter'</p>
+            </div>
+          </div>
+        ) : (
+          <div className="qr-content-wrapper">
+            <div className="qr-button-wrapper">
+              <StyledButton onClick={downloadQRCode}>Download</StyledButton>
+              <StyledButton onClick={repeatAction}>Repeat</StyledButton>
+            </div>
+          </div>
+        )}
       </div>
-    )}
-  </div>
-</div>
+    </section>
   );
 };

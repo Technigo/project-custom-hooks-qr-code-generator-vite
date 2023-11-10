@@ -1,46 +1,36 @@
 // styles.js
 import styled from 'styled-components';
 
-// Style - static QR image
-// export const QRArtisticImage = styled.img`
-//   width: 200px;
-//   height: 200px;
-
-//   @media (min-width: 768px) {
-//     width: 300px;
-//     height: 300px;
-//   }
-
-//   @media (min-width: 1024px) {
-//     width: 300px;
-//     height: 300px;
-//   }
-// `;
-
 // Style - buttons
 export const StyledButton = styled.button`
   padding: 8px 16px;
-  background-color: #4a90e2; // Change this to your desired color
-  color: #fff;
+  background-color: #150404;
+  color: #E1DFF2;
   border: none;
-  border-radius: 40px;
+  border-radius: 0.25em;
   cursor: pointer;
   font-size: 16px;
   display: flex;
-  align-items: center;
-  gap: 7px;
+  justify-content: center;
+  gap: 8px;
+  font-family: 'Roboto', sans-serif;
+  width: 50%;
 
   &:hover {
-    background-color: #3c7bd9; // Change this to your desired hover color
+    background-color: #6b1414;
   }
 `;
 
 export const StyledHeading = styled.h1`
-  font-size: 32px;
-  font-weight: bold;
+    font-family: 'Gugi', sans-serif;
+    margin-top: 30%;  
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+    color: #0C090D;
 
   @media (min-width: 767px) {
     font-size: 32px;
-    text-align:left;
+    text-align:right;
   }
 `;

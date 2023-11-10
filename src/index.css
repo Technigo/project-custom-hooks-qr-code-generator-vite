@@ -1,25 +1,142 @@
 :root {
-    color-scheme: no-preference;
-    font-synthesis: none;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-text-size-adjust: 100%;
-    
+  font-family: 'Roboto', sans-serif;
+  line-height: normal;
+  color: #0C090D;
+  color-scheme: no-preference;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  background-color: #E1DFF2;
+  height: 100vh;
+}
+
+a {
+  text-decoration: none;
+}
+
+
+button {
+  cursor: pointer;
+}
+
+/* mobile layout */
+
+section {
+  margin: 0 16px;
+}
+
+.hero-section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.image-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.image-wrapper img {
+  width: 50%;
+  box-shadow: 0 0 2px #0C090D;
+}
+
+.url-input-wrapper {
+  display: flex;
+  width: 50%;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.url-input-wrapper input:focus {
+  outline: none;
+  box-shadow: 0 0 2px #BF303C, 0 0 0.5em #D93D3D, 0 0 0.5em #E1DFF2;
+}
+
+.url-input-wrapper label {
+  align-self: start;
+}
+
+.url-input-wrapper input {
+  width: 100%;
+  border: none;
+  border-radius: 0.25em;
+  box-shadow: 0 0 2px #0C090D;
+  padding: 0.25em 0 0.25em 1em;
+  font-size: 1em;
+  line-height: normal;
+}
+
+
+.qr-content-wrapper {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+.generate-qr-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.generate-qr-wrapper p {
+  display: none;
+}
+
+@media (min-width: 667px) and (max-width: 1024px) {
+  section {
+    width: 70%;
+    margin: 0 auto;
   }
   
-  *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-  
-  a {
-    text-decoration: none;
+  .hero-section {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    padding-top: 30%; 
   }
-  
-  button{
-    cursor: pointer;
+  .image-wrapper {
+    display: flex;
+    justify-content: center;
   }
+
+  .imageWrapper img {
+    width: 50%;
+    height: 50%;
+    object-fit: contain;
+
+  }
+
+  .generate-qr-wrapper p {
+    display: block;
+  }
+}
+
+.qr-button-wrapper{
+  display:flex;
+  gap: 16px;
+}
+
+@media (min-width: 1025px) {
+  .generate-qr-wrapper p {
+    display: block;
+  }
+}
