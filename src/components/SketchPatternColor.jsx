@@ -8,9 +8,9 @@ class SketchPatternColor extends React.Component {
   state = {
     displayColorPicker: false,
     color: {
-      r: '0',
-      g: '104',
-      b: '132',
+      r: '233',
+      g: '30',
+      b: '99',
       a: '1',
     },
   };
@@ -33,15 +33,15 @@ class SketchPatternColor extends React.Component {
     const styles = reactCSS({
       'default': {
         color: {
-          width: '150px',
-          height: '30px',
-          borderRadius: '2px',
+          width: '50px',
+          height: '50px',
+          borderRadius: '100%',
           background: `rgba(${ this.state.color.r }, ${ this.state.color.g }, ${ this.state.color.b }, ${ this.state.color.a })`,
         },
         swatch: {
           padding: '5px',
           background: '#fff',
-          borderRadius: '1px',
+          borderRadius: '100%',
           boxShadow: '0 0 0 1px rgba(0,0,0,.1)',
           display: 'inline-block',
           cursor: 'pointer',

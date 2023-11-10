@@ -8,9 +8,9 @@ class SketchBackgroundColor extends React.Component {
   state = {
     displayColorPicker: false,
     color: {
-      r: '137',
-      g: '219',
-      b: '236',
+      r: '255',
+      g: '205',
+      b: '210',
       a: '1',
     },
   };
@@ -33,15 +33,15 @@ class SketchBackgroundColor extends React.Component {
     const styles = reactCSS({
       'default': {
         color: {
-          width: '150px',
-          height: '30px',
-          borderRadius: '2px',
+          width: '50px',
+          height: '50px',
+          borderRadius: '100%',
           background: `rgba(${ this.state.color.r }, ${ this.state.color.g }, ${ this.state.color.b }, ${ this.state.color.a })`,
         },
         swatch: {
           padding: '5px',
           background: '#fff',
-          borderRadius: '1px',
+          borderRadius: '100%',
           boxShadow: '0 0 0 1px rgba(0,0,0,.1)',
           display: 'inline-block',
           cursor: 'pointer',
@@ -49,6 +49,7 @@ class SketchBackgroundColor extends React.Component {
         popover: {
           position: 'absolute',
           zIndex: '2',
+          top: "0"
         },
         cover: {
           position: 'fixed',
@@ -62,9 +63,10 @@ class SketchBackgroundColor extends React.Component {
 
     return (
       <div>
+        {/* <button style={ styles.color}  onClick={ this.handleClick }>Pick colour</button> */}
         <div style={ styles.swatch } onClick={ this.handleClick }>
           <div style={ styles.color } />
-        </div>
+        </div> 
         { this.state.displayColorPicker ? <div style={ styles.popover }>
           <div style={ styles.cover } onClick={ this.handleClose }/>
           <SwatchesPicker height={"250px"} width={"170px"} color={ this.state.color } onChange={ this.handleBackgroundColorChange } />

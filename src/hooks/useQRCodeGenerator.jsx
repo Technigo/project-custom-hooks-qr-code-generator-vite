@@ -49,7 +49,7 @@ export const useQRCodeGenerator = (patternColor, setPatternColor, backgroundColo
       );
     } else {
       // Set an error message if the input URL is invalid
-      setErrorMessage("Oops, enter a valid web address! Hint..");
+      setErrorMessage("Oops, enter a valid web address!");
     }
   };
 

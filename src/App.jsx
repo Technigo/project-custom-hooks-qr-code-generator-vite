@@ -1,7 +1,6 @@
 import { useQRCodeGenerator } from "./hooks/useQRCodeGenerator";
 import { useState } from "react";
 
-import Sketch from "./components/SketchPatternColor";
 import SketchBackgroundColor from "./components/SketchBackgroundColor";
 import SketchPatternColor from "./components/SketchPatternColor";
  
@@ -10,10 +9,11 @@ import {BsQrCode} from 'react-icons/bs'
 
 export const App = () => {
 
-  const [patternColor, setPatternColor] = useState("#064353")
-  const [backgroundColor, setBackgroundColor] = useState("#e3f0fc")
+  const [patternColor, setPatternColor] = useState("#e91e63")
+  const [backgroundColor, setBackgroundColor] = useState("#ffcdd2")
 
   console.log(patternColor)
+  console.log(backgroundColor)
   
   // Destructuring the variables, properties and methods from the useQRCodeGenerator hook
   const {
@@ -56,31 +56,37 @@ export const App = () => {
       
       {inputVisible ? (
         <>
-        <div className="wrapper">
+        
         <div className="color-picker-wrapper">
-        <p>Background colour: </p>
+        <label>Background <br></br>colour
         <SketchBackgroundColor onColorChange={handleBackgroundColorChange} />
-        <p>Pattern colour: </p>
+        </label>
+        <label>Pattern <br></br>colour 
         <SketchPatternColor onColorChange={handlePatternColorChange}/>
+        </label>
         </div>
         <BsQrCode style={{color: `${patternColor}`, backgroundColor: `${backgroundColor}`}} className="qr-code"/>
-        </div>
+  
+        <form>
           <input
             type="text"
-            placeholder="e.g. https://google.com"
+            placeholder="Enter your URL link"
             value={url}
             onChange={(e) => setUrl(e.target.value)}
             onKeyDown={handleKeyDown}
           />
-          <button onClick={generateQRCode}>Generate</button>
+          <button onClick={ (e) => { e.preventDefault(); generateQRCode()}}>Generate QR code</button>
+          </form>
           {errorMessage && <p className="error-message">{errorMessage}</p>}
         </>
       ) : (
         qr && (
           <>
             <img src={qr} />
+            <div className="button-wrapper">
             <button onClick={repeatAction}>Repeat</button>
             <button onClick={downloadQRCode}>Download</button>
+            </div>
           </>
         )
       )}
