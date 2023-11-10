@@ -11,13 +11,10 @@ export const useQRCodeGenerator = () => {
   // Reactive State variable to store the generated QR code data URL
   const [qr, setQr] = useState("");
 
+  // Reactive State variable to store the error message
   const [errorMessage, setErrorMessage] = useState("");
 
   // Reactive State variable to toggle the visibility of the input element - boolean value
-  // const [visibleInputField, setVisibleInputField] = useState("visible");
-  // const toggleInputField = () => {
-  //   setInputField((prevInputField) => (prevInputField === "visible" ? "notVisible" : "visible"));
-  // };
   const [showInput, setShowInput] = useState(true);
 
   // Function to generate a QR code from the input URL
@@ -30,32 +27,27 @@ export const useQRCodeGenerator = () => {
       // HINT 1: Utilize the qrccode library that converts a URL to a QR code data URL.
       // Use the Import of the qrcode and chain to the native method toDataUrl() much like the example provided and specify the data within the object that you will be passing such as the {url, {width, margin, color:{dark, light}}} which containes the information to generate the qr-code and url. Lastly, this native method toDataUrl() will contain a callback function  that will update the qr variable and will also update the variable toggling the visibility of the input element.
       QRCode.toDataURL(
+        //HINT 2: Ensure to pass the necessary parameters to the QR code generation method, such as the URL to convert and any styling options.
         url,
         {
-          width: 800,
+          width: 250,
           margin: 2,
           color: {
             dark: "#7b3848FF",
             light: "#FFFFFFFF",
           },
         },
+        // HINT 3: Handle the callback of the QR code generation method, which provides the generated QR code data URL.
+        // HINT 4: Implement error handling to manage any issues that might occur during QR code generation.
         (err, url) => {
           if (err) return console.error(err);
 
+          // HINT 5: Update the relevant state variables with the generated QR code data URL and adjust the UI accordingly.
+          // HINT 6: Consider the user experience and how the UI should change once the QR code has been generated.
           console.log(url);
           setQr(url);
           setShowInput(false);
         }
-        // HINT 2: Ensure to pass the necessary parameters to the QR code generation method, such as the URL to convert and any styling options.
-        // ...
-        // HINT 3: Handle the callback of the QR code generation method, which provides the generated QR code data URL.
-        // ...
-        // HINT 4: Implement error handling to manage any issues that might occur during QR code generation.
-        // ...
-        // HINT 5: Update the relevant state variables with the generated QR code data URL and adjust the UI accordingly.
-        // ...
-        // HINT 6: Consider the user experience and how the UI should change once the QR code has been generated.
-        // ...
       );
     }
   };
@@ -70,15 +62,15 @@ export const useQRCodeGenerator = () => {
       // Create a data URL for the QR code
       const dataURL = qr;
 
-      // Create an anchor element
+      // HINT 7: Create an anchor element to facilitate the download.
       const downloadLink = document.createElement("a");
       downloadLink.href = dataURL;
       downloadLink.download = `${fileName}.png`;
 
-      // Programmatically trigger a click on the anchor element to initiate the download
+      // HINT 10: Programmatically trigger a click on the anchor element to initiate the download.
       downloadLink.click();
 
-      // Remove the anchor element from the document after the download has been initiated
+      // HINT 11: Remove the anchor element from the document after the download has been initiated.
       document.body.removeChild(downloadLink);
     }
   };
@@ -89,6 +81,7 @@ export const useQRCodeGenerator = () => {
     let fileName;
     do {
       fileName = prompt("Please enter a name for the downloaded file");
+      // HINT 3: Implement a check for an empty filename and utilize recursion to re-prompt the user if necessary.
       if (fileName === null) {
         // User clicked cancel or closed the prompt
         return null;
@@ -97,31 +90,17 @@ export const useQRCodeGenerator = () => {
 
     return fileName;
 
-    // HINT 3: Implement a check for an empty filename and utilize recursion to re-prompt the user if necessary.
-    // ...
     // HINT 4: Ensure the function returns the obtained filename.
-    // ...
 
     // HINT 5: Call the above function to retrieve a filename and store it in a variable.
-    // ...
 
     // HINT 6: Format the filename to ensure it is filesystem-friendly.
-    // ...
-
-    // HINT 7: Create an anchor element to facilitate the download.
-    // ...
 
     // HINT 8: Set the necessary attributes on the anchor element to prepare it for download.
-    // ...
 
     // HINT 9: Append the anchor element to the document to make it interactable.
-    // ...
-
-    // HINT 10: Programmatically trigger a click on the anchor element to initiate the download.
-    // ...
 
     // HINT 11: Remove the anchor element from the document after the download has been initiated.
-    // ...
   };
 
   // Function to reset the state and allow generating a new QR code

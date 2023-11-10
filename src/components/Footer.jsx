@@ -1,14 +1,12 @@
-// Import SVG file for logo and the CSS file for this component to apply styles.
 import logo from "/technigo-logo.svg";
 import QRPortfolio from "/PortfolioQR.png";
 import styled from "styled-components";
 
-/* CSS styles for the footer */
+/* Styling for the footer */
 const StyledFooter = styled.div`
   display: flex;
   flex-direction: column;
   padding: 30px 0 20px;
-  //background: #42121d;
   width: 100%;
   text-align: center;
   position: fixed;
@@ -21,15 +19,8 @@ const StyledFooter = styled.div`
     #7b3848,
     #42121d
   );
-  /* Clip the background to the text */
-  /* background-clip: text;
-  /* Clip the background to the text (webkit version) */
-  /* -webkit-background-clip: text; */
-  /* Set the text color to transparent, making it appear as a gradient */
-  /* -webkit-text-fill-color: transparent; */
 
   a {
-    //padding: 10px;
     font-size: 20px;
   }
 `;
@@ -39,8 +30,8 @@ const FooterText = styled.div`
   flex-direction: column;
   align-items: center;
   color: #f8f8f8;
-  font-size: 20px;
-  /* Apply a gradient background to the text using webkit-linear-gradient */
+  font-size: 18px;
+  /* Apply a gradient background to the footer using webkit-linear-gradient */
   /* background: -webkit-linear-gradient(
     45deg,
     #42121d,
@@ -48,13 +39,7 @@ const FooterText = styled.div`
     #965862,
     #7b3848,
     #42121d
-  ); */
-  /* Clip the background to the text */
-  /* background-clip: text; */
-  /* Clip the background to the text (webkit version) */
-  /* -webkit-background-clip: text; */
-  /* Set the text color to transparent, making it appear as a gradient */
-  /* -webkit-text-fill-color: transparent; */
+  );*/
 `;
 
 const Copyright = styled.div`
@@ -63,7 +48,6 @@ const Copyright = styled.div`
 
   p {
     display: flex;
-    max-width: 500px;
     align-items: center;
   }
 

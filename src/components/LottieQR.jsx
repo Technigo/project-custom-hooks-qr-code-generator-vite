@@ -3,12 +3,8 @@ import QRanimation from "/src/assets/animations/QRanimation-slow.json";
 
 export const LottieQR = () => {
   const style = {
-    width: 250,
+    width: 200,
   };
 
-  const options = {
-    speed: 0.3,
-  };
-
-  return <Lottie animationData={QRanimation} style={style} options={options} />;
+  return <Lottie animationData={QRanimation} style={style} />;
 };
