@@ -28,9 +28,11 @@ export const App = () => {
       {/* {yourReactiveVariableThatTogglesTheDownloadQrCcodeOrInputField ? () : ()} */}
       {showInput ? (
         // Render input field and "Generate" button
+
         <div>
           <input
             type="text"
+            placeholder="e.g. https://google.com"
             value={url}
             onChange={(e) => setUrl(e.target.value)}
           />
