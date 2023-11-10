@@ -1,6 +1,6 @@
 import * as THREE from "three";
-import React, { useRef, useState } from "react";
-import { Canvas, useFrame, ThreeElements, useLoader } from "@react-three/fiber";
+import { useRef, useState } from "react";
+import { useFrame, ThreeElements, useLoader } from "@react-three/fiber";
 import { TextureLoader } from "three/src/loaders/TextureLoader";
 
 function Circle(props: ThreeElements["mesh"]) {

@@ -1,7 +1,6 @@
 import * as THREE from "three";
-import React, { useRef, useState } from "react";
-import { Canvas, useFrame, ThreeElements, useLoader } from "@react-three/fiber";
-import { TextureLoader } from "three/src/loaders/TextureLoader";
+import { useRef, useState } from "react";
+import { useFrame, ThreeElements } from "@react-three/fiber";
 import { themeData } from "../../statics/theme";
 import { useTheme } from "../../context/ThemeContext";
 

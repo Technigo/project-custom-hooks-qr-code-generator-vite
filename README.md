@@ -1,12 +1,12 @@
 <h1 align="center">
   <a href="">
-    <img src="/src/assets/custom-hooks.svg" alt="Project Banner Image">
+    <img src="/src/assets/saQR.png" alt="Project Banner Image">
   </a>
 </h1>
 
 # QR Code Generator - Custom Hook Project
 
-Here you can generate a QRcode from the URL. 
+Here you can generate a QRcode from the URL.
 
 ## Getting Started with the Project
 
@@ -22,11 +22,11 @@ npm i && code . && npm run dev
 
 ### The Problem
 
-In this project, I tried to tackle TypeScript and Tailwind as a practice. Also, I am adding some animations to make it fun!! 
+In this project, I tried to tackle TypeScript and Tailwind as a practice. As I wanted to try new technologies, I also tried to work with Three.js. As I am an absolute beginner, I was not able to create auch a interesting objects with Three.js, but it was great fun to explore how all the numbers are connected to each other. The biggest issue was declaring types with ts. As I am also beginner with TS, I learned a lot how to declare types and how to work with it. I need of course more and more practice with both new technologies, TS and Three.js!!
 
 ### View it live
 
-Every project should be deployed somewhere. Be sure to include the link to the deployed project so that the viewer can click around and see what it's all about.
+https://saqrcode-generator.netlify.app/
 
 ## Instructions
 
