@@ -59,8 +59,8 @@ export const useQRCodeGenerator = () => {
     };
 
     // HINT 5: Call the above function to retrieve a filename and store it in a variable.
-    // HINT 6: Format the filename to ensure it is filesystem-friendly.
-    const formattedFileName = getFileName().toLowerCase();
+    // HINT 6: Format the filename to ensure it is filesystem-friendly - replace spaces with hyphens
+    const formattedFileName = getFileName().split(" ").join("-");
 
   
     // HINT 7: Create an anchor element to facilitate the download.
