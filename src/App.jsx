@@ -1,24 +1,99 @@
-// App Component Explanation
-// The App component serves as a user interface for generating and downloading QR codes, utilizing the custom hook useQRCodeGenerator which encapsulates the logic for QR code generation and management. When rendered, the component displays a title ("Technigo QR Code Generator") and conditionally renders either an input field and a "Generate" button or a generated QR code image, a "Download" button, and a "Repeat" button, based on the showInput state variable. If showInput is true, users can input a URL and generate a QR code by clicking the "Generate" button. Once generated, the input field and "Generate" button are replaced by the QR code image and additional buttons. The "Download" button triggers a download of the QR code image, and the "Repeat" button resets the UI to allow for generating a new QR code. The url, setUrl, qr, showInput, generateQRCode, downloadQRCode, and repeatAction variables and functions are derived from the useQRCodeGenerator hook, providing the necessary state and actions to manage the QR code generation process.
-import logo from "./assets/technigo-logo.svg";
-// Import the custom hook useQRCodeGenerator
-import { QrExample } from "./components/QrExample";
+import QRCode from "qrcode";
+import { useQRCodeGenerator } from "./hooks/useQRCodeGenerator";
+import { useState, useEffect } from "react";
 
-// Define the App component
 export const App = () => {
-  // Destructure variables, properties and methods from the useQRCodeGenerator hook that you imported above here :)
+  // Initialize state variables and functions from useQRCodeGenerator
+  const {
+    url,
+    qr,
+    generateQRCode,
+    setUrl,
+    repeatAction,
+    qrSize,
+    setQrSize,
+    qrColor,
+    setQrColor,
+    qrBackgroundColor,
+    setQrBackgroundColor,
+  } = useQRCodeGenerator()
 
-  // Return the JSX to render the component
+const [qrImageFadeIn, setQRImageFadeIn] = useState(false)
+
+useEffect(() => {
+  setQRImageFadeIn(true)
+}, [qr])
+  
   return (
-    <div className="">
-      {/* Render the title */}
-      <img className="logo" src={logo} alt="" />
-      <h1>Technigo QR Code Generator</h1>
-      <p>Start Here</p>
-      <QrExample />
-
-      {/* Conditionally render based on wether the user is inputting an URL to generate a QR Code or the user wnats to downaload the generated QR Code from the url input */}
-      {/* {yourReactiveVariableThatTogglesTheDownloadQrCcodeOrInputField ? () : ()} */}
-    </div>
+    <div className="container mx-auto p-4 bg-gray-100 min-h-screen">
+      <h1 className="text-3xl font-bold text-center mb-4 text-blue-800">QR Generator</h1>
+      <div className="flex flex-col items-center">
+      <input 
+        className="form-input mt-1 w-full px-3 py-2 text-center border"
+        type="text"
+        placeholder="e.g. https://google.com"
+        value={url}
+        onChange={(e) => setUrl(e.target.value)}
+      />
+      <button 
+        className="mt-4 px-4 py-2 bg-blue-500 text-white font-bold rounded hover:bg-blue-700"
+        onClick={generateQRCode}
+      >
+        Generate
+      </button>
+      <label htmlFor="sizeInput" className="block mt-2 font-bold">
+        QR Code Size:
+      </label>
+      <input 
+        id="sizeInput"
+        type="number"
+        className="form-input mt-1 block w-full px-3 py-2 text-center border"
+        value={qrSize}
+        onChange={(e) => setQrSize(e.target.value)} 
+      />
+      <label htmlFor="colorInput" className="block mt-2 font-bold">
+        QR Code Color:
+      </label>
+      <input 
+        id="colorInput"
+        type="color" 
+        className="form-input mt-1 block w-full px-3 py-2 text-center border"
+        value={qrColor}
+        onChange={(e) => setQrColor(e.target.value)}
+      />
+      <label htmlFor="bgColorInput" className="block mt-2 font-bold">
+        Background Color:
+      </label>
+      <input 
+        id="bgColorInput"
+        type="color"
+        className="form-input mt-1 block w-full px-3 py-2 text-center border"
+        value={qrBackgroundColor}
+        onChange={(e) => setQrBackgroundColor(e.target.value)} 
+      />
+      {/* if a qr code is generated */}
+      {qr && (
+        <div className="flex flex-col items-center mt-4">
+          <img 
+            className={`max-w-xs border p-2 transition-opacity ${qrImageFadeIn ? "opacity-100 duration-500" : "opacity-0"} ease-in-out`}
+            src={qr} 
+          />
+          <a 
+            href={qr} 
+            download="qrcode.png" 
+            className="mt-2 inline-block px-4 py-2 bg-green-500 text-white font-bold rounded hover:bg-green-700"
+          >
+            Download
+          </a>
+          <button 
+            onClick={repeatAction}
+            className="mt-4 px-4 py-2 bg-red-500 text-white font-bold rounded hover:bg-red-700"
+          >
+            Repeat
+          </button>
+        </div>
+      )}
+      </div>
+    </div>    
   );
 };
