@@ -11,9 +11,6 @@ export const App = () => {
 
   const [patternColor, setPatternColor] = useState("#e91e63")
   const [backgroundColor, setBackgroundColor] = useState("#ffcdd2")
-
-  console.log(patternColor)
-  console.log(backgroundColor)
   
   // Destructuring the variables, properties and methods from the useQRCodeGenerator hook
   const {

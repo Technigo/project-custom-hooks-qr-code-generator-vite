@@ -40,7 +40,7 @@ class SketchBackgroundColor extends React.Component {
         },
         swatch: {
           padding: '5px',
-          background: "white", 
+          background: '#fff',
           borderRadius: '100%',
           boxShadow: '0 0 0 1px rgba(0,0,0,.1)',
           display: 'inline-block',
@@ -62,7 +62,6 @@ class SketchBackgroundColor extends React.Component {
 
     return (
       <div>
-        {/* <button style={ styles.color}  onClick={ this.handleClick }>Pick colour</button> */}
         <div style={ styles.swatch } onClick={ this.handleClick }>
           <div style={ styles.color } />
         </div> 
