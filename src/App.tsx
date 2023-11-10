@@ -29,7 +29,7 @@ export const App = () => {
           ) : (
             <>
               <ScrollAnimated>
-                <div className="flex flex-col items-center gap-4 min-h-screen h-fit pt-40 relative overflow-hidden">
+                <div className="flex flex-col items-center gap-3 min-h-screen h-fit pt-40 sm:pt-20 relative overflow-hidden">
                   <AudioButton />
                   <ThemeButton />
                   <ThreeFrame
@@ -39,6 +39,14 @@ export const App = () => {
                   <ThreeFrame
                     shape="box"
                     style=" bottom-[20px] right-[-120px]  sm:bottom-[50%] sm:right-[-10%] md:bottom-[50%]  md:right-[4%]"
+                  />
+                  <ThreeFrame
+                    shape="corn"
+                    style=" hidden sm:block sm:bottom-[20%] sm:right-[-4%] md:bottom-[40%]  md:right-[8%]"
+                  />
+                  <ThreeFrame
+                    shape="corn"
+                    style=" hidden sm:block sm:bottom-[50%] sm:left-[-8%]   md:bottom-[50%]  md:left-[8%]"
                   />
 
                   <h1
