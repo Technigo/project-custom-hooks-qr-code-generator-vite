@@ -27,7 +27,8 @@ The project looks easy but there are still some new concepts which I took some t
 
 ### View it live
 
-Every project should be deployed somewhere. Be sure to include the link to the deployed project so that the viewer can click around and see what it's all about.
+Here is the deploy version of the website:
+https://enchanting-lebkuchen-8982e1.netlify.app/
 
 ## Instructions
 
