@@ -5,15 +5,51 @@ import { useState } from "react";
 export const useQRCodeGenerator = () => {
   // State variable to store the input URL
   const [url, setUrl] = useState("");
-
   // State variable to store the generated QR code data URL
   const [qr, setQr] = useState("");
-
   // State variable to toggle the visibility of the input element
   const [showInput, setShowInput] = useState(true);
-
   // State variable to toggle the visibility of the Lottie animation
   const [showAnimation, setShowAnimation] = useState(false);
+  const [colorLight, setColorLight] = useState("#ffffffff");
+  const [colorDark, setColorDark] = useState("#D0011C");
+  const [displayColorPicker, setDisplayColorPicker] = useState(false);
+
+  // Function to handle the color change. setDisplayColorPicker is a function that updates the displayColorPicker state with the opposite of its current value
+  const handleClick = () => {
+    setDisplayColorPicker(!displayColorPicker);
+  };
+
+  // Handles the closing of the color picker, sets displayColorPicker to false
+  const handleClose = () => {
+    setDisplayColorPicker(false);
+  };
+
+  // Function to handle the change of the dark color
+  const handleChangeDarkColor = (color) => {
+    setColorDark(color.hex);
+  };
+
+  // Commented out because I want to save the functionality for later
+  // Function to handle the change of the light color
+  // const handleChangeLightColor = (color) => {
+  //   setColorLight(color.hex);
+  // };
+
+  // Defines the styling of the color picker popover
+  const popover = {
+    position: 'absolute',
+    zIndex: '2',
+  };
+
+  // Defines the styling of the color picker cover
+  const cover = {
+    position: 'fixed',
+    top: '0px',
+    right: '0px',
+    bottom: '0px',
+    left: '0px',
+  };
 
   // Function to generate a QR code from the input URL
   const generateQRCode = () => {
@@ -23,7 +59,7 @@ export const useQRCodeGenerator = () => {
     }
     // Show the animation
     setShowAnimation(true);
-    
+
     // QRCode.toDataUrl is a function that takes in a URL and styling options and returns a data URL of the generated QR code, which can be used to display the QR code on the screen or download it as a PNG file.
     QRCode.toDataURL(
       url,
@@ -32,33 +68,27 @@ export const useQRCodeGenerator = () => {
         width: 300,
         margin: 2,
         color: {
-          dark: "#D0011C",
-          light: "#ffffffff"
+          dark: colorDark,
+          light: colorLight,
         },
       },
       (err, url) => {
         setTimeout(() => {
           setShowAnimation(false); // Hide the animation.
-        // Handles any errors that might occur during QR code generation
-        if (err) {
-          console.error("QR code could not be created: ", err);
-          alert("QR code could not be created, please try again");
-          return;
-        } else {
-          // setQr is a function that updates the qr state with the generated QR code data URL, the QR code data url is saved in the state qr
-          setQr(url);
-          setShowInput(false);
-        }
-      }, 3000);
-    }
+          // Handles any errors that might occur during QR code generation
+          if (err) {
+            console.error("QR code could not be created: ", err);
+            alert("QR code could not be created, please try again");
+            return;
+          } else {
+            // setQr is a function that updates the qr state with the generated QR code data URL, the QR code data url is saved in the state qr
+            setQr(url);
+            setShowInput(false);
+          }
+        }, 3000);
+      }
     );
   };
-
-  // ------
-
-  // The downloadQRCode method allows users to download the generated QR code as a PNG file, prompting them to provide a filename and handling the download process via creating an anchor element in the DOM. 
-
-  // ------
 
   // Function to download the generated QR code as a PNG file
   const downloadQRCode = () => {
@@ -113,5 +143,16 @@ export const useQRCodeGenerator = () => {
     generateQRCode,
     downloadQRCode,
     repeatAction,
+    colorLight,
+    colorDark,
+    setColorLight,
+    setColorDark,
+    handleClick,
+    handleClose,
+    popover,
+    cover,
+    displayColorPicker,
+    handleChangeDarkColor,
+    // handleChangeLightColor,
   };
 };

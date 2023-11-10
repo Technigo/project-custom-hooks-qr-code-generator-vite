@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap");
 body {
-  background-color: #E0AC9D;
+  background-color: #EEEEEE;
   font-family: "Roboto", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 body section {
@@ -8,49 +8,74 @@ body section {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  padding: 20px;
+  max-height: 100vh;
+  gap: 20px;
+  padding: 2rem;
 }
-body h1 {
-  color: #0C1713;
+@media (min-width: 768px) and (max-width: 1023px) {
+  body section {
+    padding: 10rem;
+  }
+}
+@media (min-width: 1024px) {
+  body section {
+    padding: 20rem;
+  }
+}
+body section h1 {
+  color: #000000;
   font-size: 2rem;
-  margin-bottom: 1.8rem;
+  margin: 0;
 }
-body p {
+body section p {
   font-weight: 300;
-  color: #0C1713;
+  color: #000000;
 }
-body input {
+body section input {
   padding: 15px;
   font-size: 16px;
   border: none;
   border-radius: 25px;
   margin: 0 10px 10px 0;
+  width: 100%;
 }
-body .secondary-btn {
+body section input:focus, body section input:active {
+  border: solid 2px #362FD9;
+  outline: none;
+}
+body section .buttons {
+  display: flex;
+}
+body section .secondary-btn {
   background-color: transparent;
-  color: #D0011C;
-  border: solid 2px #D0011C;
-  padding: 11px 15px;
+  color: #362FD9;
+  border: solid 2px #362FD9;
+  padding: 10px 15px;
+  border-radius: 25px;
 }
-body .secondary-btn a {
-  color: #D0011C;
+body section .secondary-btn a {
+  color: #362FD9;
   text-decoration: none;
 }
-body .secondary-btn:hover {
+body section .secondary-btn:hover {
   background-color: transparent;
   text-decoration: underline;
 }
-body button {
-  background-color: #D0011C;
+body section button {
+  background-color: #362FD9;
+  border: solid 2px #362FD9;
   color: #fff;
-  padding: 15px 20px;
-  border: none;
+  padding: 10px 15px;
   border-radius: 25px;
   font-size: 16px;
   cursor: pointer;
-  margin: 10px 10px 0 0;
+  margin: 5px;
 }
-body button:hover {
-  background-color: #af0119;
+body section button:hover {
+  background-color: #362FD9;
+}
+body section .chosen-color {
+  display: flex;
+  gap: 7px;
+  align-items: center;
 }/*# sourceMappingURL=style.css.map */
