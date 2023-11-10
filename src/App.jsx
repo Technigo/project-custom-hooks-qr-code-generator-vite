@@ -188,7 +188,7 @@ const App = () => {
       <input
         type="text"
         value={fileName}
-        onChange={(e) => setFileName(e.target.value)}
+        onChange={(e) => setFileName(e.target.value.replace(/[^a-zA-Z0-9-_]/g, ''))}
         placeholder="E.g. Linkedin_qrcode"
       />
       <StyledButton onClick={handleDownload}>Download</StyledButton>
