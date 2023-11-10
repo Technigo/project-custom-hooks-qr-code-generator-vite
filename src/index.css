@@ -1,3 +1,4 @@
+/* Global styles */
 :root {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -8,6 +9,7 @@
  
 }
 
+/* Styles for the main container */
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -18,15 +20,18 @@
   padding: 20px;
 }
 
+/* Body styles */
 body {
   background-color: #f8f8f8;
 }
 
+/* Header styles */
 h1 {
   color: #606c38;
   margin-bottom: 20px;
 }
 
+/* Input field styles */
 input {
   padding: 10px;
   font-size: 16px;
@@ -36,6 +41,7 @@ input {
   width: 300px;
 }
 
+/* Button styles */
 button {
   background-color: #283618;
   color: #fff;
@@ -50,10 +56,12 @@ button {
   margin-right: auto;
 }
 
+/* Button hover styles */
 button:hover {
   background-color: #606c38;
 }
 
+/* QR code image styles */
 img {
   margin-top: 20px;
   margin-bottom: 20px;
@@ -65,8 +73,9 @@ img {
   margin-right: auto;
 } 
 
+/* Error message container styles */
 .error-container {
-  color: #ff0000; /* Red text color */
+  color: #ff0000; 
   text-align: center;
 }
 

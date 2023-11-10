@@ -1,3 +1,4 @@
+// Importing the QRCode library for generating QR codes
 import QRCode from "qrcode";
 import { useState } from "react";
 
@@ -12,7 +13,7 @@ export const useQRCodeGenerator = () => {
   // Reactive State variable to store the generated QR code data URL
   const [qrCodeData, setQRCodeData] = useState('');
 
-  // Reactive State variable to toggle the visibility of the input element - boolean value
+  // Reactive State variable to toggle the visibility of the input element
   const [showInput, setShowInput] = useState(true);
 
   // Function to generate a QR code from the input URL
@@ -23,10 +24,11 @@ export const useQRCodeGenerator = () => {
       const isValidUrl = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i.test(url);
   
       if (isValidUrl) {
+        // Generate QR code data URL with specified width and margin
         QRCode.toDataURL(url, { width: 200, margin: 2 })
           .then((dataUrl) => {
-            setQRCodeData(dataUrl);
-            setShowInput(false);
+            setQRCodeData(dataUrl); // Set the generated QR code data URL,
+            setShowInput(false); // Hide input
             setInputError(''); // Clear any previous error message
           })
           .catch((error) => {
@@ -34,58 +36,54 @@ export const useQRCodeGenerator = () => {
             setInputError('QR code generation error');
           });
       } else {
-        setInputError('Invalid URL');
+        setInputError('Invalid URL'); // If user do not input value in the correct format of a URL
       }
     } else {
-      setInputError('URL is required');
+      setInputError('URL is required'); // If user tries to press generate directly without any input
     }
   };
   
   // Function to download the generated QR code as a PNG file
   const downloadQRCode = () => {
-    // HINT 1: Consider encapsulating the filename prompting logic into a separate function.
+    // Function to prompt the user for a filename (without extension)
     const getFileName = () => {
       let fileName;
       do {
         fileName = prompt('Enter a filename for the QR code (without extension):');
       } while (!fileName);
         return fileName;
-    
     };
 
 
-    // HINT 5: Call the above function to retrieve a filename and store it in a variable.
+    // Call the above function to retrieve a filename and store it in a variable.
     const fileName = getFileName();
 
-    // HINT 6: Format the filename to ensure it is filesystem-friendly.
+    // Format the filename to ensure it is filesystem-friendly.
    const formattedFileName = fileName.replace(/[^a-z0-9]/gi, '_') + '.png';
 
-    // HINT 7: Create an anchor element to facilitate the download.
+    // Create an anchor element to facilitate the download.
    const downloadLink = document.createElement('a');
 
-    // HINT 8: Set the necessary attributes on the anchor element to prepare it for download.
+    // Set attributes on the anchor element to prepare it for download.
     downloadLink.href = qrCodeData;
     downloadLink.download = formattedFileName;
 
-    // HINT 9: Append the anchor element to the document to make it interactable.
+    // Append the anchor element to the document to make it interactable.
     document.body.appendChild(downloadLink);
 
-    // HINT 10: Programmatically trigger a click on the anchor element to initiate the download.
+    // Programmatically trigger a click on the anchor element to initiate the download.
     downloadLink.click();
 
-    // HINT 11: Remove the anchor element from the document after the download has been initiated.
+    // Remove the anchor element from the document after the download has been initiated.
     document.body.removeChild(downloadLink);
   };
 
   // Function to reset the state and allow generating a new QR code
   const repeatAction = () => {
-    // Reset the url state to an empty string
-    // Reset the qr state to an empty string
-    setUrl('');
-    setInputError('');
-    setQRCodeData('');
-    // Show the input element back to true :)
-    setShowInput(true);
+    setUrl('');  // Reset the url state to an empty string
+    setInputError(''); // Reset errors
+    setQRCodeData(''); // Reset the QR data state to an emty string
+    setShowInput(true); // Show the input element again
   };
 
   // Return the state variables and functions to be used in the component
