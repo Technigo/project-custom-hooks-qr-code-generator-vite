@@ -3,6 +3,7 @@
 import { Footer } from "./components/Footer";
 import { useQRCodeGenerator } from "./hooks/useQRCodeGenerator"; // Import the custom hook useQRCodeGenerator
 import { LottieQR } from "./components/LottieQR";
+import { LottieConfetti } from "./components/LottieConfetti";
 import styled from "styled-components";
 
 const StyledApp = styled.div`
@@ -57,6 +58,15 @@ const InputContainer = styled.div`
 `;
 
 const QRContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  /* svg {
+    display: flex;
+    justify-content: center;
+  } */
+
   img.generated-qr {
     /*display: block;
   width: 100%;
@@ -64,9 +74,13 @@ const QRContainer = styled.div`
   margin: 2rem auto;
   */
     margin-top: 20px;
-    max-width: 250px;
+    width: 200px;
     border: 3px solid #ccc;
     border-radius: 4px;
+
+    @media (min-width: 667px) {
+      width: 250px;
+    }
   }
 `;
 
@@ -129,6 +143,7 @@ export const App = () => {
         </InputContainer>
       ) : (
         <QRContainer>
+          <LottieConfetti />
           <img className="generated-qr" src={qr} />
           <ButtonWrapper>
             <button onClick={downloadQRCode}>Download your QR code</button>

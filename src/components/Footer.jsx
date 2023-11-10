@@ -21,7 +21,7 @@ const StyledFooter = styled.div`
   );
 
   a {
-    font-size: 20px;
+    font-size: 25px;
   }
 `;
 
@@ -31,31 +31,39 @@ const FooterText = styled.div`
   align-items: center;
   color: #f8f8f8;
   font-size: 18px;
-  /* Apply a gradient background to the footer using webkit-linear-gradient */
-  /* background: -webkit-linear-gradient(
-    45deg,
-    #42121d,
-    #7b3848,
-    #965862,
-    #7b3848,
-    #42121d
-  );*/
 `;
 
 const Copyright = styled.div`
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  gap: 8px;
 
   p {
     display: flex;
-    align-items: center;
+    //align-items: center;
   }
 
   img.logo-small {
-    display: flex;
-    width: 40px;
+    //display: flex;
+    min-width: 40px;
+    max-width: 45px;
     padding-left: 7px;
-    border: none;
+    //border: none;
+  }
+
+  .separator {
+    display: none; /* Initially hide the separator on small screens */
+  }
+
+  @media (min-width: 667px) {
+    flex-direction: row;
+    gap: 0;
+
+    .separator {
+      display: inline; /* Display the separator as inline on screens wider than 667px */
+      margin: 0 5px; /* Add space on both sides of the separator */
+    }
   }
 `;
 
@@ -66,7 +74,7 @@ const Links = styled.div`
 
   img.link-qr {
     width: 50px;
-    border: none;
+    //border: none;
   }
 `;
 
@@ -82,17 +90,17 @@ export const Footer = () => {
     <StyledFooter>
       <FooterText>
         <Copyright>
-          <p>
-            Anna Robertsson, 2023 | Web Development student at
-            <a
-              href="https://www.technigo.io"
-              target="_blank"
-              title="Technigo"
-              rel="noreferrer"
-            >
-              <img className="logo-small" src={logo} alt="Technigo logo" />
-            </a>
-          </p>
+          <p>Anna Robertsson, 2023</p>
+          <p className="separator"> | </p>
+          <p>Web Development student at</p>
+          <a
+            href="https://www.technigo.io"
+            target="_blank"
+            title="Technigo"
+            rel="noreferrer"
+          >
+            <img className="logo-small" src={logo} alt="Technigo logo" />
+          </a>
         </Copyright>
         <Links>
           <Contact>

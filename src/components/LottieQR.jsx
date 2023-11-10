@@ -1,5 +1,5 @@
 import Lottie from "lottie-react";
-import QRanimation from "/src/assets/animations/QRanimation-slow.json";
+import QRanimation from "/src/assets/animations/QRanimation.json";
 
 export const LottieQR = () => {
   const style = {
