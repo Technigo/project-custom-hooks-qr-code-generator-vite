@@ -4,7 +4,7 @@ A QR code generator built with custom hook in React.
 
 ### The Problem
 
-I used the hints provided along with the boilerplate. I will get back to this project when I have time to add some animation to make it more lively.
+I used the hints provided along with the boilerplate. I have added some animation to make it more lively.
 
 ### View it live
 
