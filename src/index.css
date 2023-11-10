@@ -5,21 +5,36 @@
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  --animate-duration: 800ms;
+  --animate-delay: 0.9s;
+  background-color: #f8b557;
 }
 
-/* .app {
+*,
+*:after,
+*:before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.app {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background-color: #f8f8f8;
   padding: 20px;
 }
 
 h1 {
-  color: #335383;
+  color: #34495e;
   margin-bottom: 20px;
+  display: inline-block;
+  margin: 20px;
+  font-size: 30px;
+  /* animation: fadeIn; referring directly to the animation's @keyframe declaration */
+  animation-duration: 3s; /* don't forget to set a duration! */
 }
 
 input {
@@ -31,8 +46,21 @@ input {
   width: 300px;
 }
 
+.qr-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
 button {
-  background-color: #335383;
+  display: flex;
+  justify-content: center;
+  background-color: #34495e;
   color: #fff;
   padding: 10px 20px;
   border: none;
@@ -47,13 +75,33 @@ button:hover {
 }
 
 img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-top: 20px;
   max-width: 300px;
   border: 1px solid #ccc;
   border-radius: 4px;
-} */
+}
 
 img.logo {
   border: none;
   max-width: 200px;
+}
+.lottie-animation {
+  /* Apply CSS styles to the Lottie animation here */
+  /* For example, you can set a specific size or change the background color: */
+  width: 100px;
+  height: 100px;
+}
+
+@media (min-width: 744px) {
+  h1 {
+    font-size: 47px;
+  }
+
+  .lottie-animation {
+    width: 200px;
+    height: 200px;
+  }
 }
