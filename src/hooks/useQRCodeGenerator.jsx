@@ -29,10 +29,14 @@ export const useQRCodeGenerator = () => {
       alert("Please enter a valid input.");
 
     } else {
+
+      const screenWidth = window.innerWidth;
+      const qrCodeWidth = screenWidth > 768 ? 300 : 200;  //adjust width depending on device
+
       QRCode.toDataURL(
         url,  // The data to be encoded as a QR code (e.g., a URL)
         {
-          width: 200,  // Width of the QR code
+          width: qrCodeWidth,  // Width of the QR code
           margin: 2,   // Margin around the QR code. Increasing this shrinks the QR code and increases the size of the background of the image in order to fit within the width. Keep this small.
           color: {
             dark: "#335383FF",   // The darker colorr in the QR code image
@@ -123,6 +127,6 @@ export const useQRCodeGenerator = () => {
     generateQRCode,
     downloadQRCode,
     repeatAction,
-    inputRef,
+    inputRef
   };
 };
