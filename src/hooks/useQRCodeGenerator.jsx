@@ -12,34 +12,45 @@ export const useQRCodeGenerator = () => {
   // State variable to toggle the visibility of the input element
   const [showInput, setShowInput] = useState(true);
 
+  // State variable to toggle the visibility of the Lottie animation
+  const [showAnimation, setShowAnimation] = useState(false);
+
   // Function to generate a QR code from the input URL
   const generateQRCode = () => {
+    if (url.trim() === "") {
+      // If the input is empty or contains only whitespace, don't show the spinner.
+      return;
+    }
+    // Show the animation
+    setShowAnimation(true);
+    
     // QRCode.toDataUrl is a function that takes in a URL and styling options and returns a data URL of the generated QR code, which can be used to display the QR code on the screen or download it as a PNG file.
     QRCode.toDataURL(
       url,
       // Defines the styling of the QR code
       {
-        width: 400,
-        margin: 4,
+        width: 300,
+        margin: 2,
         color: {
-          dark: "#AB4967",
+          dark: "#D0011C",
           light: "#ffffffff"
         },
       },
       (err, url) => {
+        setTimeout(() => {
+          setShowAnimation(false); // Hide the animation.
         // Handles any errors that might occur during QR code generation
         if (err) {
           console.error("QR code could not be created: ", err);
           alert("QR code could not be created, please try again");
           return;
         } else {
-          // Logs the generated QR code data URL to the console
-          console.log("The Qr Code url is: ", url);
           // setQr is a function that updates the qr state with the generated QR code data URL, the QR code data url is saved in the state qr
           setQr(url);
           setShowInput(false);
         }
-      }
+      }, 3000);
+    }
     );
   };
 
@@ -98,6 +109,7 @@ export const useQRCodeGenerator = () => {
     setUrl,
     qr,
     showInput,
+    showAnimation,
     generateQRCode,
     downloadQRCode,
     repeatAction,

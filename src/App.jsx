@@ -1,5 +1,7 @@
 // imports the useQRCodeGenerator custom hook
 import { useQRCodeGenerator } from "./hooks/useQRCodeGenerator";
+import Lottie from "lottie-react";
+import generateAnimation from "./assets/generateAnim.json";
 
 // Component that renders the QR code generator UI
 export const App = () => {
@@ -9,10 +11,16 @@ export const App = () => {
     setUrl,
     qr,
     showInput,
+    showAnimation,
     generateQRCode,
     downloadQRCode,
     repeatAction,
   } = useQRCodeGenerator();
+
+  // Defines the styling of the Lottie animation
+  const style = {
+    height: "10rem",
+  };
 
   // Return the JSX to render the component
   return (
@@ -22,35 +30,37 @@ export const App = () => {
         <h1>QR Code Generator</h1>
 
         {/* Conditional rendering of elements */}
-        {showInput ? (
+        {showAnimation ? (
+          // Display a loading spinner while generating the QR code
+          <Lottie
+            animationData={generateAnimation}
+            style={style}
+          />
+        ) : showInput ? (
           // Renders the input field and generate button if showInput is true
           <>
             <p>Please enter a URL below</p>
             <input
               type="text"
               placeholder="e.g. https://google.com"
-              value={url} // value is the input URL that will be converted into a QR code
-              onChange={(e) => setUrl(e.target.value)} // onChange is a function that updates the url state with the input URL
+              value={url}
+              onChange={(e) => setUrl(e.target.value)}
             />
             <button onClick={generateQRCode}>Generate QR</button>
           </>
-        ) : (
+        ) : qr && (
           // Renders the QR code, download button, and repeat button if showInput is false
           <>
-            {qr && (
-              <>
-                <img src={qr} />
-                <p className="text-lg">Want to go again?</p>
-                <div>
-                  <button onClick={repeatAction}>Start over</button>
-                  <button className="secondary-btn">
-                    <a href={qr} onClick={downloadQRCode} download="qrcode.png">
-                      Download QR Code 👇
-                    </a>
-                  </button>
-                </div>
-              </>
-            )}
+            <img src={qr} alt="QR Code" />
+            <p className="text-lg">Want to go again?</p>
+            <div>
+              <button onClick={repeatAction}>Start over</button>
+              <button className="secondary-btn">
+                <a href={qr} onClick={downloadQRCode} download="qrcode.png">
+                  Download QR Code 👇
+                </a>
+              </button>
+            </div>
           </>
         )}
       </div>
