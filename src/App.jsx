@@ -5,6 +5,8 @@
 //import { QrExample } from "./components/QrExample";
 //import logo from "./assets/technigo-logo.svg";
 import { useQRCodeGenerator } from "./hooks/useQRCodeGenerator";
+import Lottie from "lottie-react";
+import qrcodeanimation from "./assets/qrcodeanimation.json"; // Replace with the actual path to your Lottie animation JSON file
 
 // Define the App component
 export const App = () => {
@@ -22,8 +24,16 @@ export const App = () => {
   // Return the JSX to render the component
   return (
     <div className="">
-      {/* Render the title  <img className="logo" src={logo} alt="Technigo Logo" />*/}
+      {/* Render the title <img className="logo" src={qrcodeanimation} alt="QR Logo" /> */}
+
+      <div className="qr-animation">
+        <Lottie animationData={qrcodeanimation} loop={true} autoplay={true} />
+      </div>
       <h1>Hamdis QR Code Generator</h1>
+      <p>
+        Input any text in the search bar below and get a QR code containing the
+        information.
+      </p>
       {/* Conditionally render based on wether the user is inputting an URL to generate a QR Code or the user wnats to downaload the generated QR Code from the url input */}
       {/* {yourReactiveVariableThatTogglesTheDownloadQrCcodeOrInputField ? () : ()} */}
       {showInput ? (
