@@ -1,19 +1,16 @@
 import QRCode from "qrcode";
 import { useState, useEffect } from "react";
+import reactCSS from "reactcss";
 
 // A custom hook named useQRCodeGenerator.
 export const useQRCodeGenerator = () => {
-  // Reactive State variable to store the input URL.
-  const [inputURL, setInputURL] = useState("");
-
-  // Reactive State variable to store the generated QR code data URL.
-  const [qrcode, setQrcode] = useState("");
-
-  // Reactive State variable to toggle the visibility of the input element - boolean value.
-  const [showQrcode, setShowQrcode] = useState(true);
-
-  // Create a loading state variable
-  const [showSpinner, setShowSpinner] = useState(false);
+  const [inputURL, setInputURL] = useState(""); // Reactive State variable to store the input URL.
+  const [qrcode, setQrcode] = useState(""); // Reactive State variable to store the generated QR code data URL.
+  const [showQrcode, setShowQrcode] = useState(true); // Reactive State variable to toggle the visibility of the input element - boolean value.
+  const [showSpinner, setShowSpinner] = useState(false); // Reactive State variable for the visibility of a loading spinner.
+  const [color, setColor] = useState("#000000");
+  const [showColorPicker, setShowColorPicker] = useState(false);
+  const [qrSize, setQrSize] = useState(200)
 
   // Function to generate a QR code from the input URL.
   const generateQRCode = () => {
@@ -30,8 +27,12 @@ export const useQRCodeGenerator = () => {
       // Necessary parameters to pass to the QR code generation method. (URL to convert and any styling options.)
       inputURL,
       {
-        width: 200,
+        width: qrSize,
         margin: 2,
+        color: {
+          dark: color,
+          light: "#ffffff"
+        }
       },
       // Error handling and callback of the QR code generation method, which provides the generated QR code data URL.
       (err, inputURL) => {
@@ -84,6 +85,9 @@ export const useQRCodeGenerator = () => {
     setInputURL("");
     setQrcode("");
     setShowQrcode(false);
+    setColor("#000000");
+    setQrSize(200);
+    setShowColorPicker(false);
   };
 
   return {
@@ -94,5 +98,11 @@ export const useQRCodeGenerator = () => {
     downloadQRCode,
     repeatAction,
     showSpinner,
+    color,
+    setColor,
+    qrSize,
+    setQrSize,
+    showColorPicker,
+    setShowColorPicker,
   };
 };

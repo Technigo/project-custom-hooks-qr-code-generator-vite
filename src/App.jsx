@@ -7,6 +7,8 @@ import {
   NotAnotherLottieComponent,
 } from "./NotALottieComponent";
 import logo from "/studio-qr-code-logo.png";
+import { ChromePicker } from "react-color";
+// import SketchExample from "./InputColor"
 
 // ICONS
 import { AiOutlineCloudDownload, AiFillGithub } from "react-icons/ai";
@@ -24,24 +26,35 @@ export const App = () => {
     downloadQRCode,
     repeatAction,
     showSpinner,
+    color,
+    setColor,
+    qrSize,
+    setQrSize,
+    showColorPicker,
+    setShowColorPicker,
   } = useQRCodeGenerator();
 
+  const handleColorInputChange = (event) => {
+    const newColor = event.target.value;
+    setColor(newColor);
+  };
+
   return (
-    <div className="max-w-5xl mx-auto">
-      <header className="flex justify-center items-center">
-        <div className="flex items-center gap-2">
+    <div className="wrapper">
+      <header>
+        <div className="github-container">
           <a href="https://github.com/JuliaHolm">
-            <AiFillGithub className="w-8 h-8" />
+            <AiFillGithub className="github-icon" />
           </a>
           <a href="https://github.com/JuliaHolm">By Julia Holm</a>
         </div>
-        <img className="max-w-[200px]" src={logo} alt="Studio QR code logo" />
-        <div className="flex items-center gap-2">
+        <img className="logo" src={logo} alt="Studio QR code logo" />
+        <div className="qr-header-container">
           <p>QR generator</p>
-          <BsQrCodeScan className="w-8 h-8" />
+          <BsQrCodeScan className="qr-icon" />
         </div>
       </header>
-      <main className="flex justify-center gap-x-16 w-full h-full px-4 py-8">
+      <main>
         <div>
           <h1 className="mb-1.5 font-bold text-3xl">QR Realm of Dreams</h1>
           <h2 className="mb-6 font-jetbrains-mono font-bold text-2xl">
@@ -52,24 +65,24 @@ export const App = () => {
         </div>
         {showSpinner ? (
           // Display a loading spinner while generating the QR code
-          <div className="flex flex-col justify-center items-center gap-8 mb-16">
+          <div className="loading-container">
             <NotAnotherLottieComponent />
             <p>Creating QR Code...</p>
           </div>
         ) : qrcode ? (
           // Content to show when qrcode is available.
-          <div className="flex flex-col justify-center items-center gap-8 mb-16">
+          <div className="download-container">
             <img src={qrcode} alt="QR Code" />
             <button
-              className="flex justify-center items-center gap-1 text-2xl font-josefin-sans"
+              className="download-btn"
               onClick={downloadQRCode}
               aria-label="Download the QR Code"
             >
               Download
-              <AiOutlineCloudDownload className="w-8 h-8" />
+              <AiOutlineCloudDownload className="download-icon" />
             </button>
             <button
-              className="repeat-btn border border-solid border-black bg-gradient bg-[200%_auto] font-bold py-2 px-6 rounded-3xl text-xl"
+              className="repeat-btn"
               onClick={repeatAction}
               aria-label="Reset and make another QR Code"
             >
@@ -78,18 +91,44 @@ export const App = () => {
           </div>
         ) : (
           // Content to show when qrcode is not available.
-          <div className="flex flex-col justify-center items-center gap-8 mb-16">
-            <div className="flex items-center justify-start w-full">
-              <label className="visually-hidden">URL</label>
-              <input
-                type="text"
-                placeholder="e.g. google.com"
-                value={inputURL}
-                onChange={(event) => setInputURL(event.target.value)}
-              />
+          <div className="qr-generator-wrapper">
+            <div className="qr-generator-container">
+              <div>
+                <label className="visually-hidden">URL</label>
+                <input
+                  id="urlInput"
+                  type="text"
+                  placeholder="e.g. google.com"
+                  value={inputURL}
+                  onChange={(event) => setInputURL(event.target.value)}
+                />
+              </div>
+
+              {/* COLOR PICKER */}
+              <div className="color-picker-wrapper">
+                {/* <label>Color</label> */}
+                <div className="color-picker">
+                  <div
+                    onClick={() => setShowColorPicker(!showColorPicker)}
+                    style={{ background: color }}
+                    className="color-box"
+                    value={color}
+                    onChange={handleColorInputChange}
+                  ></div>
+                  <span>{color}</span>
+                </div>
+                {showColorPicker && (
+                  <div className="chrome-picker">
+                    <ChromePicker
+                      color={color}
+                      onChange={(newColor) => setColor(newColor.hex)}
+                    />
+                  </div>
+                )}
+              </div>
             </div>
             <button
-              className="generate-btn border border-solid border-black bg-gradient bg-[200%_auto] font-bold py-2 px-6 rounded-3xl text-xl"
+              className="generate-btn"
               onClick={generateQRCode}
               aria-label="Generate QR Code"
             >

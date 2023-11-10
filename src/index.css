@@ -35,7 +35,7 @@ button {
   @apply font-jetbrains-mono;
 }
 
-input {
+#urlInput {
   @apply font-jetbrains-mono;
   appearance: none;
   outline: none;
@@ -78,18 +78,9 @@ input::placeholder {
   animation: spin 1s linear infinite;
 }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
 
-/*
-.url-color-container {
-  display: flex;
-  margin-bottom: 2rem;
-}
 
-.url-wrapper,
+
 .color-picker-wrapper {
   display: flex;
   align-items: center;
@@ -97,6 +88,14 @@ input::placeholder {
   width: 100%;
 }
 
+.color-box {
+  width: 1.5rem;
+  height: 1.5rem;
+  cursor: pointer;
+  border: 1px solid black;
+  border-radius: 0.3rem;
+}
+/*
 .color-picker {
   display: flex;
   align-items: center;
@@ -115,9 +114,9 @@ input::placeholder {
   cursor: pointer;
   border: 1px solid black;
   border-radius: 0.3rem;
-} 
+}  */
 
-.app {
+/* .app {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -125,5 +124,93 @@ input::placeholder {
   min-height: 100vh;
   background-color: #f8f8f8;
   padding: 20px;
+} */
+
+.wrapper {
+  max-width: 64rem;
+  margin: 0 auto;
 }
- */
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.github-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.github-icon,
+.qr-icon,
+.download-icon {
+  width: 2rem;
+  height: 2rem;
+}
+
+.logo {
+  max-width: 200px;
+}
+
+.qr-header-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  column-gap: 4rem;
+  width: 100%;
+  height: 100%;
+  padding: 2rem 1rem;
+}
+
+.loading-container,
+.download-container,
+.qr-generator-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.qr-generator-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.download-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-family: Josefin Sans, sans-serif;
+}
+
+.repeat-btn,
+.generate-btn {
+  border: 1px solid rgb(52 46 55);
+  background-image: linear-gradient(
+    to right,
+    #f6d365 0%,
+    #fda085 51%,
+    #f6d365 100%
+  );
+  background-size: 200% auto;
+  font-weight: 700;
+  padding: 0.5rem 1.5rem;
+  border-radius: 1.5rem;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
