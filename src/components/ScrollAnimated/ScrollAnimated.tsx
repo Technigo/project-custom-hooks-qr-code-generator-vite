@@ -9,6 +9,7 @@ import { useTheme } from "../../context/ThemeContext";
 const X_LINES = 50;
 const PAGE_COUNT = 4;
 const INITIAL_WIDTH = 10;
+
 export function ScrollAnimated({ children }: { children: any }) {
   const containerRef = useRef<HTMLDivElement>(null!);
   const barContainerRef = useRef<HTMLDivElement>(null!);
