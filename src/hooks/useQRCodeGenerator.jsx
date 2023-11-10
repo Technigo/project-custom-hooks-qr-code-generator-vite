@@ -47,6 +47,36 @@ export const useQRCodeGenerator = () => {
       return;
     }
 
+    // const getFileName = () => {
+
+    //   const fileName = prompt(
+    //     "Please enter a name for the download:",
+    //     "Enter a name for your QR Code"
+    //   );
+
+    //   return fileName === "" ? getFileName() : fileName;
+    // };
+
+    // HINT 5: Call the above function to retrieve a filename and store it in a variable.
+    //  let fileName = getFileName();
+
+    // HINT 6: Format the filename to ensure it is filesystem-friendly.
+    // fileName = fileName.split(" ").join("-");
+
+    // // HINT 7: Create an anchor element to facilitate the download.
+    // const link = document.createElement("a");
+    // // HINT 8: Set the necessary attributes on the anchor element to prepare it for download.
+    // link.href = qr;
+    // link.download = `${fileName}.png`;
+    // // HINT 9: Append the anchor element to the document to make it interactable.
+    // document.body.appendChild(link);
+    // // HINT 10: Programmatically trigger a click on the anchor element to initiate the download.
+    // link.click();
+    // // HINT 11: Remove the anchor element from the document after the download has been initiated.
+    // document.body.removeChild(link);
+    // };
+
+    //----------------------TRYING OUT THIS WAY----------------------
     // Formats the filename to ensure it is filesystem-friendly
     const formattedFileName = "qrcode.png";
 

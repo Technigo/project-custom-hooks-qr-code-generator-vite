@@ -26,7 +26,7 @@ export const App = () => {
   return (
     <div className="app">
       {/* Render the title */}
-      {/* <img className="logo" src={logo} alt="" /> */}
+
       <Lottie className="lottie-animation" animationData={animationData} />
       <h1 className="animate__fadeInDown">QR Code Generator</h1>
 
