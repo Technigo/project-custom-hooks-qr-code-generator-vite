@@ -1,4 +1,6 @@
 export type QrContextType = {
+  error: boolean;
+  setError: (error: boolean) => void;
   url: string;
   setUrl: (url: string) => void;
   generateQRCode: () => void;
@@ -11,6 +13,8 @@ export type QrContextType = {
   isVisible: boolean;
   setColor: (color: string) => void;
   setSize: (size: number) => void;
+  anchorRef?: React.Ref<HTMLDivElement | null>;
+  setElementRef?: React.Dispatch<React.SetStateAction<HTMLDivElement | null>>;
 };
 
 export type ApiRes<T> = {

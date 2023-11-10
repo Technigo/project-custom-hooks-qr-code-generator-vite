@@ -11,13 +11,16 @@ import { useTheme } from "./context/ThemeContext";
 import { themeData } from "./statics/theme";
 import { ThemeButton } from "./components/ThemeButton";
 import { ThreeFrame } from "./components/ThreeFrame";
+import { Loading } from "./components/Loading";
 
 export const App = () => {
   const [isStart, setIsStart] = useState<boolean>(true);
+
   const { data, isLoading, error } = useGifs();
+
   const { qr } = useQrCode();
   const { theme } = useTheme();
-  if (data?.data.length === 0) return <p>loading</p>;
+  if (data?.data.length === 0) return <Loading />;
   return (
     <>
       {!isLoading && !error && (

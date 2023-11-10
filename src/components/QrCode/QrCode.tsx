@@ -1,7 +1,14 @@
 import { useQrCode } from "../../context/QrcodeContext";
+import { useEffect, useRef, useState } from "react";
 
 export const QrCode = () => {
-  const { qr, downloadQRCode, repeatAction, setIsVisible, isVisible } = useQrCode();
+  const divRef = useRef(null);
+  const { qr, downloadQRCode, repeatAction, setIsVisible, isVisible, anchorRef, setElementRef } =
+    useQrCode();
+  useEffect(() => {
+    if (!divRef.current || !setElementRef) return;
+    setElementRef(divRef.current);
+  }, [divRef]);
 
   return (
     <>
@@ -10,6 +17,7 @@ export const QrCode = () => {
           isVisible ? "hidden" : "block"
         }`}
         id="code"
+        ref={divRef}
       ></div>
       <div className="flex gap-2  flex-col bounceIn animate-[bounceIn_1s_ease-in-out]">
         <a onClick={downloadQRCode} className="cursor-pointer bounceIn">

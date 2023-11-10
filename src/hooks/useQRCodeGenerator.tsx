@@ -1,16 +1,17 @@
 // This React component, specifically a custom hook named useQRCodeGenerator, is designed to facilitate the generation and downloading of QR codes. Initially, it utilizes the useState hook from React to manage three pieces of state: url (to store the input URL that will be converted into a QR code), qr (to store the generated QR code data URL), and showInput (a boolean to toggle the visibility of an input element in the UI). The hook exposes a method generateQRCode which utilizes the QRCode.toDataURL method to convert the provided URL into a QR code, applying specific styling options, and then updates the state with the generated QR code and hides the input. The downloadQRCode method allows users to download the generated QR code as a PNG file, prompting them to provide a filename and handling the download process via creating an anchor element in the DOM. Lastly, the repeatAction method resets the state to allow users to generate a new QR code. The hook returns an object containing the state variables and methods, enabling them to be utilized in the component where the hook is used.
 import QRCode from "qrcode";
-import { createElement, useState } from "react";
+import { useState } from "react";
 import { QrContextType } from "src/types/common";
 
-export const useQRCodeGenerator = (): QrContextType => {
+export const useQRCodeGenerator = (ref?: HTMLDivElement | null | undefined): QrContextType => {
   const [url, setUrl] = useState<string>("");
   const [qr, setQr] = useState<string>("");
   const [isVisible, setIsVisible] = useState<boolean>(true);
   const [color, setColor] = useState<string>("#335383FF");
   const [size, setSize] = useState<number | null>(300);
-
+  const [error, setError] = useState<boolean>(false);
   const generateQRCode = () => {
+    if (url === "") return setError(true);
     QRCode.toDataURL(
       url,
       {
@@ -55,9 +56,8 @@ export const useQRCodeGenerator = (): QrContextType => {
       "border-4"
     );
     anchor.textContent = "get QRcode";
-    document.querySelector("#code")?.insertAdjacentElement("beforeend", anchor);
+    ref?.insertAdjacentElement("beforeend", anchor);
     anchor.addEventListener("click", () => {
-      setIsVisible(true);
       anchor.remove();
       repeatAction();
     });
@@ -70,6 +70,8 @@ export const useQRCodeGenerator = (): QrContextType => {
   }
 
   return {
+    error,
+    setError,
     url,
     setUrl,
     generateQRCode,

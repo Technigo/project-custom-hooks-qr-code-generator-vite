@@ -20,9 +20,3 @@
     @apply text-sm border-white border p-3 w-4 h-4 rounded-full transition-all;
   }
 }
-
-.animated__layers > * {
-  width: 100%;
-  height: 100%;
-  position: fixed;
-}
