@@ -13,6 +13,12 @@ export const App = () => {
     downloadQRCode, 
     repeatAction 
   } = useQRCodeGenerator()
+
+  const handleChange = (event) => {
+    setUrl(event.target.value)
+
+    if (event.code === "Enter") {generateQRCode()}
+  }
   
   return (
     <div className="the-app">
@@ -26,7 +32,8 @@ export const App = () => {
             type="text" 
             placeholder="https://google.com" 
             value={url} 
-            onChange={event => setUrl(event.target.value)} />
+            onChange={handleChange}
+            onKeyDown={handleChange} />
           <button 
             onClick={generateQRCode}>
               Generate
