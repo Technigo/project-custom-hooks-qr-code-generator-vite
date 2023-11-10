@@ -58,16 +58,19 @@ export const useQRCodeGenerator = () => {
       return fileName
     }
 
-    const theFileName = getFileName().replace(/\s+/g, '-').toLowerCase()
+    let theFileName = getFileName()
+    if (theFileName) {
+      theFileName = theFileName.replace(/\s+/g, '-').toLowerCase()
     
-    //Creates an anchortag which is used to download the image
-    const anchorElement = document.createElement('a')
-    anchorElement.href = qr
-    anchorElement.download = `${theFileName}.png`
-    document.body.appendChild(anchorElement)
+      //Creates an anchortag which is used to download the image
+      const anchorElement = document.createElement('a')
+      anchorElement.href = qr
+      anchorElement.download = `${theFileName}.png`
+      document.body.appendChild(anchorElement)
 
-    anchorElement.click()
-    document.body.removeChild(anchorElement)
+      anchorElement.click()
+      document.body.removeChild(anchorElement)
+    }
   };
 
   // Method to reset the states to allow user to generate a new QR code

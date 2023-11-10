@@ -1,4 +1,6 @@
 import { useQRCodeGenerator } from "./hooks/useQRCodeGenerator"
+import Lottie from 'lottie-react'
+import animationData from "../QR-animation.json"
 
 export const App = () => {
 
@@ -16,33 +18,32 @@ export const App = () => {
     <div className="the-app">
       <h1>QR Code Generator</h1>
 
-      { showInput ? 
+      { showInput ?
+        <>
+          <Lottie  animationData={animationData} />
+          <input 
+            required
+            type="text" 
+            placeholder="https://google.com" 
+            value={url} 
+            onChange={event => setUrl(event.target.value)} />
+          <button 
+            onClick={generateQRCode}>
+              Generate
+          </button>
+        </>
 
-      <>
-        <input 
-          required
-          type="text" 
-          placeholder="https://google.com" 
-          value={url} 
-          onChange={event => setUrl(event.target.value)} />
-        <button 
-          onClick={generateQRCode}>
-            Generate
-        </button>
-        
-      </> 
-      
-      :
-      
-      <>
-        <img src={qr} />
-        <button onClick={downloadQRCode}>
+        :
+        <>
+          <img src={qr} />
+          <button onClick={downloadQRCode}>
             Download
-        </button>
-        <button onClick={repeatAction}>
-          Restart
-        </button>
-      </> }
+          </button>
+          <button onClick={repeatAction}>
+            Restart
+          </button>
+        </>
+      }
     </div>
   );
 };
