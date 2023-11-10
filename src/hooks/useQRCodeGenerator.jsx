@@ -16,11 +16,10 @@ export const useQRCodeGenerator = () => {
 
   // Function to generate a QR code from the input URL
   const generateQRCode = () => {
-    // HINT 1: Utilize the qrccode library that converts a URL to a QR code data URL.
+    // Utilize the qrccode library that converts a URL to a QR code data URL.
     // Use the Import of the qrcode and chain to the native method toDataUrl() much like the example provided and specify the data within the object that you will be passing such as the {url, {width, margin, color:{dark, light}}} which containes the information to generate the qr-code and url. Lastly, this native method toDataUrl() will contain a callback function  that will update the qr variable and will also update the variable toggling the visibility of the input element.
     QRCode.toDataURL(
-      //console.log("Delete This Line OR Comment Out")
-      // HINT 2: Ensure to pass the necessary parameters to the QR code generation method, such as the URL to convert and any styling options.
+      // Ensure to pass the necessary parameters to the QR code generation method, such as the URL to convert and any styling options.
       url,
       {
         width: 300, //Sets the width of the QR code
@@ -31,75 +30,53 @@ export const useQRCodeGenerator = () => {
         },
       },
 
-      // HINT 3: Handle the callback of the QR code generation method, which provides the generated QR code data URL.
-      // HINT 4: Implement error handling to manage any issues that might occur during QR code generation.
+      // Handle the callback of the QR code generation method, which provides the generated QR code data URL.
+      // Implement error handling to manage any issues that might occur during QR code generation.
 
       (err, url) => {
         if (err) return console.error(err);
-        // HINT 5: Update the relevant state variables with the generated QR code data URL and adjust the UI accordingly.
 
+        // Update the relevant state variables with the generated QR code data URL and adjust the UI accordingly.
         setQr(url);
-        // HINT 6: Consider the user experience and how the UI should change once the QR code has been generated.
 
+        // Consider the user experience and how the UI should change once the QR code has been generated.
         setShowInput(false);
       }
-
-      // (err, generatedQr) => {
-      //   if (err) {
-      //     console.error(err);
-      //     // Handle errors if necessary
-      //   } else {
-      //     // Update the QR code state
-      //     setQr(generatedQr);
-      //     // Hide the input element (optional)
-      //     setShowInput(false);
-      //   }
-      // }
-      // ...
     );
   };
 
   // Function to download the generated QR code as a PNG file
   const downloadQRCode = () => {
-    // HINT 1: Consider encapsulating the filename prompting logic into a separate function.
+    // Consider encapsulating the filename prompting logic into a separate function.
     const getFileName = () => {
-      // HINT 2: Use a method to prompt the user for input and store the response.
+      // Use a method to prompt the user for input and store the response.
       const fileName = prompt("Choose a name for the QR code:");
 
-      // HINT 3: Implement a check for an empty filename and utilize recursion to re-prompt the user if necessary.
-      // HINT 4: Ensure the function returns the obtained filename.
+      // Implement a check for an empty filename and utilize recursion to re-prompt the user if necessary.Ensure the function returns the obtained filename.
       return fileName === "" ? getFileName() : fileName;
-
-      // let fileName = prompt("Choose a name for the image:");
-      // if (fileName === null || fileName === "") {
-      //   getFileName();
-      // } else {
-      //   return fileName;
-      // }
     };
 
-    // HINT 5: Call the above function to retrieve a filename and store it in a variable.
-    const fileName = getFileName();
+    // Call the above function to retrieve a filename and store it in a variable.
+    let fileName = getFileName();
 
-    // HINT 6: Format the filename to ensure it is filesystem-friendly.
+    // Format the filename to ensure it is filesystem-friendly.
     //fileName = fileName.replace(/\s/g, "-").toLowerCase();
     fileName = fileName.split(" ").join("-").toLowerCase();
 
-    // HINT 7: Create an anchor element to facilitate the download.
+    // Create an anchor element to facilitate the download.
     const link = document.createElement("a");
 
-    // HINT 8: Set the necessary attributes on the anchor element to prepare it for download.
-    //link.download = `${fileName}.png`;
+    // Set the necessary attributes on the anchor element to prepare it for download.
     link.href = qr;
     link.download = `${fileName}.png`;
 
-    // HINT 9: Append the anchor element to the document to make it interactable.
+    // Append the anchor element to the document to make it interactable.
     document.body.appendChild(link);
 
-    // HINT 10: Programmatically trigger a click on the anchor element to initiate the download.
+    // Programmatically trigger a click on the anchor element to initiate the download.
     link.click();
 
-    // HINT 11: Remove the anchor element from the document after the download has been initiated.
+    // Remove the anchor element from the document after the download has been initiated.
     document.body.removeChild(link);
   };
 

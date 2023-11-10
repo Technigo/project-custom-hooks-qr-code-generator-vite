@@ -6,32 +6,20 @@
 
 # QR Code Generator - Custom Hook Project
 
-Replace this readme with your own information about your project.
-
-Start by briefly describing the assignment in a sentence or two. Keep it short and to the point.
-
-## Getting Started with the Project
-
-### Dependency Installation & Startup Development Server
-
-Once cloned, navigate to the project's root directory and this project uses npm (Node Package Manager) to manage its dependencies.
-
-The command below is a combination of installing dependencies, opening up the project on VS Code and it will run a development server on your terminal.
-
-```bash
-npm i && code . && npm run dev
-```
+The essence of this project is to empower users to input a URL, effortlessly convert it into a QR code, and conveniently download it as an image.
 
 ### The Problem
 
-Describe how you approached to problem, and what tools and techniques you used to solve it. How did you plan? What technologies did you use? If you had more time, what would be next?
+The code was pretty much already in place so the thin to focus on was trying to make sence of the custom hook. There was a lot of hints this week, and I thin that made me a little confused. I notice that I don't "speak code" well enough to understand all the hints so there were discussions within the team, I googled a bit and used ChatGPT to explain.
+
+This was the fist time I applied an animation from the Lottie library. Fun stuff! The only thing that's missing from that is I can't make the animation go slower. I think it's moving too fast, but I just can't figure out how to do that (withput paying).
 
 ### View it live
 
-Every project should be deployed somewhere. Be sure to include the link to the deployed project so that the viewer can click around and see what it's all about.
+https://easy-qr-code-generator.netlify.app/
 
-## Instructions
+## Screenshot
 
-<a href="instructions.md">
-   See instructions of this project
+<a href="">
+   <img src="src/assets/qr-code.png" alt="Preview of the QR-code generator.">
   </a>
