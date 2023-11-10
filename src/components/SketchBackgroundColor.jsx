@@ -40,7 +40,7 @@ class SketchBackgroundColor extends React.Component {
         },
         swatch: {
           padding: '5px',
-          background: '#fff',
+          background: "white", 
           borderRadius: '100%',
           boxShadow: '0 0 0 1px rgba(0,0,0,.1)',
           display: 'inline-block',
@@ -49,7 +49,6 @@ class SketchBackgroundColor extends React.Component {
         popover: {
           position: 'absolute',
           zIndex: '2',
-          top: "0"
         },
         cover: {
           position: 'fixed',
