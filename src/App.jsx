@@ -5,6 +5,7 @@
 import { useQRCodeGenerator } from "./hooks/useQRCodeGenerator";
 import Lottie from "lottie-react";
 import lottieQr1 from "./assets/lottie/lottieQr1.json";
+import "animate.css";
 
 // Define the App component
 export const App = () => {
@@ -21,9 +22,9 @@ export const App = () => {
 
   // Return the JSX to render the component
   return (
-    <div className="w-screen h-screen max-w-xl flex flex-col gap-3 items-center justify-center py-8 px-4 mx-auto my-auto text-zinc-300 ">
+    <div className="w-screen h-screen max-w-xl flex flex-col gap-5 items-center justify-center py-8 px-4 mx-auto my-auto text-zinc-300 ">
       {/* Render the title */}
-      <h1 className=" text-2xl font-bold">QR Code Generator</h1>
+      <h1 className=" text-3xl font-bold">QR Code Generator</h1>
 
       {/* Conditionally render based on whether the user is inputting an URL to generate a QR Code or the user wants to download the generated QR Code from the url input */}
       {/* {yourReactiveVariableThatTogglesTheDownloadQrCcodeOrInputField ? () : ()} */}
@@ -31,10 +32,10 @@ export const App = () => {
       {isInputVisible ? (
         <>
           <Lottie animationData={lottieQr1} loop={true} autoplay={true} />
-          <h3>Enter url to create a QR code</h3>
+          <h2>Enter url to create a QR code</h2>
           <form>
             <input
-              className="w-screen max-w-[300px] rounded-md my-3 text-stone-800 px-2"
+              className="w-screen max-w-[300px] rounded-md my-3 text-stone-800 px-2 border-solid border-2 border-cyan-800 shadow-md shadow-cyan-600/50 "
               type="text"
               placeholder="e.g. https://google.com"
               value={url}
@@ -43,8 +44,9 @@ export const App = () => {
             />
           </form>
           <button
-            className="cursor-pointer rounded-md border-solid border-teal-300"
+            className="cursor-pointer rounded-md py-1 px-4 border-solid border-2  border-teal-300 hover:translate-y-0.5"
             onClick={generateQRCode}
+            aria-label="generate QR code"
           >
             Generate
           </button>
@@ -52,16 +54,20 @@ export const App = () => {
       ) : (
         qrCode && (
           <>
-            <img src={qrCode} />
+            <img
+              src={qrCode}
+              className="border-solid border-4 border-cyan-600 animate__animated animate__zoomIn"
+              alt="QR code"
+            />
 
-            <button onClick={downloadQRCode}>
+            <button onClick={downloadQRCode} aria-label="download QR code">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth="1.5"
                 stroke="currentColor"
-                className="w-8 h-8"
+                className="w-8 h-8 drop-shadow-[0_35px_35px_rgba(94,234,212,0.25)] hover:translate-y-0.5 hover:stroke-teal-300"
               >
                 <path
                   strokeLinecap="round"
@@ -71,7 +77,12 @@ export const App = () => {
               </svg>
             </button>
 
-            <button onClick={repeatAction}>New QR-code</button>
+            <button
+              className="cursor-pointer rounded-md py-1 px-4 border-solid border-2  border-teal-300 hover:translate-y-0.5"
+              onClick={repeatAction}
+            >
+              New QR-code
+            </button>
           </>
         )
       )}
