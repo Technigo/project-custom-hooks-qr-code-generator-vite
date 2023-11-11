@@ -4,6 +4,7 @@ import { Footer } from "./components/Footer";
 import { useQRCodeGenerator } from "./hooks/useQRCodeGenerator"; // Import the custom hook useQRCodeGenerator
 import { LottieQR } from "./components/LottieQR";
 import { LottieConfetti } from "./components/LottieConfetti";
+import { LottieDownload } from "./components/LottieDownload.jsx";
 import styled from "styled-components";
 
 const StyledApp = styled.div`
@@ -24,7 +25,7 @@ const StyledApp = styled.div`
   button {
     background-color: #965862;
     color: #fff;
-    padding: 10px 20px;
+    padding: 16px 20px;
     border: none;
     border-radius: 4px;
     font-size: 18px;
@@ -40,12 +41,18 @@ const StyledApp = styled.div`
       font-size: 45px;
     }
   }
+
+  @media (min-width: 667px) {
+    h1 {
+      font-size: 52px;
+    }
+  }
 `;
 
 const InputContainer = styled.div`
   input {
-    padding: 10px;
-    font-size: 16px;
+    padding: 14px 10px;
+    font-size: 18px;
     border: 1px solid #ccc;
     border-radius: 4px;
     //margin: 40px 10px 10px;
@@ -68,18 +75,17 @@ const QRContainer = styled.div`
   } */
 
   img.generated-qr {
-    /*display: block;
-  width: 100%;
-  max-width: 480px;
-  margin: 2rem auto;
-  */
-    margin-top: 20px;
     width: 200px;
     border: 3px solid #ccc;
     border-radius: 4px;
 
     @media (min-width: 667px) {
       width: 250px;
+      margin: 30px;
+    }
+
+    @media (min-width: 1024px) {
+      margin: 50px;
     }
   }
 `;
@@ -89,7 +95,11 @@ const ButtonWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  margin-top: 60px;
+  margin-top: 50px;
+
+  /* #download-button {
+    background-color: #fff;
+  } */
 
   @media (min-width: 667px) {
     flex-direction: row;
@@ -146,7 +156,7 @@ export const App = () => {
           <LottieConfetti />
           <img className="generated-qr" src={qr} />
           <ButtonWrapper>
-            <button onClick={downloadQRCode}>Download your QR code</button>
+            <LottieDownload onClick={downloadQRCode}>Download</LottieDownload>
             <button onClick={repeatAction}>Get a new QR code</button>
           </ButtonWrapper>
         </QRContainer>
