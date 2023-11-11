@@ -18,7 +18,7 @@ const StyledApp = styled.div`
   h1 {
     color: #42121d;
     font-size: 28px;
-    margin: 50px 0;
+    margin-bottom: 20px;
     text-align: center;
   }
 
@@ -42,9 +42,10 @@ const StyledApp = styled.div`
     }
   }
 
-  @media (min-width: 667px) {
+  @media (min-width: 1024px) {
     h1 {
       font-size: 52px;
+      margin: 30px 0 20px 0;
     }
   }
 `;
@@ -61,6 +62,14 @@ const InputContainer = styled.div`
     &::placeholder {
       font-family: "Josefin Sans", sans-serif;
     }
+  }
+`;
+
+const AnimatedQR = styled.div`
+  margin: 20px;
+
+  @media (min-width: 667px) {
+    margin: 50px;
   }
 `;
 
@@ -95,7 +104,7 @@ const ButtonWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  margin-top: 50px;
+  margin: 20px;
 
   /* #download-button {
     background-color: #fff;
@@ -131,7 +140,9 @@ export const App = () => {
       {/* Conditionally render based on wether the user is inputting an URL to generate a QR Code or the user wnats to downaload the generated QR Code from the url input */}
       {showInput === true ? (
         <InputContainer>
-          <LottieQR />
+          <AnimatedQR>
+            <LottieQR />
+          </AnimatedQR>
           <ButtonWrapper>
             <input
               type="text"

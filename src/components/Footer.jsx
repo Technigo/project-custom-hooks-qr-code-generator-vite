@@ -6,7 +6,7 @@ import styled from "styled-components";
 const StyledFooter = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 30px 0 20px;
+  padding: 20px 0 10px;
   width: 100%;
   text-align: center;
   position: fixed;
@@ -37,7 +37,7 @@ const Copyright = styled.div`
   display: flex;
   flex-direction: column;
   text-align: center;
-  gap: 8px;
+  gap: 4px;
 
   p {
     display: flex;
@@ -69,11 +69,15 @@ const Copyright = styled.div`
 
 const Links = styled.div`
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  //flex-direction: column;
   color: #f8f8f8;
+  margin-top: 15px;
 
   img.link-qr {
-    width: 50px;
+    width: 40px;
+    height: 40px;
+    margin-left: 50px;
     //border: none;
   }
 `;
@@ -81,7 +85,7 @@ const Links = styled.div`
 const Contact = styled.div`
   display: flex;
   gap: 20px;
-  margin: 20px 0;
+  margin: 10px 0;
 `;
 
 // Define the Footer component as a functional component.
