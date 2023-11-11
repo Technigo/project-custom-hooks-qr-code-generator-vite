@@ -13,7 +13,6 @@ export type QrContextType = {
   isVisible: boolean;
   setColor: (color: string) => void;
   setSize: (size: number) => void;
-  anchorRef?: React.Ref<HTMLDivElement | null>;
   setElementRef?: React.Dispatch<React.SetStateAction<HTMLDivElement | null>>;
 };
 
