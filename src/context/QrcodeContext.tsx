@@ -1,17 +1,7 @@
-import {
-  ReactNode,
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useRef,
-  createRef,
-  useState,
-} from "react";
+import { ReactNode, createContext, useContext, createRef, useState } from "react";
 import { useQRCodeGenerator } from "../hooks/useQRCodeGenerator";
 import { QrContextType } from "src/types/common";
 const QrCodeContext = createContext<QrContextType | undefined>(undefined);
-const anchorRef = createRef<HTMLDivElement | null>();
 
 const QrCodeProvider = ({ children }: { children: ReactNode }) => {
   const [elementRef, setElementRef] = useState<HTMLDivElement | null>(null);
@@ -37,7 +27,6 @@ const QrCodeProvider = ({ children }: { children: ReactNode }) => {
     <QrCodeContext.Provider
       value={{
         setElementRef,
-        anchorRef,
         setError,
         error,
         url,

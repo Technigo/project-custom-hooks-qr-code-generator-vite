@@ -1,10 +1,9 @@
 import { useQrCode } from "../../context/QrcodeContext";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 export const QrCode = () => {
   const divRef = useRef(null);
-  const { qr, downloadQRCode, repeatAction, setIsVisible, isVisible, anchorRef, setElementRef } =
-    useQrCode();
+  const { qr, downloadQRCode, repeatAction, setIsVisible, isVisible, setElementRef } = useQrCode();
   useEffect(() => {
     if (!divRef.current || !setElementRef) return;
     setElementRef(divRef.current);
