@@ -3,8 +3,6 @@ import Downloadanimation from "/src/assets/animations/DownloadButton.json";
 import styled from "styled-components";
 
 const DownloadButton = styled.button`
-  /* background: none;
-  border: none; */
   cursor: pointer;
   display: flex;
   flex-direction: column;

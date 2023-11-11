@@ -41,15 +41,12 @@ const Copyright = styled.div`
 
   p {
     display: flex;
-    //align-items: center;
   }
 
   img.logo-small {
-    //display: flex;
     min-width: 40px;
     max-width: 45px;
     padding-left: 7px;
-    //border: none;
   }
 
   .separator {
@@ -70,7 +67,6 @@ const Copyright = styled.div`
 const Links = styled.div`
   display: flex;
   align-items: center;
-  //flex-direction: column;
   color: #f8f8f8;
   margin-top: 15px;
 
@@ -78,7 +74,6 @@ const Links = styled.div`
     width: 40px;
     height: 40px;
     margin-left: 50px;
-    //border: none;
   }
 `;
 
