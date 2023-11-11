@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useLayoutEffect, useRef } from "react";
 import QRCode from "qrcode";
 import lottie from "lottie-web";
 import animationData from "./components/AnimationButterfly.json";
@@ -39,24 +39,18 @@ const useQRCodeGenerator = () => {
     setUrl("");
     setQrGenerated(false);
     setShowAnimation(true);
-    lottie.destroy();
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     // Load the Lottie animation on component mount
-    lottie.loadAnimation({
+    const animation = lottie.loadAnimation({
       container: lottieContainer.current,
       renderer: "svg",
       loop: true,
       autoplay: true,
       animationData: animationData,
     });
-
-    // Cleanup: Destroy the Lottie animation when the component unmounts
-    return () => {
-      lottie.destroy();
-    };
-  }, []); // Empty dependency array ensures this effect runs only on mount and unmount
+  });
 
   return {
     url,
