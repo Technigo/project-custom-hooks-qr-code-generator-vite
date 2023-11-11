@@ -15,7 +15,7 @@ export const Welcome = ({ onStart, gifs }: { onStart: (value: boolean) => void; 
       <ThreeFrame shape="box" style="top-[10%]  right-[20%] " />
       <ThreeFrame shape="box" style="top-[80%]  right-[15%] sm:top-[40%] sm:left-[10%]" />
       <ThreeFrame shape="box" style="hidden sm:block sm:top-[40%] sm:right-[10%]" />
-      <AudioButton />
+      <AudioButton key="audio" />
       <ThemeButton />
 
       <div className="h-12  min-h-[30px]  z-1 relative">

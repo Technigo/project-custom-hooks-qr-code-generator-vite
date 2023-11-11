@@ -30,3 +30,7 @@ export type ThemeContextType = {
   theme: ThemeKey;
   setTheme: (theme: ThemeKey) => void;
 };
+
+export type AudioContextType = {
+  setPlay: React.Dispatch<React.SetStateAction<boolean>>;
+};

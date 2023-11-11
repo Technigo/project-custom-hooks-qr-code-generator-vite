@@ -1,13 +1,8 @@
-import { useRef, useState, useEffect } from "react";
-import music from "../../assets/music.mp3";
+import { useAudio } from "../../context/AudioContext";
 
 export const AudioButton = () => {
-  const audioRef = useRef(new Audio(music));
-  const vol = useRef((audioRef.current.volume = 0.2));
-  const [play, setPlay] = useState<boolean>(false);
-  useEffect(() => {
-    play ? audioRef.current.play() : audioRef.current.pause();
-  }, [play]);
+  const { setPlay } = useAudio();
+
   return (
     <>
       <audio />

@@ -5,13 +5,16 @@ import { QrCodeProvider } from "./context/QrcodeContext.js";
 import { ThemeProvider } from "./context/ThemeContext.js";
 import "tailwindcss/tailwind.css";
 import "./index.css";
+import { AudioProvider } from "./context/AudioContext.js";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <QrCodeProvider>
-      <ThemeProvider>
-        <App />
-      </ThemeProvider>
+      <AudioProvider>
+        <ThemeProvider>
+          <App />
+        </ThemeProvider>
+      </AudioProvider>
     </QrCodeProvider>
   </React.StrictMode>
 );

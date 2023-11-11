@@ -33,7 +33,7 @@ export const App = () => {
             <>
               <ScrollAnimated>
                 <div className="flex flex-col items-center gap-3 min-h-screen h-fit pt-40 sm:pt-20 relative overflow-hidden">
-                  <AudioButton />
+                  <AudioButton key="audio" />
                   <ThemeButton />
                   <ThreeFrame
                     shape="box"
