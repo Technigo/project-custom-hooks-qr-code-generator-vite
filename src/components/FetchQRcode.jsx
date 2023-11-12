@@ -1,11 +1,23 @@
 import QRCode from "qrcode";
-import { useState } from "react";
+import Lottie from 'react-lottie';
+import animationData from './AnimationArrow2.json'
+import React from 'react';
+
+
+export const FetchQRcode = ( 
+  {url,
+  setUrl,
+  qr,
+  setQr,
+  showInput,
+  toggleShowInput,
+  inputRef}) => {
+     
+  
 
 
 
-export const FetchQRcode = () => {
-  const [url, setUrl] = useState("");
-  const [qr, setQr] = useState("");
+  const [filename, setFilename] = React.useState('filename');
 
   const GenerateQRCode = () => {
     QRCode.toDataURL(
@@ -23,26 +35,52 @@ export const FetchQRcode = () => {
 
         console.log(url);
         setQr(url);
+        toggleShowInput();
       }
     );
   };
 
+  const handleDownload = () => {
+    const userFilename = prompt('Enter the filename for the download:', filename);
+    if (userFilename !== null) {
+      setFilename(userFilename);
+    }
+  };
+  
+  const defaultOptions = {
+    loop: true,
+    autoplay: true, 
+    animationData: animationData,
+    rendererSettings: {
+      preserveAspectRatio: 'xMidYMid slice'
+    }
+  };
+
+
   return (
     <div className="app">
       <h1>QR Generator</h1>
-      <input
-        type="text"
-        placeholder="e.g. https://google.com"
-        value={url}
-        onChange={(e) => setUrl(e.target.value)}
-      />
-      <button onClick={GenerateQRCode}>Generate</button>
-      <>
-        <img src={qr} />
-        <a href={qr} download="qrcode.png">
-          Download
-        </a>
-      </>
+      {showInput ? (
+        <input
+          ref={inputRef}
+          type="text"
+          placeholder="e.g. https://google.com"
+          value={url}
+          onChange={(e) => setUrl(e.target.value)}
+        />
+      ) : (
+        <>
+          <img src={qr} />
+          <Lottie options = {defaultOptions} is={animationData} height={100} width={100} />
+          <a href={qr} download={`${filename}.png`} onClick={handleDownload}>
+            Download
+          </a>
+          <button onClick={toggleShowInput}>Generate another</button>
+        </>
+      )}
+      {showInput && <button onClick={GenerateQRCode}>Generate</button>}
     </div>
   );
 };
+
+
