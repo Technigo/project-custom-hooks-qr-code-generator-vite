@@ -54,6 +54,7 @@ export const App = () => {
                             />
                             <div className="color-select-container">
                             <span className="color-preview" style={{ backgroundColor: color}}/>
+                            
                             <select
                                 name="colorSelector"
                                 className="color-selector"
