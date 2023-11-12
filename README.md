@@ -1,37 +1,17 @@
-<h1 align="center">
-  <a href="">
-    <img src="/src/assets/custom-hooks.svg" alt="Project Banner Image">
-  </a>
-</h1>
-
 # QR Code Generator - Custom Hook Project
+This project is a QR Code Generator built with React. It leverages the power of custom hooks to manage state and side effects. 
 
-Replace this readme with your own information about your project.
+The application allows users to input a URL and generate a corresponding QR code for that URL.
 
-Start by briefly describing the assignment in a sentence or two. Keep it short and to the point.
-
-## Getting Started with the Project
-
-### Dependency Installation & Startup Development Server
-
-Once cloned, navigate to the project's root directory and this project uses npm (Node Package Manager) to manage its dependencies.
-
-The command below is a combination of installing dependencies, opening up the project on VS Code and it will run a development server on your terminal.
-
-```bash
-npm i && code . && npm run dev
-```
 
 ### The Problem
 
-Describe how you approached to problem, and what tools and techniques you used to solve it. How did you plan? What technologies did you use? If you had more time, what would be next?
+The main challenge was managing the state of the application and handling the generation of the QR code. To solve this, I used React's useState and useEffect hooks. The useState hook was used to manage the state of the URL input and the generated QR code, while the useEffect hook was used to handle side effects, such as generating the QR code whenever the URL input changes.
+
+I wanted to provide a smooth user experience by allowing users to generate a new QR code without refreshing the page. To achieve this, I used a custom hook to toggle the visibility of the input field and the QR code.
+
+For this project, I used Lottie animations to enhance the visual feedback of the application, making it more interactive and user-friendly.
 
 ### View it live
 
-Every project should be deployed somewhere. Be sure to include the link to the deployed project so that the viewer can click around and see what it's all about.
 
-## Instructions
-
-<a href="instructions.md">
-   See instructions of this project
-  </a>
