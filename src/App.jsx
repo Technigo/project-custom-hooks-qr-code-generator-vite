@@ -1,23 +1,21 @@
-// The App component serves as a user interface for generating and downloading QR codes, utilizing the custom hook useQRCodeGenerator which encapsulates the logic for QR code generation and management. When rendered, the component displays a title ("Technigo QR Code Generator") and conditionally renders either an input field and a "Generate" button or a generated QR code image, a "Download" button, and a "Repeat" button, based on the showInput state variable. If showInput is true, users can input a URL and generate a QR code by clicking the "Generate" button. Once generated, the input field and "Generate" button are replaced by the QR code image and additional buttons. The "Download" button triggers a download of the QR code image, and the "Repeat" button resets the UI to allow for generating a new QR code. The url, setUrl, qr, showInput, generateQRCode, downloadQRCode, and repeatAction variables and functions are derived from the useQRCodeGenerator hook, providing the necessary state and actions to manage the QR code generation process.
+// Import necessary modules and components.
 import { useQRCodeGenerator } from "./hooks/useQRCodeGenerator"; // Import the custom hook useQRCodeGenerator
-
-// Other page stuff
-import {
-  NotALottieComponent,
-  NotAnotherLottieComponent,
-} from "./NotALottieComponent";
-import logo from "/studio-qr-code-logo.png";
+import { useEffect, useRef } from "react";
 import { ChromePicker } from "react-color";
-// import SketchExample from "./InputColor"
+import {
+  LottieComponent,
+  AnotherLottieComponent,
+} from "./components/LottieComponent";
+import logo from "/studio-qr-code-logo.png";
 
 // ICONS
 import { AiOutlineCloudDownload, AiFillGithub } from "react-icons/ai";
 import { BsQrCodeScan } from "react-icons/bs";
 import { IoClose } from "react-icons/io5";
 
-// Define the App component
+// Define the App component.
 export const App = () => {
-  // Destructure variables, properties and methods from the useQRCodeGenerator hook that you imported above here :)
+  // Destructure variables, properties, and methods from the useQRCodeGenerator hook.
   const {
     inputURL,
     setInputURL,
@@ -32,45 +30,78 @@ export const App = () => {
     setShowColorPicker,
   } = useQRCodeGenerator();
 
+  // Reference to the color picker element.
+  const colorPickerRef = useRef(null);
+
+  // Handle color input change.
   const handleColorInputChange = (event) => {
     const newColor = event.target.value;
     setColor(newColor);
   };
 
+  // Close the color picker if a click is detected outside of it.
+  const closeColorPicker = (event) => {
+    if (
+      colorPickerRef.current &&
+      !colorPickerRef.current.contains(event.target)
+    ) {
+      setShowColorPicker(false);
+    }
+  };
+
+  // Add event listener for closing the color picker on click outside.
+  useEffect(() => {
+    document.addEventListener("click", closeColorPicker);
+
+    // Cleanup function to remove the event listener on component unmount.
+    return () => {
+      document.removeEventListener("click", closeColorPicker);
+    };
+  }, []);
+
+  // Render the main content of the App.
   return (
     <div className="wrapper">
       <header>
+        {/* GitHub link and author information */}
         <div className="github-container header">
           <a href="https://github.com/JuliaHolm">
             <AiFillGithub className="github-icon" />
           </a>
           <a href="https://github.com/JuliaHolm">By Julia Holm</a>
         </div>
-        <img className="logo" src={logo} alt="Studio QR code logo" />
+        {/* Logo and QR code icon */}
+        <img
+          className="logo"
+          src={logo}
+          alt="Studio QR code logo"
+          aria-label="Studio QR code logo"
+        />
         <div className="qr-header-container">
           <p>QR generator</p>
           <BsQrCodeScan className="qr-icon" />
         </div>
       </header>
       <main>
+        {/* Hero section with Lottie animation */}
         <div className="hero-section">
           <div className="hero-text">
             <h1>QR Realm of Dreams</h1>
             <h2>Where Digital Magic Gleams</h2>
             <p>Create & Customize QR Codes with Ease.</p>
           </div>
-          <NotALottieComponent />
+          <LottieComponent />
         </div>
+        {/* Show loading spinner while generating the QR code */}
         {showSpinner ? (
-          // Display a loading spinner while generating the QR code
           <div className="loading-container">
-            <NotAnotherLottieComponent />
+            <AnotherLottieComponent />
             <p>Creating QR Code...</p>
           </div>
         ) : qrcode ? (
-          // Content to show when qrcode is available.
+          // Content to show when QR code is available
           <div className="download-container">
-            <img src={qrcode} alt="QR Code" />
+            <img src={qrcode} alt="QR Code" aria-label="Generated QR Code" />
             <button
               className="download-btn"
               onClick={downloadQRCode}
@@ -86,6 +117,7 @@ export const App = () => {
             >
               Make more QR Codes
             </button>
+            {/* GitHub link and author information */}
             <div className="github-container footer">
               <a href="https://github.com/JuliaHolm">
                 <AiFillGithub className="github-icon" />
@@ -98,29 +130,37 @@ export const App = () => {
           <div className="qr-generator-wrapper">
             <div className="qr-generator-container">
               <div>
-                <label className="visually-hidden">URL</label>
+                {/* Input for URL */}
+                <label htmlFor="urlInput" className="visually-hidden">
+                  URL
+                </label>
                 <input
                   id="urlInput"
                   type="text"
                   placeholder="e.g. google.com"
+                  aria-label="Enter URL"
                   value={inputURL}
                   onChange={(event) => setInputURL(event.target.value)}
                 />
               </div>
 
               {/* COLOR PICKER */}
-              <div className="color-picker-wrapper">
+              <div className="color-picker-wrapper" ref={colorPickerRef}>
                 {/* <label>Color</label> */}
                 <div className="color-picker">
+                  {/* Color box and value display */}
                   <div
                     onClick={() => setShowColorPicker(!showColorPicker)}
                     style={{ background: color }}
                     className="color-box"
                     value={color}
                     onChange={handleColorInputChange}
+                    role="button"
+                    tabIndex="0"
                   ></div>
                   <span>{color}</span>
                 </div>
+                {/* Display the Chromecolor picker if showColorPicker is true */}
                 {showColorPicker && (
                   <div className="chrome-picker">
                     <ChromePicker
@@ -131,6 +171,7 @@ export const App = () => {
                 )}
               </div>
             </div>
+            {/* Generate and Reset buttons */}
             <button
               className="generate-btn"
               onClick={generateQRCode}
@@ -145,6 +186,7 @@ export const App = () => {
             >
               Reset <IoClose className="icon" />
             </button>
+            {/* GitHub link and author information */}
             <div className="github-container footer">
               <a href="https://github.com/JuliaHolm">
                 <AiFillGithub className="github-icon" />

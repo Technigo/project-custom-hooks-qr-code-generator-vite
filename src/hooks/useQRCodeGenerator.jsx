@@ -1,6 +1,5 @@
 import QRCode from "qrcode";
-import { useState, useEffect } from "react";
-import reactCSS from "reactcss";
+import { useState } from "react";
 
 // A custom hook named useQRCodeGenerator.
 export const useQRCodeGenerator = () => {
@@ -8,8 +7,8 @@ export const useQRCodeGenerator = () => {
   const [qrcode, setQrcode] = useState(""); // Reactive State variable to store the generated QR code data URL.
   const [showQrcode, setShowQrcode] = useState(true); // Reactive State variable to toggle the visibility of the input element - boolean value.
   const [showSpinner, setShowSpinner] = useState(false); // Reactive State variable for the visibility of a loading spinner.
-  const [color, setColor] = useState("#000000");
-  const [showColorPicker, setShowColorPicker] = useState(false);
+  const [color, setColor] = useState("#000000"); // Reactive State variable to store the color for the QR code.
+  const [showColorPicker, setShowColorPicker] = useState(false); // Reactive State variable to toggle the visibility of the color picker.
 
   // Function to generate a QR code from the input URL.
   const generateQRCode = () => {
@@ -18,30 +17,32 @@ export const useQRCodeGenerator = () => {
       return;
     }
 
-    setShowSpinner(true); // Display loading spinner.
+    // Display loading spinner.
+    setShowSpinner(true);
 
-    // Import of the qrcode chained to the native method toDataUrl().
-    // Converts a URL to a QR code data URL.
+    // Generate QR code using the qrcode library.
     QRCode.toDataURL(
-      // Necessary parameters to pass to the QR code generation method. (URL to convert and any styling options.)
+      // URL to convert to a QR code.
       inputURL,
       {
+        width: 300,
         margin: 2,
         color: {
           dark: color,
           light: "#ffffff",
         },
       },
-      // Error handling and callback of the QR code generation method, which provides the generated QR code data URL.
+      // Callback for handling errors and getting the generated QR code data URL.
       (err, inputURL) => {
+        // Simulate a delay of 2000 milliseconds (2 seconds).
         setTimeout(() => {
           setShowSpinner(false); // Hide the spinner.
           if (err) {
             console.error(err);
           } else {
-            console.log(inputURL);
-            setQrcode(inputURL);
-            setShowQrcode(true);
+            console.log(inputURL); // Log the generated QR code data URL.
+            setQrcode(inputURL); // Set the QR code data URL to the state.
+            setShowQrcode(true); // Show the QR code.
           }
         }, 2000);
       }
@@ -50,39 +51,43 @@ export const useQRCodeGenerator = () => {
 
   // Function to download the generated QR code as a PNG file.
   const downloadQRCode = () => {
-    // Filename logic in a separate function.
+    // Function to prompt the user for a filename and handle the input.
     const getFileName = () => {
-      // Method to prompt the user for input and store the response.
       let fileName = prompt("Enter a filename for the QR code.");
 
-      // Check if the user clicked Cancel
+      // If the user clicked Cancel, return null.
       if (fileName === null) {
-        return null; // User canceled, return null
+        return null;
       }
 
-      // Implement a check for an empty filename and utilize recursion to re-prompt the user if necessary.
+      // If the filename is empty, alert the user and re-prompt.
       if (!fileName.trim()) {
         alert("Filename cannot be empty. Please try again.");
-        return getFileName(); // Recursively re-prompt if the filename is empty
+        return getFileName();
       }
 
-      // Ensure the function returns the obtained filename.
+      // Return the obtained filename.
       return fileName;
     };
-    // HINT 5: Call the above function to retrieve a filename and store it in a variable.
+
+    // Call the function to retrieve a filename.
     const fileName = getFileName();
-    // HINT 6: Format the filename to ensure it is filesystem-friendly.
+
+    // Format the filename to ensure it is filesystem-friendly.
     const formattedFileName = fileName.replace(/[^a-z0-9]/gi, "_") + ".png";
-    // HINT 7: Create an anchor element to facilitate the download.
+
+    // Create an anchor element for the download.
     const downloadLink = document.createElement("a");
-    // HINT 8: Set the necessary attributes on the anchor element to prepare it for download.
+
+    // Set attributes on the anchor element for the download.
     downloadLink.href = qrcode;
     downloadLink.download = formattedFileName;
-    // HINT 9: Append the anchor element to the document to make it interactable.
+
+    // Append the anchor element to the document.
     document.body.appendChild(downloadLink);
-    // HINT 10: Programmatically trigger a click on the anchor element to initiate the download.
+    // Programmatically trigger a click on the anchor element to initiate the download.
     downloadLink.click();
-    // HINT 11: Remove the anchor element from the document after the download has been initiated.
+    // Remove the anchor element from the document after the download has been initiated.
     document.body.removeChild(downloadLink);
   };
 
@@ -92,10 +97,10 @@ export const useQRCodeGenerator = () => {
     setQrcode("");
     setShowQrcode(false);
     setColor("#000000");
-    setQrSize(200);
     setShowColorPicker(false);
   };
 
+  // Return the necessary variables and functions as an object.
   return {
     inputURL,
     setInputURL,
