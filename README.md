@@ -1,6 +1,6 @@
 <h1 align="center">
   <a href="">
-    <img src="./custom-hooks.svg" alt="Project Banner Image">
+    <img src="./public/custom-hooks.svg" alt="Project Banner Image">
   </a>
 </h1>
 
