@@ -1,14 +1,13 @@
-// useQRCodeGenerator.jsx
-
 import { useState } from 'react';
 import QRCode from 'qrcode';
 
 export const useQRCodeGenerator = () => {
   // STATE VARIABLES
-  const [url, setUrl] = useState('');
+  const [url, setUrl] = useState('http://');
   const [qr, setQr] = useState('');
   const [showInput, setShowInput] = useState(true);
   const [errorMessage, setErrorMessage] = useState('');
+  const [qrGenerated, setQrGenerated] = useState(false);
 
   // FUNCTION TO CHECK IF THE INPUT IS A VALID URL
   const isValidUrl = (input) => {
@@ -22,41 +21,41 @@ export const useQRCodeGenerator = () => {
 
   // FUNCTION TO GENERATE A QR CODE FROM THE INPUT URL
   const generateQRCode = async () => {
+
     try {
-      // Check if the URL is empty
-      if (!url.trim()) {
+      let formattedUrl = url.trim();
+      if (!formattedUrl.startsWith('http://') && !formattedUrl.startsWith('https://')) {
+        formattedUrl = `http://${formattedUrl}`;
+      }
+
+      if (!isValidUrl(formattedUrl)) {
         setErrorMessage('Please enter a valid URL.');
         return;
       }
 
-      // Check if the entered text is a valid URL
       if (!isValidUrl(url)) {
         setErrorMessage('Please enter a valid URL.');
         return;
       }
 
-      // Generate QR code data URL
-      const qrCodeDataURL = await QRCode.toDataURL(url, {
+      const qrCodeDataURL = await QRCode.toDataURL(formattedUrl, { // Use 'formattedUrl' here
         width: 200,
         margin: 1,
         color: {
-          dark: 'hotpink',
-          light: '#ffffff',
+          dark: '#333',
+          light: '#ee8f8f',
         },
       });
 
-      console.log('Generated QR Code Data URL:', qrCodeDataURL);
-
-
-      // Update state variables with the generated QR code data URL
       setQr(qrCodeDataURL);
       setShowInput(false);
-      setErrorMessage(''); // Clear the error message if the URL is valid
+      setQrGenerated(true);
+      setErrorMessage('');
     } catch (error) {
       console.error('Error generating QR Code: ', error);
+      setErrorMessage('Error generating QR Code.');
     }
   };
-
   // FUNCTION TO DOWNLOAD THE GENERATED QR CODE AS A PNG FILE AND GET FILENAME FROM USER
   const downloadQRCode = () => {
     // Function to get filename from user
@@ -88,10 +87,11 @@ export const useQRCodeGenerator = () => {
 
   // FUNCTION TO RESET THE STATE AND ALLOW GENERATING A NEW QR CODE
   const repeatAction = () => {
-    setUrl('');
+    setUrl('http://');
     setQr('');
     setShowInput(true);
     setErrorMessage('');
+    setQrGenerated(false);
   };
 
   // RETURN THE STATE VARIABLES AND FUNCTIONS TO BE USED IN THE COMPONENT
@@ -101,8 +101,10 @@ export const useQRCodeGenerator = () => {
     qr,
     showInput,
     errorMessage,
+    setErrorMessage,
     generateQRCode,
     downloadQRCode,
     repeatAction,
+    qrGenerated,
   };
 };
