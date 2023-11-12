@@ -25,7 +25,7 @@ export const useQRCodeGenerator = () => {
     // Use the Import of the qrcode and chain to the native method toDataUrl() much like the example provided and specify the data within the object that you will be passing such as the {url, {width, margin, color:{dark, light}}} which containes the information to generate the qr-code and url. Lastly, this native method toDataUrl() will contain a callback function  that will update the qr variable and will also update the variable toggling the visibility of the input element.
     try {
       const qrCreate = await QRCode.toDataURL(inputURL, {
-        width: 800,
+        width: 600,
         margin: 2,
       });
 
@@ -58,7 +58,6 @@ export const useQRCodeGenerator = () => {
         userFileName = userFileName.replace(/[\\/:"*?<>|]/g, "");
 
         // Replace spaces with underscores and remove leading/trailing spaces
-        console.log(userFileName);
         userFileName = userFileName.replace(/\s+/g, "_").trim();
 
         // Limit the fileName length
@@ -85,35 +84,7 @@ export const useQRCodeGenerator = () => {
     // ...
     let fileName = getFileName();
 
-    // HINT 6: Format the filename to ensure it is filesystem-friendly.
-    // ...
-    console.log(fileName);
-    // const formatFileName = (fileName) => {
-    //   console.log(fileName);
-    //   fileName = fileName.replace(/[\\/:"*?<>|]/g, "");
-
-    //   // Replace spaces with underscores and remove leading/trailing spaces
-    //   console.log(fileName);
-    //   fileName = fileName.replace(/\s+/g, "_").trim();
-
-    //   // Limit the fileName length
-    //   if (fileName.length > 30) {
-    //     fileName = fileName.substring(0, 30);
-    //   }
-
-    //   // Normalize the case (e.g., to lowercase)
-    //   fileName = fileName.toLowerCase();
-
-    //   return fileName;
-    // };
-
     const formattedFileName = `${fileName}QR.png`;
-    // const formattedFileName = formatFileName(fileName);
-
-    // HINT 7: Create an anchor element to facilitate the download.
-    // ...
-    // HINT 8: Set the necessary attributes on the anchor element to prepare it for download.
-    // ...
 
     //Using useRef
     let downloadLink = downloadRef.current;
