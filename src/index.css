@@ -1,20 +1,25 @@
 /*---------- GOOGLE FONTS Josefin Sans - JetBrains Mono----------*/
 @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Josefin+Sans:wght@300;400;500;600;700&display=swap");
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+:root {
+  --jetbrains-mono: "JetBrains Mono", monospace;
+  --josefin-sans: "Josefin Sans", "sans-serif";
+  --black: #342e37;
+  --yellow: #f6d365;
+  --orange: #fda085;
+  --gradient: linear-gradient(to right, #f6d365 0%, #fda085 51%, #f6d365 100%);
+}
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   text-decoration: none;
-  @apply text-black;
+  color: var(--black);
 }
 
 body {
-  @apply font-josefin-sans;
+  font-family: var(--josefin-sans);
   width: 100%;
 }
 
@@ -26,26 +31,27 @@ svg {
 
 a {
   color: inherit;
-  @apply font-josefin-sans;
 }
 
 button {
   cursor: pointer;
   font-size: 1rem;
-  @apply font-jetbrains-mono;
+  font-family: var(--jetbrains-mono);
 }
 
 #urlInput {
-  @apply font-jetbrains-mono;
+  font-family: var(--jetbrains-mono);
   appearance: none;
   outline: none;
-  @apply border border-solid border-black;
+  border: 1px solid var(--black);
   width: 220px;
   padding: 0.5rem 1rem;
   border-radius: 0.3rem;
+  font-size: 1rem;
 }
 input::placeholder {
-  @apply font-jetbrains-mono;
+  font-family: var(--jetbrains-mono);
+  font-size: 1rem;
 }
 
 .visually-hidden {
@@ -78,69 +84,66 @@ input::placeholder {
   animation: spin 1s linear infinite;
 }
 
-
-
-
-.color-picker-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: left;
-  width: 100%;
-}
-
-.color-box {
-  width: 1.5rem;
-  height: 1.5rem;
-  cursor: pointer;
-  border: 1px solid black;
-  border-radius: 0.3rem;
-}
-/*
-.color-picker {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 0.5rem 1rem;
-}
-
-.chrome-picker {
-  position: absolute;
-  margin-top: 1rem;
-}
-
-.color-box {
-  width: 1.5rem;
-  height: 1.5rem;
-  cursor: pointer;
-  border: 1px solid black;
-  border-radius: 0.3rem;
-}  */
-
-/* .app {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  background-color: #f8f8f8;
-  padding: 20px;
-} */
-
 .wrapper {
   max-width: 64rem;
+  width: 100%;
   margin: 0 auto;
 }
 
 header {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 0 1rem;
+  width: 100%;
 }
 
-.github-container {
+.github-container.header {
+  display: none;
+}
+
+.logo {
+  width: 150px;
+}
+
+main {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  gap: 0.5rem;
+  column-gap: 4rem;
+  width: 100%;
+  padding: 2rem 1rem;
+}
+
+.hero-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-text {
+  margin: 0 auto;
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 0.375rem;
+  font-weight: 700;
+  font-size: 1.4rem;
+}
+
+h2 {
+  margin-bottom: 0.5rem;
+  font-family: var(--jetbrains-mono);
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.qrPhone {
+  width: 250px;
+  margin: 0 auto;
 }
 
 .github-icon,
@@ -150,23 +153,10 @@ header {
   height: 2rem;
 }
 
-.logo {
-  max-width: 200px;
-}
-
 .qr-header-container {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-}
-
-main {
-  display: flex;
-  justify-content: center;
-  column-gap: 4rem;
-  width: 100%;
-  height: 100%;
-  padding: 2rem 1rem;
 }
 
 .loading-container,
@@ -176,8 +166,12 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
-  margin-bottom: 4rem;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.download-container img {
+  width: 10rem;
 }
 
 .qr-generator-container {
@@ -188,6 +182,25 @@ main {
   justify-content: flex-start;
 }
 
+.github-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.reset-btn {
+  display: flex;
+  align-items: center;
+  padding: 0.2rem 0.6rem;
+  transition: ease 0.5s;
+  border: 1px solid var(--black);
+  background-color: rgb(239, 239, 239);
+}
+
+.reset-btn:hover {
+  background-color: lightgrey;
+}
+
 .download-btn {
   display: flex;
   justify-content: center;
@@ -195,22 +208,77 @@ main {
   gap: 0.25rem;
   font-size: 1.5rem;
   line-height: 2rem;
-  font-family: Josefin Sans, sans-serif;
+  font-family: var(--josefin-sans);
+  padding: 0.5rem 1rem;
+  background: none;
+  border: none;
+}
+
+.github-container.footer {
+  margin-top: 2rem;
 }
 
 .repeat-btn,
 .generate-btn {
-  border: 1px solid rgb(52 46 55);
-  background-image: linear-gradient(
-    to right,
-    #f6d365 0%,
-    #fda085 51%,
-    #f6d365 100%
-  );
+  border: 1px solid var(--black);
+  background-image: var(--gradient);
   background-size: 200% auto;
   font-weight: 700;
   padding: 0.5rem 1.5rem;
   border-radius: 1.5rem;
   font-size: 1.25rem;
   line-height: 1.75rem;
+}
+
+/* COLOR PICKER */
+.color-picker-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 1rem;
+}
+
+.color-picker {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.color-box {
+  width: 1.5rem;
+  height: 1.5rem;
+  cursor: pointer;
+  border: 1px solid var(--black);
+  border-radius: 0.3rem;
+}
+
+.chrome-picker {
+  position: sticky;
+  top: 10px;
+}
+
+@media (min-width: 768px) {
+  header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .github-container.header {
+    display: flex;
+  }
+
+  .github-container.footer {
+    display: none;
+  }
+
+  .logo {
+    max-width: 200px;
+    width: 100%;
+  }
+
+  .qrPhone {
+    width: 300px;
+  }
 }

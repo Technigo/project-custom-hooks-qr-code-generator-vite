@@ -10,7 +10,6 @@ export const useQRCodeGenerator = () => {
   const [showSpinner, setShowSpinner] = useState(false); // Reactive State variable for the visibility of a loading spinner.
   const [color, setColor] = useState("#000000");
   const [showColorPicker, setShowColorPicker] = useState(false);
-  const [qrSize, setQrSize] = useState(200)
 
   // Function to generate a QR code from the input URL.
   const generateQRCode = () => {
@@ -27,7 +26,6 @@ export const useQRCodeGenerator = () => {
       // Necessary parameters to pass to the QR code generation method. (URL to convert and any styling options.)
       inputURL,
       {
-        width: qrSize,
         margin: 2,
         color: {
           dark: color,
@@ -55,13 +53,21 @@ export const useQRCodeGenerator = () => {
     // Filename logic in a separate function.
     const getFileName = () => {
       // Method to prompt the user for input and store the response.
-      let fileName = prompt("Enter a filename for the QR code:");
-      // Implement a check for an empty filename and utilize recursion to re-prompt the user if necessary.
-      if (!fileName) {
-        return getFileName(); // Recursively re-prompt if the filename is empty
-      }
-      // Ensure the function returns the obtained filename.
-      return fileName;
+  let fileName = prompt("Enter a filename for the QR code.");
+  
+  // Check if the user clicked Cancel
+  if (fileName === null) {
+    return null; // User canceled, return null
+  }
+
+  // Implement a check for an empty filename and utilize recursion to re-prompt the user if necessary.
+  if (!fileName.trim()) {
+    alert("Filename cannot be empty. Please try again.");
+    return getFileName(); // Recursively re-prompt if the filename is empty
+  }
+
+  // Ensure the function returns the obtained filename.
+  return fileName;
     };
     // HINT 5: Call the above function to retrieve a filename and store it in a variable.
     const fileName = getFileName();
@@ -100,8 +106,6 @@ export const useQRCodeGenerator = () => {
     showSpinner,
     color,
     setColor,
-    qrSize,
-    setQrSize,
     showColorPicker,
     setShowColorPicker,
   };

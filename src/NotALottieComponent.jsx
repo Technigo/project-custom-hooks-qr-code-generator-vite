@@ -3,10 +3,7 @@ import qrPhone from "./animations/Animation - 1699300585012.json";
 import qrLoading from "./animations/Animation - 1699468198789.json"
 
 export const NotALottieComponent = () => {
-  const style = {
-    width: 300,
-  };
-  return <Lottie animationData={qrPhone} style={style} />;
+  return <Lottie animationData={qrPhone} className="qrPhone" />;
 };
 
 export const NotAnotherLottieComponent = () => {

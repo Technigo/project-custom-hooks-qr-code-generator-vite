@@ -28,8 +28,6 @@ export const App = () => {
     showSpinner,
     color,
     setColor,
-    qrSize,
-    setQrSize,
     showColorPicker,
     setShowColorPicker,
   } = useQRCodeGenerator();
@@ -42,7 +40,7 @@ export const App = () => {
   return (
     <div className="wrapper">
       <header>
-        <div className="github-container">
+        <div className="github-container header">
           <a href="https://github.com/JuliaHolm">
             <AiFillGithub className="github-icon" />
           </a>
@@ -55,12 +53,12 @@ export const App = () => {
         </div>
       </header>
       <main>
-        <div>
-          <h1 className="mb-1.5 font-bold text-3xl">QR Realm of Dreams</h1>
-          <h2 className="mb-6 font-jetbrains-mono font-bold text-2xl">
-            Where Digital Magic Gleams
-          </h2>
-          <p className="text-lg">Create & Customize QR Codes with Ease.</p>
+        <div className="hero-section">
+          <div className="hero-text">
+            <h1>QR Realm of Dreams</h1>
+            <h2>Where Digital Magic Gleams</h2>
+            <p>Create & Customize QR Codes with Ease.</p>
+          </div>
           <NotALottieComponent />
         </div>
         {showSpinner ? (
@@ -88,6 +86,12 @@ export const App = () => {
             >
               Make more QR Codes
             </button>
+            <div className="github-container footer">
+              <a href="https://github.com/JuliaHolm">
+                <AiFillGithub className="github-icon" />
+              </a>
+              <a href="https://github.com/JuliaHolm">By Julia Holm</a>
+            </div>
           </div>
         ) : (
           // Content to show when qrcode is not available.
@@ -141,6 +145,12 @@ export const App = () => {
             >
               Reset <IoClose className="icon" />
             </button>
+            <div className="github-container footer">
+              <a href="https://github.com/JuliaHolm">
+                <AiFillGithub className="github-icon" />
+              </a>
+              <a href="https://github.com/JuliaHolm">By Julia Holm</a>
+            </div>
           </div>
         )}
       </main>
