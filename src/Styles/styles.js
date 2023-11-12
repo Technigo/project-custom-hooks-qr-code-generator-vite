@@ -27,7 +27,7 @@ export const StyledButton = styled.button`
 export const StyledHeading = styled.h1`
     font-family: 'Gugi', sans-serif;
     margin-top: 30%;  
-    font-size: 32px;
+    font-size: calc(28px + 0.1vh);
     font-weight: bold;
     text-align: center;
     color: #0C090D;
