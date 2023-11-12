@@ -34,7 +34,6 @@ export const App = () => {
                     {isLoading ? (
                         <div className="loading-container">
                             <LoadingAnimation />
-                            <p>creating qr code...</p>
                         </div>
                     ) : showInput ? (
                         <>
@@ -53,23 +52,26 @@ export const App = () => {
                                 onChange={(e) => setUrl(e.target.value)}
                             />
                             <div className="color-select-container">
-                            <span className="color-preview" style={{ backgroundColor: color}}/>
-                            
-                            <select
-                                name="colorSelector"
-                                className="color-selector"
-                                value={color}
-                                onChange={handleColorChange}
-                            >
-                                <option disabled value="">
-                                    Color
-                                </option>
-                                <option value="#020617">Black</option>
-                                <option value="#86198f">Pink</option>
-                                <option value="#3730a3">Indigo</option>
-                                <option value="#4d7c0f">Green</option>
-                                <option value="#b45309">Orange</option>
-                            </select>
+                                <span
+                                    className="color-preview"
+                                    style={{ backgroundColor: color }}
+                                />
+
+                                <select
+                                    name="colorSelector"
+                                    className="color-selector"
+                                    value={color}
+                                    onChange={handleColorChange}
+                                >
+                                    <option disabled value="">
+                                        Color
+                                    </option>
+                                    <option value="#020617">Black</option>
+                                    <option value="#86198f">Pink</option>
+                                    <option value="#3730a3">Indigo</option>
+                                    <option value="#4d7c0f">Green</option>
+                                    <option value="#b45309">Orange</option>
+                                </select>
                             </div>
                             <button className="btn" onClick={generateQRCode}>
                                 GENERATE QR CODE
@@ -89,7 +91,6 @@ export const App = () => {
                             <button className="btn" onClick={downloadQRCode}>
                                 DOWNLOAD QR CODE
                             </button>
-
                             <button className="btn" onClick={repeatAction}>
                                 MAKE NEW CODE
                             </button>
