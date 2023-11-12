@@ -1,7 +1,7 @@
 import { useReducer, useRef, useLayoutEffect } from 'react';
 import { FetchQRcode } from "./components/FetchQRcode.jsx";
 import styled from "styled-components";
-import Lottie from 'react-lottie';
+
 
 const Logo = styled.div`
   display: flex;
@@ -91,7 +91,7 @@ export const App = () => {
   return (
     <QrContainer>
       <Logo>
-      <img className="logo" src="../public/qrlogo.jpeg" alt="logo" />
+      <img className="logo" src="/qrlogo.jpeg" alt="logo" />
       </Logo>
       <h1>Simple QR Code Generator</h1>
       <FetchQRcode 
