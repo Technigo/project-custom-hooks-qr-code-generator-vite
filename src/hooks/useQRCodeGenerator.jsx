@@ -13,6 +13,7 @@ export const useQRCodeGenerator = () => {
   const inputRef = useRef(null);  // Ref used to interact with the input element
 
   const DEFAULT_FILE_FORMAT = "png"; // Default file format. Can be changed to other formats if needed.
+  
 
 
   // Function to focus on the input element
@@ -36,7 +37,7 @@ export const useQRCodeGenerator = () => {
       QRCode.toDataURL(
         url,  // The data to be encoded as a QR code (e.g., a URL)
         {
-          // width: 200,  // Width of the QR code
+          // width: 200,  // Width of the QR code.
           margin: 2,   // Margin around the QR code. Increasing this shrinks the QR code and increases the size of the background of the image in order to fit within the width. Keep this small.
           color: {
             dark: "#0C090D",   // The darker colorr in the QR code image

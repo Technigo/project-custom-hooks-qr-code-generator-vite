@@ -58,7 +58,9 @@ export const App = () => {
               src={QRCodeImg}
               alt="Artistic QR code in red and black on a white background"
             /> :
-            <img src={qr} alt={`QR code for ${url}`} />
+            <img 
+            src={qr} 
+            alt={`QR code for ${url}`} />
           }
         </div>
       </div>
@@ -67,7 +69,7 @@ export const App = () => {
         {isInputVisible ? (
           <div className="qr-content-wrapper">
             <div className="url-input-wrapper">
-              <label for="url-input">Enter your URL: </label>
+              <label htmlFor="url-input">Enter your URL: </label>
               <input
                 id="url-input"
                 name="url-input"
