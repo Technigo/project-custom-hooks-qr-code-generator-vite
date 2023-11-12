@@ -40,8 +40,8 @@ export const App = () => {
     <section>
       <div className="hero-section">
         {/* Conditionally render the heading based on screen size */}
-        {window.innerWidth > 767 ? (
-          <div>
+        {window.innerWidth > 667 ? (
+          <div className="tablet-desktop-h1-wrapper">
             <StyledHeading>QR</StyledHeading>
             <StyledHeading>Code</StyledHeading>
             <StyledHeading>Generator</StyledHeading>
@@ -63,7 +63,7 @@ export const App = () => {
         </div>
       </div>
 
-      <div>
+      <div className="qr-content">
         {isInputVisible ? (
           <div className="qr-content-wrapper">
             <div className="url-input-wrapper">
@@ -72,7 +72,7 @@ export const App = () => {
                 id="url-input"
                 name="url-input"
                 type="text"
-                placeholder="e.g. https://google.com"
+                placeholder="e.g. wwww.google.com"
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
                 ref={inputRef}
@@ -81,7 +81,6 @@ export const App = () => {
             </div>
             <div className="generate-qr-wrapper">
               <StyledButton onClick={generateQRCode}>Generate</StyledButton>
-              <p>or press 'Enter'</p>
             </div>
           </div>
         ) : (

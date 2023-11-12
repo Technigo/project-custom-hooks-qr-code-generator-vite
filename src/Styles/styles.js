@@ -14,10 +14,13 @@ export const StyledButton = styled.button`
   justify-content: center;
   gap: 8px;
   font-family: 'Roboto', sans-serif;
-  width: 50%;
+  width: 25%;
 
   &:hover {
     background-color: #6b1414;
+  }
+  @media (min-width: 667px) {
+    font-size: 20px;
   }
 `;
 
@@ -29,8 +32,15 @@ export const StyledHeading = styled.h1`
     text-align: center;
     color: #0C090D;
 
-  @media (min-width: 767px) {
-    font-size: 32px;
+    @media (min-width: 667px) and (max-width: 1024px) {
+    margin: 0;
+    font-size: 56px;
     text-align:right;
   }
+
+    @media (min-width: 1025px) {
+      margin: 0;
+      font-size: 72px;
+      text-align:right;
+    }
 `;
