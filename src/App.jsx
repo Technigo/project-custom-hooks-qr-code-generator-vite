@@ -1,22 +1,9 @@
-// App Component Explanation
-// The App component serves as a user interface for generating and downloading QR codes,
-// utilizing the custom hook useQRCodeGenerator which encapsulates the logic for QR code
-// generation and management. When rendered, the component displays a title ("Technigo QR Code Generator")
-// and conditionally renders either an input field and a "Generate" button or a generated QR code image,
-// a "Download" button, and a "Repeat" button, based on the showInput state variable.
-// If showInput is true, users can input a URL and generate a QR code by clicking the "Generate" button.
-// Once generated, the input field and "Generate" button are replaced by the QR code image and additional buttons.
-// The "Download" button triggers a download of the QR code image, and the "Repeat" button resets the UI to allow
-// for generating a new QR code. The url, setUrl, qr, showInput, generateQRCode, downloadQRCode,
-// and repeatAction variables and functions are derived from the useQRCodeGenerator hook,
-// providing the necessary state and actions to manage the QR code generation process.
-import logo from "./assets/technigo-logo.svg";
-// Import the custom hook useQRCodeGenerator
+import logo from "./assets/technigo-logo-white.svg";
+import { ColorSelect } from "./components/ColorSelect";
+import { QrAnimation, LoadingAnimation } from "./components/LottieComponent";
 import { useQRCodeGenerator } from "./hooks/useQRCodeGenerator";
 
-// Define the App component
 export const App = () => {
-    // Destructure variables, properties and methods from the useQRCodeGenerator hook that you imported above here :)
     const {
         setUrl,
         url,
@@ -25,47 +12,90 @@ export const App = () => {
         downloadQRCode,
         generateQRCode,
         repeatAction,
+        color,
+        setColor,
+        isLoading,
     } = useQRCodeGenerator();
 
-    //Return the JSX to render the component
-    return (
-        <div className="flex flex-col items-center ">
-            {/* Render the title */}
-            <img className="logo" src={logo} alt="" />
-            <h1>Technigo QR Code Generator</h1>
-            <input
-                type="text"
-                placeholder="e.g. https://google.com"
-                value={url}
-                onChange={(e) => setUrl(e.target.value)}
-            />
-            {showInput ? (
-                <button
-                    className="bg-blue-500 rounded-full"
-                    onClick={generateQRCode}
-                >
-                    Generate
-                </button>
-            ) : (
-                <>
-                    <img src={qr} />
-                    <button
-                        className="bg-blue-500 rounded-full"
-                        onClick={downloadQRCode}
-                    >
-                        DOWNLOAD QR CODE
-                    </button>
-                    <button
-                        className="bg-blue-500 rounded-full"
-                        onClick={repeatAction}
-                    >
-                        NEW
-                    </button>
-                </>
-            )}
+    const handleColorChange = (e) => {
+        const selectedColor = e.target.value;
+        console.log("Color changed:", selectedColor);
+        setColor(selectedColor);
+    };
 
-            {/* Conditionally render based on wether the user is inputting an URL to generate a QR Code or the user wnats to downaload the generated QR Code from the url input */}
-            {/* {yourReactiveVariableThatTogglesTheDownloadQrCcodeOrInputField ? () : ()} */}
+    return (
+        <div className="app">
+            <div className="app-container">
+                <div className="header">
+                    <img className="logo" src={logo} alt="" />
+                    <h1 className="header-h1">QR CODE GENERATOR</h1>
+                </div>
+                <div className="generator">
+                    {isLoading ? (
+                        <div className="loading-container">
+                            <LoadingAnimation />
+                            <p>creating qr code...</p>
+                        </div>
+                    ) : showInput ? (
+                        <>
+                            <QrAnimation />
+                            <h3>
+                                Want a QR code? You've come to the right place!
+                                Just paste in your url here, and click generate!
+                                You'll be able to download it once the QR code
+                                is generated.{" "}
+                            </h3>
+                            <input
+                                className="url-input"
+                                type="text"
+                                placeholder="e.g. https://google.com"
+                                value={url}
+                                onChange={(e) => setUrl(e.target.value)}
+                            />
+                            <div className="color-select-container">
+                            <span className="color-preview" style={{ backgroundColor: color}}/>
+                            <select
+                                name="colorSelector"
+                                className="color-selector"
+                                value={color}
+                                onChange={handleColorChange}
+                            >
+                                <option disabled value="">
+                                    Color
+                                </option>
+                                <option value="#020617">Black</option>
+                                <option value="#86198f">Pink</option>
+                                <option value="#3730a3">Indigo</option>
+                                <option value="#4d7c0f">Green</option>
+                                <option value="#b45309">Orange</option>
+                            </select>
+                            </div>
+                            <button className="btn" onClick={generateQRCode}>
+                                GENERATE QR CODE
+                            </button>
+                        </>
+                    ) : (
+                        <>
+                            <img
+                                className="qr-img"
+                                src={qr}
+                                style={{ borderColor: color }}
+                            />
+                            <h3>
+                                Here's your QR code! Click the download button
+                                to get it! That is super cool!
+                            </h3>
+                            <button className="btn" onClick={downloadQRCode}>
+                                DOWNLOAD QR CODE
+                            </button>
+
+                            <button className="btn" onClick={repeatAction}>
+                                MAKE NEW CODE
+                            </button>
+                        </>
+                    )}
+                </div>
+            </div>
         </div>
     );
 };
