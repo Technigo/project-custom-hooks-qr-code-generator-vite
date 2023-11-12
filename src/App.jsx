@@ -1,6 +1,7 @@
 import { useReducer, useRef, useLayoutEffect } from 'react';
 import { FetchQRcode } from "./components/FetchQRcode.jsx";
 import styled from "styled-components";
+import Lottie from 'react-lottie';
 
 const Logo = styled.div`
   display: flex;

@@ -14,4 +14,4 @@ For this project, I used Lottie animations to enhance the visual feedback of the
 
 ### View it live
 
-
+https://incandescent-fudge-dd8ea2.netlify.app/ 
