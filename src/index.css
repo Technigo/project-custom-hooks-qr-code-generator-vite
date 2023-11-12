@@ -7,13 +7,13 @@
 }
 
 .title {
-  font-size: 70px;
+  font-size: 45px;
   font-weight: 600;
   background-image: linear-gradient(to right, #553c9a 45%, #ee4b2b);
   color: transparent;
-  background-clip: text;
-  -webkit-background-clip: text
+  -webkit-background-clip: text;
 }
+
 body.Light {
   background-color: #f5f5dc;
   color: #000;
@@ -44,7 +44,7 @@ body.Dark .title {
 
 .button button {
   font-family: 'Poppins';
-  width: 320px;
+  width: 200px;
   height: 50px;
   border: none;
   outline: none;
@@ -102,6 +102,18 @@ body.Dark .title {
   top: 0;
 }
 
+.app {
+  padding: 2rem 1rem;
+}
+
+body {
+  transition: background-color 0.3s, color 0.3s;
+}
+
+img {
+  width: 100%;
+  max-width: 300px;
+}
 @keyframes glowing {
   0% { background-position: 0 0; }
   50% { background-position: 400% 0; }
@@ -109,10 +121,48 @@ body.Dark .title {
 }
 
 
-.app {
-  padding: 2rem 1rem;
+/* For tablets and above */
+@media (min-width: 768px) {
+  /* Styles specific to tablets and larger screens */
+  body {
+    font-size: 16px;
+  }
+
+  .title {
+    font-size: 36px;
+  }
+
+  .text-field {
+    width: 80%;
+    padding: 10px;
+  }
+
+  .button button {
+    width: 200px;
+    height: 50px;
+    font-size: 18px;
+  }
 }
 
-body {
-  transition: background-color 0.3s, color 0.3s;
+/* For desktops and above */
+@media (min-width: 1024px) {
+  /* Styles specific to desktops and larger screens */
+  body {
+    font-size: 18px;
+  }
+
+  .title {
+    font-size: 48px;
+  }
+
+  .text-field {
+    width: 60%;
+    padding: 12px;
+  }
+
+  .button button {
+    width: 240px;
+    height: 75px;
+    font-size: 20px;
+  }
 }

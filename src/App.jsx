@@ -48,7 +48,7 @@ return (
             onChange={handleInputChange}
           />
           <div className="button">
-            <button onClick={generateQRCode}>Generate QR Code</button>
+            <button onClick={generateQRCode}>Generate</button>
           </div>
         </div>
       ) : (
