@@ -4,34 +4,15 @@
   </a>
 </h1>
 
-# QR Code Generator - Custom Hook Project
+## QR Code Generator - Custom Hook Project
 
-Replace this readme with your own information about your project.
-
-Start by briefly describing the assignment in a sentence or two. Keep it short and to the point.
-
-## Getting Started with the Project
-
-### Dependency Installation & Startup Development Server
-
-Once cloned, navigate to the project's root directory and this project uses npm (Node Package Manager) to manage its dependencies.
-
-The command below is a combination of installing dependencies, opening up the project on VS Code and it will run a development server on your terminal.
-
-```bash
-npm i && code . && npm run dev
-```
+In this project we got to build a QR code generator by creating a custom hook.
 
 ### The Problem
 
-Describe how you approached to problem, and what tools and techniques you used to solve it. How did you plan? What technologies did you use? If you had more time, what would be next?
+By using a QR code library and implementing this into a custom hook it was relatively simple to build this QR code generator. By using an additional library, React Color, I could add a colour picker, which enables the user customise the colours of the QR code.
 
 ### View it live
 
-Every project should be deployed somewhere. Be sure to include the link to the deployed project so that the viewer can click around and see what it's all about.
-
-## Instructions
-
-<a href="instructions.md">
-   See instructions of this project
-  </a>
+View it live here:
+https://your-colourful-qr-code.netlify.app/
