@@ -72,7 +72,7 @@ export const App = () => {
                 id="url-input"
                 name="url-input"
                 type="text"
-                placeholder="e.g. wwww.google.com"
+                placeholder="e.g. www.google.com"
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
                 ref={inputRef}

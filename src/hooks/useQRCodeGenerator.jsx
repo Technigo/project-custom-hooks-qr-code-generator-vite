@@ -25,18 +25,18 @@ export const useQRCodeGenerator = () => {
   // Function to generate a QR code from the input URL
   const generateQRCode = () => {
 
-    if (url.trim() === "") {
-      alert("Please enter a valid input.");
+    // regEx to ensure that the user writes a URL. This was created using https://regexr.com/ (online regex editor) to formulate the expression. This is new to me and with time this expression could be improved.
+    const urlRegEx = /((ftp|http|https):\/\/)?([a-z]+\.)?([a-z0-9-])+\.[a-z]{2,3}(\/[^/ "\t\n\r]+)*\/?/;
+
+    if (!urlRegEx.test(url)) {
+      alert("Please enter a valid URL.");
 
     } else {
-
-      // const screenWidth = window.innerWidth;
-      // const qrCodeWidth = screenWidth > 768 ? 300 : 200;  //adjust width depending on device
 
       QRCode.toDataURL(
         url,  // The data to be encoded as a QR code (e.g., a URL)
         {
-          // width: qrCodeWidth,  // Width of the QR code
+          // width: 200,  // Width of the QR code
           margin: 2,   // Margin around the QR code. Increasing this shrinks the QR code and increases the size of the background of the image in order to fit within the width. Keep this small.
           color: {
             dark: "#0C090D",   // The darker colorr in the QR code image
