@@ -33,159 +33,29 @@ a {
   color: inherit;
 }
 
+/* BUTTONS */
 button {
   cursor: pointer;
   font-size: 1rem;
   font-family: var(--jetbrains-mono);
 }
 
-#urlInput {
-  font-family: var(--jetbrains-mono);
-  appearance: none;
-  outline: none;
+.repeat-btn,
+.generate-btn {
   border: 1px solid var(--black);
-  width: 220px;
-  padding: 0.5rem 1rem;
-  border-radius: 0.3rem;
-  font-size: 1rem;
-}
-input::placeholder {
-  font-family: var(--jetbrains-mono);
-  font-size: 1rem;
-}
-
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  overflow: hidden;
-  clip-path: polygon(0 0, 0 0, 0 0);
-  white-space: nowrap;
-  border: 0;
-}
-
-.generate-btn,
-.repeat-btn {
+  background-image: var(--gradient);
+  background-size: 200% auto;
+  font-weight: 700;
+  padding: 0.5rem 1.5rem;
+  border-radius: 1.5rem;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
   transition: 0.5s;
 }
-.generate-btn:hover,
-.repeat-btn:hover {
+
+.repeat-btn:hover,
+.generate-btn:hover {
   background-position: right center;
-}
-
-.spinner {
-  border: 4px solid rgba(255, 255, 255, 0.3);
-  border-top: 4px solid #3498db;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  animation: spin 1s linear infinite;
-}
-
-.wrapper {
-  max-width: 64rem;
-  width: 100%;
-  margin: 0 auto;
-}
-
-header {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 0 1rem;
-  width: 100%;
-}
-
-.github-container.header {
-  display: none;
-}
-
-.logo {
-  width: 150px;
-}
-
-main {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  column-gap: 4rem;
-  width: 100%;
-  padding: 2rem 1rem;
-}
-
-.hero-section {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-.hero-text {
-  margin: 0 auto;
-  text-align: center;
-}
-
-h1 {
-  margin-bottom: 0.375rem;
-  font-weight: 700;
-  font-size: 1.4rem;
-}
-
-h2 {
-  margin-bottom: 0.5rem;
-  font-family: var(--jetbrains-mono);
-  font-weight: 700;
-  font-size: 1rem;
-}
-
-.qrPhone {
-  width: 250px;
-  margin: 0 auto;
-}
-
-.github-icon,
-.qr-icon,
-.download-icon {
-  width: 2rem;
-  height: 2rem;
-}
-
-.qr-header-container {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.loading-container,
-.download-container,
-.qr-generator-wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 1rem;
-}
-
-.download-container img {
-  width: 10rem;
-}
-
-.qr-generator-container {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-}
-
-.github-container {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
 }
 
 .reset-btn {
@@ -213,21 +83,144 @@ h2 {
   background: none;
   border: none;
 }
+/* BUTTONS END */
+
+/* INPUT FIELD */
+#urlInput {
+  font-family: var(--jetbrains-mono);
+  appearance: none;
+  outline: none;
+  border: 1px solid var(--black);
+  width: 220px;
+  padding: 0.5rem 1rem;
+  border-radius: 0.3rem;
+  font-size: 1rem;
+}
+input::placeholder {
+  font-family: var(--jetbrains-mono);
+  font-size: 1rem;
+}
+
+/* Visually hide the labels */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: polygon(0 0, 0 0, 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+/* INPUT FIELD END */
+
+.wrapper {
+  max-width: 64rem;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* HEADER SECTION */
+header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 1rem;
+  width: 100%;
+}
+
+.github-container.header {
+  display: none;
+}
+
+.logo {
+  width: 150px;
+}
+
+.qr-header-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+/* HEADER SECTION END */
+
+/* MAIN SECTION */
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  column-gap: 4rem;
+  width: 100%;
+  padding: 2rem 1rem;
+}
+
+/* Hero section (first and right column)*/
+.hero-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-text {
+  margin: 0 auto;
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 0.375rem;
+  font-weight: 700;
+  font-size: 1.4rem;
+}
+
+h2 {
+  margin-bottom: 0.5rem;
+  font-family: var(--jetbrains-mono);
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+/* Animation */
+.qrPhone {
+  width: 250px;
+  margin: 0 auto;
+}
+
+/* QR section (where the qr code is generated) */
+.loading-container,
+.download-container,
+.qr-generator-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.download-container img {
+  width: 10rem;
+}
+
+.qr-generator-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.github-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
 
 .github-container.footer {
   margin-top: 2rem;
-}
-
-.repeat-btn,
-.generate-btn {
-  border: 1px solid var(--black);
-  background-image: var(--gradient);
-  background-size: 200% auto;
-  font-weight: 700;
-  padding: 0.5rem 1.5rem;
-  border-radius: 1.5rem;
-  font-size: 1.25rem;
-  line-height: 1.75rem;
 }
 
 /* COLOR PICKER */
@@ -254,15 +247,15 @@ h2 {
 }
 
 .chrome-picker {
-  position: sticky;
-  top: 10px;
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  transform: translate(-50px, -5px);
 }
 
 @media (min-width: 768px) {
   header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: row;
   }
 
   .github-container.header {
@@ -281,4 +274,49 @@ h2 {
   .qrPhone {
     width: 300px;
   }
+}
+
+@media (min-width: 1024px) {
+  main {
+    flex-direction: row;
+    margin: 0 auto;
+  }
+
+  .hero-section {
+    width: auto;
+  }
+
+  .hero-text {
+    text-align: left;
+    margin: 0;
+  }
+
+  .qrPhone {
+    margin: 0;
+  }
+
+  h1 {
+    margin-bottom: 0.5rem;
+    font-size: 1.7rem;
+  }
+
+  h2 {
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+  }
+
+  .loading-container,
+  .download-container,
+  .qr-generator-wrapper {
+    margin-bottom: 4rem;
+  }
+}
+
+
+/* ICONS */
+.github-icon,
+.qr-icon,
+.download-icon {
+  width: 2rem;
+  height: 2rem;
 }

@@ -29,8 +29,8 @@ export const useQRCodeGenerator = () => {
         margin: 2,
         color: {
           dark: color,
-          light: "#ffffff"
-        }
+          light: "#ffffff",
+        },
       },
       // Error handling and callback of the QR code generation method, which provides the generated QR code data URL.
       (err, inputURL) => {
@@ -53,21 +53,21 @@ export const useQRCodeGenerator = () => {
     // Filename logic in a separate function.
     const getFileName = () => {
       // Method to prompt the user for input and store the response.
-  let fileName = prompt("Enter a filename for the QR code.");
-  
-  // Check if the user clicked Cancel
-  if (fileName === null) {
-    return null; // User canceled, return null
-  }
+      let fileName = prompt("Enter a filename for the QR code.");
 
-  // Implement a check for an empty filename and utilize recursion to re-prompt the user if necessary.
-  if (!fileName.trim()) {
-    alert("Filename cannot be empty. Please try again.");
-    return getFileName(); // Recursively re-prompt if the filename is empty
-  }
+      // Check if the user clicked Cancel
+      if (fileName === null) {
+        return null; // User canceled, return null
+      }
 
-  // Ensure the function returns the obtained filename.
-  return fileName;
+      // Implement a check for an empty filename and utilize recursion to re-prompt the user if necessary.
+      if (!fileName.trim()) {
+        alert("Filename cannot be empty. Please try again.");
+        return getFileName(); // Recursively re-prompt if the filename is empty
+      }
+
+      // Ensure the function returns the obtained filename.
+      return fileName;
     };
     // HINT 5: Call the above function to retrieve a filename and store it in a variable.
     const fileName = getFileName();
