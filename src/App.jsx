@@ -2,9 +2,9 @@ import { useQRCodeGenerator } from "./hooks/useQRCodeGenerator";
 import animationData from './Animation-QR.json';
 import Lottie from 'lottie-react';
 
-// App Component
+
 export const App = () => {
-  // Destructure variables, properties, and methods from the useQRCodeGenerator hook
+
   const {
     url,
     setUrl,
@@ -17,29 +17,33 @@ export const App = () => {
     repeatAction,
   } = useQRCodeGenerator();
 
-  // Return JSX to render the component
   return (
-    <div className="">
+    <div className="wrapper">
       <nav className="navbar">
-        <h1>QR Code Generator</h1>
+        <h1>QR CODE GENERATOR</h1>
+        <p>Create Your Custom QR Code: Seamless Integration on Any Background!</p>
       </nav>
-      <div className="pageWrapper">
-
-        {/* Conditionally render based on whether the user is inputting a URL to generate a QR Code or wants to download the generated QR Code */}
+      <div className="mainPageWrapper">
         {showInput ? (
-          <> {/* Lottie animation as a visual cue while waiting for user action */}
-            <Lottie
-              animationData={animationData}
-              loop
-              autoplay
-              className="lottie-animation"
-            />
+          <>
+            <div className="contentWrapper">
+              <Lottie
+                animationData={animationData}
+                loop
+                autoplay
+                className="lottie-animation"
+              /></div>
             <input
               type="text"
               value={url}
               onChange={(e) => {
                 setUrl(e.target.value);
                 if (errorMessage) setErrorMessage('');
+              }}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  generateQRCode();
+                }
               }}
             />
             {errorMessage && <p style={{ color: '#800000', marginTop: '5px' }}>{errorMessage}</p>}
@@ -48,21 +52,21 @@ export const App = () => {
             </button>
           </>
         ) : (
-          // Render QR code, download button, and repeat button
           <>
-            {/* Display generated QR code image */}
-            <img src={qr} alt="QR Code" />
-            {/* Download button for the generated QR code */}
+            <div className="contentWrapper">
+              <img src={qr} alt="QR Code" className="qr-image" /> </div>
             <button onClick={downloadQRCode} aria-label="Download QR Code">
               Download
             </button>
-            {/* Button to reset and allow generating a new QR code */}
             <button onClick={repeatAction} aria-label="Repeat Action">
               Repeat
             </button>
           </>
         )}
       </div>
-    </div>
-  );
+
+      <footer className="footer">
+        <p>2023 by Elba Cacan | All Rights Reserved</p>
+      </footer>
+    </div>);
 };
