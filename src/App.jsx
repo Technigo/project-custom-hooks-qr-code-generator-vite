@@ -32,7 +32,8 @@ export const App = () => {
                 loop
                 autoplay
                 className="lottie-animation"
-              /></div>
+              />
+            </div>
             <input
               type="text"
               value={url}
@@ -50,6 +51,9 @@ export const App = () => {
             <button onClick={generateQRCode} aria-label="Generate QR Code">
               Generate
             </button>
+            <footer className="foot">
+              <p>2023 by Elba Cacan | All Rights Reserved</p>
+            </footer>
           </>
         ) : (
           <>
@@ -64,9 +68,5 @@ export const App = () => {
           </>
         )}
       </div>
-
-      <footer className="footer">
-        <p>2023 by Elba Cacan | All Rights Reserved</p>
-      </footer>
     </div>);
 };

@@ -3,29 +3,38 @@
 :root {
   margin: 0;
   font-family: 'Playfair Display SC', serif;
-  /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", 
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;*/
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #fefefa;
+}
+
+body {
+  overflow: hidden;
 }
 
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
-body,
 html {
-  font-family: 'Playfair Display SC', serif;
-  height: 100%;
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
 }
 
-.Wrapper {
+.foot {
+  background-color: #baaaa1;
+  height: 60px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   display: flex;
-  flex-direction: column;
 }
 
 .navbar {
@@ -68,7 +77,9 @@ button:hover {
   flex-direction: column;
   align-items: center;
   margin-top: 20px;
-  flex-grow: 1;
+  text-align: center;
+  justify-content: center;
+  background-color: #fefefa;
 }
 
 input {
@@ -92,6 +103,7 @@ input:focus {
   outline: 1px solid #800000ec;
 }
 
+
 .contentWrapper {
   width: 360px;
   height: 360px;
@@ -113,30 +125,62 @@ input:focus {
   height: 260px;
 }
 
-.footer {
-  background-color: #baaaa1;
-  height: 60px;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  display: flex;
-}
-
 @media only screen and (min-width: 300px) and (max-width: 377px) {
   .navbar {
     height: 110px;
   }
 
-  .mainPageWrapper {
-    height: 400px;
-    margin-top: 50px;
+  .foot {
+    height: 40px;
+    padding: 10px 0 20px 0;
+    position: relative;
   }
 
-  .footer {
+  .contentWrapper {
+    width: 320px;
+    height: 320px;
+  }
+
+  button {
+    margin-bottom: 30px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  p {
+    font-size: 14px;
+    padding: 5px 15px;
+  }
+
+}
+
+@media only screen and (min-width: 377px) and (max-width: 700px) {
+  .navbar {
+    height: 110px;
+  }
+
+  .navbar,
+  .contentWrapper,
+  .foot {
+    width: 100%;
+  }
+
+  button {
+    margin-bottom: 30px;
+  }
+
+  .foot {
     height: 40px;
+    position: fixed;
+    bottom: 15%;
+    padding: 20px 0;
+  }
+
+  .contentWrapper {
+    width: 320px;
+    height: 320px;
   }
 
   h1 {
@@ -149,47 +193,19 @@ input:focus {
   }
 }
 
-@media only screen and (min-width: 377px) and (max-width: 700px) {
-  .navbar {
-    height: 100px;
-  }
-
-  .Wrapper {
-    max-height: fit-content;
-  }
-
-  .mainPageWrapper {
-    margin-top: 100px;
-  }
-
-  .footer {
-    height: 60px;
-  }
-
-  h1 {
-    font-size: 28px;
-  }
-
-  p {
-    font-size: 15px;
-  }
-}
 
 @media only screen and (min-width: 700px) and (max-width: 1024px) {
   .navbar {
     height: 100px;
   }
 
-  .Wrapper {
-    max-height: fit-content;
-  }
+  .mainPageWrapper {}
 
-  .mainPageWrapper {
-    margin-top: 180px;
-  }
-
-  .footer {
-    height: 60px;
+  .foot {
+    height: 40px;
+    position: relative;
+    bottom: 30%;
+    padding: 20px 0;
   }
 
   h1 {
