@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useQRCodeGenerator } from './hooks/useQRCodeGenerator';
 
-// Reusable button component. Just to get use to the thinking, i know it doesnt really make sence in this scale of work:) 
+// Reusable button component. Just to get use to the thinking, i know it doesnt really make sense in this scale of work:) 
 const Button = ({ onClick, text, darkMode, className = '' }) => {
   return (
     <button
@@ -115,7 +115,7 @@ export const App = () => {
             <input
               className={`border-solid border-2 ${darkMode ? 'border-white text-black' : 'border-black'}`}
               type="text"
-              placeholder="Enter a URL to generate a QR code"
+              placeholder="Enter a URL"
               value={url}
               onChange={(e) => setUrl(e.target.value)}
             />
