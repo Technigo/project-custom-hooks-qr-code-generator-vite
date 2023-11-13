@@ -151,7 +151,6 @@ main {
   display: grid;
   justify-content: center;
   align-items: center;
-  column-gap: 1rem;
   width: 100%;
   padding: 2rem 1rem;
   margin-bottom: 3rem;
