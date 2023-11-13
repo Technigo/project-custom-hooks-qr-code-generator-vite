@@ -84,12 +84,8 @@ export const App = () => {
       </header>
       <main>
         {/* Hero section with Lottie animation */}
-        <div className="hero-section">
-          <div className="hero-text">
-            <h1>QR Realm of Dreams</h1>
-            <h2>Where Digital Magic Gleams</h2>
-            <p>Create & Customize QR Codes with Ease.</p>
-          </div>
+        <h1>Create & Customize QR Codes with Ease.</h1>
+        <div className="animation-wrapper">
           <LottieComponent />
         </div>
         {/* Show loading spinner while generating the QR code */}
