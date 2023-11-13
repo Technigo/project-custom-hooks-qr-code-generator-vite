@@ -1,10 +1,11 @@
 'use strict'
 
 import React from 'react'
-import reactCSS from 'reactcss';
+import reactCSS from 'reactcss'
 import { SwatchesPicker } from 'react-color'
 
 class SketchPatternColor extends React.Component {
+  // Component state with initial color and color picker visibility
   state = {
     displayColorPicker: false,
     color: {
@@ -15,21 +16,24 @@ class SketchPatternColor extends React.Component {
     },
   };
 
+  // Toggle display of color picker
   handleClick = () => {
     this.setState({ displayColorPicker: !this.state.displayColorPicker })
   };
 
+  // Close color picker
   handleClose = () => {
     this.setState({ displayColorPicker: false })
   };
 
+  // Update state and notify parent component of color change
   handlePatternColorChange = (color) => {
     this.setState({ color: color.rgb })
-    this.props.onColorChange(color.hex)
+    this.props.onColorChange(color.hex) // Notify parent component of color change
   };
 
   render() {
-
+    // ReactCSS styles for the color picker
     const styles = reactCSS({
       'default': {
         color: {
@@ -62,16 +66,26 @@ class SketchPatternColor extends React.Component {
 
     return (
       <div>
-        <div style={ styles.swatch } onClick={ this.handleClick }>
-          <div style={ styles.color } />
+        {/* Color swatch */}
+        <div style={styles.swatch} onClick={this.handleClick}>
+          <div style={styles.color} />
         </div>
-        { this.state.displayColorPicker ? <div style={ styles.popover }>
-          <div style={ styles.cover } onClick={ this.handleClose }/>
-          <SwatchesPicker height={"250px"} width={"170px"} color={ this.state.color } onChange={ this.handlePatternColorChange } />
-        </div> : null }
 
+        {/* Color picker popover */}
+        {this.state.displayColorPicker ? (
+          <div style={styles.popover}>
+            <div style={styles.cover} onClick={this.handleClose} />
+            {/* SwatchesPicker component for color selection */}
+            <SwatchesPicker
+              height={"250px"}
+              width={"170px"}
+              color={this.state.color}
+              onChange={this.handlePatternColorChange}
+            />
+          </div>
+        ) : null}
       </div>
-    )
+    );
   }
 }
 

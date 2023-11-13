@@ -1,14 +1,14 @@
-import { useQRCodeGenerator } from "./hooks/useQRCodeGenerator";
+import { useQRCodeGenerator } from "./hooks/useQRCodeGenerator"
 import { useState } from "react";
 
-import SketchBackgroundColor from "./components/SketchBackgroundColor";
-import SketchPatternColor from "./components/SketchPatternColor";
+import SketchBackgroundColor from "./components/SketchBackgroundColor"
+import SketchPatternColor from "./components/SketchPatternColor"
  
 import {BsQrCode} from 'react-icons/bs'
 
 
 export const App = () => {
-
+// State variables for patternColor and backgroundColor
   const [patternColor, setPatternColor] = useState("#e91e63")
   const [backgroundColor, setBackgroundColor] = useState("#ffcdd2")
   
@@ -24,13 +24,13 @@ export const App = () => {
     errorMessage
   } = useQRCodeGenerator(patternColor, setPatternColor, backgroundColor, setBackgroundColor);
 
-
+// Event handler for changing the pattern color
   const handlePatternColorChange = (color) => {
     // Update patternColor state in the App component
     setPatternColor(color);
-   
   };
 
+  // Event handler for changing the background color
   const handleBackgroundColorChange = (color) => {
     // Update backgroundColor state in the App component
     setBackgroundColor(color);
@@ -46,7 +46,7 @@ export const App = () => {
     }
   };
 
-  // Returning the JSX to render the component
+  //JSX to render the component
   return (
     <section className="app">
       <h1>QR Generator</h1>
@@ -77,6 +77,7 @@ export const App = () => {
           {errorMessage && <p className="error-message">{errorMessage}</p>}
         </>
       ) : (
+          // Display generated QR code and buttons for repeat and download
         qr && (
           <>
             <img src={qr} />
