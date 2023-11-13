@@ -25,7 +25,7 @@ html {
   overflow-x: hidden;
 }
 
-.foot {
+/* .foot { 
   background-color: #baaaa1;
   height: 60px;
   position: fixed;
@@ -35,7 +35,7 @@ html {
   justify-content: center;
   text-align: center;
   display: flex;
-}
+}*/
 
 .navbar {
   background-color: #baaaa1;
@@ -49,8 +49,12 @@ html {
 
 h1 {
   color: #333;
-  margin: 0;
+  padding: 15px 0;
   font-size: 44px;
+}
+
+p {
+  padding: 5px 0;
 }
 
 button {
@@ -130,11 +134,11 @@ input:focus {
     height: 110px;
   }
 
-  .foot {
+  /*  .foot {
     height: 40px;
     padding: 10px 0 20px 0;
     position: relative;
-  }
+  }*/
 
   .contentWrapper {
     width: 320px;
@@ -161,22 +165,17 @@ input:focus {
     height: 110px;
   }
 
-  .navbar,
-  .contentWrapper,
-  .foot {
-    width: 100%;
-  }
-
   button {
     margin-bottom: 30px;
   }
 
+  /*  
   .foot {
     height: 40px;
     position: fixed;
     bottom: 15%;
     padding: 20px 0;
-  }
+  }*/
 
   .contentWrapper {
     width: 320px;
@@ -199,14 +198,13 @@ input:focus {
     height: 100px;
   }
 
-  .mainPageWrapper {}
-
+  /*  
   .foot {
     height: 40px;
     position: relative;
     bottom: 30%;
     padding: 20px 0;
-  }
+  }*/
 
   h1 {
     font-size: 28px;
