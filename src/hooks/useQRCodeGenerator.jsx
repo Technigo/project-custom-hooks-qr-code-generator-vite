@@ -17,11 +17,11 @@ export const useQRCodeGenerator = () => {
     QRCode.toDataURL(
       url,
       {
-        width: 100,
+        width: 200,
         margin: 2,
         color: {
-          dark: "#335383FF",
-          light: "#EEEEEEFF",
+          dark: "#461a74",
+          light: "#f2e6ff",
         },
       },
       (err, url) => {
@@ -39,20 +39,19 @@ export const useQRCodeGenerator = () => {
   const downloadQRCode = () => {
 
     const getFileName = () => {
-      const fileName = prompt('Name your QR code!')
+      const fileName = prompt('Give a name to your mystical cipher...')
 
       return fileName === '' ? getFileName() : fileName
 
     };
 
-    let fileName = getFileName()
-
-    fileName = fileName.split(' ').join('-')
+    let formatFileName = getFileName()
+    let fileName = formatFileName.split(" ").join("-")
     
     const link = document.createElement('a')
 
     link.href = qr
-    link.download = `${fileName.png}`
+    link.download = `${fileName}.png`
 
     document.body.appendChild(link)
     

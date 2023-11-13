@@ -42,10 +42,15 @@ h2 {
   align-items: center;
   justify-content: center;
   background-color: rgba(156, 133, 195, 0.5);
-  height: 35em;
-  margin-top: 5em;
+  height: 40em;
+  margin-top: 1em;
   padding: 1em;
-  border-radius: 20%;
+  border-radius: 70px;
+}
+
+.animation-wrapper {
+  display: flex;
+  justify-content: center;
 }
 
 input, button {
@@ -56,8 +61,49 @@ input, button {
   box-shadow: none;
   border: 2px solid rgb(178, 159, 211);
   background-color: rgb(206, 193, 227);
+  font-size: 15px;
 }
 
 button {
   width: fit-content;
+  font-size: 20px;
+  border-radius: 15px;
+  height: 2em;
+}
+
+button:hover {
+  background-color: rgb(59, 39, 92);
+  color: white;
+  cursor: pointer;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5em;
+}
+
+@media screen and (max-width: 667px) {
+  .main-container {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .content-wrapper {
+    grid-column: 1 / 2;
+    height: 45em;
+    border-radius: 40px;
+  }
+}
+
+@media screen and (min-width: 668px) and (max-width: 1024px) {
+  .main-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .content-wrapper {
+    grid-column: 2 / 5;
+    height: 45em;
+  }
 }
