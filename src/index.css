@@ -22,7 +22,6 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
-  background-color: aqua;
 }
 
 .wrapper {
@@ -138,8 +137,8 @@ input:focus {
 
 
 .lottie-animation {
-  width: 480px;
-  height: 480px;
+  width: 290px;
+  height: 290px;
 }
 
 .qr-image {
@@ -162,8 +161,8 @@ button {
     margin-bottom: 30px;
   } */
   .contentWrapper {
-    width: 320px;
-    height: 320px;
+    width: 290px;
+    height: 290px;
   }
 
 
