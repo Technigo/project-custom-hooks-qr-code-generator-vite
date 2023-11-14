@@ -18,6 +18,7 @@
 
 html,
 body {
+
   height: 100%;
   margin: 0;
   padding: 0;
@@ -154,7 +155,6 @@ input:focus {
   .foot {
     height: 40px;
     padding: 10px 0 20px 0;
-    position: relative;
   }
 
   .contentWrapper {
@@ -217,7 +217,6 @@ input:focus {
 
   .foot {
     height: 40px;
-    position: relative;
     bottom: 30%;
     padding: 20px 0;
   }
