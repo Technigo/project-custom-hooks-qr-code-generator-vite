@@ -51,6 +51,7 @@ body {
   justify-content: center;
   text-align: center;
   display: flex;
+  position: fixed;
 }
 
 .navbar {
