@@ -25,7 +25,7 @@ html {
   overflow-x: hidden;
 }
 
-/* .foot { 
+.foot {
   background-color: #baaaa1;
   height: 60px;
   position: fixed;
@@ -35,7 +35,7 @@ html {
   justify-content: center;
   text-align: center;
   display: flex;
-}*/
+}
 
 .navbar {
   background-color: #baaaa1;
@@ -169,13 +169,13 @@ input:focus {
     margin-bottom: 30px;
   }
 
-  /*  
+
   .foot {
     height: 40px;
     position: fixed;
     bottom: 15%;
     padding: 20px 0;
-  }*/
+  }
 
   .contentWrapper {
     width: 320px;

@@ -51,9 +51,9 @@ export const App = () => {
             <button onClick={generateQRCode} aria-label="Generate QR Code">
               Generate
             </button>
-            {/*<div className="foot">
+            <div className="foot">
               <p>2023 by Elba Cacan | All Rights Reserved</p>
-            </div>*/}
+            </div>
           </>
         ) : (
           <>
