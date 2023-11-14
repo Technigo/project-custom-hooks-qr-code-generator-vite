@@ -2,7 +2,6 @@ import { useQRCodeGenerator } from "./hooks/useQRCodeGenerator";
 import animationData from './Animation-QR.json';
 import Lottie from 'lottie-react';
 
-
 export const App = () => {
 
   const {
@@ -70,3 +69,4 @@ export const App = () => {
       </div>
     </div>);
 };
+
