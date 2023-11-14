@@ -27,7 +27,7 @@ export const useQRCodeGenerator = () => {
         width: 100,
         margin: 2,
         color: {
-          dark: "#335383FF",
+          dark: "#38302A",
           light: "#EEEEEEFF",
         },
       },
