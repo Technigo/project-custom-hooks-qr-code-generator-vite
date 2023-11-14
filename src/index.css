@@ -22,6 +22,7 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
+  background-color: aqua;
 }
 
 .wrapper {
@@ -39,14 +40,11 @@ body {
   margin-top: 20px;
   text-align: center;
   width: 100%;
-  /* max-width: 360px;
-   Eksempel på maksbredde */
 }
 
 .foot {
   background-color: #baaaa1;
   height: 60px;
-  position: fixed;
   bottom: 0;
   width: 100%;
   align-items: center;
@@ -148,8 +146,10 @@ input:focus {
   height: 260px;
 }
 
+
 @media only screen and (min-width: 300px) and (max-width: 377px) {
-  .navbar {
+
+  /*  .navbar {
     height: 110px;
   }
 
@@ -157,15 +157,15 @@ input:focus {
     height: 40px;
     padding: 10px 0 20px 0;
   }
-
+button {
+    margin-bottom: 30px;
+  } */
   .contentWrapper {
     width: 320px;
     height: 320px;
   }
 
-  button {
-    margin-bottom: 30px;
-  }
+
 
   h1 {
     font-size: 24px;
@@ -179,7 +179,8 @@ input:focus {
 }
 
 @media only screen and (min-width: 377px) and (max-width: 700px) {
-  .navbar {
+
+  /*  .navbar {
     height: 110px;
   }
 
@@ -193,7 +194,7 @@ input:focus {
     bottom: 15%;
     padding: 20px 0;
   }
-
+*/
   .contentWrapper {
     width: 320px;
     height: 320px;
@@ -211,17 +212,17 @@ input:focus {
 
 
 @media only screen and (min-width: 700px) and (max-width: 1024px) {
-  .navbar {
+
+  /*  .navbar {
     height: 100px;
   }
 
 
   .foot {
     height: 40px;
-    bottom: 30%;
     padding: 20px 0;
   }
-
+ */
   h1 {
     font-size: 28px;
   }
