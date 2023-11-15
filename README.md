@@ -1,8 +1,4 @@
-<h1 align="center">
-  <a href="">
-    <img src="/src/assets/custom-hooks.svg" alt="Project Banner Image">
-  </a>
-</h1>
+
 
 # QR Code Generator - Custom Hook Project
 
