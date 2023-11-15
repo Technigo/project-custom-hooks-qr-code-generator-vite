@@ -13,23 +13,12 @@ export const useQRCodeGenerator = () => {
   // checks if a URL is valid
   const isValidUrl = (input) => {
     try {
-      // basic validation with URL constructor
       new URL(input);
-
-      // enhanced validation with regex. ensures a certain level of correctness in the format of URLs entered by users
-      const pattern = new RegExp('^(https?:\\/\\/)?' +
-        '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' +
-        '((\\d{1,3}\\.){3}\\d{1,3}))' +
-        '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' +
-        '(\\?[;&a-z\\d%_.~+=-]*)?' +
-        '(\\#[-a-z\\d_]*)?$', 'i');
-
-      return pattern.test(input);
+      return true;
     } catch (error) {
-      return false; // if error: the URL is invalid
+      return false;
     }
   };
-
   const generateQRCode = async () => {
     try {
       let formattedUrl = url.trim();

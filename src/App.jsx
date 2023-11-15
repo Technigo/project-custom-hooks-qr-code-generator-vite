@@ -17,6 +17,13 @@ export const App = () => {
     repeatAction, // function to reset and make another QR code
   } = useQRCodeGenerator();
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
   // app displayed on screen
   return (
     <div className="wrapper">
@@ -51,7 +58,10 @@ export const App = () => {
               }}
             />
             {errorMessage && <p style={{ color: '#800000', marginTop: '5px' }}>{errorMessage}</p>}
-            <button onClick={generateQRCode} aria-label="Generate QR Code">
+            <button onClick={() => {
+              generateQRCode();
+              scrollToTop();
+            }} aria-label="Generate QR Code">
               Generate
             </button>
             <footer className="foot">
@@ -68,7 +78,10 @@ export const App = () => {
               Download
             </button>
             {/* restart and make a new QR code */}
-            <button onClick={repeatAction} aria-label="Repeat Action">
+            <button onClick={() => {
+              repeatAction();
+              scrollToTop();
+            }} aria-label="Repeat Action">
               Repeat
             </button>
             <footer className="foot">
