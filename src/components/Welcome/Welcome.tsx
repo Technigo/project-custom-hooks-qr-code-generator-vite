@@ -32,10 +32,10 @@ export const Welcome = ({ onStart, gifs }: { onStart: (value: boolean) => void; 
         ></iframe>
         <div className="w-full h-full border-none top-0 left-0 z-1 absolute"></div>
       </div>
-      <button onClick={() => onStart(false)} className="button mb-10 animate-bounce ">
+      <button onClick={() => onStart(false)} className="button mb-10 animate-bounce z-10">
         Start Here
       </button>
-      <BoxAnimated />
+      <BoxAnimated maxHeight={200} />
     </div>
   );
 };
