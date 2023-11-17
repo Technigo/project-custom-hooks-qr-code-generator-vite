@@ -87,13 +87,11 @@ export const App = () => {
           <>
             <img src={qr} alt="QR Code" />
             <p className="text-lg">Want to go again?</p>
-            <div>
+            <div className="restart-btns">
               <button onClick={repeatAction}>Start over</button>
-              {/* <button > */}
               <a className="secondary-btn" href={qr} onClick={downloadQRCode} download="qrcode.png">
                 Download QR Code 👇
               </a>
-              {/* </button> */}
             </div>
           </>
         )

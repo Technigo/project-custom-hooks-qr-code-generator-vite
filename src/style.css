@@ -12,6 +12,11 @@ body section {
   gap: 20px;
   padding: 2rem;
 }
+body section .restart-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
 @media (min-width: 768px) and (max-width: 1023px) {
   body section {
     padding: 10rem;

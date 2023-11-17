@@ -105,7 +105,7 @@ export const useQRCodeGenerator = () => {
 
     // Formats the filename to ensure it is filesystem-friendly (removes spaces, special characters etc).
     const cleanFileName = fileName.split(" ").join("-");
-    // Using regex to remove special characters
+    // Using regex to remove special characters, saved for future reference
     // const cleanFileName = fileName.replace(/\s+/g, "_").replace(/[^a-zA-Z0-9_.-]/g, "");
 
     // Creates an anchor element in the DOM

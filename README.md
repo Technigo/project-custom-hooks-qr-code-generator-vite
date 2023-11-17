@@ -16,6 +16,8 @@ When the code was working I decided to style it a little. I tried Tailwind, but 
 
 I also decided to add in a colorpicker functionality. I tried for a while to have two color pickers, one for the dark and one for the light. However, it ended up only choosing one of the colors even though I changed both. I decided to comment out these parts from the code, so that I can have a look at it in the future. Hopefully you won't get distracted by the commented out code. 
 
+I decided to not add a regex pattern to define a valid url, I thought it might also be relevant to be able to create a QR code for a search result for example. 
+
 ### View it live
 
 https://qr-code-generator-lyckholm.netlify.app/
