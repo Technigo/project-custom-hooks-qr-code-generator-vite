@@ -6,15 +6,22 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
 
-/* .app {
+
+.app {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background-color: #f8f8f8;
+  background-color: #f4bdbd;
   padding: 20px;
+  text-align: center;
 }
 
 h1 {
@@ -51,7 +58,7 @@ img {
   max-width: 300px;
   border: 1px solid #ccc;
   border-radius: 4px;
-} */
+}
 
 img.logo {
   border: none;
