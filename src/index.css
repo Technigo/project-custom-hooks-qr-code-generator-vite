@@ -7,19 +7,28 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* .app {
+.app {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
+  min-height: 50vh;
   background-color: #f8f8f8;
   padding: 20px;
 }
 
 h1 {
-  color: #335383;
+  color: #002154;
   margin-bottom: 20px;
+  font-size: 34px;
+  text-align: center;
+}
+
+p {
+  color: #335383;
+  margin-top: 0px;
+  font-size: 18px;
+  text-align: center;
 }
 
 input {
@@ -47,13 +56,20 @@ button:hover {
 }
 
 img {
-  margin-top: 20px;
+  margin-top: 0px;
   max-width: 300px;
   border: 1px solid #ccc;
   border-radius: 4px;
-} */
+}
 
 img.logo {
   border: none;
   max-width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0px;
+
+  display: block;
+  width: 50%;
+
 }

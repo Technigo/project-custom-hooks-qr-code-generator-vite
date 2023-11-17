@@ -1,24 +1,111 @@
-// App Component Explanation
-// The App component serves as a user interface for generating and downloading QR codes, utilizing the custom hook useQRCodeGenerator which encapsulates the logic for QR code generation and management. When rendered, the component displays a title ("Technigo QR Code Generator") and conditionally renders either an input field and a "Generate" button or a generated QR code image, a "Download" button, and a "Repeat" button, based on the showInput state variable. If showInput is true, users can input a URL and generate a QR code by clicking the "Generate" button. Once generated, the input field and "Generate" button are replaced by the QR code image and additional buttons. The "Download" button triggers a download of the QR code image, and the "Repeat" button resets the UI to allow for generating a new QR code. The url, setUrl, qr, showInput, generateQRCode, downloadQRCode, and repeatAction variables and functions are derived from the useQRCodeGenerator hook, providing the necessary state and actions to manage the QR code generation process.
-import logo from "./assets/technigo-logo.svg";
-// Import the custom hook useQRCodeGenerator
-import { QrExample } from "./components/QrExample";
+import { useReducer, useRef, useLayoutEffect } from 'react';
+import { FetchQRcode } from "./components/FetchQRcode.jsx";
+import styled from "styled-components";
 
-// Define the App component
+
+const Logo = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: #f5f5f5;
+  img {
+    width: 150px;
+    height: 150px;
+  }
+`;
+const QrContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: #f5f5f5;  
+
+  @media (max-width: 768px) {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+
+  @media (max-width: 375px) {
+    width: 100%;
+    margin: 0;
+    padding: 0px;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+
+
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+
+    
+  }
+
+
+`;
+
+
+
+const initialState = {
+  url: '',
+  qr: '',
+  showInput: true,
+};
+
+function reducer(state, action) {
+  switch (action.type) {
+    case 'setUrl':
+      return { ...state, url: action.payload };
+    case 'setQr':
+      return { ...state, qr: action.payload };
+    case 'toggleShowInput':
+      return { ...state, showInput: !state.showInput };
+    default:
+      throw new Error();
+  }
+}
+
 export const App = () => {
-  // Destructure variables, properties and methods from the useQRCodeGenerator hook that you imported above here :)
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const inputRef = useRef();
 
-  // Return the JSX to render the component
+  useLayoutEffect(() => {
+    if (state.showInput) {
+      inputRef.current.focus();
+    }
+  }, [state.showInput]);
+
   return (
-    <div className="">
-      {/* Render the title */}
-      <img className="logo" src={logo} alt="" />
-      <h1>Technigo QR Code Generator</h1>
-      <p>Start Here</p>
-      <QrExample />
-
-      {/* Conditionally render based on wether the user is inputting an URL to generate a QR Code or the user wnats to downaload the generated QR Code from the url input */}
-      {/* {yourReactiveVariableThatTogglesTheDownloadQrCcodeOrInputField ? () : ()} */}
-    </div>
+    <QrContainer>
+      <Logo>
+      <img className="logo" src="/qrlogo.jpeg" alt="logo" />
+      </Logo>
+      <h1>Simple QR Code Generator</h1>
+      <FetchQRcode 
+        url={state.url} 
+        setUrl={(url) => dispatch({ type: 'setUrl', payload: url })} 
+        qr={state.qr} 
+        setQr={(qr) => dispatch({ type: 'setQr', payload: qr })} 
+        showInput={state.showInput} 
+        toggleShowInput={() => dispatch({ type: 'toggleShowInput' })}
+        inputRef={inputRef}
+      />
+    </QrContainer>
   );
 };
+
+
+
