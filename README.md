@@ -1,14 +1,10 @@
-<h1 align="center">
-  <a href="">
-    <img src="/src/assets/custom-hooks.svg" alt="Project Banner Image">
-  </a>
-</h1>
+
 
 # QR Code Generator - Custom Hook Project
 
-Replace this readme with your own information about your project.
+This week, I explored creating my very first custom hook to create QR codes. The QR Code Generator project lets users type in a URL, turn it into a QR code, and download it as an image. My task was to understand and possibly expand the existing code to make sure it’s easy to use and works well.
 
-Start by briefly describing the assignment in a sentence or two. Keep it short and to the point.
+A key part of this project was the qrcode library. This tool helps turn the URLs into QR codes, which are special barcodes that can be scanned to show the URL
 
 ## Getting Started with the Project
 
@@ -24,14 +20,11 @@ npm i && code . && npm run dev
 
 ### The Problem
 
-Describe how you approached to problem, and what tools and techniques you used to solve it. How did you plan? What technologies did you use? If you had more time, what would be next?
+I  used only the App.jsx file. No components.
+I created a custom hook named useQRCodeGenerator to manage the QR code generation logic using the qrcode library.
+I thought about the usability and the responsivness
 
 ### View it live
 
-Every project should be deployed somewhere. Be sure to include the link to the deployed project so that the viewer can click around and see what it's all about.
+https://qr-code-generator-kroluna.netlify.app
 
-## Instructions
-
-<a href="instructions.md">
-   See instructions of this project
-  </a>

@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@300&display=swap");
+
 :root {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -7,19 +9,35 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* .app {
+.app-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background-color: #f8f8f8;
-  padding: 20px;
+  background-image: linear-gradient(
+    181deg,
+    rgba(145, 175, 175, 1) 53%,
+    rgba(188, 146, 166, 1)
+  );
 }
 
 h1 {
   color: #335383;
   margin-bottom: 20px;
+  font-family: "Anton", sans-serif;
+  letter-spacing: 2px;
+  background-image: linear-gradient(
+    90deg,
+    rgba(101, 90, 167, 1) 13%,
+    rgba(133, 76, 185, 1) 46%,
+    rgba(56, 144, 170, 1)
+  );
+
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  display: inline;
 }
 
 input {
@@ -29,31 +47,50 @@ input {
   border-radius: 4px;
   margin-bottom: 20px;
   width: 300px;
+  font-family: "Montserrat", sans-serif;
+}
+
+.generate-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.download-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 button {
-  background-color: #335383;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  text-decoration: none;
+  color: #91afafff;
   font-size: 16px;
+  border-radius: 10px;
+  width: 200px;
+  height: 40px;
+  font-weight: bold;
+  border: 4px double #ffffff;
+  transition: 0.3s;
+  background-color: #655aa7ff;
   cursor: pointer;
   margin: 10px;
+  font-family: "Montserrat", sans-serif;
 }
 
 button:hover {
-  background-color: #23375d;
+  opacity: 0.5;
 }
 
 img {
-  margin-top: 20px;
+  margin-bottom: 20px;
   max-width: 300px;
   border: 1px solid #ccc;
   border-radius: 4px;
-} */
-
-img.logo {
-  border: none;
-  max-width: 200px;
 }
