@@ -1,24 +1,70 @@
-// App Component Explanation
-// The App component serves as a user interface for generating and downloading QR codes, utilizing the custom hook useQRCodeGenerator which encapsulates the logic for QR code generation and management. When rendered, the component displays a title ("Technigo QR Code Generator") and conditionally renders either an input field and a "Generate" button or a generated QR code image, a "Download" button, and a "Repeat" button, based on the showInput state variable. If showInput is true, users can input a URL and generate a QR code by clicking the "Generate" button. Once generated, the input field and "Generate" button are replaced by the QR code image and additional buttons. The "Download" button triggers a download of the QR code image, and the "Repeat" button resets the UI to allow for generating a new QR code. The url, setUrl, qr, showInput, generateQRCode, downloadQRCode, and repeatAction variables and functions are derived from the useQRCodeGenerator hook, providing the necessary state and actions to manage the QR code generation process.
-import logo from "./assets/technigo-logo.svg";
-// Import the custom hook useQRCodeGenerator
-import { QrExample } from "./components/QrExample";
+import { useQRCodeGenerator } from "./hooks/useQRCodeGenerator";
+import { MyLottieAnimation } from "./components/LottieQR";
 
-// Define the App component
+// App Component
 export const App = () => {
-  // Destructure variables, properties and methods from the useQRCodeGenerator hook that you imported above here :)
+  // Destructure variables, properties, and methods from the useQRCodeGenerator hook
+  const {
+    url,
+    setUrl,
+    qr,
+    showInput,
+    errorMessage,
+    generateQRCode,
+    downloadQRCode,
+    repeatAction,
+    qrGenerated,
+  } = useQRCodeGenerator();
 
-  // Return the JSX to render the component
+  // Return JSX to render the component
   return (
-    <div className="">
-      {/* Render the title */}
-      <img className="logo" src={logo} alt="" />
-      <h1>Technigo QR Code Generator</h1>
-      <p>Start Here</p>
-      <QrExample />
-
-      {/* Conditionally render based on wether the user is inputting an URL to generate a QR Code or the user wnats to downaload the generated QR Code from the url input */}
-      {/* {yourReactiveVariableThatTogglesTheDownloadQrCcodeOrInputField ? () : ()} */}
+    <div>
+      <nav className="navbar">
+        <h1>QR Code Generator</h1>
+      </nav>
+      <div className="pageWrapper">
+        {qrGenerated ? null : <MyLottieAnimation />} {/* Conditionally render MyLottieAnimation */}
+        {/* Conditionally render based on whether the user is inputting a URL to generate a QR Code or wants to download the generated QR Code */}
+        {showInput ? (
+          <>
+            <input
+              type="text"
+              value={url}
+              onChange={(e) => {
+                setUrl(e.target.value);
+                if (errorMessage) setErrorMessage('');
+              }}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  generateQRCode();
+                }
+              }}
+            />
+            {errorMessage && <p style={{ color: '#800000', marginTop: '5px' }}>{errorMessage}</p>}
+            <button onClick={generateQRCode} aria-label="Generate QR Code">
+              Generate
+            </button>
+          </>
+        ) : (
+          // Render QR code, download button, and repeat button
+          <>
+            {/* Display generated QR code image */}
+            <img className="qr-image" src={qr} alt="QR Code" />
+            {/* Download button for the generated QR code */}
+            <button onClick={downloadQRCode} aria-label="Download QR Code">
+              Download
+            </button>
+            {/* Button to reset and allow generating a new QR code */}
+            <button onClick={repeatAction} aria-label="Repeat Action">
+              Repeat
+            </button>
+          </>
+        )}
+      </div>
+      {/* footer */}
+      <footer>
+        <p>Thank you for visiting, come back anytime!</p>
+      </footer>
     </div>
   );
 };
