@@ -24,11 +24,12 @@ npm i && code . && npm run dev
 
 ### The Problem
 
-Describe how you approached to problem, and what tools and techniques you used to solve it. How did you plan? What technologies did you use? If you had more time, what would be next?
+It was to create a custom hooks for a qr code. The project was quite straight on, I used https://webaim.org/resources/contrastchecker/ to get the colors right and then i struggled a bt with the animation. But it was a fun way to wrap up all new things you learned this far.
 
 ### View it live
 
-Every project should be deployed somewhere. Be sure to include the link to the deployed project so that the viewer can click around and see what it's all about.
+https://cocofnasqrcode.netlify.app/
+
 
 ## Instructions
 
