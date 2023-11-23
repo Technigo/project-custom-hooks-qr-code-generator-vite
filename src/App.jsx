@@ -61,14 +61,6 @@ export const App = () => {
         <>
           <img src={qrData} alt="qr code" className="qr-image" />
           <div className="button-container">
-            {/* <a ref={downloadRef} style={{ display: "none" }}></a>
-            <button className="dlBtn" onClick={downloadQRCode}>
-              Download
-            </button>
-            <button className="resetBtn" onClick={repeatAction}>
-              Reset
-            </button> */}
-
             <a ref={downloadRef} style={{ display: "none" }}></a>
             <button onClick={downloadQRCode} className="glowing-btn">
               <span className="glowing-txt">
