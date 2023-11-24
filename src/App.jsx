@@ -1,6 +1,5 @@
 import React from 'react';
 import { useQRCodeGenerator } from './hooks/useQRCodeGenerator';
-import logo from './assets/technigo-logo.svg';
 
 const App = () => {
   const {
@@ -19,10 +18,9 @@ const App = () => {
 
   return (
     <div className="app">
-      <img className="logo" src={logo} alt="Technigo Logo" />
-      <h1>Technigo QR Code Generator</h1>
+      <h1>QR Code Generator</h1>
       {showInput && (
-        <div>
+        <div className="input-container">
           <input
             type="text"
             placeholder="Enter URL"
@@ -35,10 +33,8 @@ const App = () => {
       {qr && (
         <div>
           <img src={qr} alt="QR Code" />
-          <a href={qr} download="qrcode.png" onClick={downloadQRCode}>
-            Download QR Code
-          </a>
-          <button onClick={repeatAction}>Generate New QR Code</button>
+          <button onClick={downloadQRCode}>Download QR Code</button>
+          <button onClick={repeatAction}>Restart</button>
         </div>
       )}
     </div>
