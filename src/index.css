@@ -19,15 +19,15 @@
 
 h1 {
   color: #8a694a;
-  margin-bottom: 40px;
-  font-size: 50px;
+  margin-bottom: 20px;
+  font-size: 40px;
 }
 
 .input-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 400px; 
+  margin-bottom: 30px; 
 }
 
 button {
@@ -39,7 +39,6 @@ button {
   font-size: 16px;
   cursor: pointer;
   margin: 10px;
-  margin-top: 30px;
 }
 
 button:hover {
@@ -48,7 +47,7 @@ button:hover {
 
 img {
   margin-top: 20px;
-  max-width: 300px;
+  max-width: 100%;
   border: 1px solid #ccc;
   border-radius: 4px;
   display: flex;
@@ -56,3 +55,19 @@ img {
   align-items: center;
 } 
 
+@media (min-width: 768px) {
+  h1 {
+    font-size: 50px; 
+  }
+}
+
+@media (min-width: 992px) {
+  .input-container {
+    flex-direction: row; 
+    justify-content: center;
+  }
+
+  input {
+    width: 300px; 
+  }
+}
