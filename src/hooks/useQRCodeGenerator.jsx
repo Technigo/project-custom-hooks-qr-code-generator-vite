@@ -4,6 +4,7 @@ This is a custom hook named useQRCodeGenerator. It generates QR codes and downlo
 It utilizes the useState hook from React to manage three pieces of state: 
   - url (to store the input URL that will be converted into a QR code)
   - qr (to store the generated QR code data URL)
+  - loading (sets a loading state during generation of QR-code)
   - showInput (a boolean to toggle the visibility of an input element in the UI).
 
 The hook has three methods:
@@ -51,7 +52,7 @@ export const useQRCodeGenerator = () => {
   const downloadQRCode = () => {
 
     const getFileName = () => {
-      let fileName = prompt("Chose a file name for the download:")
+      let fileName = prompt("Choose a file name for the download:")
 
       if (fileName == "") 
         {fileName = prompt("You didn't enter a file name, please do so:")}
@@ -76,8 +77,8 @@ export const useQRCodeGenerator = () => {
 
   // Method to reset the states to allow user to generate a new QR code
   const repeatAction = () => {
-    setUrl(() => "")
-    setQr(() => "")
+    setUrl("")
+    setQr("")
     setShowInput(true)
   };
 
