@@ -1,3 +1,4 @@
+/* Global styles */
 :root {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -5,9 +6,11 @@
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+ 
 }
 
-/* .app {
+/* Styles for the main container */
+.wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,22 +20,30 @@
   padding: 20px;
 }
 
+/* Body styles */
+body {
+  background-color: #f8f8f8;
+}
+
+/* Header styles */
 h1 {
-  color: #335383;
+  color: #606c38;
   margin-bottom: 20px;
 }
 
+/* Input field styles */
 input {
   padding: 10px;
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   width: 300px;
 }
 
+/* Button styles */
 button {
-  background-color: #335383;
+  background-color: #283618;
   color: #fff;
   padding: 10px 20px;
   border: none;
@@ -40,20 +51,31 @@ button {
   font-size: 16px;
   cursor: pointer;
   margin: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
+/* Button hover styles */
 button:hover {
-  background-color: #23375d;
+  background-color: #606c38;
 }
 
+/* QR code image styles */
 img {
   margin-top: 20px;
+  margin-bottom: 20px;
   max-width: 300px;
   border: 1px solid #ccc;
   border-radius: 4px;
-} */
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+} 
 
-img.logo {
-  border: none;
-  max-width: 200px;
+/* Error message container styles */
+.error-container {
+  color: #ff0000; 
+  text-align: center;
 }
+
