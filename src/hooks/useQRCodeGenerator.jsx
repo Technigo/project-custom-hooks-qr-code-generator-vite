@@ -23,6 +23,7 @@ export const useQRCodeGenerator = () => {
 
   const [ url, setUrl ] = useState("")
   const [ qr, setQr ] = useState("")
+  const [ loading, setLoading] = useState(false)
   const [ showInput, setShowInput ] = useState(true)
 
   //Calls the toDataURL-function from the QRCode-library. Stores the QRCode-URL in the qr-state. Changes the state showInput
@@ -86,6 +87,8 @@ export const useQRCodeGenerator = () => {
     setUrl, 
     qr, 
     showInput, 
+    loading,
+    setLoading,
     generateQRCode, 
     downloadQRCode, 
     repeatAction

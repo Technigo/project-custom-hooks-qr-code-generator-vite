@@ -9,6 +9,8 @@ export const App = () => {
     url, 
     setUrl, 
     showInput, 
+    loading,
+    setLoading,
     generateQRCode, 
     downloadQRCode, 
     repeatAction 
@@ -16,17 +18,23 @@ export const App = () => {
 
   const handleChange = (event) => {
     setUrl(event.target.value)
+    if (event.code === "Enter") {generateCode()}
+  }
 
-    if (event.code === "Enter") {generateQRCode()}
+  const generateCode = () => {
+    setTimeout(() => {
+      setLoading(loading => !loading)
+      generateQRCode()
+    }, 2000)
+    setLoading(true);
   }
   
   return (
     <div className="the-app">
       <h1>QR Code Generator</h1>
 
-      { showInput ?
+      { showInput && !loading &&
         <>
-          <Lottie  animationData={animationData} />
           <input 
             required
             type="text" 
@@ -35,12 +43,12 @@ export const App = () => {
             onChange={handleChange}
             onKeyDown={handleChange} />
           <button 
-            onClick={generateQRCode}>
+            onClick={generateCode}>
               Generate
           </button>
-        </>
-
-        :
+        </>}
+        {showInput && loading && <Lottie  animationData={animationData} />}
+        {!showInput &&
         <>
           <img src={qr} />
           <button onClick={downloadQRCode}>
