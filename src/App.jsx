@@ -1,24 +1,102 @@
-// App Component Explanation
-// The App component serves as a user interface for generating and downloading QR codes, utilizing the custom hook useQRCodeGenerator which encapsulates the logic for QR code generation and management. When rendered, the component displays a title ("Technigo QR Code Generator") and conditionally renders either an input field and a "Generate" button or a generated QR code image, a "Download" button, and a "Repeat" button, based on the showInput state variable. If showInput is true, users can input a URL and generate a QR code by clicking the "Generate" button. Once generated, the input field and "Generate" button are replaced by the QR code image and additional buttons. The "Download" button triggers a download of the QR code image, and the "Repeat" button resets the UI to allow for generating a new QR code. The url, setUrl, qr, showInput, generateQRCode, downloadQRCode, and repeatAction variables and functions are derived from the useQRCodeGenerator hook, providing the necessary state and actions to manage the QR code generation process.
-import logo from "./assets/technigo-logo.svg";
-// Import the custom hook useQRCodeGenerator
-import { QrExample } from "./components/QrExample";
+import { useQRCodeGenerator } from "./hooks/useQRCodeGenerator";
+import Lottie from "lottie-react";
+import generateAnimation from "./assets/generateAnim.json";
+import { SketchPicker } from "react-color";
 
-// Define the App component
+// Component that renders the QR code generator UI
 export const App = () => {
-  // Destructure variables, properties and methods from the useQRCodeGenerator hook that you imported above here :)
+  // Desctructures the custom hook to access the state variables and functions needed to generate and download QR codes as well as to repeat the action
+  const {
+    url,
+    setUrl,
+    qr,
+    showInput,
+    showAnimation,
+    generateQRCode,
+    downloadQRCode,
+    repeatAction,
+    // colorLight, // Saving for an other time
+    colorDark,
+    handleClick,
+    handleClose,
+    popover,
+    cover,
+    displayColorPicker,
+    handleChangeDarkColor,
+    // handleChangeLightColor, // Saving for an other time
+  } = useQRCodeGenerator();
+
+  // Defines the styling of the Lottie animation
+  const style = {
+    height: "10rem",
+  };
 
   // Return the JSX to render the component
   return (
-    <div className="">
+    <section>
       {/* Render the title */}
-      <img className="logo" src={logo} alt="" />
-      <h1>Technigo QR Code Generator</h1>
-      <p>Start Here</p>
-      <QrExample />
+      <h1>QR Code Generator</h1>
 
-      {/* Conditionally render based on wether the user is inputting an URL to generate a QR Code or the user wnats to downaload the generated QR Code from the url input */}
-      {/* {yourReactiveVariableThatTogglesTheDownloadQrCcodeOrInputField ? () : ()} */}
-    </div>
+      {/* Conditional rendering of elements */}
+      {showAnimation ? (
+        // Display a loading spinner while generating the QR code
+        <Lottie animationData={generateAnimation} style={style} />
+      ) : showInput ? (
+        // Renders the input field and generate button if showInput is true
+        <>
+          <p>Please enter a URL below</p>
+          <input
+            type="text"
+            placeholder="e.g. https://google.com"
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
+          />
+          <div className="buttons">
+            <div>
+              <button className="secondary-btn" onClick={handleClick}>
+                Pick QR-color
+              </button>
+              {displayColorPicker ? (
+                <div style={popover}>
+                  <div style={cover} onClick={handleClose} />
+                  <SketchPicker color={colorDark} onChangeComplete={handleChangeDarkColor} />
+                </div>
+              ) : null}
+
+              {/* Commented out because I want to save it for later */}
+              {/* <button style={{ borderColor: colorLight, color: colorLight }} className="secondary-btn" onClick={handleClick}>
+                Pick BG-color
+              </button>
+              {displayColorPicker ? (
+                <div style={popover}>
+                  <div style={cover} onClick={handleClose} />
+                  <SketchPicker color={colorLight} onChangeComplete={handleChangeLightColor} />
+                </div>
+              ) : null} */}
+            </div>
+            <button onClick={generateQRCode}>Generate QR</button>
+          </div>
+          <div className="chosen-color">
+            <p>Chosen color:</p>
+            <div style={{ backgroundColor: colorDark, width: 25, height: 25, borderRadius: 25 }} ></div>
+          </div>
+        </>
+      ) : (
+        qr && (
+          // Renders the QR code, download button, and repeat button if showInput is false
+          <>
+            <img src={qr} alt="QR Code" />
+            <p className="text-lg">Want to go again?</p>
+            <div className="restart-btns">
+              <button onClick={repeatAction}>Start over</button>
+              <a className="secondary-btn" href={qr} onClick={downloadQRCode} download="qrcode.png">
+                Download QR Code 👇
+              </a>
+            </div>
+          </>
+        )
+      )
+      }
+    </section >
   );
 };
