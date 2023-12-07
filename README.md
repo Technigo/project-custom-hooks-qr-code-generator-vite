@@ -6,9 +6,7 @@
 
 # QR Code Generator - Custom Hook Project
 
-Replace this readme with your own information about your project.
-
-Start by briefly describing the assignment in a sentence or two. Keep it short and to the point.
+React & Vite Boiler Plate project for Technigo students: Generate QR codes from URLs, utilising custom hooks for efficient state management.
 
 ## Getting Started with the Project
 
@@ -24,11 +22,13 @@ npm i && code . && npm run dev
 
 ### The Problem
 
-Describe how you approached to problem, and what tools and techniques you used to solve it. How did you plan? What technologies did you use? If you had more time, what would be next?
+I spent a little bit of time to understand what the custom hook is for, what is the connection between the App component and the hook.
+The project looks easy but there are still some new concepts which I took some time to digest such as the download URL.
 
 ### View it live
 
-Every project should be deployed somewhere. Be sure to include the link to the deployed project so that the viewer can click around and see what it's all about.
+Here is the deploy version of the website:
+https://enchanting-lebkuchen-8982e1.netlify.app/
 
 ## Instructions
 

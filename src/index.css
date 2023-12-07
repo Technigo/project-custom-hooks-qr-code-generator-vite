@@ -1,5 +1,7 @@
 :root {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -7,19 +9,18 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* .app {
+body {
+  text-align: center;
+  background-color: rgb(33, 7, 58);
+  color: white;
+}
+
+.app {
+  padding: 10rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
-  background-color: #f8f8f8;
-  padding: 20px;
-}
-
-h1 {
-  color: #335383;
-  margin-bottom: 20px;
 }
 
 input {
@@ -31,27 +32,35 @@ input {
   width: 300px;
 }
 
-button {
-  background-color: #335383;
+img {
+  margin: 2rem;
+  width: 10rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.downloadBtn,
+.repeatBtn,
+.btn {
+  background-color: rgb(89, 31, 143);
   color: #fff;
   padding: 10px 20px;
   border: none;
   border-radius: 4px;
   font-size: 16px;
   cursor: pointer;
-  margin: 10px;
+  margin: 1rem;
+  width: 10rem;
 }
 
-button:hover {
-  background-color: #23375d;
+.downloadBtn a {
+  color: #fff;
+  text-decoration: none;
 }
 
-img {
-  margin-top: 20px;
-  max-width: 300px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-} */
+.btn:hover {
+  background-color: rgb(132, 72, 189);
+}
 
 img.logo {
   border: none;
