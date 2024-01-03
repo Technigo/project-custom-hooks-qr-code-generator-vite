@@ -207,6 +207,12 @@
   }
 }
 
+@media only screen and (min-width: 300px) and (max-width: 350px) {
+  .button-container button {
+    font-size: 0.8em;
+  }
+}
+
 @media only screen and (max-width: 600px) {
   .glowing-btn {
     font-size: 1em;
