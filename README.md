@@ -6,32 +6,22 @@
 
 # QR Code Generator - Custom Hook Project
 
-Replace this readme with your own information about your project.
-
-Start by briefly describing the assignment in a sentence or two. Keep it short and to the point.
-
-## Getting Started with the Project
-
-### Dependency Installation & Startup Development Server
-
-Once cloned, navigate to the project's root directory and this project uses npm (Node Package Manager) to manage its dependencies.
-
-The command below is a combination of installing dependencies, opening up the project on VS Code and it will run a development server on your terminal.
-
-```bash
-npm i && code . && npm run dev
-```
+The core purpose of this project is to enable users to seamlessly input a URL, convert it into a QR code with ease, and conveniently download it as an image.
 
 ### The Problem
 
-Describe how you approached to problem, and what tools and techniques you used to solve it. How did you plan? What technologies did you use? If you had more time, what would be next?
+The existing code was mostly set up, so the primary task was understanding the custom hook. This week, there were numerous hints, and I found them a bit overwhelming. I recognized that the confusion stemmed from the way the hints were presented. Being new to coding, I'm not yet comfortable with the terminology, but with the assistance of Google and AI, I managed to comprehend it and start working. Initially, using the custom hook was a bit perplexing, likely because I've become accustomed to thinking in terms of components :D.
+
+My main challenge revolved around recalling how to create and manipulate elements in the DOM. Consequently, I had to refer to documentation from both W3Schools and MDN to refresh and enhance my understanding.
+
+This marked my initial experience incorporating an animation from the Lottie library. It was an enjoyable endeavor! I'm eager to explore and experiment further with this library.
 
 ### View it live
 
-Every project should be deployed somewhere. Be sure to include the link to the deployed project so that the viewer can click around and see what it's all about.
+https://easy-qr-code-generator.netlify.app/
 
-## Instructions
+## Screenshot
 
-<a href="instructions.md">
-   See instructions of this project
+<a href="">
+   <img src="src/assets/qr-code.png" alt="A preview of the QR-code generator.">
   </a>
