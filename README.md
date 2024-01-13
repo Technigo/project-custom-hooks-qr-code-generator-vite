@@ -5,6 +5,7 @@
 </h1>
 
 # QR Code Generator - Custom Hook Project
+https://adorable-chimera-d58d28.netlify.app
 
 Replace this readme with your own information about your project.
 
