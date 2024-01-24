@@ -1,14 +1,7 @@
-<h1 align="center">
-  <a href="">
-    <img src="/src/assets/custom-hooks.svg" alt="Project Banner Image">
-  </a>
-</h1>
 
 # QR Code Generator - Custom Hook Project
 
-Replace this readme with your own information about your project.
-
-Start by briefly describing the assignment in a sentence or two. Keep it short and to the point.
+The aim of this project was to make your own qr code generator. It was pretty much do your own take on it, which was fun.
 
 ## Getting Started with the Project
 
@@ -24,7 +17,7 @@ npm i && code . && npm run dev
 
 ### The Problem
 
-It was to create a custom hooks for a qr code. The project was quite straight on, I used https://webaim.org/resources/contrastchecker/ to get the colors right and then i struggled a bt with the animation. But it was a fun way to wrap up all new things you learned this far.
+It was to create a custom hooks for a qr code. The project was quite straight on, I used https://webaim.org/resources/contrastchecker/ to get the colors right and then i struggled a bt with the animation. But it was a fun way to wrap up all new things you learned this far. For this week one of the goals was to use a lottieanimation and also follow accessability guidelines, so my aim was to firt make the error messages pretty straughtforward but also, since I know some people struggle with understanding how to use the qr code I desiced that my animation should be one where the usage of the qr code was explained.
 
 ### View it live
 
@@ -36,3 +29,7 @@ https://cocofnasqrcode.netlify.app/
 <a href="instructions.md">
    See instructions of this project
   </a>
+
+
+##Links
+Portfolio https://alexandrameijaportfolio.netlify.app/
