@@ -24,10 +24,10 @@ The existing codebase provides a solid foundation, and your task is to ensure th
 - QR Code Generation: Upon input, a QR code should be generated from the URL.
 - Download: Users should have the ability to download the generated QR code as an image file.
 - Repeat: Users should be able to generate a new QR code after one has been created.
+- Given that this project focuses on the development of a Custom Hook, we recommend to build all logic within the `App.jsx` file. Nevertheless this is completely up to you on how you want to structure your project. 
 
 ### Requirements:
 
-- Your app should use only the `App.jsx` file. No components.
 - Custom Hook: Utilize the `useQRCodeGenerator` custom hook to manage the QR code generation logic.
 - User-Friendly UI: Ensure that the UI is intuitive and user-friendly.
 - Your page should be responsive
