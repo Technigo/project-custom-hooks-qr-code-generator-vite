@@ -3,13 +3,13 @@ import { useState } from "react";
 import QRCode from "qrcode";
 
 
-const App = () => {
-  // State variables using the 'useState' hook.
-  const [url, setUrl] = useState(""); // Keeps track of the input URL.
-  const [qr, setQr] = useState(""); // Stores the generated QR code image URL.
+// const App = () => {
+//   // State variables using the 'useState' hook.
+//   const [url, setUrl] = useState(""); // Keeps track of the input URL.
+//   const [qr, setQr] = useState(""); // Stores the generated QR code image URL.
 
   // Function to generate a QR code when the "Generate" button is clicked.
-  const generateQRCode = () => {
+  export const generateQRCode = () => {
     // Use the 'QRCode.toDataURL' method to generate a QR code from the input URL.
     QRCode.toDataURL(
       url, // Input URL
