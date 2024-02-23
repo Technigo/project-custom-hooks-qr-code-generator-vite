@@ -6,7 +6,6 @@ export const useQRCodeGenerator = inputURL => {
     // Reactive State variable to store the input URL
     const [url, setURL] =(inputURL);
 
-
     const [qrCode, setQrCode] = useState(inputURL);
 
     const [isInputVisible, SetIsInputVisible] = useState("true");
@@ -36,5 +35,22 @@ export const useQRCodeGenerator = inputURL => {
     );
     SetIsInputVisible(false);
  }
+};
 
+const downloadQRCode = () => {
+
+ let cancelDownload = false;
+ 
+ const getFileName () => {
+
+    let fileName = prompt('enter a file name to your download');
+    cancelDownload = false;
+
+    if (fileName === "") {
+        alert('Invalid input, please try again')
+        getFileName();
+    }
+ }
+ 
 }
+//Evelyn jag är här nu
