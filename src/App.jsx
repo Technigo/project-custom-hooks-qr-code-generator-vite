@@ -1,6 +1,6 @@
-import { useQRCodeGenerator } from "./hooks/useQRCodeGenerator";
+import { useQRCodeGenerator } from "./hooks/useQRCodegenerator";
 
-export const App = () => {
+const App = () => {
   const {
     url,
     setURL,
@@ -10,4 +10,13 @@ export const App = () => {
     downloadQRCode,
     repeatAction,
   } = useQRCodeGenerator();
+
+  // Make sure to return some JSX here for your component to render
+  return (
+    <div>
+      {/* Your component's JSX goes here */}
+    </div>
+  );
 };
+
+export default App;
