@@ -88,4 +88,3 @@ repeatAction,
 };
 };
 
-// "Evelyn jag är här nu" is a comment, likely indicating a marker or note left by the developer.

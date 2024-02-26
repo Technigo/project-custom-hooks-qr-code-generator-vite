@@ -1,3 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
 :root {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -7,7 +12,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.app {
+/* .app {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -51,7 +56,7 @@ img {
   max-width: 300px;
   border: 1px solid #ccc;
   border-radius: 4px;
-}
+} */
 
 img.logo {
   border: none;
