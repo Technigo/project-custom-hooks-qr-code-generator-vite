@@ -19,17 +19,17 @@ const App = () => {
  
   return (
 
-<div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
-  {/* Container for QR code or animation with a responsive size */}
-  <div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg h-auto flex justify-center items-center">
-    {qrCode ? (
-      // Display QR code if it exists
-      <img src={qrCode} alt="QR Code" className="w-48 h-48" />
-    ) : (
-      // Adjust the Lottie animation size for better visibility on mobile
-      // The style here is adjusted to increase the size on smaller screens
-      <div style={{ width: '100%', maxWidth: '500px', height: 'auto' }}>
-        <Lottie animationData={QrAnimation} loop autoplay style={{ width: '100%', height: '100%' }} />
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
+    {/* This title will now only show when the QR code is not displayed, i.e., when the animation is active */}
+    {!qrCode && (
+      <h1 className="text-3xl text-customGreen font-bold">QR Code Generator</h1>
+    )}
+    <div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg h-auto flex justify-center items-center">
+      {qrCode ? (
+        <img src={qrCode} alt="QR Code" className="w-48 h-48 mt-6" />
+      ) : (
+        <div style={{ width: '100%', maxWidth: '500px', height: 'auto' }}>
+          <Lottie animationData={QrAnimation} loop autoplay style={{ width: '100%', height: '100%' }} />
       </div>
     )}
   </div>
