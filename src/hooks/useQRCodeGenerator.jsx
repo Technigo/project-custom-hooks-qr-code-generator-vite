@@ -5,7 +5,7 @@ import QRCode from "qrcode";
 // A custom React hook named useQRCodeGenerator
 export const useQRCodeGenerator = (inputURL) => {
     // State variable to store the input URL, initialized with inputURL
-const [url, setURL] = useState(inputURL);
+const [url, setURL] = useState("");
 
 // State variable to store the generated QR code data URL
 const [qrCode, setQrCode] = useState("");
@@ -22,8 +22,8 @@ url, // The URL to convert into a QR code
 width: 300, // Sets the width of the generated QR code image
 margin: 2, // Sets the margin around the QR code
 color: {
-    dark: "#335383FF", // Color for the "dark" parts of the QR code
-    light: "#EEEEEEFF", // Background or "light" color of the QR code
+    dark: "#006600", // Color for the "dark" parts of the QR code
+    light: "#FFFFFF", // Background or "light" color of the QR code
 },
 },
 (err, url) => { // Callback function after QR code generation
