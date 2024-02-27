@@ -1,4 +1,4 @@
-import { useQRCodeGenerator } from "./hooks/useQRCodegenerator";
+import { useQRCodeGenerator } from "./hooks/useQRCodeGenerator";
 import Lottie from "lottie-react";
 import QrAnimation from "./assets/lottieanimation/QrAnimation.json"
 import "./index.css";
