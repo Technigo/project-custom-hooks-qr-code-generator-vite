@@ -6,14 +6,13 @@
 
 # QR Code Generator - Custom Hook Project
 
-Created a QR Generator where you can create a QR code and download it, created with a custom hook.
+In this project we got to build a QR code generator by creating a custom hook.
 
 ### The Problem
 
-I used a lot of ChatGPT to understand what i was doing.
+Using a QR code library into a custom made hook, I was guided by ChatGPT and did a lot of research on the web. 
 
 ### View it live
-
 https://qr-code-evelyndelcarmen.netlify.app/
 
 ## Instructions
