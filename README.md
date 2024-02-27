@@ -6,7 +6,7 @@
 
 # QR Code Generator - Custom Hook Project
 
-In this project we got to build a QR code generator by creating a custom hook.
+Generate QR codes from URLs, utilising custom hooks for efficient state management.
 
 ### The Problem
 
