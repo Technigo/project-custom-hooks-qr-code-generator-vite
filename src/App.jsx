@@ -16,61 +16,64 @@ const App = () => {
     repeatAction,
   } = useQRCodeGenerator();
 
-  // Make sure to return some JSX here for your component to render
+ 
   return (
 
 <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
-{/* Conditional rendering based on qrCode state */}
-{qrCode ? (
-// Display QR code if it exists
-<div className="w-48 h-48">
-<img src={qrCode} alt="QR Code" className="w-full h-full" />
-</div>
-) : (
-// Display the Lottie animation if qrCode does not exist
-<Lottie animationData={QrAnimation} loop autoplay style={{ width: 400, height: 400 }} />
+  {/* Container for QR code or animation with a responsive size */}
+  <div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg h-auto flex justify-center items-center">
+    {qrCode ? (
+      // Display QR code if it exists
+      <img src={qrCode} alt="QR Code" className="w-48 h-48" />
+    ) : (
+      // Adjust the Lottie animation size for better visibility on mobile
+      // The style here is adjusted to increase the size on smaller screens
+      <div style={{ width: '100%', maxWidth: '500px', height: 'auto' }}>
+        <Lottie animationData={QrAnimation} loop autoplay style={{ width: '100%', height: '100%' }} />
+      </div>
+    )}
+  </div>
+
+  {/* Adjusted the margin-top (mt-4, mt-6, etc.) to control the gap between the animation and the buttons */}
+  {isInputVisible && (
+    <div className="flex flex-col items-center gap-2 md:gap-4 lg:gap-4 mt-1 inline-block"> {/* Adjust 'mt-6' to increase or decrease the gap */}
+      <input
+        type="text"
+        value={url}
+        onChange={(e) => setURL(e.target.value)}
+        placeholder="Enter URL here"
+        className="p-2 border-2 border-gray-300 focus:border-customGreen focus:outline-none rounded-lg w-full"
+      />
+      <button
+        className="bg-customGreen hover:bg-customYellow text-white font-bold py-2 px-4 rounded transition duration-300 w-full sm:w-auto"
+        onClick={generateQRCode}
+      >
+        Generate QR Code
+      </button>
+    </div>
+  )}
+
+  {/* Buttons for downloading the QR code and generating a new one, shown only if the QR code exists */}
+  {qrCode && (
+  <div className="flex flex-col items-center gap-2 md:gap-4 lg:gap-6 mt-6">
+    <button
+      className="bg-customGreen hover:bg-customYellow text-white font-bold py-2 px-4 rounded transition duration-300 w-full sm:w-auto"
+      onClick={downloadQRCode}
+    >
+      Download QR Code
+    </button>
+    <button
+      className="bg-customGreen hover:bg-customYellow text-white font-bold py-2 px-4 rounded transition duration-300 w-full sm:w-auto"
+      onClick={repeatAction}
+    >
+    New QR Code
+    </button>
+  </div>
 )}
 
-{/* Input field and button for generating QR code */}
-{isInputVisible && (
-<div className="flex flex-col items-center gap-4">
-<input
-  type="text"
-  value={url}
-  onChange={(e) => setURL(e.target.value)}
-  placeholder="Enter URL here"
-  className="mt-4 p-2 border-2 border-gray-300 focus:border-customGreen rounded-lg w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg"
-/>
-<button
-  className="bg-customGreen hover:bg-customYellow text-white font-bold py-2 px-4 rounded transition duration-300 w-full sm:w-auto"
-  onClick={generateQRCode} // Ensure this matches the function name
->
-  Generate QR Code
-</button>
 </div>
-)}
 
-{/* Button for downloading the QR code, shown only if the QR code exists */}
-{qrCode && (
-  
-<button
-className="bg-customGreen hover:bg-customYellow text-white font-bold py-2 px-4 rounded transition duration-300 w-full sm:w-auto"
-onClick={downloadQRCode}
->
-Download QR Code
-</button>
-)}
 
-{/* Button to reset and generate another QR code, shown only if the QR code exists */}
-{qrCode && (
-<button
-className="bg-customGreen hover:bg-customYellow text-white font-bold py-2 px-4 rounded transition duration-300 w-full sm:w-auto"
-onClick={repeatAction}
->
-Generate New QR Code
-</button>
-)}
-</div>
 );
 };
 
