@@ -1,24 +1,80 @@
-// App Component Explanation
-// The App component serves as a user interface for generating and downloading QR codes, utilizing the custom hook useQRCodeGenerator which encapsulates the logic for QR code generation and management. When rendered, the component displays a title ("Technigo QR Code Generator") and conditionally renders either an input field and a "Generate" button or a generated QR code image, a "Download" button, and a "Repeat" button, based on the showInput state variable. If showInput is true, users can input a URL and generate a QR code by clicking the "Generate" button. Once generated, the input field and "Generate" button are replaced by the QR code image and additional buttons. The "Download" button triggers a download of the QR code image, and the "Repeat" button resets the UI to allow for generating a new QR code. The url, setUrl, qr, showInput, generateQRCode, downloadQRCode, and repeatAction variables and functions are derived from the useQRCodeGenerator hook, providing the necessary state and actions to manage the QR code generation process.
-import logo from "./assets/technigo-logo.svg";
-// Import the custom hook useQRCodeGenerator
-import { QrExample } from "./components/QrExample";
+import { useQRCodeGenerator } from "./hooks/useQRCodeGenerator";
+import Lottie from "lottie-react";
+import QrAnimation from "./assets/lottieanimation/QrAnimation.json"
+import "./index.css";
 
-// Define the App component
-export const App = () => {
-  // Destructure variables, properties and methods from the useQRCodeGenerator hook that you imported above here :)
 
-  // Return the JSX to render the component
+
+const App = () => {
+  const {
+    url,
+    setURL,
+    qrCode,
+    isInputVisible,
+    generateQRCode,
+    downloadQRCode,
+    repeatAction,
+  } = useQRCodeGenerator();
+
+ 
   return (
-    <div className="">
-      {/* Render the title */}
-      <img className="logo" src={logo} alt="" />
-      <h1>Technigo QR Code Generator</h1>
-      <p>Start Here</p>
-      <QrExample />
 
-      {/* Conditionally render based on wether the user is inputting an URL to generate a QR Code or the user wnats to downaload the generated QR Code from the url input */}
-      {/* {yourReactiveVariableThatTogglesTheDownloadQrCcodeOrInputField ? () : ()} */}
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
+    {/* This title will now only show when the QR code is not displayed, i.e., when the animation is active */}
+    {!qrCode && (
+      <h1 className="text-3xl text-customGreen font-bold">QR Code Generator</h1>
+    )}
+    <div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg h-auto flex justify-center items-center">
+      {qrCode ? (
+        <img src={qrCode} alt="QR Code" className="w-48 h-48 mt-6" />
+      ) : (
+        <div style={{ width: '100%', maxWidth: '500px', height: 'auto' }}>
+          <Lottie animationData={QrAnimation} loop autoplay style={{ width: '100%', height: '100%' }} />
+      </div>
+    )}
+  </div>
+
+  {/* Adjusted the margin-top (mt-4, mt-6, etc.) to control the gap between the animation and the buttons */}
+  {isInputVisible && (
+    <div className="flex flex-col items-center gap-2 md:gap-4 lg:gap-4 mt-1 inline-block"> {/* Adjust 'mt-6' to increase or decrease the gap */}
+      <input
+        type="text"
+        value={url}
+        onChange={(e) => setURL(e.target.value)}
+        placeholder="Enter URL here"
+        className="p-2 border-2 border-gray-300 focus:border-customGreen focus:outline-none rounded-lg w-full"
+      />
+      <button
+        className="bg-customGreen hover:bg-customYellow text-white font-bold py-2 px-4 rounded transition duration-300 w-full sm:w-auto"
+        onClick={generateQRCode}
+      >
+        Generate QR Code
+      </button>
     </div>
-  );
+  )}
+
+  {/* Buttons for downloading the QR code and generating a new one, shown only if the QR code exists */}
+  {qrCode && (
+  <div className="flex flex-col items-center gap-2 md:gap-4 lg:gap-6 mt-6">
+    <button
+      className="bg-customGreen hover:bg-customYellow text-white font-bold py-2 px-4 rounded transition duration-300 w-full sm:w-auto"
+      onClick={downloadQRCode}
+    >
+      Download QR Code
+    </button>
+    <button
+      className="bg-customGreen hover:bg-customYellow text-white font-bold py-2 px-4 rounded transition duration-300 w-full sm:w-auto"
+      onClick={repeatAction}
+    >
+    New QR Code
+    </button>
+  </div>
+)}
+
+</div>
+
+
+);
 };
+
+export default App;
