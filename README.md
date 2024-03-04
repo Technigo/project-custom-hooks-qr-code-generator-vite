@@ -16,6 +16,5 @@ Since I never have worked with a custom hook it was a bit of a challenge to get 
 
 https://project-custom-hooks-qr-code-generator-vite.vercel.app/
 
-## Instructions
 
 
