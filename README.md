@@ -6,32 +6,16 @@
 
 # QR Code Generator - Custom Hook Project
 
-Replace this readme with your own information about your project.
-
-Start by briefly describing the assignment in a sentence or two. Keep it short and to the point.
-
-## Getting Started with the Project
-
-### Dependency Installation & Startup Development Server
-
-Once cloned, navigate to the project's root directory and this project uses npm (Node Package Manager) to manage its dependencies.
-
-The command below is a combination of installing dependencies, opening up the project on VS Code and it will run a development server on your terminal.
-
-```bash
-npm i && code . && npm run dev
-```
+In this project the task was to create a custom hook to create a website where you can generate a QR code.
 
 ### The Problem
 
-Describe how you approached to problem, and what tools and techniques you used to solve it. How did you plan? What technologies did you use? If you had more time, what would be next?
+Since I never have worked with a custom hook it was a bit of a challenge to get to know the code and understanding it fully. But after I had read the code carefully a couple of time and asked chatGPT to explain the parts I didn't really grasp it felt pretty natural.
 
 ### View it live
 
-Every project should be deployed somewhere. Be sure to include the link to the deployed project so that the viewer can click around and see what it's all about.
+https://project-custom-hooks-qr-code-generator-vite.vercel.app/
 
 ## Instructions
 
-<a href="instructions.md">
-   See instructions of this project
-  </a>
+
