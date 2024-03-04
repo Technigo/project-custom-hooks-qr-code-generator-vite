@@ -1,24 +1,49 @@
-// App Component Explanation
-// The App component serves as a user interface for generating and downloading QR codes, utilizing the custom hook useQRCodeGenerator which encapsulates the logic for QR code generation and management. When rendered, the component displays a title ("Technigo QR Code Generator") and conditionally renders either an input field and a "Generate" button or a generated QR code image, a "Download" button, and a "Repeat" button, based on the showInput state variable. If showInput is true, users can input a URL and generate a QR code by clicking the "Generate" button. Once generated, the input field and "Generate" button are replaced by the QR code image and additional buttons. The "Download" button triggers a download of the QR code image, and the "Repeat" button resets the UI to allow for generating a new QR code. The url, setUrl, qr, showInput, generateQRCode, downloadQRCode, and repeatAction variables and functions are derived from the useQRCodeGenerator hook, providing the necessary state and actions to manage the QR code generation process.
-import logo from "./assets/technigo-logo.svg";
-// Import the custom hook useQRCodeGenerator
-import { QrExample } from "./components/QrExample";
+// src/App.jsx
+import React from "react";
+import { useQRCodeGenerator } from "./hooks/useQRCodeGenerator";
+import { CirclePicker } from 'react-color';
 
-// Define the App component
 export const App = () => {
-  // Destructure variables, properties and methods from the useQRCodeGenerator hook that you imported above here :)
+  const {
+    url, setUrl, qr, color, setColor, showInput, generateQRCode, downloadQRCode, repeatAction,
+  } = useQRCodeGenerator();
 
-  // Return the JSX to render the component
+  const handleUrlChange = (event) => setUrl(event.target.value);
+  const handleColorChange = (color) => {
+    setColor(color.hex); 
+  };
+
   return (
-    <div className="">
-      {/* Render the title */}
-      <img className="logo" src={logo} alt="" />
-      <h1>Technigo QR Code Generator</h1>
-      <p>Start Here</p>
-      <QrExample />
-
-      {/* Conditionally render based on wether the user is inputting an URL to generate a QR Code or the user wnats to downaload the generated QR Code from the url input */}
-      {/* {yourReactiveVariableThatTogglesTheDownloadQrCcodeOrInputField ? () : ()} */}
-    </div>
+    <>
+      <section className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-rose-200 via-violet-200 to-emerald-200 text-black">
+        <h1 className="text-black m-8 font-bold text-center text-5xl">A Very Colorful QR Code Generator</h1>
+        {showInput ? (
+          <div className="flex flex-col items-center">
+            <input
+              className="rounded-full p-3 m-5 bg-white w-full text-center text-black"
+              type="text"
+              placeholder="Enter a URL or search term"
+              value={url}
+              onChange={handleUrlChange}
+            />
+            {/* Descriptive text for the color picker */}
+            <p className="text-lg text-black mt-4 mb-2">Pick a color for the QR code</p>
+            <CirclePicker 
+              color={color}
+              onChangeComplete={handleColorChange}
+            />
+            <button onClick={generateQRCode} className="bg-white text-black hover:bg-black hover:text-white transition-all duration-300 ease-in-out rounded-full p-3 mt-5">Generate QR Code</button>
+          </div>
+        ) : (
+          <div className="animate-fadeIn flex flex-col items-center">
+            <img src={qr} alt="Generated QR Code" />
+            <div className="flex flex-row m-8 justify-between gap-5">
+              <button onClick={downloadQRCode} className="bg-white hover:bg-black hover:text-white rounded-full transition-all duration-300 ease-in-out p-3">Download QR Code</button>
+              <button onClick={repeatAction} className="bg-white hover:bg-black hover:text-white rounded-full transition-all duration-300 ease-in-out p-3">Generate New QR Code</button>
+            </div>
+          </div>
+          )}
+      </section>
+    </>
   );
 };
